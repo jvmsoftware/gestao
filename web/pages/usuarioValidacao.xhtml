@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+<ui:composition template="/template.xhtml">  
+    <ui:define name="menu">
+        <p:panel style=" width:100%; height:55px">
+            <ui:include src="/menu.xhtml"/>
+        </p:panel>
+    </ui:define>
+    
+    <ui:define name="conteudo">    
+        
+        <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+        <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+            <p:graphicImage value="images/loading.gif"/>
+        </p:dialog>
+        
+        <h:form id="formCad">
+            <p:messages id="msgs"/>
+            <p:panel header="CADASTRO - validação" style="text-align: left; alignment-baseline: central">
+                <br/><center>
+                <h:outputText value="#{cadastroController.usu.nomeUsuario}, seja bem vindo a jvmdsoftware."/>
+                <br/><br/>
+                <h:outputText value="Para confirmar seu cadastro, por favor, digite o código de segurança enviao ao seu email."/>
+                <br/><br/></center>
+                <p:panelGrid columns="2" layout="grid" columnClasses="label, value">
+                    <p:outputLabel id="labMail1" value="email: *"/>
+                    <p:inputText id="mail1" label="labMail1" value="#{cadastroController.usu.email}" disabled="true" />
+
+                    <p:outputLabel id="labCod" value="Codigo de verificação: *"/>
+                    <p:inputText id="cod" label="labCod" rendered="true"
+                                 value="#{cadastroController.codVerif}"
+                                 required="true" requiredMessage="Informe o codigo de verificação enviado por email!">
+                        <p:ajax event="blur" update="msgs"/>
+                    </p:inputText>
+                    <f:facet  name="footer">
+                        <center>
+                            <p:commandButton action="#{cadastroController.validarCadastro}" value="validar cadastro" update="msgs" process="@form" icon="icon-entrar"/>
+                        </center>
+                    </f:facet>
+                </p:panelGrid>
+                <p:watermark for="cod" value="codigo de verificação"/>
+                <br/>
+                <p:commandButton actionListener="#{cadastroController.reenviarCodigo}" value="reenviar codigo"  update="msgs"/>
+            </p:panel>
+        </h:form>
+    </ui:define>
+    <script type="text/javascript" src="js/validator.js"></script>
+</ui:composition>  
+</html>

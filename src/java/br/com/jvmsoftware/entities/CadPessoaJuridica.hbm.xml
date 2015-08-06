@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 4/Ago/2015 22:25:56 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.jvmsoftware.entities.CadPessoaJuridica" table="cad_pessoa_juridica" catalog="jvmdsoftware" optimistic-lock="version">
+        <id name="idPessoaJuridica" type="java.lang.Integer">
+            <column name="id_pessoa_juridica" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cadPessoa" class="br.com.jvmsoftware.entities.CadPessoa" fetch="select">
+            <column name="pessoa" not-null="true" />
+        </many-to-one>
+        <many-to-one name="pubEstado" class="br.com.jvmsoftware.entities.PubEstado" fetch="select">
+            <column name="estado" not-null="true" />
+        </many-to-one>
+        <many-to-one name="pubMunicipio" class="br.com.jvmsoftware.entities.PubMunicipio" fetch="select">
+            <column name="municipio" not-null="true" />
+        </many-to-one>
+        <property name="cnpjEmpresa" type="java.lang.Float">
+            <column name="cnpj_empresa" precision="12" scale="0">
+                <comment>caso o cliente n&#195;&#163;o tenha empresa, este campo pode ser o CPF da pessoa f&#195;&#173;sica</comment>
+            </column>
+        </property>
+        <property name="razaoSocial" type="string">
+            <column name="razao_social" length="200" not-null="true" />
+        </property>
+        <property name="fantasia" type="string">
+            <column name="fantasia" length="100" not-null="true" />
+        </property>
+        <property name="cep" type="java.lang.Float">
+            <column name="cep" precision="12" scale="0" />
+        </property>
+        <property name="endereco" type="string">
+            <column name="endereco" length="150" />
+        </property>
+        <property name="numero" type="java.lang.Float">
+            <column name="numero" precision="12" scale="0" />
+        </property>
+        <property name="bairro" type="string">
+            <column name="bairro" length="50" />
+        </property>
+        <property name="complemento" type="string">
+            <column name="complemento" length="150" />
+        </property>
+        <property name="tipoCadastro" type="int">
+            <column name="tipo_cadastro" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

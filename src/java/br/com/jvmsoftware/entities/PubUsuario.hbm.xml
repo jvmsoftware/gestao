@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 4/Ago/2015 22:25:56 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.jvmsoftware.entities.PubUsuario" table="pub_usuario" catalog="jvmdsoftware" optimistic-lock="version">
+        <id name="idUsuario" type="java.lang.Integer">
+            <column name="id_usuario" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="select">
+            <column name="empresa" />
+        </many-to-one>
+        <many-to-one name="pubEstado" class="br.com.jvmsoftware.entities.PubEstado" fetch="select">
+            <column name="estado" />
+        </many-to-one>
+        <many-to-one name="pubMunicipio" class="br.com.jvmsoftware.entities.PubMunicipio" fetch="select">
+            <column name="cidade" />
+        </many-to-one>
+        <property name="cpfUsuario" type="java.lang.Float">
+            <column name="cpf_usuario" precision="12" scale="0" />
+        </property>
+        <property name="nomeUsuario" type="string">
+            <column name="nome_usuario" length="100" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="100" not-null="true" />
+        </property>
+        <property name="senha" type="string">
+            <column name="senha" not-null="true" />
+        </property>
+        <property name="dataNascimento" type="date">
+            <column name="data_nascimento" length="10" />
+        </property>
+        <property name="dataCadastro" type="timestamp">
+            <column name="data_cadastro" length="19" />
+        </property>
+        <property name="dataVerificacao" type="timestamp">
+            <column name="data_verificacao" length="19" />
+        </property>
+        <property name="codigoVerificacao" type="string">
+            <column name="codigo_verificacao" length="8" />
+        </property>
+        <property name="ativo" type="boolean">
+            <column name="ativo" not-null="true" />
+        </property>
+        <property name="dataRessetSenha" type="timestamp">
+            <column name="data_resset_senha" length="19">
+                <comment>data da ultima solicitacao de senha</comment>
+            </column>
+        </property>
+        <property name="dataValidacaoResset" type="timestamp">
+            <column name="data_validacao_resset" length="19">
+                <comment>data da ultima validacao de senha</comment>
+            </column>
+        </property>
+        <property name="endereco" type="string">
+            <column name="endereco" length="100" />
+        </property>
+        <property name="numero" type="java.lang.Float">
+            <column name="numero" precision="12" scale="0" />
+        </property>
+        <property name="bairro" type="string">
+            <column name="bairro" length="50" />
+        </property>
+        <property name="complemento" type="string">
+            <column name="complemento" length="150" />
+        </property>
+        <property name="cep" type="java.lang.Float">
+            <column name="cep" precision="12" scale="0" />
+        </property>
+        <property name="telefone" type="java.lang.Float">
+            <column name="telefone" precision="12" scale="0" />
+        </property>
+        <property name="master" type="java.lang.Boolean">
+            <column name="master" />
+        </property>
+        <set name="acsAcessoUsuarioses" table="acs_acesso_usuarios" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="usuario" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.AcsAcessoUsuarios" />
+        </set>
+        <set name="ctrLogs" table="ctr_log" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="usuario" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.CtrLog" />
+        </set>
+        <set name="wflWorkflowEventos" table="wfl_workflow_evento" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="usuario_evento" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.WflWorkflowEvento" />
+        </set>
+        <set name="wflWorkflows" table="wfl_workflow" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="usuario_criacao" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.WflWorkflow" />
+        </set>
+        <set name="supProjetos" table="sup_projeto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="usuario_criacao" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.SupProjeto" />
+        </set>
+        <set name="supSolicitacaos" table="sup_solicitacao" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="usuario_abertura" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.SupSolicitacao" />
+        </set>
+        <set name="acsUsuarioSistemas" table="acs_usuario_sistema" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="usuario" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.AcsUsuarioSistema" />
+        </set>
+    </class>
+</hibernate-mapping>

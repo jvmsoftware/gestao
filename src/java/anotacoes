@@ -1,0 +1,10 @@
+*****************
+** implementar **
+*****************
+- reinicialização de senha (ja iniciado cadastroController)
+- atualização da data de verificação do cadastro
+- configuração
+   - empresa x pessoa fisica
+   - negocio
+   - sistemas
+   - exibir informação da falta de configuração no dashboard

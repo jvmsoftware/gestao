@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 4/Ago/2015 22:25:56 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.jvmsoftware.entities.AcsAcessoUsuarios" table="acs_acesso_usuarios" catalog="jvmdsoftware" optimistic-lock="version">
+        <id name="idAcesso" type="java.lang.Integer">
+            <column name="id_acesso" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="pubUsuario" class="br.com.jvmsoftware.entities.PubUsuario" fetch="select">
+            <column name="usuario" not-null="true" />
+        </many-to-one>
+        <property name="dataHoraLogin" type="timestamp">
+            <column name="data_hora_login" length="19" not-null="true" />
+        </property>
+        <property name="dataHoraLogoff" type="timestamp">
+            <column name="data_hora_logoff" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

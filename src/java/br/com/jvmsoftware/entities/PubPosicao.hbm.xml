@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 4/Ago/2015 22:25:56 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.jvmsoftware.entities.PubPosicao" table="pub_posicao" catalog="jvmdsoftware" optimistic-lock="version">
+        <id name="idPosicao" type="java.lang.Integer">
+            <column name="id_posicao" />
+            <generator class="identity" />
+        </id>
+        <property name="posicao" type="string">
+            <column name="posicao" length="20" not-null="true" />
+        </property>
+        <property name="descricao" type="string">
+            <column name="descricao" length="200" not-null="true" />
+        </property>
+        <set name="pubConteudos" table="pub_conteudo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="posicao" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.PubConteudo" />
+        </set>
+    </class>
+</hibernate-mapping>

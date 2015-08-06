@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 4/Ago/2015 22:25:56 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.jvmsoftware.entities.SupSolicitacao" table="sup_solicitacao" catalog="jvmdsoftware" optimistic-lock="version">
+        <id name="idSolicitacao" type="java.lang.Integer">
+            <column name="id_solicitacao" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="select">
+            <column name="empresa_solicitacao" not-null="true" />
+        </many-to-one>
+        <many-to-one name="pubFuncionalidade" class="br.com.jvmsoftware.entities.PubFuncionalidade" fetch="select">
+            <column name="funcionalidade" not-null="true" />
+        </many-to-one>
+        <many-to-one name="pubSistema" class="br.com.jvmsoftware.entities.PubSistema" fetch="select">
+            <column name="sistema" not-null="true" />
+        </many-to-one>
+        <many-to-one name="pubUsuario" class="br.com.jvmsoftware.entities.PubUsuario" fetch="select">
+            <column name="usuario_abertura" not-null="true" />
+        </many-to-one>
+        <many-to-one name="supProjeto" class="br.com.jvmsoftware.entities.SupProjeto" fetch="select">
+            <column name="projeto" not-null="true" />
+        </many-to-one>
+        <many-to-one name="wflSeveridade" class="br.com.jvmsoftware.entities.WflSeveridade" fetch="select">
+            <column name="severidade" not-null="true" />
+        </many-to-one>
+        <many-to-one name="wflSituacao" class="br.com.jvmsoftware.entities.WflSituacao" fetch="select">
+            <column name="situacao" not-null="true" />
+        </many-to-one>
+        <property name="dataHoraAbertura" type="timestamp">
+            <column name="data_hora_abertura" length="19" not-null="true" />
+        </property>
+        <property name="titulo" type="string">
+            <column name="titulo" length="80" not-null="true" />
+        </property>
+        <property name="descricao" type="string">
+            <column name="descricao" length="250" not-null="true" />
+        </property>
+        <property name="detalhamento" type="string">
+            <column name="detalhamento" length="500" />
+        </property>
+    </class>
+</hibernate-mapping>

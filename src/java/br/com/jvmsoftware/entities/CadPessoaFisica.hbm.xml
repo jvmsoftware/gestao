@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 4/Ago/2015 22:25:56 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.jvmsoftware.entities.CadPessoaFisica" table="cad_pessoa_fisica" catalog="jvmdsoftware" optimistic-lock="version">
+        <id name="idPessoaFisica" type="java.lang.Integer">
+            <column name="id_pessoa_fisica" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cadPessoa" class="br.com.jvmsoftware.entities.CadPessoa" fetch="select">
+            <column name="pessoa" not-null="true" />
+        </many-to-one>
+        <many-to-one name="pubEstado" class="br.com.jvmsoftware.entities.PubEstado" fetch="select">
+            <column name="estado" />
+        </many-to-one>
+        <many-to-one name="pubMunicipio" class="br.com.jvmsoftware.entities.PubMunicipio" fetch="select">
+            <column name="cidade" />
+        </many-to-one>
+        <property name="cpfUsuario" type="java.lang.Float">
+            <column name="cpf_usuario" precision="12" scale="0" />
+        </property>
+        <property name="nomeUsuario" type="string">
+            <column name="nome_usuario" length="100" not-null="true" />
+        </property>
+        <property name="dataNascimento" type="date">
+            <column name="data_nascimento" length="10" />
+        </property>
+        <property name="endereco" type="string">
+            <column name="endereco" length="100" />
+        </property>
+        <property name="numero" type="java.lang.Float">
+            <column name="numero" precision="12" scale="0" />
+        </property>
+        <property name="bairro" type="string">
+            <column name="bairro" length="50" />
+        </property>
+        <property name="complemento" type="string">
+            <column name="complemento" length="150" />
+        </property>
+        <property name="cep" type="java.lang.Float">
+            <column name="cep" precision="12" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

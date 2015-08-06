@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 4/Ago/2015 22:25:56 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.jvmsoftware.entities.WflWorkflowEvento" table="wfl_workflow_evento" catalog="jvmdsoftware" optimistic-lock="version">
+        <id name="idWorkflowEvento" type="java.lang.Integer">
+            <column name="id_workflow_evento" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="select">
+            <column name="empresa_evento" not-null="true" />
+        </many-to-one>
+        <many-to-one name="pubUsuario" class="br.com.jvmsoftware.entities.PubUsuario" fetch="select">
+            <column name="usuario_evento" not-null="true" />
+        </many-to-one>
+        <many-to-one name="wflSeveridadeBySeveridadeAtual" class="br.com.jvmsoftware.entities.WflSeveridade" fetch="select">
+            <column name="severidade_atual" not-null="true" />
+        </many-to-one>
+        <many-to-one name="wflSeveridadeBySeveridadeAnterior" class="br.com.jvmsoftware.entities.WflSeveridade" fetch="select">
+            <column name="severidade_anterior" />
+        </many-to-one>
+        <many-to-one name="wflSituacaoBySituacaoAnterior" class="br.com.jvmsoftware.entities.WflSituacao" fetch="select">
+            <column name="situacao_anterior" />
+        </many-to-one>
+        <many-to-one name="wflSituacaoBySituacaoAtual" class="br.com.jvmsoftware.entities.WflSituacao" fetch="select">
+            <column name="situacao_atual" not-null="true" />
+        </many-to-one>
+        <many-to-one name="wflWorkflow" class="br.com.jvmsoftware.entities.WflWorkflow" fetch="select">
+            <column name="workflow" not-null="true" />
+        </many-to-one>
+        <property name="dataHoraEvento" type="timestamp">
+            <column name="data_hora_evento" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

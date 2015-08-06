@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 4/Ago/2015 22:25:56 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.jvmsoftware.entities.WflWorkflow" table="wfl_workflow" catalog="jvmdsoftware" optimistic-lock="version">
+        <id name="idWorkflow" type="java.lang.Integer">
+            <column name="id_workflow" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="pubEmpresaByEmpresaDestino" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="select">
+            <column name="empresa_destino" not-null="true">
+                <comment>Empresa a qual dever&#195;&#161; dar andamento ao workflow</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="pubEmpresaByEmpresaCriacao" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="select">
+            <column name="empresa_criacao" not-null="true">
+                <comment>Empresa a qual o usuario que cadastrou o workflow pertence</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="pubFuncionalidade" class="br.com.jvmsoftware.entities.PubFuncionalidade" fetch="select">
+            <column name="funcionalidade" not-null="true">
+                <comment>Funcionalidade a qual o workflow pertence (dever&#195;&#161; ser uma funcionalidade do mesmo sistema (modulo))</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="pubSistema" class="br.com.jvmsoftware.entities.PubSistema" fetch="select">
+            <column name="sistema" not-null="true">
+                <comment>Sistema (modulo) ao qual o workflow pertence</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="pubUsuario" class="br.com.jvmsoftware.entities.PubUsuario" fetch="select">
+            <column name="usuario_criacao" not-null="true" />
+        </many-to-one>
+        <many-to-one name="wflSeveridade" class="br.com.jvmsoftware.entities.WflSeveridade" fetch="select">
+            <column name="severidade" not-null="true" />
+        </many-to-one>
+        <many-to-one name="wflSituacao" class="br.com.jvmsoftware.entities.WflSituacao" fetch="select">
+            <column name="situacao" not-null="true" />
+        </many-to-one>
+        <property name="dataHoraCriacao" type="timestamp">
+            <column name="data_hora_criacao" length="19" not-null="true" />
+        </property>
+        <property name="idProcessoSistema" type="int">
+            <column name="id_processo_sistema" not-null="true">
+                <comment>ID referente &#195;&#160; funcionalidade e ao sistema envolvidos Ex: Chamado de suporte (sistema: suporte &gt; funcionalidade: chamados).</comment>
+            </column>
+        </property>
+        <set name="wflWorkflowEventos" table="wfl_workflow_evento" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="workflow" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.WflWorkflowEvento" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,173 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 30/Jun/2015, 20:12:42
+    Author     : jose
+*/
+
+/* icones modulos */
+.icon-cadastros {  
+    background-image: url("../images/icons/draft.png") !important;  
+}
+
+.icon-compras {  
+    background-image: url("../images/icons/add187.png") !important;  
+}
+
+.icon-financas {  
+    background-image: url("../images/icons/finance.png") !important;  
+}
+
+.icon-servicos {  
+    background-image: url("../images/icons/settings48.png") !important;  
+}
+
+.icon-vendas {  
+    background-image: url("../images/icons/elegant8.png") !important;  
+}
+
+.icon-contabilidade {  
+    background-image: url("../images/icons/businessman61.png") !important;  
+}
+
+.icon-estoque {  
+    background-image: url("../images/icons/work11.png") !important;  
+}
+
+.icon-suporte {  
+    background-image: url("../images/icons/tele-assistance.png") !important;  
+}
+
+.icon-comercial {  
+    background-image: url("../images/icons/tag31.png") !important;  
+}
+
+.icon-admin {  
+    background-image: url("../images/icons/load.png") !important;  
+}
+
+.icon-workflow {  
+    background-image: url("../images/icons/working-out.png") !important;  
+}
+
+.icon-severidade {  
+    background-image: url("../images/icons/sort19.png") !important;  
+}
+
+.icon-situacao {  
+    background-image: url("../images/icons/web64.png") !important;  
+}
+
+.icon-negocio {  
+    background-image: url("../images/icons/businessman.png") !important;  
+}
+
+.icon-funcionalidade {  
+    background-image: url("../images/icons/screen104.png") !important;  
+}
+
+/* icones comuns */
+.icon-home {  
+    background-image: url("../images/icons/home.png") !important;  
+}
+
+.icon-sair {  
+    background-image: url("../images/icons/exclude.png") !important;  
+}
+
+.icon-user {  
+    background-image: url("../images/icons/user.png") !important;  
+}
+
+/* icones do site */
+.icon-empresa {  
+    background-image: url("../images/icons/building.png") !important;  
+}
+
+.icon-entrar {  
+    background-image: url("../images/icons/lock.png") !important;  
+}
+
+.icon-cadastrar {  
+    background-image: url("../images/icons/plussign.png") !important;  
+}
+
+/* icones do dashboard */
+.icon-sistemas {  
+    background-image: url("../images/icons/marketing.png") !important;  
+}
+
+/* icones modulo cadastro */
+.icon-controle-acesso {  
+    background-image: url("../images/icons/network14.png") !important;  
+}
+
+.icon-usuarios {  
+    background-image: url("../images/icons/multiple25.png") !important;  
+}
+
+.icon-clientes {  
+    background-image: url("../images/icons/crowd.png") !important;  
+}
+
+.icon-fornecedores {  
+    background-image: url("../images/icons/book227.png") !important;  
+}
+
+.icon-produtos {  
+    background-image: url("../images/icons/barcode12.png") !important;  
+}
+
+.icon-funcionarios {  
+    background-image: url("../images/icons/business31.png") !important;  
+}
+
+.icon-novo-usuario {  
+    background-image: url("../images/icons/add40.png") !important;  
+}
+
+
+.icon-confirmar {  
+    background-image: url("../images/icons/checked.png") !important;  
+}
+
+.icon-lixeira {  
+    background-image: url("../images/icons/delete.png") !important;  
+}
+
+.icon-salvar {  
+    background-image: url("../images/icons/save2.png") !important;  
+}
+
+.icon-editar {  
+    background-image: url("../images/icons/edit.png") !important;  
+}
+
+.icon-mail {  
+    background-image: url("../images/icons/email.png") !important;  
+}
+
+.icon-visualizar {  
+    background-image: url("../images/icons/magnifier13.png") !important;  
+}
+
+.icon-voltar {  
+    background-image: url("../images/icons/return13.png") !important;  
+}
+
+.icon-incluir {  
+    background-image: url("../images/icons/hospital25.png") !important;  
+}
+
+/* configuração do menu sobre o frame principal */
+.ui-layout-north {  
+    z-index:20 !important;  
+    overflow:visible !important;  
+}  
+      
+.ui-layout-north .ui-layout-unit-content {  
+    overflow:visible !important;  
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 4/Ago/2015 22:25:56 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.jvmsoftware.entities.PubConfigEmpresa" table="pub_config_empresa" catalog="jvmdsoftware" optimistic-lock="version">
+        <id name="idConfig" type="java.lang.Integer">
+            <column name="id_config" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="select">
+            <column name="empresa" not-null="true" />
+        </many-to-one>
+        <property name="tipoEmpresa" type="int">
+            <column name="tipo_empresa" not-null="true" />
+        </property>
+        <property name="tipoNegocio" type="int">
+            <column name="tipo_negocio" not-null="true" />
+        </property>
+        <property name="mailEnvio" type="string">
+            <column name="mail_envio" length="100" />
+        </property>
+        <property name="mailEnvioUsuario" type="string">
+            <column name="mail_envio_usuario" length="100" />
+        </property>
+        <property name="mailEnvioSenha" type="string">
+            <column name="mail_envio_senha" />
+        </property>
+        <property name="mailEnvioSmtp" type="string">
+            <column name="mail_envio_smtp" length="100" />
+        </property>
+        <property name="mailEnvioPorta" type="java.lang.Integer">
+            <column name="mail_envio_porta" />
+        </property>
+    </class>
+</hibernate-mapping>

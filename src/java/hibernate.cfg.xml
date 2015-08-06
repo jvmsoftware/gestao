@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/jvmdsoftware?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">jvmdsoftware</property>
+    <property name="hibernate.connection.password">Matheus1108</property>
+    <property name="hibernate.connection.release_mode">on_close</property>
+    <!-- JDBC connection pool (use the built-in) -->
+    <property name="connection.pool_size">30</property>
+    <!-- SQL dialect 
+    <property name="dialect">org.hibernate.dialect.HSQLDialect</property>
+    -->
+    <!-- Enable Hibernate's automatic session context management -->
+    <property name="hibernate.current_session_context_class">thread</property>
+    <!-- Disable the second-level cache  -->
+    <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+    <!-- Echo all executed SQL to stdout -->
+    <property name="show_sql">true</property>
+    <!-- Mapeamento -->
+    <mapping resource="br/com/jvmsoftware/entities/PubEstado.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/AcsEmpresaSistema.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/WflSituacao.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/AcsAcessoUsuarios.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/PubUsuario.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/SupSolicitacao.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/PubMenu.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/PubEmpresa.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/PubSistema.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/SupProjeto.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/PubTipoNegocio.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/AcsUsuarioSistema.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/WflWorkflow.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/PubTipoEmpresa.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/PubPosicao.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/PubMunicipio.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/CtrLog.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/CadPessoaFisica.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/PubFuncionalidade.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/WflWorkflowEvento.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/PubConfigEmpresa.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/PubTipoCadastro.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/CadPessoaJuridica.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/CadPessoa.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/WflSeveridade.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/PubConteudo.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

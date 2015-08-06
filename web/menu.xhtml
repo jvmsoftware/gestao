@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+    
+        <f:view>  
+            <h:form id="formMenu">
+                
+                    <p:graphicImage value="/images/jvmsoftware.jpg" height="50px" width="12%"
+                                style=" margin-top: -10px; margin-bottom: -30px"/>
+                    
+                    <p:menubar style="float: right; margin-bottom: 10px; margin-left: -10px; width: 85%; font-size: 12px"
+                               toggleEvent="click">
+                        <p:menuitem icon="icon-home" value="home" action="#{menuController.index}"/>
+                        <p:submenu label="empresa" icon="icon-empresa">
+                            <p:menuitem value="a empresa" action="#{menuController.empresa}"/>
+                            <p:menuitem value="objetivos" action="#{menuController.empresaObjetivo}"/>
+                        </p:submenu>
+                        <p:menuitem value="cadastre-se" action="#{menuController.cadastro}" icon="icon-cadastrar"/>
+                        <p:menuitem value="entrar" action="#{menuController.login}" icon="icon-entrar"/>
+                    </p:menubar>
+                
+            </h:form>
+        </f:view>
+</html>  

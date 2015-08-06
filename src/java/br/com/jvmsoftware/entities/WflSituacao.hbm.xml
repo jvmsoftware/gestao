@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 4/Ago/2015 22:25:56 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.jvmsoftware.entities.WflSituacao" table="wfl_situacao" catalog="jvmdsoftware" optimistic-lock="version">
+        <id name="idSituacao" type="java.lang.Integer">
+            <column name="id_situacao" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="select">
+            <column name="empresa" />
+        </many-to-one>
+        <many-to-one name="pubSistema" class="br.com.jvmsoftware.entities.PubSistema" fetch="select">
+            <column name="sistema" not-null="true" />
+        </many-to-one>
+        <property name="codSituacao" type="string">
+            <column name="cod_situacao" length="5" not-null="true" />
+        </property>
+        <property name="descricaoSituacao" type="string">
+            <column name="descricao_situacao" length="100" not-null="true" />
+        </property>
+        <property name="prioridade" type="int">
+            <column name="prioridade" not-null="true" />
+        </property>
+        <set name="supSolicitacaos" table="sup_solicitacao" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="situacao" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.SupSolicitacao" />
+        </set>
+        <set name="wflWorkflowEventosForSituacaoAnterior" table="wfl_workflow_evento" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="situacao_anterior" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.WflWorkflowEvento" />
+        </set>
+        <set name="wflWorkflowEventosForSituacaoAtual" table="wfl_workflow_evento" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="situacao_atual" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.WflWorkflowEvento" />
+        </set>
+        <set name="wflWorkflows" table="wfl_workflow" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="situacao" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.WflWorkflow" />
+        </set>
+    </class>
+</hibernate-mapping>

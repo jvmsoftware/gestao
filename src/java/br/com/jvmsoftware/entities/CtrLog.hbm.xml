@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 4/Ago/2015 22:25:56 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.jvmsoftware.entities.CtrLog" table="ctr_log" catalog="jvmdsoftware" optimistic-lock="version">
+        <id name="idLog" type="java.lang.Integer">
+            <column name="id_log" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="pubSistema" class="br.com.jvmsoftware.entities.PubSistema" fetch="select">
+            <column name="sistema" not-null="true" />
+        </many-to-one>
+        <many-to-one name="pubUsuario" class="br.com.jvmsoftware.entities.PubUsuario" fetch="select">
+            <column name="usuario" not-null="true" />
+        </many-to-one>
+        <property name="dataHora" type="timestamp">
+            <column name="data_hora" length="19" not-null="true" />
+        </property>
+        <property name="tread" type="string">
+            <column name="tread" length="30" />
+        </property>
+        <property name="log" type="string">
+            <column name="log" length="500" />
+        </property>
+    </class>
+</hibernate-mapping>

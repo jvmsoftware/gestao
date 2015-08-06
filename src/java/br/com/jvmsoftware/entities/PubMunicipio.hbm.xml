@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 4/Ago/2015 22:25:56 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.jvmsoftware.entities.PubMunicipio" table="pub_municipio" catalog="jvmdsoftware" optimistic-lock="version">
+        <id name="idMunicipio" type="int">
+            <column name="id_municipio" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="pubEstado" class="br.com.jvmsoftware.entities.PubEstado" fetch="select">
+            <column name="id_estado" not-null="true" />
+        </many-to-one>
+        <property name="municipio" type="string">
+            <column name="municipio" length="150" not-null="true" />
+        </property>
+        <set name="pubEmpresas" table="pub_empresa" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="municipio" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.PubEmpresa" />
+        </set>
+        <set name="cadPessoaJuridicas" table="cad_pessoa_juridica" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="municipio" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.CadPessoaJuridica" />
+        </set>
+        <set name="pubUsuarios" table="pub_usuario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cidade" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.PubUsuario" />
+        </set>
+        <set name="cadPessoaFisicas" table="cad_pessoa_fisica" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cidade" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.CadPessoaFisica" />
+        </set>
+    </class>
+</hibernate-mapping>

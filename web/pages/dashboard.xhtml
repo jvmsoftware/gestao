@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+    
+<!-- verificar injeção do css (não está funcionando)-->    
+<link href="#{facesContext.externalContext.requestContextPath}/resources/css/estilos.css" rel="stylesheet" type="text/css"/>
+<ui:composition template="/template.xhtml">  
+    <ui:define name="menu">
+        <p:panel style=" width:100%; height:55px">
+            <ui:include src="/pages/menuDash.xhtml"/>
+        </p:panel>
+    </ui:define>
+    
+    <ui:define name="conteudo">    
+        
+        <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+        <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+            <p:graphicImage value="images/loading.gif"/>
+        </p:dialog>
+        
+    <h:form>
+        <p:messages id="msgs"/>
+        <p:panel id="dash" header="AREA DE TRABALHO"  style="height: 590px; text-align: center; alignment-baseline: central">
+        <center>
+            <p:dashboard id="board" model="#{dashboardController.model}" style=" alignment-baseline: central; alignment-adjust: central">
+            
+            <p:panel id="avisos" header="avisos" style="height: 520px; width:235px; text-align: center; alignment-baseline: central">
+                <p:graphicImage value="/images/menus/punctuation4.png" rendered="#{dashboardController.cadEmpIncompleto}"/>
+                <h:outputText id="cadEmpr" rendered="#{dashboardController.cadEmpIncompleto}" 
+                              value="O cadastro da empresa não foi preenchido, finalize o cadastro clicando no botão abaixo."/>
+                <p:graphicImage value="/images/menus/punctuation4.png" rendered="#{dashboardController.cadEmpIncompleto}"/>
+                <p:commandButton value="cadastrar empresa" action="#{dashboardController.cadastrarEmpresa}"
+                                 rendered="#{dashboardController.cadEmpIncompleto}"/>
+                
+                <p:graphicImage value="/images/menus/punctuation4.png" rendered="#{dashboardController.confgIncompleto}"/>
+                <h:outputText id="config" rendered="#{dashboardController.confgIncompleto}" 
+                              value="As configurações do seu negócio não foram realizadas, finalize-as clicando no botão abaixo para utilizar os sistemas"/>
+                <p:graphicImage value="/images/menus/punctuation4.png" rendered="#{dashboardController.confgIncompleto}"/>
+                <p:commandButton value="configurar negócio" action="#{dashboardController.configurar}"
+                                 rendered="#{dashboardController.confgIncompleto}"/>
+            </p:panel>
+ 
+            <p:panel id="sistemas" header="modulos" style="height: 255px; width:390px; text-align: center; alignment-baseline: central">
+                <p:panelGrid id="sistemasDash" columns="8" layout="grid" style="alignment-adjust: central; alignment-baseline: central">
+                    <!-- primeira linha -->
+                    <p:commandButton id="cadastro" icon="icon-cadastros" action="#{menuDashboardController.cadastros}">
+                        <p:tooltip for="cadastro" value="modulo de cadastros"/>
+                    </p:commandButton>
+                    <h:outputText value=" "/>
+                    <p:commandButton id="compras" icon="icon-compras">
+                        <p:tooltip for="compras" value="modulo de compras"/>
+                    </p:commandButton>
+                    <h:outputText value=" "/>
+                    <p:commandButton id="finance" icon="icon-financas">
+                        <p:tooltip for="finance" value="modulo de finanças"/>
+                    </p:commandButton>
+                    <!-- segunda linha -->  
+                    <p:commandButton id="servico" icon="icon-servicos">
+                        <p:tooltip for="servico" value="modulo de controle de serviços"/>
+                    </p:commandButton>
+                    <h:outputText value=" "/>
+                    <p:commandButton id="vendas" icon="icon-vendas">
+                        <p:tooltip for="vendas" value="modulo de vendas"/>
+                    </p:commandButton>
+                    <h:outputText value=" "/>
+                    <p:commandButton id="contabil" icon="icon-contabilidade">
+                        <p:tooltip for="contabil" value="modulo de contabilidade"/>
+                    </p:commandButton>
+                    <h:outputText value=" "/>
+                    <p:commandButton id="estoque" icon="icon-estoque">
+                        <p:tooltip for="estoque" value="modulo de estoque"/>
+                    </p:commandButton>
+                    
+                    <h:outputText value=" "/>
+                    <h:outputText value=" "/>
+                </p:panelGrid>
+            </p:panel>
+ 
+            <p:panel id="graficos" header="graficos" style="height: 255px; width:390px; text-align: center; alignment-baseline: central">
+                <h:outputText value="Graficos (faturamento, volume de negocios)"  />
+            </p:panel>
+            
+            <p:panel id="util" header="utilidades" style="height: 520px; width:235px; position: absolute; text-align: center; alignment-baseline: central">
+                <h:outputText value="Suporte (novo chamado, chamados abertos, consultar chamados)"/><br/>
+                <h:outputText value="Dados da conta (forma pgto, proximo vencimento)"/>
+            </p:panel>
+        </p:dashboard>
+        </center>
+        </p:panel>
+        <div style="clear:both" />
+    </h:form>
+    </ui:define>  
+</ui:composition>  
+</html>

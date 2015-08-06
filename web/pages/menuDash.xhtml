@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+    
+        <f:view>  
+            <h:form id="formMenu">
+                
+                    <p:graphicImage value="/images/jvmsoftware.jpg" height="40px" width="10%"
+                                style=" margin-top: -10px; margin-bottom: -30px; margin-left: -15px"/>
+                    
+                    <p:menubar style="float: right; margin-bottom: 10px; margin-left: -10px; width: 91%; font-size: 11px" 
+                               toggleEvent="click">
+                        
+                        <p:menuitem icon="icon-home" value="inicio" action="#{menuDashboardController.dashboard}"/>
+                        
+                        <p:submenu label="admin" icon="icon-admin" rendered="#{menuDashboardController.renderedAdmin}">
+                            <p:submenu label="cadastros" icon="icon-cadastros">
+                                <p:submenu label="geral" icon="icon-cadastros">
+                                    <p:menuitem value="modulos" action="#{menuDashboardController.modulos}" icon="icon-sistemas"/>
+                                    <p:menuitem value="funcionalidades" action="#{menuDashboardController.funcionalidades}" icon="icon-funcionalidade"/>
+                                    <p:separator/>
+                                    <p:menuitem value="tipo cadastro" action="#{menuDashboardController.tipoCadastro}" icon="icon-cadastros"/>
+                                    <p:menuitem value="tipo empresa" action="#{menuDashboardController.tipoEmpresa}" icon="icon-empresa"/>
+                                    <p:menuitem value="tipo negocio" action="#{menuDashboardController.tipoNegocio}" icon="icon-negocio"/>
+                                </p:submenu>
+                                <p:submenu label="workflow" icon="icon-workflow">
+                                    <p:menuitem value="severidade" action="#{menuDashboardController.severidade}" icon="icon-severidade"/>
+                                    <p:menuitem value="situacao" action="#{menuDashboardController.situacao}" icon="icon-situacao"/>
+                                </p:submenu>
+                            </p:submenu>
+                        </p:submenu>
+                        
+                        <p:submenu label="cadastro" icon="icon-cadastros">
+                            <p:submenu label="controle de acesso" icon="icon-controle-acesso" rendered="#{menuDashboardController.usu.master}">
+                                <p:menuitem value="usuarios" action="#{menuDashboardController.usuarios}" icon="icon-usuarios"/>
+                                <p:menuitem value="empresa" action="#{menuDashboardController.empresa}" icon="icon-empresa"/>
+                                <p:menuitem value="sistemas" action="#{menuDashboardController.sistemas}" icon="icon-sistemas"/>
+                                <p:menuitem value="configuração" action="#{menuDashboardController.configuracao}" icon="icon-servicos"/>
+                            </p:submenu>
+                            <p:submenu label="cadastros" icon="icon-cadastros">
+                                <p:menuitem value="clientes" action="#{menuDashboardController.clientes}" icon="icon-clientes"/>
+                                <p:menuitem value="fornecedores" action="#{menuDashboardController.forncedores}"  icon="icon-fornecedores"/>
+                                <p:menuitem value="funcionarios" action="#{menuDashboardController.funcionarios}" icon="icon-funcionarios"/>
+                                <p:separator/>
+                                <p:menuitem value="produtos" action="#{menuDashboardController.produtos}" icon="icon-produtos"/>
+                                <p:menuitem value="serviços" action="#{menuDashboardController.servicos}" icon="icon-servicos"/>
+                            </p:submenu>
+                        </p:submenu>
+                        
+                        <p:submenu label="comercial" icon="icon-comercial">
+                            <p:submenu label="compras" icon="icon-compras">
+                                <p:menuitem value="clientes" icon="icon-clientes"/>
+                            </p:submenu>
+                            <p:separator/>
+                            <p:submenu label="vendas" icon="icon-vendas">
+                                <p:menuitem value="clientes" icon="icon-clientes"/>
+                            </p:submenu>
+                        </p:submenu>
+                        
+                        <p:submenu label="servicos" icon="icon-servicos">
+                            <p:submenu label="servicos" icon="icon-servicos">
+                                <p:menuitem value="clientes" icon="icon-clientes"/>
+                            </p:submenu>
+                            <p:submenu label="suporte" icon="icon-suporte">
+                                <p:menuitem value="clientes" icon="icon-clientes"/>
+                            </p:submenu>
+                        </p:submenu>
+                        
+                        <p:submenu label="financas" icon="icon-financas">
+                            <p:submenu label="estoque" icon="icon-estoque">
+                                <p:menuitem value="clientes" icon="icon-clientes"/>
+                            </p:submenu>
+                            <p:separator/>
+                            <p:submenu label="financas" icon="icon-financas">
+                                <p:menuitem value="clientes" icon="icon-clientes"/>
+                            </p:submenu>
+                            <p:submenu label="contabilidade" icon="icon-contabilidade">
+                                <p:menuitem value="clientes" icon="icon-clientes"/>
+                            </p:submenu>
+                        </p:submenu>
+                        
+                        <p:submenu label="#{menuDashboardController.primeiroNome}" icon="icon-user">
+                            <p:menuitem value="minha conta" action="#{menuDashboardController.conta}" icon="icon-user"/>
+                            <p:menuitem value="solicitar suporte" action="#" icon="icon-suporte"/>
+                            <p:separator/>
+                            <p:menuitem value="sair" action="#{userController.logout}" icon="icon-sair"/>
+                        </p:submenu>
+                        
+                    </p:menubar>
+                
+            </h:form>
+        </f:view>
+</html>  

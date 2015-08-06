@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 4/Ago/2015 22:25:56 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.jvmsoftware.entities.CadPessoa" table="cad_pessoa" catalog="jvmdsoftware" optimistic-lock="version">
+        <id name="idPessoa" type="java.lang.Integer">
+            <column name="id_pessoa" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="select">
+            <column name="empresa" not-null="true" />
+        </many-to-one>
+        <many-to-one name="pubTipoCadastro" class="br.com.jvmsoftware.entities.PubTipoCadastro" fetch="select">
+            <column name="tipo_cadastro" not-null="true" />
+        </many-to-one>
+        <property name="dataCadastro" type="date">
+            <column name="data_cadastro" length="10" />
+        </property>
+        <property name="ativo" type="boolean">
+            <column name="ativo" not-null="true" />
+        </property>
+        <property name="telefone" type="java.lang.Float">
+            <column name="telefone" precision="12" scale="0" />
+        </property>
+        <property name="emailResponsavel" type="string">
+            <column name="email_responsavel" length="50" />
+        </property>
+        <set name="cadPessoaFisicas" table="cad_pessoa_fisica" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pessoa" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.CadPessoaFisica" />
+        </set>
+        <set name="cadPessoaJuridicas" table="cad_pessoa_juridica" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pessoa" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.CadPessoaJuridica" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 4/Ago/2015 22:25:56 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.jvmsoftware.entities.PubConteudo" table="pub_conteudo" catalog="jvmdsoftware" optimistic-lock="version">
+        <id name="idConteudo" type="java.lang.Integer">
+            <column name="Id_conteudo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="pubMenu" class="br.com.jvmsoftware.entities.PubMenu" fetch="select">
+            <column name="menu" not-null="true" />
+        </many-to-one>
+        <many-to-one name="pubPosicao" class="br.com.jvmsoftware.entities.PubPosicao" fetch="select">
+            <column name="posicao" not-null="true" />
+        </many-to-one>
+        <property name="conteudo" type="string">
+            <column name="conteudo" length="65535" not-null="true" />
+        </property>
+        <property name="inicioExibicao" type="date">
+            <column name="inicio_exibicao" length="10" not-null="true" />
+        </property>
+        <property name="fimExibicao" type="date">
+            <column name="fim_exibicao" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>

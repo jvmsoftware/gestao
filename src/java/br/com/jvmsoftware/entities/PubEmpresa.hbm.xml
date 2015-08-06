@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 4/Ago/2015 22:25:56 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.jvmsoftware.entities.PubEmpresa" table="pub_empresa" catalog="jvmdsoftware" optimistic-lock="version">
+        <id name="idEmpresa" type="java.lang.Integer">
+            <column name="id_empresa" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="pubEstado" class="br.com.jvmsoftware.entities.PubEstado" fetch="select">
+            <column name="estado" not-null="true" />
+        </many-to-one>
+        <many-to-one name="pubMunicipio" class="br.com.jvmsoftware.entities.PubMunicipio" fetch="select">
+            <column name="municipio" not-null="true" />
+        </many-to-one>
+        <many-to-one name="pubTipoCadastro" class="br.com.jvmsoftware.entities.PubTipoCadastro" fetch="select">
+            <column name="tipo_cadastro" not-null="true" />
+        </many-to-one>
+        <property name="cnpjEmpresa" type="java.lang.Float">
+            <column name="cnpj_empresa" precision="12" scale="0">
+                <comment>caso o cliente n&#195;&#163;o tenha empresa, este campo pode ser o CPF da pessoa f&#195;&#173;sica</comment>
+            </column>
+        </property>
+        <property name="razaoSocial" type="string">
+            <column name="razao_social" length="200" not-null="true" />
+        </property>
+        <property name="fantasia" type="string">
+            <column name="fantasia" length="100" not-null="true" />
+        </property>
+        <property name="cep" type="java.lang.Float">
+            <column name="cep" precision="12" scale="0" />
+        </property>
+        <property name="endereco" type="string">
+            <column name="endereco" length="150" />
+        </property>
+        <property name="numero" type="java.lang.Float">
+            <column name="numero" precision="12" scale="0" />
+        </property>
+        <property name="bairro" type="string">
+            <column name="bairro" length="50" />
+        </property>
+        <property name="complemento" type="string">
+            <column name="complemento" length="150" />
+        </property>
+        <property name="dataCadastro" type="date">
+            <column name="data_cadastro" length="10" />
+        </property>
+        <property name="ativo" type="boolean">
+            <column name="ativo" not-null="true" />
+        </property>
+        <property name="telefone" type="java.lang.Float">
+            <column name="telefone" precision="12" scale="0" />
+        </property>
+        <property name="emailResponsavel" type="string">
+            <column name="email_responsavel" length="50" />
+        </property>
+        <set name="wflSituacaos" table="wfl_situacao" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="empresa" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.WflSituacao" />
+        </set>
+        <set name="pubConfigEmpresas" table="pub_config_empresa" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="empresa" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.PubConfigEmpresa" />
+        </set>
+        <set name="supSolicitacaos" table="sup_solicitacao" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="empresa_solicitacao" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.SupSolicitacao" />
+        </set>
+        <set name="acsUsuarioSistemas" table="acs_usuario_sistema" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="empresa" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.AcsUsuarioSistema" />
+        </set>
+        <set name="wflWorkflowsForEmpresaDestino" table="wfl_workflow" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="empresa_destino" not-null="true">
+                    <comment>Empresa a qual dever&#195;&#161; dar andamento ao workflow</comment>
+                </column>
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.WflWorkflow" />
+        </set>
+        <set name="cadPessoas" table="cad_pessoa" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="empresa" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.CadPessoa" />
+        </set>
+        <set name="wflWorkflowEventos" table="wfl_workflow_evento" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="empresa_evento" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.WflWorkflowEvento" />
+        </set>
+        <set name="acsEmpresaSistemas" table="acs_empresa_sistema" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="empresa" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.AcsEmpresaSistema" />
+        </set>
+        <set name="supProjetos" table="sup_projeto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="empresa_projeto" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.SupProjeto" />
+        </set>
+        <set name="pubUsuarios" table="pub_usuario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="empresa" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.PubUsuario" />
+        </set>
+        <set name="wflWorkflowsForEmpresaCriacao" table="wfl_workflow" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="empresa_criacao" not-null="true">
+                    <comment>Empresa a qual o usuario que cadastrou o workflow pertence</comment>
+                </column>
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.WflWorkflow" />
+        </set>
+    </class>
+</hibernate-mapping>

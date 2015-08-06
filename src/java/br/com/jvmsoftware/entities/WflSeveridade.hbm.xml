@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 4/Ago/2015 22:25:56 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.jvmsoftware.entities.WflSeveridade" table="wfl_severidade" catalog="jvmdsoftware" optimistic-lock="version">
+        <id name="idSeveridade" type="java.lang.Integer">
+            <column name="id_severidade" />
+            <generator class="identity" />
+        </id>
+        <property name="codSeveridade" type="string">
+            <column name="cod_severidade" length="3" not-null="true" />
+        </property>
+        <property name="descricaoSeveridade" type="string">
+            <column name="descricao_severidade" length="100" />
+        </property>
+        <property name="prioridade" type="int">
+            <column name="prioridade" not-null="true" unique="true" />
+        </property>
+        <set name="wflWorkflows" table="wfl_workflow" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="severidade" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.WflWorkflow" />
+        </set>
+        <set name="wflWorkflowEventosForSeveridadeAtual" table="wfl_workflow_evento" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="severidade_atual" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.WflWorkflowEvento" />
+        </set>
+        <set name="wflWorkflowEventosForSeveridadeAnterior" table="wfl_workflow_evento" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="severidade_anterior" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.WflWorkflowEvento" />
+        </set>
+        <set name="supSolicitacaos" table="sup_solicitacao" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="severidade" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.SupSolicitacao" />
+        </set>
+    </class>
+</hibernate-mapping>

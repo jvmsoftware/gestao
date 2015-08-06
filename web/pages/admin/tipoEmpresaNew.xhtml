@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+<ui:composition template="/template.xhtml">  
+    <ui:define name="menu">
+        <p:panel style=" width:100%; height:55px">
+            <ui:include src="/pages/menuDash.xhtml"/>
+        </p:panel>
+    </ui:define>
+    
+    <ui:define name="conteudo">    
+        
+        <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+        <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+            <p:graphicImage value="images/loading.gif"/>
+        </p:dialog>
+        
+    <h:form>
+        <p:messages id="msgs"/>
+        <p:panel id="dash" header="MODULO ADMIN - tipo empresa - incluir"  style="height: 590px; text-align: center; alignment-baseline: central">
+            <br/>
+            <p:panelGrid columns="2" layout="grid">
+                
+                <p:outputLabel id="labModulo" value="Tipo de Empresa"/>
+                <p:inputText id="modulo" label="labModulo" rendered="true" disabled="false"
+                             value="#{tipoEmpresaController.selectedTipoEmpresa.tipoEmpresa}">
+                </p:inputText>
+                
+                <f:facet  name="footer">
+                    <center>
+                        <p:commandButton action="#{tipoEmpresaController.inserirTipoEmpresa}" value="gravar" icon="icon-salvar"/>
+                        <p:commandButton action="#{tipoEmpresaController.tipoEmpresa}" value="voltar" icon="icon-voltar"/>
+                    </center>
+                </f:facet>
+            </p:panelGrid>
+        </p:panel>
+        <div style="clear:both" />
+    </h:form>
+    </ui:define>  
+</ui:composition>  
+</html>

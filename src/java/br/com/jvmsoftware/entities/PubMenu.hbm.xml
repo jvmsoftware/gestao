@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 4/Ago/2015 22:25:56 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.jvmsoftware.entities.PubMenu" table="pub_menu" catalog="jvmdsoftware" optimistic-lock="version">
+        <id name="idMenu" type="java.lang.Integer">
+            <column name="id_menu" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="pubMenu" class="br.com.jvmsoftware.entities.PubMenu" fetch="select">
+            <column name="menu_pai" />
+        </many-to-one>
+        <many-to-one name="pubSistema" class="br.com.jvmsoftware.entities.PubSistema" fetch="select">
+            <column name="sistema" not-null="true" />
+        </many-to-one>
+        <property name="menu" type="string">
+            <column name="menu" length="25" not-null="true" />
+        </property>
+        <property name="descricao" type="string">
+            <column name="descricao" length="300" not-null="true" />
+        </property>
+        <property name="caminho" type="string">
+            <column name="caminho" length="150" />
+        </property>
+        <property name="icone" type="string">
+            <column name="icone" length="100" />
+        </property>
+        <set name="pubConteudos" table="pub_conteudo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="menu" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.PubConteudo" />
+        </set>
+        <set name="pubMenus" table="pub_menu" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="menu_pai" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.PubMenu" />
+        </set>
+    </class>
+</hibernate-mapping>

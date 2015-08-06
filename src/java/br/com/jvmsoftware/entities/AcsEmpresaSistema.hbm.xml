@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 4/Ago/2015 22:25:56 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.jvmsoftware.entities.AcsEmpresaSistema" table="acs_empresa_sistema" catalog="jvmdsoftware" optimistic-lock="version">
+        <id name="idEmpresaSistema" type="java.lang.Integer">
+            <column name="id_empresa_sistema" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="select">
+            <column name="empresa" not-null="true" />
+        </many-to-one>
+        <many-to-one name="pubSistema" class="br.com.jvmsoftware.entities.PubSistema" fetch="select">
+            <column name="sistema" not-null="true" />
+        </many-to-one>
+        <property name="ativo" type="boolean">
+            <column name="ativo" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

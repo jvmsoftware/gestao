@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+<ui:composition template="template.xhtml">  
+    <ui:define name="menu">
+        <p:panel style=" width:100%; height:55px">
+            <ui:include src="menu.xhtml"/>
+        </p:panel>
+    </ui:define>
+    
+    <ui:define name="conteudo">    
+        
+        <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+        <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+            <p:graphicImage value="images/loading.gif"/>
+        </p:dialog>
+        
+        <h:form id="formCad">
+            <p:messages id="msgs"/>
+            <p:panel header="CADASTRO - empresa" style="text-align: center; alignment-baseline: central">
+                <br/><center>
+                <h:outputText value="#{cadastroController.usu.nomeUsuario}, seja bem vindo a jvmdsoftware."/>
+                <br/><<br/></center>
+                <p:panelGrid columns="2" layout="grid" columnClasses="label, value">
+                    <p:outputLabel id="labTCad" value="Você tem uma empresa formal ou vai registrar-se como pessoa física?" for="tCad"/>
+                    <h:selectOneMenu required="true" id="tCad" label="labTCad" value="#{cadastroController.tipoCad}">
+                        <p:ajax update="@form" process="@form" listener="#{cadastroController.changeTipoCadastro}"/>
+                        <f:selectItem itemLabel="-- SELECIONE --" itemValue="" noSelectionOption="true"/>
+                        <f:selectItems value="#{cadastroController.listTCadastro}" var="cad" itemLabel="#{cad.codigoTipoCadastro} - #{cad.descricaoTipoCadastro}" itemValue="#{cad.codigoTipoCadastro}"/>
+                    </h:selectOneMenu>
+
+                    <p:outputLabel rendered="#{cadastroController.segueTipo}" id="labEst" value="Selecione o estado" for="est"/>
+                    <h:selectOneMenu required="true" rendered="#{cadastroController.segueTipo}" id="est" label="labEst" value="#{cadastroController.estado}">
+                        <p:ajax update="@form" process="@form" listener="#{cadastroController.changeEstado}"/>
+                        <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
+                        <f:selectItems value="#{cadastroController.listEstado}" var="est" itemLabel="#{est.uf} - #{est.estado}" itemValue="#{est.idEstado}"/>
+                    </h:selectOneMenu>
+
+                    <p:outputLabel rendered="#{cadastroController.segueEstado}" id="labMun" value="Selecione o municipio" for="mun"/>
+                    <h:selectOneMenu required="true" rendered="#{cadastroController.segueEstado}" id="mun" label="labMun" value="#{cadastroController.municipio}">
+                        <p:ajax update="@form" process="@form" listener="#{cadastroController.changeMunicipio}"/>
+                        <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
+                        <f:selectItems value="#{cadastroController.listMunicipio}" var="mun" itemLabel="#{mun.municipio}" itemValue="#{mun.idMunicipio}"/>
+                    </h:selectOneMenu>
+
+                    <p:outputLabel rendered="#{cadastroController.segueTipoPF}" id="labRazaoPF" value="Será utilizado seu nome como razão social" for="razaoPF"/>
+                    <p:inputText required="true" rendered="#{cadastroController.segueTipoPF}" id="razaoPF" value="#{cadastroController.usu.nomeUsuario}" disabled="true"/>
+
+                    <p:outputLabel rendered="#{cadastroController.segueTipoPJ}" id="labRazaoPJ" value="Razão social da empresa" for="razaoPJ"/>
+                    <p:inputText required="true" rendered="#{cadastroController.segueTipoPJ}" id="razaoPJ" value="#{cadastroController.emp.razaoSocial}"/>
+
+                    <p:outputLabel rendered="#{cadastroController.segueCidade}" id="labFantasia" value="Nome fantasia da empresa" for="fantasia"/>
+                    <p:inputText required="true" rendered="#{cadastroController.segueCidade}" id="fantasia" value="#{cadastroController.emp.fantasia}"/>
+
+                    <p:outputLabel rendered="#{cadastroController.segueCidade}" id="labEndereco" value="Endereço" for="endereco"/>
+                    <p:inputText rendered="#{cadastroController.segueCidade}" id="endereco" value="#{cadastroController.emp.endereco}"/>
+
+                    <p:outputLabel rendered="#{cadastroController.segueCidade}" id="labNumero" value="Numero" for="numero"/>
+                    <p:inputText rendered="#{cadastroController.segueCidade}" id="numero" value="#{cadastroController.emp.numero}"/>
+
+                    <p:outputLabel rendered="#{cadastroController.segueCidade}" id="labBairro" value="Bairro" for="bairro"/>
+                    <p:inputText rendered="#{cadastroController.segueCidade}" id="bairro" value="#{cadastroController.emp.bairro}"/>
+
+                    <p:outputLabel rendered="#{cadastroController.segueCidade}" id="labCompl" value="Complemento" for="compl"/>
+                    <p:inputText rendered="#{cadastroController.segueCidade}" id="compl" value="#{cadastroController.emp.complemento}"/>
+
+                    <p:outputLabel rendered="#{cadastroController.segueCidade}" id="labCep" value="CEP" for="cep"/>
+                    <p:inputText rendered="#{cadastroController.segueCidade}" id="cep" value="#{cadastroController.emp.cep}"/>
+                    <f:facet  name="footer">
+                        <center>
+                            <p:commandButton action="#{cadastroController.cadastrarEmpresa}" value="gravar dados" update="msgs" process="@form" icon="icon-gravar"/>
+                        </center>
+                    </f:facet>
+                </p:panelGrid>
+            </p:panel>
+        </h:form>
+    </ui:define>
+    <script type="text/javascript" src="js/validator.js"></script>
+</ui:composition>  
+</html>

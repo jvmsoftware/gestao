@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 4/Ago/2015 22:25:56 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.jvmsoftware.entities.SupProjeto" table="sup_projeto" catalog="jvmdsoftware" optimistic-lock="version">
+        <id name="idProjeto" type="java.lang.Integer">
+            <column name="id_projeto" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="select">
+            <column name="empresa_projeto" not-null="true" />
+        </many-to-one>
+        <many-to-one name="pubUsuario" class="br.com.jvmsoftware.entities.PubUsuario" fetch="select">
+            <column name="usuario_criacao" not-null="true" />
+        </many-to-one>
+        <property name="dataHoraCriacao" type="timestamp">
+            <column name="data_hora_criacao" length="19" not-null="true" />
+        </property>
+        <property name="titulo" type="string">
+            <column name="titulo" length="80" not-null="true" />
+        </property>
+        <property name="descricao" type="string">
+            <column name="descricao" length="250" not-null="true" />
+        </property>
+        <property name="detalhamento" type="string">
+            <column name="detalhamento" length="500" not-null="true" />
+        </property>
+        <set name="supSolicitacaos" table="sup_solicitacao" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="projeto" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.SupSolicitacao" />
+        </set>
+    </class>
+</hibernate-mapping>
