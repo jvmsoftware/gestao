@@ -24,22 +24,13 @@
         <p:messages id="msgs"/>
         <p:panel id="dash" style="height: 590px; text-align: center; alignment-baseline: central">
             <f:facet name="header">
-                <h:outputText value="MODULO CONTROLE DE ACESSO - configuração"/>
-                <div align="center">
-                <p:panelGrid columns="2" layout="grid">
-                    <p:outputLabel id="labEmp" value="Selecione a empresa" for="emp" rendered="#{configController.renderEmpresa}"/>
-                    <p:selectOneMenu id="emp" label="labEmp" value="#{configController.empresa}" rendered="#{configController.renderEmpresa}">
-                        <p:ajax update="@form" process="@form" listener="#{configController.changeEmpresa}"/>
-                        <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
-                        <f:selectItems value="#{configController.listEmpresa}" var="emp" itemLabel="#{emp.idEmpresa} - #{emp.fantasia}" itemValue="#{emp.idEmpresa}"/>
-                    </p:selectOneMenu>
-                </p:panelGrid>
-                </div>
+                <h:outputText value="MODULO CONTROLE DE ACESSO - configuração - alteração"/>
             </f:facet>
+            
             <br/>
             <p:panelGrid columns="2" layout="grid">
-                <p:outputLabel id="labEmp1" value="empresa"/>
-                <p:inputText id="emp1" label="labEmp1" rendered="true" disabled="true"
+                <p:outputLabel id="labEmp" value="empresa"/>
+                <p:inputText id="emp" label="labEmp" rendered="true" disabled="true"
                              value="#{configController.confEmpresa.pubEmpresa.fantasia}">
                 </p:inputText>
                 

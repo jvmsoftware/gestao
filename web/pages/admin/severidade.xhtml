@@ -23,9 +23,32 @@
     <h:form>
         <p:messages id="msgs"/>
         <p:panel id="dash" header="MODULO ADMIN - severidade"  style="height: 590px; text-align: center; alignment-baseline: central">
-            <h:outputText value="#{indexSuporteController.usu.nomeUsuario}"/>
+            <f:facet name="header">
+                <h:outputText value="MODULO ADMIN - severidade"/>
+                <div align="center">
+                    <p:commandButton id="btnNew" icon="icon-severidade" action="#{severidadeController.severidadeNew}" update="@form">
+                        <p:tooltip value="nova severidade" for="btnNew"/>
+                    </p:commandButton>
+                </div>
+            </f:facet>
+            <p:dataTable var="sev" value="#{severidadeController.listSeveridades}"
+                         paginator="true" rows="10" 
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+                <p:column headerText="Codigo">
+                    <h:outputText value="#{sev.codSeveridade}"/>
+                </p:column>
+                <p:column headerText="Descricao">
+                    <h:outputText value="#{sev.descricaoSeveridade}"/>
+                </p:column>
+                <p:column headerText="Prioridade">
+                    <h:outputText value="#{sev.prioridade}"/>
+                </p:column>
+            </p:dataTable>
+
         </p:panel>
         <div style="clear:both" />
+        
     </h:form>
     </ui:define>  
 </ui:composition>  

@@ -24,15 +24,15 @@ public class WflSeveridadeDAO extends DefaultDAO {
         return severidade;
     }
     
-    public List<WflSeveridade> listProjetosByEmpresa(PubEmpresa empresa) throws SQLException {
+    public List<WflSeveridade> listAllSeveridades() throws SQLException {
         getSession();
         begin();
         List<WflSeveridade> severidades;
-        severidades = session.createQuery("from WflSeveridade u where u.pubEmpresa.idEmpresa = :emp").setParameter("emp", empresa.getIdEmpresa()).list();
+        severidades = session.createQuery("from WflSeveridade u order by u.prioridade").list();
         return severidades;
     }
     
-    public void inserirProjeto (WflSeveridade severidade) throws SQLException {
+    public void inserirSeveridade (WflSeveridade severidade) throws SQLException {
         getSession();
         begin();
         session.save(severidade);
@@ -40,7 +40,7 @@ public class WflSeveridadeDAO extends DefaultDAO {
         closeSession();
     }
     
-    public void updateProjeto (WflSeveridade severidade) throws SQLException {
+    public void updateSeveridade (WflSeveridade severidade) throws SQLException {
         getSession();
         begin();
         session.merge(severidade);

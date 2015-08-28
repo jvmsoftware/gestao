@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 4/Ago/2015 22:25:56 by Hibernate Tools 4.3.1 -->
+<!-- Generated 19/Ago/2015 9:06:00 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.jvmsoftware.entities.PubTipoEmpresa" table="pub_tipo_empresa" catalog="jvmdsoftware" optimistic-lock="version">
         <id name="idTipoEmpresa" type="java.lang.Integer">
@@ -16,6 +16,12 @@
                 <column name="id_tipo_empresa" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.PubTipoNegocio" />
+        </set>
+        <set name="pubConfigEmpresas" table="pub_config_empresa" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tipo_empresa" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.PubConfigEmpresa" />
         </set>
     </class>
 </hibernate-mapping>

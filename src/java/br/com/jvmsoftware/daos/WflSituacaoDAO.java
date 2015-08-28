@@ -24,15 +24,29 @@ public class WflSituacaoDAO extends DefaultDAO {
         return situacao;
     }
     
-    public List<WflSituacao> listProjetosByEmpresa(PubEmpresa empresa) throws SQLException {
+    public List<WflSituacao> listAllSituacao() throws SQLException {
         getSession();
         begin();
         List<WflSituacao> situacaos;
-        situacaos = session.createQuery("from WflSituacao u where u.pubEmpresa.idEmpresa = :emp").setParameter("emp", empresa.getIdEmpresa()).list();
+        situacaos = session.createQuery("from WflSituacao u order by u.prioridade").list();
         return situacaos;
     }
     
-    public void inserirProjeto (WflSituacao situacao) throws SQLException {
+    public List<WflSituacao> listSituacaoByFiltro(int empresa, int sistema) throws SQLException {
+        getSession();
+        begin();
+        List<WflSituacao> situacaos = null;
+        if (empresa > 0 && sistema > 0) {
+            situacaos = session.createQuery("from WflSituacao u where u.pubEmpresa.idEmpresa = :emp and u.pubSistema.idSistema = :sis order by u.prioridade").setParameter("emp", empresa).setParameter("sis", sistema).list();
+        } else if (empresa == 0 && sistema > 0) {
+            situacaos = session.createQuery("from WflSituacao u where u.pubSistema.idSistema = :sis order by u.prioridade").setParameter("sis", sistema).list();
+        } else if (empresa > 0 && sistema == 0) {
+            situacaos = session.createQuery("from WflSituacao u where u.pubEmpresa.idEmpresa = :emp order by u.prioridade").setParameter("emp", empresa).list();
+        }
+        return situacaos;
+    }
+    
+    public void inserirSituacao (WflSituacao situacao) throws SQLException {
         getSession();
         begin();
         session.save(situacao);
@@ -40,7 +54,7 @@ public class WflSituacaoDAO extends DefaultDAO {
         closeSession();
     }
     
-    public void updateProjeto (WflSituacao situacao) throws SQLException {
+    public void updateSituacao (WflSituacao situacao) throws SQLException {
         getSession();
         begin();
         session.merge(situacao);

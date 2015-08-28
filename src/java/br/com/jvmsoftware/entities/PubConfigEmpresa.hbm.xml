@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 4/Ago/2015 22:25:56 by Hibernate Tools 4.3.1 -->
+<!-- Generated 19/Ago/2015 9:06:00 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.jvmsoftware.entities.PubConfigEmpresa" table="pub_config_empresa" catalog="jvmdsoftware" optimistic-lock="version">
         <id name="idConfig" type="java.lang.Integer">
@@ -11,12 +11,12 @@
         <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="select">
             <column name="empresa" not-null="true" />
         </many-to-one>
-        <property name="tipoEmpresa" type="int">
+        <many-to-one name="pubTipoEmpresa" class="br.com.jvmsoftware.entities.PubTipoEmpresa" fetch="select">
             <column name="tipo_empresa" not-null="true" />
-        </property>
-        <property name="tipoNegocio" type="int">
+        </many-to-one>
+        <many-to-one name="pubTipoNegocio" class="br.com.jvmsoftware.entities.PubTipoNegocio" fetch="select">
             <column name="tipo_negocio" not-null="true" />
-        </property>
+        </many-to-one>
         <property name="mailEnvio" type="string">
             <column name="mail_envio" length="100" />
         </property>

@@ -22,6 +22,14 @@ public class PubConfigEmpresaDAO extends DefaultDAO {
         return configEmpresa;
     }
     
+    public PubConfigEmpresa getByIdEmpresa(int idEmpresa) throws SQLException {
+        getSession();
+        begin();
+        PubConfigEmpresa configEmpresa;
+        configEmpresa = (PubConfigEmpresa) session.createQuery("from pubConfigEmpresa c where c.pubEmpresa.idEmpresa = :e").setParameter("e", idEmpresa).uniqueResult();
+        return configEmpresa;
+    }
+    
     public void inserirConfigEmpresa (PubConfigEmpresa configEmpresa) throws SQLException {
         getSession();
         begin();

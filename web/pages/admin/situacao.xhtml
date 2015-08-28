@@ -23,9 +23,54 @@
     <h:form>
         <p:messages id="msgs"/>
         <p:panel id="dash" header="MODULO ADMIN - situacao"  style="height: 590px; text-align: center; alignment-baseline: central">
-            <h:outputText value="#{indexSuporteController.usu.nomeUsuario}"/>
+                        <f:facet name="header">
+                <h:outputText value="MODULO ADMIN - situacao"/>
+                <div align="center">
+                <p:panelGrid columns="2" layout="grid">
+                    <p:panelGrid columns="2" layout="grid">
+                        <p:outputLabel id="labEmp" value="Selecione a empresa" for="emp"/>
+                        <p:selectOneMenu id="emp" label="labEmp" value="#{situacaoController.empresa}">
+                            <p:ajax update="@form" process="@form" listener="#{situacaoController.changeCombo}"/>
+                            <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
+                            <f:selectItems value="#{situacaoController.listEmpresas}" var="emp" itemLabel="#{emp.fantasia}" itemValue="#{emp.idEmpresa}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel id="labSis" value="Selecione o sistema" for="sis"/>
+                        <p:selectOneMenu id="sis" label="labSis" value="#{situacaoController.sistema}">
+                            <p:ajax update="@form" process="@form" listener="#{situacaoController.changeCombo}"/>
+                            <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
+                            <f:selectItems value="#{situacaoController.listSistemas}" var="sis" itemLabel="#{sis.nomeSistema}" itemValue="#{sis.idSistema}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton id="btnNew" disabled="#{situacaoController.disableNew}" icon="icon-funcionalidade" action="#{situacaoController.situacaosNew}" update="@form">
+                        <p:tooltip value="nova situacao" for="btnNew"/>
+                    </p:commandButton>
+                </p:panelGrid>
+                </div>
+            </f:facet>
+            <p:dataTable var="sit" value="#{situacaoController.listSituacaos}"
+                         paginator="true" rows="10" 
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+                <p:column headerText="Empresa">
+                    <h:outputText value="#{sit.pubEmpresa.fantasia}"/>
+                </p:column>
+                <p:column headerText="Codigo">
+                    <h:outputText value="#{sit.codSituacao}"/>
+                </p:column>
+                <p:column headerText="Descricao">
+                    <h:outputText value="#{sit.descricaoSituacao}"/>
+                </p:column>
+                <p:column headerText="Sistema">
+                    <h:outputText value="#{sit.pubSistema.nomeSistema}"/>
+                </p:column>
+                <p:column headerText="Prioridade">
+                    <h:outputText value="#{sit.prioridade}"/>
+                </p:column>
+            </p:dataTable>
+
         </p:panel>
         <div style="clear:both" />
+        
     </h:form>
     </ui:define>  
 </ui:composition>  

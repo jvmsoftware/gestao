@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 4/Ago/2015 22:25:45 by Hibernate Tools 4.3.1
+// Generated 19/Ago/2015 9:05:43 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -14,6 +14,7 @@ public class PubTipoEmpresa  implements java.io.Serializable {
      private Integer idTipoEmpresa;
      private String tipoEmpresa;
      private Set<PubTipoNegocio> pubTipoNegocios = new HashSet<PubTipoNegocio>(0);
+     private Set<PubConfigEmpresa> pubConfigEmpresas = new HashSet<PubConfigEmpresa>(0);
 
     public PubTipoEmpresa() {
     }
@@ -22,9 +23,10 @@ public class PubTipoEmpresa  implements java.io.Serializable {
     public PubTipoEmpresa(String tipoEmpresa) {
         this.tipoEmpresa = tipoEmpresa;
     }
-    public PubTipoEmpresa(String tipoEmpresa, Set<PubTipoNegocio> pubTipoNegocios) {
+    public PubTipoEmpresa(String tipoEmpresa, Set<PubTipoNegocio> pubTipoNegocios, Set<PubConfigEmpresa> pubConfigEmpresas) {
        this.tipoEmpresa = tipoEmpresa;
        this.pubTipoNegocios = pubTipoNegocios;
+       this.pubConfigEmpresas = pubConfigEmpresas;
     }
    
     public Integer getIdTipoEmpresa() {
@@ -47,6 +49,13 @@ public class PubTipoEmpresa  implements java.io.Serializable {
     
     public void setPubTipoNegocios(Set<PubTipoNegocio> pubTipoNegocios) {
         this.pubTipoNegocios = pubTipoNegocios;
+    }
+    public Set<PubConfigEmpresa> getPubConfigEmpresas() {
+        return this.pubConfigEmpresas;
+    }
+    
+    public void setPubConfigEmpresas(Set<PubConfigEmpresa> pubConfigEmpresas) {
+        this.pubConfigEmpresas = pubConfigEmpresas;
     }
 
 

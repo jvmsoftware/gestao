@@ -38,7 +38,7 @@ public class FuncionalidadesController implements Serializable{
     private List<PubFuncionalidade> listFuncionalidades;
     private List<PubSistema> listSistemas;
     private String msg;
-    private int sistema;
+    private int sistema = 0;
     
 
     @PostConstruct 
@@ -46,7 +46,6 @@ public class FuncionalidadesController implements Serializable{
         HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();  
         usu = (PubUsuario)request.getSession().getAttribute("usuario");
         selectedFuncionalidade = (PubFuncionalidade)request.getSession().getAttribute("selectedFuncionalidade");
-        //sistema = (int)request.getSession().getAttribute("sistema");
         try {
             listSistemas = sisDAO.listAllSistemas();
             changeModulo();
@@ -76,7 +75,6 @@ public class FuncionalidadesController implements Serializable{
         selectedFuncionalidade = new PubFuncionalidade();
         selectedFuncionalidade.setPubSistema(sisDAO.getById(sistema));
         request.getSession().setAttribute("selectedFuncionalidade", selectedFuncionalidade);
-        request.getSession().setAttribute("sistema", sistema);
         navegar = "/pages/admin/funcionalidadesNew";
         } else {
             msg = "selecione um modulo para incluir uma nova funcionalidade.";

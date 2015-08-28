@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 4/Ago/2015 22:25:45 by Hibernate Tools 4.3.1
+// Generated 19/Ago/2015 9:05:43 by Hibernate Tools 4.3.1
 
 
 
@@ -11,8 +11,8 @@ public class PubConfigEmpresa  implements java.io.Serializable {
 
      private Integer idConfig;
      private PubEmpresa pubEmpresa;
-     private int tipoEmpresa;
-     private int tipoNegocio;
+     private PubTipoEmpresa pubTipoEmpresa;
+     private PubTipoNegocio pubTipoNegocio;
      private String mailEnvio;
      private String mailEnvioUsuario;
      private String mailEnvioSenha;
@@ -23,15 +23,15 @@ public class PubConfigEmpresa  implements java.io.Serializable {
     }
 
 	
-    public PubConfigEmpresa(PubEmpresa pubEmpresa, int tipoEmpresa, int tipoNegocio) {
+    public PubConfigEmpresa(PubEmpresa pubEmpresa, PubTipoEmpresa pubTipoEmpresa, PubTipoNegocio pubTipoNegocio) {
         this.pubEmpresa = pubEmpresa;
-        this.tipoEmpresa = tipoEmpresa;
-        this.tipoNegocio = tipoNegocio;
+        this.pubTipoEmpresa = pubTipoEmpresa;
+        this.pubTipoNegocio = pubTipoNegocio;
     }
-    public PubConfigEmpresa(PubEmpresa pubEmpresa, int tipoEmpresa, int tipoNegocio, String mailEnvio, String mailEnvioUsuario, String mailEnvioSenha, String mailEnvioSmtp, Integer mailEnvioPorta) {
+    public PubConfigEmpresa(PubEmpresa pubEmpresa, PubTipoEmpresa pubTipoEmpresa, PubTipoNegocio pubTipoNegocio, String mailEnvio, String mailEnvioUsuario, String mailEnvioSenha, String mailEnvioSmtp, Integer mailEnvioPorta) {
        this.pubEmpresa = pubEmpresa;
-       this.tipoEmpresa = tipoEmpresa;
-       this.tipoNegocio = tipoNegocio;
+       this.pubTipoEmpresa = pubTipoEmpresa;
+       this.pubTipoNegocio = pubTipoNegocio;
        this.mailEnvio = mailEnvio;
        this.mailEnvioUsuario = mailEnvioUsuario;
        this.mailEnvioSenha = mailEnvioSenha;
@@ -53,19 +53,19 @@ public class PubConfigEmpresa  implements java.io.Serializable {
     public void setPubEmpresa(PubEmpresa pubEmpresa) {
         this.pubEmpresa = pubEmpresa;
     }
-    public int getTipoEmpresa() {
-        return this.tipoEmpresa;
+    public PubTipoEmpresa getPubTipoEmpresa() {
+        return this.pubTipoEmpresa;
     }
     
-    public void setTipoEmpresa(int tipoEmpresa) {
-        this.tipoEmpresa = tipoEmpresa;
+    public void setPubTipoEmpresa(PubTipoEmpresa pubTipoEmpresa) {
+        this.pubTipoEmpresa = pubTipoEmpresa;
     }
-    public int getTipoNegocio() {
-        return this.tipoNegocio;
+    public PubTipoNegocio getPubTipoNegocio() {
+        return this.pubTipoNegocio;
     }
     
-    public void setTipoNegocio(int tipoNegocio) {
-        this.tipoNegocio = tipoNegocio;
+    public void setPubTipoNegocio(PubTipoNegocio pubTipoNegocio) {
+        this.pubTipoNegocio = pubTipoNegocio;
     }
     public String getMailEnvio() {
         return this.mailEnvio;
