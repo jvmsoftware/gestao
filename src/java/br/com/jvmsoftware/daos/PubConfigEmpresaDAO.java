@@ -26,7 +26,7 @@ public class PubConfigEmpresaDAO extends DefaultDAO {
         getSession();
         begin();
         PubConfigEmpresa configEmpresa;
-        configEmpresa = (PubConfigEmpresa) session.createQuery("from pubConfigEmpresa c where c.pubEmpresa.idEmpresa = :e").setParameter("e", idEmpresa).uniqueResult();
+        configEmpresa = (PubConfigEmpresa) session.createQuery("from PubConfigEmpresa c where c.pubEmpresa.idEmpresa = :e").setParameter("e", idEmpresa).uniqueResult();
         return configEmpresa;
     }
     

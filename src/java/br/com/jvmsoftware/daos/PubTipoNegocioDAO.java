@@ -36,7 +36,7 @@ public class PubTipoNegocioDAO extends DefaultDAO {
         getSession();
         begin();
         List<PubTipoNegocio> tipoNegocios;
-        tipoNegocios = session.createQuery("from PubTipoNegocio u where u.idTipoEmpresa = :tpEmp").setParameter("tpEmp", tipoEmpresa.getIdTipoEmpresa()).list();
+        tipoNegocios = session.createQuery("from PubTipoNegocio u where u.pubTipoEmpresa.idTipoEmpresa = :tpEmp").setParameter("tpEmp", tipoEmpresa.getIdTipoEmpresa()).list();
         return tipoNegocios;
     }
     

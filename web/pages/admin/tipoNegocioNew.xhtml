@@ -26,8 +26,12 @@
             <br/>
             <p:panelGrid columns="2" layout="grid">
                 
-                <p:outputLabel id="labDesc" value="Tipo de Negocio"/>
-                <p:inputText id="desc" label="labDesc" rendered="true" disabled="false"
+                <p:outputLabel id="labDesc" value="Tipo de Empresa"/>
+                <p:inputText id="desc" label="labDesc" rendered="true" disabled="true"
+                             value="#{tipoNegocioController.selectedTipoNegocio.pubTipoEmpresa.tipoEmpresa}">
+                </p:inputText>                
+                <p:outputLabel id="labDesc1" value="Tipo de Negocio"/>
+                <p:inputText id="desc1" label="labDesc1" rendered="true" disabled="false"
                              value="#{tipoNegocioController.selectedTipoNegocio.tipoNegocio}">
                 </p:inputText>
                 

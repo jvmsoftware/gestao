@@ -26,15 +26,26 @@
             <f:facet name="header">
                 <h:outputText value="MODULO ADMIN - tipo negocio"/>
                 <div align="center">
-                    <p:commandButton id="btnNew" icon="icon-negocio" action="#{tipoNegocioController.tipoNegociosNew}" update="@form">
-                        <p:tooltip value="nova funcionalidade" for="btnNew"/>
+                <p:panelGrid columns="3" layout="grid">
+                    <p:outputLabel id="labMod" value="Selecione o tipo de empresa" for="mod"/>
+                    <p:selectOneMenu id="mod" label="labMod" value="#{tipoNegocioController.tipoEmpresa}">
+                        <p:ajax update="@form" process="@form" listener="#{tipoNegocioController.changeTipoEmpresa}"/>
+                        <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
+                        <f:selectItems value="#{tipoNegocioController.listTipoEmpresas}" var="emp" itemLabel="#{emp.tipoEmpresa}" itemValue="#{emp.idTipoEmpresa}"/>
+                    </p:selectOneMenu>
+                    <p:commandButton id="btnNew" icon="icon-negocio" action="#{tipoNegocioController.tipoNegociosNew}" update="@form" disabled="#{tipoNegocioController.disableNew}">
+                        <p:tooltip value="novo tipo de negocio" for="btnNew"/>
                     </p:commandButton>
+                </p:panelGrid>
                 </div>
             </f:facet>
             <p:dataTable var="tNeg" value="#{tipoNegocioController.listTipoNegocios}"
                          paginator="true" rows="10" 
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15">
+                <p:column headerText="Tipo Empresa">
+                    <h:outputText value="#{tNeg.pubTipoEmpresa.tipoEmpresa}"/>
+                </p:column>
                 <p:column headerText="Identificador">
                     <h:outputText value="#{tNeg.idTipoNegocio}"/>
                 </p:column>

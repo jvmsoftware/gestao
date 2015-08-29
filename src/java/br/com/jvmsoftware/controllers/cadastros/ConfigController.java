@@ -7,18 +7,8 @@ package br.com.jvmsoftware.controllers.cadastros;
 
 import br.com.jvmsoftware.daos.PubConfigEmpresaDAO;
 import br.com.jvmsoftware.daos.PubEmpresaDAO;
-import br.com.jvmsoftware.daos.PubEstadoDAO;
-import br.com.jvmsoftware.daos.PubMunicipioDAO;
-import br.com.jvmsoftware.daos.PubTipoCadastroDAO;
-import br.com.jvmsoftware.daos.PubTipoEmpresaDAO;
-import br.com.jvmsoftware.daos.PubTipoNegocioDAO;
 import br.com.jvmsoftware.entities.PubConfigEmpresa;
 import br.com.jvmsoftware.entities.PubEmpresa;
-import br.com.jvmsoftware.entities.PubEstado;
-import br.com.jvmsoftware.entities.PubMunicipio;
-import br.com.jvmsoftware.entities.PubTipoCadastro;
-import br.com.jvmsoftware.entities.PubTipoEmpresa;
-import br.com.jvmsoftware.entities.PubTipoNegocio;
 import br.com.jvmsoftware.entities.PubUsuario;
 import java.io.Serializable;
 import java.sql.SQLException;
@@ -28,7 +18,6 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
@@ -61,19 +50,25 @@ public class ConfigController implements Serializable{
         renderEmpresa = renderEmpresa();
         try {
             listEmpresa = empDAO.listAllEmpresas();
+            ConfEmpresa = confDAO.getByIdEmpresa(empresa);
         } catch (SQLException ex) {
             Logger.getLogger(ConfigController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
+    public String config() {
+        String navegar = "/pages/cadastro/configuracao";
+        return navegar;
+    }
+
     
     public String alterarConfig() {
-        String navegar = "/pages/cadastro/configEdit";
+        String navegar = "/pages/cadastro/configuracaoEdit";
         return navegar;
     }
     
     public String finalizaAlterarConfig() {
-        String navegar = "/pages/cadastro/config";
+        String navegar = "/pages/cadastro/configuracao";
         try {
             msg = "Dados da config alterados com sucesso.";
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));

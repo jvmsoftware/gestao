@@ -45,33 +45,34 @@
                 </p:inputText>
 
                 <p:outputLabel id="labMail" value="email envio"/>
-                <p:inputText id="mail" label="labMail" rendered="true"  disabled="true"
+                <p:inputText id="mail" label="labMail" rendered="true"  disabled="false"
                              value="#{configController.confEmpresa.mailEnvio}">
                 </p:inputText>
 
                 <p:outputLabel id="labMailP" value="email porta"/>
-                <p:inputText id="mailP" label="labMailP" rendered="true"  disabled="true"
+                <p:inputText id="mailP" label="labMailP" rendered="true"  disabled="false"
                              value="#{configController.confEmpresa.mailEnvioPorta}">
                 </p:inputText>
                 
                 <p:outputLabel id="labMailSm" value="email smtp"/>
-                <p:inputText id="mailSm" label="labMailSm" rendered="true"  disabled="true"
+                <p:inputText id="mailSm" label="labMailSm" rendered="true"  disabled="false"
                              value="#{configController.confEmpresa.mailEnvioSmtp}">
                 </p:inputText>
                 
                 <p:outputLabel id="labMailU" value="email usuario"/>
-                <p:inputText id="mailU" label="labMailU" rendered="true"  disabled="true"
+                <p:inputText id="mailU" label="labMailU" rendered="true"  disabled="false"
                              value="#{configController.confEmpresa.mailEnvioUsuario}">
                 </p:inputText>
                 
-                <p:outputLabel id="labMailS" value="emailS"/>
-                <p:password id="mailS" label="labMailS" rendered="true"  disabled="true"
+                <p:outputLabel id="labMailS" value="Senha Email"/>
+                <p:password id="mailS" label="labMailS" rendered="true"  disabled="false"
                              value="#{configController.confEmpresa.mailEnvioSenha}">
                 </p:password>
                 
                 <f:facet  name="footer">
                     <center>
-                        <p:commandButton action="#{configController.alterarConfig}" value="alterar configuração" icon="icon-edit"/>
+                        <p:commandButton action="#{configController.finalizaAlterarConfig}" value="gravar" icon="icon-salvar"/>
+                        <p:commandButton action="#{configController.config}" value="voltar" icon="icon-voltar"/>
                     </center>
                 </f:facet>
             </p:panelGrid>

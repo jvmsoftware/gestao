@@ -5,9 +5,11 @@
  */
 package br.com.jvmsoftware.controllers.admin;
 
+import br.com.jvmsoftware.daos.PubTipoEmpresaDAO;
 import br.com.jvmsoftware.daos.PubTipoNegocioDAO;
 import br.com.jvmsoftware.entities.PubTipoNegocio;
 import br.com.jvmsoftware.entities.PubSistema;
+import br.com.jvmsoftware.entities.PubTipoEmpresa;
 import br.com.jvmsoftware.entities.PubUsuario;
 import java.io.Serializable;
 import java.sql.SQLException;
@@ -31,9 +33,13 @@ import javax.servlet.http.HttpServletRequest;
 public class TipoNegocioController implements Serializable{
     
     private final PubTipoNegocioDAO tNegDAO = new PubTipoNegocioDAO();
+    private final PubTipoEmpresaDAO tEmpDAO = new PubTipoEmpresaDAO();
     private PubUsuario usu = new PubUsuario();
     private PubTipoNegocio selectedTipoNegocio;
+    private List<PubTipoEmpresa> listTipoEmpresas;
     private List<PubTipoNegocio> listTipoNegocios;
+    private int tipoEmpresa = 0;
+    private boolean disableNew = true;
     private String msg;
     
 
@@ -44,6 +50,7 @@ public class TipoNegocioController implements Serializable{
         selectedTipoNegocio = (PubTipoNegocio)request.getSession().getAttribute("selectedTipoNegocio");
         try {
             listTipoNegocios = tNegDAO.listAllTipoNegocios();
+            listTipoEmpresas = tEmpDAO.listAllTipoEmpresas();
         } catch (SQLException ex) {
             Logger.getLogger(TipoNegocioController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -58,7 +65,7 @@ public class TipoNegocioController implements Serializable{
     public String tipoNegocio() {
         HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();  
         request.getSession().setAttribute("selectedTipoNegocio", null);  
-        request.getSession().setAttribute("sistema", 0);
+        request.getSession().setAttribute("tipoEmpresa", 0);
         String navegar = "/pages/admin/tipoNegocio";
         return navegar;
     }
@@ -67,6 +74,7 @@ public class TipoNegocioController implements Serializable{
         String navegar;
         HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();  
         selectedTipoNegocio = new PubTipoNegocio();
+        selectedTipoNegocio.setPubTipoEmpresa(tEmpDAO.getById(tipoEmpresa));
         request.getSession().setAttribute("selectedTipoNegocio", selectedTipoNegocio);
         navegar = "/pages/admin/tipoNegocioNew";
         return navegar;
@@ -85,6 +93,17 @@ public class TipoNegocioController implements Serializable{
             navegar = "/pages/admin/tipoNegocioNew";
         }
         return navegar;
+    }
+    
+        // change modulo
+    public void changeTipoEmpresa() throws SQLException {
+        if (tipoEmpresa == 0) {
+            disableNew = true;
+            listTipoNegocios = tNegDAO.listAllTipoNegocios();
+        } else {
+            disableNew = false;
+            listTipoNegocios = tNegDAO.listTipoNegociosByTipoEmpresa(tEmpDAO.getById(tipoEmpresa));
+        }
     }
     
 
@@ -109,5 +128,29 @@ public class TipoNegocioController implements Serializable{
     public void setListTipoNegocios(List<PubTipoNegocio> listTipoNegocios) {
         this.listTipoNegocios = listTipoNegocios;
     }    
+
+    public List<PubTipoEmpresa> getListTipoEmpresas() {
+        return listTipoEmpresas;
+    }
+
+    public void setListTipoEmpresas(List<PubTipoEmpresa> listTipoEmpresas) {
+        this.listTipoEmpresas = listTipoEmpresas;
+    }
+
+    public int getTipoEmpresa() {
+        return tipoEmpresa;
+    }
+
+    public void setTipoEmpresa(int tipoEmpresa) {
+        this.tipoEmpresa = tipoEmpresa;
+    }
+
+    public boolean isDisableNew() {
+        return disableNew;
+    }
+
+    public void setDisableNew(boolean disableNew) {
+        this.disableNew = disableNew;
+    }
     
 }

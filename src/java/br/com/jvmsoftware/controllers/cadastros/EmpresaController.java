@@ -73,6 +73,10 @@ public class EmpresaController implements Serializable{
         }
     }
 
+    public String empresas() {
+        String navegar = "/pages/cadastro/empresa";
+        return navegar;
+    }
     
     public String alterarEmpresa() {
         String navegar = "/pages/cadastro/empresaEdit";
