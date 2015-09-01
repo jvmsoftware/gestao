@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 19/Ago/2015 9:05:43 by Hibernate Tools 4.3.1
+// Generated 31/Ago/2015 23:49:11 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -15,9 +15,7 @@ public class PubMunicipio  implements java.io.Serializable {
      private PubEstado pubEstado;
      private String municipio;
      private Set<PubEmpresa> pubEmpresas = new HashSet<PubEmpresa>(0);
-     private Set<CadPessoaJuridica> cadPessoaJuridicas = new HashSet<CadPessoaJuridica>(0);
      private Set<PubUsuario> pubUsuarios = new HashSet<PubUsuario>(0);
-     private Set<CadPessoaFisica> cadPessoaFisicas = new HashSet<CadPessoaFisica>(0);
 
     public PubMunicipio() {
     }
@@ -28,14 +26,12 @@ public class PubMunicipio  implements java.io.Serializable {
         this.pubEstado = pubEstado;
         this.municipio = municipio;
     }
-    public PubMunicipio(int idMunicipio, PubEstado pubEstado, String municipio, Set<PubEmpresa> pubEmpresas, Set<CadPessoaJuridica> cadPessoaJuridicas, Set<PubUsuario> pubUsuarios, Set<CadPessoaFisica> cadPessoaFisicas) {
+    public PubMunicipio(int idMunicipio, PubEstado pubEstado, String municipio, Set<PubEmpresa> pubEmpresas, Set<PubUsuario> pubUsuarios) {
        this.idMunicipio = idMunicipio;
        this.pubEstado = pubEstado;
        this.municipio = municipio;
        this.pubEmpresas = pubEmpresas;
-       this.cadPessoaJuridicas = cadPessoaJuridicas;
        this.pubUsuarios = pubUsuarios;
-       this.cadPessoaFisicas = cadPessoaFisicas;
     }
    
     public int getIdMunicipio() {
@@ -66,26 +62,12 @@ public class PubMunicipio  implements java.io.Serializable {
     public void setPubEmpresas(Set<PubEmpresa> pubEmpresas) {
         this.pubEmpresas = pubEmpresas;
     }
-    public Set<CadPessoaJuridica> getCadPessoaJuridicas() {
-        return this.cadPessoaJuridicas;
-    }
-    
-    public void setCadPessoaJuridicas(Set<CadPessoaJuridica> cadPessoaJuridicas) {
-        this.cadPessoaJuridicas = cadPessoaJuridicas;
-    }
     public Set<PubUsuario> getPubUsuarios() {
         return this.pubUsuarios;
     }
     
     public void setPubUsuarios(Set<PubUsuario> pubUsuarios) {
         this.pubUsuarios = pubUsuarios;
-    }
-    public Set<CadPessoaFisica> getCadPessoaFisicas() {
-        return this.cadPessoaFisicas;
-    }
-    
-    public void setCadPessoaFisicas(Set<CadPessoaFisica> cadPessoaFisicas) {
-        this.cadPessoaFisicas = cadPessoaFisicas;
     }
 
 

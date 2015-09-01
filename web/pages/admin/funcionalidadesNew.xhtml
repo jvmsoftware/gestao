@@ -28,18 +28,18 @@
                 
                 <p:outputLabel id="labModulo" value="Modulo"/>
                 <p:inputText id="modulo" label="labModulo" rendered="true" disabled="true"
-                             value="#{funcionalidadesController.selectedFuncionalidade.pubSistema.nomeSistema}">
+                             value="#{adminFuncionalidadesController.selectedFuncionalidade.pubSistema.nomeSistema}">
                 </p:inputText>
                 
                 <p:outputLabel id="labDesc" value="Funcionalidade"/>
                 <p:inputText id="desc" label="labDesc" rendered="true" disabled="false"
-                             value="#{funcionalidadesController.selectedFuncionalidade.descricaoFuncionalidade}">
+                             value="#{adminFuncionalidadesController.selectedFuncionalidade.descricaoFuncionalidade}">
                 </p:inputText>
                 
                 <f:facet  name="footer">
                     <center>
-                        <p:commandButton action="#{funcionalidadesController.inserirFuncionalidade}" value="gravar" icon="icon-salvar"/>
-                        <p:commandButton action="#{funcionalidadesController.funcionalidades}" value="voltar" icon="icon-voltar"/>
+                        <p:commandButton action="#{adminFuncionalidadesController.inserirFuncionalidade}" value="gravar" icon="icon-salvar"/>
+                        <p:commandButton action="#{adminFuncionalidadesController.funcionalidades}" value="voltar" icon="icon-voltar"/>
                     </center>
                 </f:facet>
             </p:panelGrid>

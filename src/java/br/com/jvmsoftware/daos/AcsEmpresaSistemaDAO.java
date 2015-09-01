@@ -38,7 +38,7 @@ public class AcsEmpresaSistemaDAO extends DefaultDAO {
         getSession();
         begin();
         List<AcsEmpresaSistema> empresaSistemas;
-        empresaSistemas = session.createQuery("from AcsEmpresaSistema u where u.empresa = :emp").setParameter("emp", empresa.getIdEmpresa()).list();
+        empresaSistemas = session.createQuery("from AcsEmpresaSistema u where u.pubEmpresa.idEmpresa = :emp").setParameter("emp", empresa.getIdEmpresa()).list();
         return empresaSistemas;
     }
     
@@ -46,7 +46,7 @@ public class AcsEmpresaSistemaDAO extends DefaultDAO {
         getSession();
         begin();
         List<AcsEmpresaSistema> empresaSistemas;
-        empresaSistemas = session.createQuery("from AcsEmpresaSistema u where u.sistema = :sis").setParameter("sis", sistema.getIdSistema()).list();
+        empresaSistemas = session.createQuery("from AcsEmpresaSistema u where u.pubSistema.idSistema = :sis").setParameter("sis", sistema.getIdSistema()).list();
         return empresaSistemas;
     }
     

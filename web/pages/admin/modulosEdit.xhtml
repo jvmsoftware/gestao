@@ -28,23 +28,23 @@
                 
                 <p:outputLabel id="labModulo" value="Modulo"/>
                 <p:inputText id="modulo" label="labModulo" rendered="true" disabled="true"
-                             value="#{modulosController.selectedModulo.nomeSistema}">
+                             value="#{adminModulosController.selectedModulo.nomeSistema}">
                 </p:inputText>
                 
                 <p:outputLabel id="labDesc" value="Descrição"/>
                 <p:inputText id="desc" label="labDesc" rendered="true" disabled="false"
-                             value="#{modulosController.selectedModulo.descricaoSistema}">
+                             value="#{adminModulosController.selectedModulo.descricaoSistema}">
                 </p:inputText>
                 
                 <p:outputLabel id="labAtivo" value="Ativo"/>
                 <p:selectBooleanCheckbox id="ativo" label="labAtivo" rendered="true" disabled="true"
-                             value="#{modulosController.selectedModulo.ativo}">
+                             value="#{adminModulosController.selectedModulo.ativo}">
                 </p:selectBooleanCheckbox>
                 
                 <f:facet  name="footer">
                     <center>
-                        <p:commandButton action="#{modulosController.alterarModulos}" value="gravar" icon="icon-salvar"/>
-                        <p:commandButton action="#{modulosController.modulos}" value="voltar" icon="icon-voltar"/>
+                        <p:commandButton action="#{adminModulosController.alterarModulos}" value="gravar" icon="icon-salvar"/>
+                        <p:commandButton action="#{adminModulosController.modulos}" value="voltar" icon="icon-voltar"/>
                     </center>
                 </f:facet>
             </p:panelGrid>

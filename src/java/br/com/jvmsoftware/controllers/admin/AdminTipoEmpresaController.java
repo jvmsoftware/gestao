@@ -5,8 +5,8 @@
  */
 package br.com.jvmsoftware.controllers.admin;
 
-import br.com.jvmsoftware.daos.WflSeveridadeDAO;
-import br.com.jvmsoftware.entities.WflSeveridade;
+import br.com.jvmsoftware.daos.PubTipoEmpresaDAO;
+import br.com.jvmsoftware.entities.PubTipoEmpresa;
 import br.com.jvmsoftware.entities.PubSistema;
 import br.com.jvmsoftware.entities.PubUsuario;
 import java.io.Serializable;
@@ -28,12 +28,12 @@ import javax.servlet.http.HttpServletRequest;
  */
 @ManagedBean
 @ViewScoped
-public class SeveridadeController implements Serializable{
+public class AdminTipoEmpresaController implements Serializable{
     
-    private final WflSeveridadeDAO sevDAO = new WflSeveridadeDAO();
+    private final PubTipoEmpresaDAO tEmpDAO = new PubTipoEmpresaDAO();
     private PubUsuario usu = new PubUsuario();
-    private WflSeveridade selectedSeveridade;
-    private List<WflSeveridade> listSeveridades;
+    private PubTipoEmpresa selectedTipoEmpresa;
+    private List<PubTipoEmpresa> listTipoEmpresas;
     private String msg;
     
 
@@ -41,11 +41,11 @@ public class SeveridadeController implements Serializable{
     public void Init(){
         HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();  
         usu = (PubUsuario)request.getSession().getAttribute("usuario");
-        selectedSeveridade = (WflSeveridade)request.getSession().getAttribute("selectedSeveridade");
+        selectedTipoEmpresa = (PubTipoEmpresa)request.getSession().getAttribute("selectedTipoEmpresa");
         try {
-            listSeveridades = sevDAO.listAllSeveridades();
+            listTipoEmpresas = tEmpDAO.listAllTipoEmpresas();
         } catch (SQLException ex) {
-            Logger.getLogger(SeveridadeController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminTipoEmpresaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     } 
 
@@ -55,34 +55,34 @@ public class SeveridadeController implements Serializable{
     * @return 
     */
     
-    public String severidade() {
+    public String tipoEmpresa() {
         HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();  
-        request.getSession().setAttribute("selectedSeveridade", null);  
+        request.getSession().setAttribute("selectedTipoEmpresa", null);  
         request.getSession().setAttribute("sistema", 0);
-        String navegar = "/pages/admin/severidade";
+        String navegar = "/pages/admin/tipoEmpresa";
         return navegar;
     }
     
-    public String severidadeNew() throws SQLException {
+    public String tipoEmpresasNew() throws SQLException {
         String navegar;
         HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();  
-        selectedSeveridade = new WflSeveridade();
-        request.getSession().setAttribute("selectedSeveridade", selectedSeveridade);
-        navegar = "/pages/admin/severidadeNew";
+        selectedTipoEmpresa = new PubTipoEmpresa();
+        request.getSession().setAttribute("selectedTipoEmpresa", selectedTipoEmpresa);
+        navegar = "/pages/admin/tipoEmpresaNew";
         return navegar;
     }
 
-    public String inserirSeveridade() {
-        String navegar = "/pages/admin/severidade";
+    public String inserirTipoEmpresa() {
+        String navegar = "/pages/admin/tipoEmpresa";
         try {
-            sevDAO.inserirSeveridade(selectedSeveridade);
-            msg = "Severidade incluida com sucesso.";
+            tEmpDAO.inserirTipoEmpresa(selectedTipoEmpresa);
+            msg = "Tipo de Empresa incluida com sucesso.";
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
         } catch (SQLException ex) {
             msg = "problemas ao acessar o banco de dados. Contate suporte técnico.";
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, msg, msg));
-            Logger.getLogger(SeveridadeController.class.getName()).log(Level.SEVERE, null, ex);
-            navegar = "/pages/admin/severidadeNew";
+            Logger.getLogger(AdminTipoEmpresaController.class.getName()).log(Level.SEVERE, null, ex);
+            navegar = "/pages/admin/tipoEmpresaNew";
         }
         return navegar;
     }
@@ -94,20 +94,20 @@ public class SeveridadeController implements Serializable{
      * @return 
      */
     
-    public WflSeveridade getSelectedSeveridade() {
-        return selectedSeveridade;
+    public PubTipoEmpresa getSelectedTipoEmpresa() {
+        return selectedTipoEmpresa;
     }
 
-    public void setSelectedSeveridade(WflSeveridade selectedSeveridade) {
-        this.selectedSeveridade = selectedSeveridade;
+    public void setSelectedTipoEmpresa(PubTipoEmpresa selectedTipoEmpresa) {
+        this.selectedTipoEmpresa = selectedTipoEmpresa;
     }
 
-    public List<WflSeveridade> getListSeveridades() {
-        return listSeveridades;
+    public List<PubTipoEmpresa> getListTipoEmpresas() {
+        return listTipoEmpresas;
     }
 
-    public void setListSeveridades(List<WflSeveridade> listSeveridades) {
-        this.listSeveridades = listSeveridades;
+    public void setListTipoEmpresas(List<PubTipoEmpresa> listTipoEmpresas) {
+        this.listTipoEmpresas = listTipoEmpresas;
     }    
     
 }

@@ -28,17 +28,17 @@
                 
                 <p:outputLabel id="labDesc" value="Tipo de Empresa"/>
                 <p:inputText id="desc" label="labDesc" rendered="true" disabled="true"
-                             value="#{tipoNegocioController.selectedTipoNegocio.pubTipoEmpresa.tipoEmpresa}">
+                             value="#{adminTipoNegocioController.selectedTipoNegocio.pubTipoEmpresa.tipoEmpresa}">
                 </p:inputText>                
                 <p:outputLabel id="labDesc1" value="Tipo de Negocio"/>
                 <p:inputText id="desc1" label="labDesc1" rendered="true" disabled="false"
-                             value="#{tipoNegocioController.selectedTipoNegocio.tipoNegocio}">
+                             value="#{adminTipoNegocioController.selectedTipoNegocio.tipoNegocio}">
                 </p:inputText>
                 
                 <f:facet  name="footer">
                     <center>
-                        <p:commandButton action="#{tipoNegocioController.inserirTipoNegocio}" value="gravar" icon="icon-salvar"/>
-                        <p:commandButton action="#{tipoNegocioController.tipoNegocio}" value="voltar" icon="icon-voltar"/>
+                        <p:commandButton action="#{adminTipoNegocioController.inserirTipoNegocio}" value="gravar" icon="icon-salvar"/>
+                        <p:commandButton action="#{adminTipoNegocioController.tipoNegocio}" value="voltar" icon="icon-voltar"/>
                     </center>
                 </f:facet>
             </p:panelGrid>

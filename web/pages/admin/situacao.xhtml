@@ -28,24 +28,24 @@
                 <div align="center">
                 <p:panelGrid columns="2" layout="grid">
                     <p:outputLabel id="labEmp" value="Selecione a empresa" for="emp"/>
-                    <p:selectOneMenu id="emp" label="labEmp" value="#{situacaoController.empresa}">
-                        <p:ajax update="@form" process="@form" listener="#{situacaoController.changeCombo}"/>
+                    <p:selectOneMenu id="emp" label="labEmp" value="#{AdminSituacaoController.empresa}">
+                        <p:ajax update="@form" process="@form" listener="#{AdminSituacaoController.changeCombo}"/>
                         <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
-                        <f:selectItems value="#{situacaoController.listEmpresas}" var="emp" itemLabel="#{emp.fantasia}" itemValue="#{emp.idEmpresa}"/>
+                        <f:selectItems value="#{AdminSituacaoController.listEmpresas}" var="emp" itemLabel="#{emp.fantasia}" itemValue="#{emp.idEmpresa}"/>
                     </p:selectOneMenu>
                     <p:outputLabel id="labSis" value="Selecione o sistema" for="sis"/>
-                    <p:selectOneMenu id="sis" label="labSis" value="#{situacaoController.sistema}">
-                        <p:ajax update="@form" process="@form" listener="#{situacaoController.changeCombo}"/>
+                    <p:selectOneMenu id="sis" label="labSis" value="#{AdminSituacaoController.sistema}">
+                        <p:ajax update="@form" process="@form" listener="#{AdminSituacaoController.changeCombo}"/>
                         <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
-                        <f:selectItems value="#{situacaoController.listSistemas}" var="sis" itemLabel="#{sis.nomeSistema}" itemValue="#{sis.idSistema}"/>
+                        <f:selectItems value="#{AdminSituacaoController.listSistemas}" var="sis" itemLabel="#{sis.nomeSistema}" itemValue="#{sis.idSistema}"/>
                     </p:selectOneMenu>
                 </p:panelGrid>
-                <p:commandButton id="btnNew" disabled="#{situacaoController.disableNew}" icon="icon-funcionalidade" action="#{situacaoController.situacaosNew}" update="@form">
+                <p:commandButton id="btnNew" disabled="#{AdminSituacaoController.disableNew}" icon="icon-funcionalidade" action="#{AdminSituacaoController.situacaosNew}" update="@form">
                     <p:tooltip value="nova situacao" for="btnNew"/>
                 </p:commandButton>
                 </div>
             </f:facet>
-            <p:dataTable var="sit" value="#{situacaoController.listSituacaos}"
+            <p:dataTable var="sit" value="#{AdminSituacaoController.listSituacaos}"
                          paginator="true" rows="10" 
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15">

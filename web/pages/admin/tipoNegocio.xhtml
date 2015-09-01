@@ -28,18 +28,18 @@
                 <div align="center">
                 <p:panelGrid columns="3" layout="grid">
                     <p:outputLabel id="labMod" value="Selecione o tipo de empresa" for="mod"/>
-                    <p:selectOneMenu id="mod" label="labMod" value="#{tipoNegocioController.tipoEmpresa}">
-                        <p:ajax update="@form" process="@form" listener="#{tipoNegocioController.changeTipoEmpresa}"/>
+                    <p:selectOneMenu id="mod" label="labMod" value="#{adminTipoNegocioController.tipoEmpresa}">
+                        <p:ajax update="@form" process="@form" listener="#{adminTipoNegocioController.changeTipoEmpresa}"/>
                         <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
-                        <f:selectItems value="#{tipoNegocioController.listTipoEmpresas}" var="emp" itemLabel="#{emp.tipoEmpresa}" itemValue="#{emp.idTipoEmpresa}"/>
+                        <f:selectItems value="#{adminTipoNegocioController.listTipoEmpresas}" var="emp" itemLabel="#{emp.tipoEmpresa}" itemValue="#{emp.idTipoEmpresa}"/>
                     </p:selectOneMenu>
-                    <p:commandButton id="btnNew" icon="icon-negocio" action="#{tipoNegocioController.tipoNegociosNew}" update="@form" disabled="#{tipoNegocioController.disableNew}">
+                    <p:commandButton id="btnNew" icon="icon-negocio" action="#{adminTipoNegocioController.tipoNegociosNew}" update="@form" disabled="#{adminTipoNegocioController.disableNew}">
                         <p:tooltip value="novo tipo de negocio" for="btnNew"/>
                     </p:commandButton>
                 </p:panelGrid>
                 </div>
             </f:facet>
-            <p:dataTable var="tNeg" value="#{tipoNegocioController.listTipoNegocios}"
+            <p:dataTable var="tNeg" value="#{adminTipoNegocioController.listTipoNegocios}"
                          paginator="true" rows="10" 
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15">

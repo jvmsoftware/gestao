@@ -36,7 +36,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @ManagedBean
 @ViewScoped
-public class UserCadastroController implements Serializable{
+public class AcsUserContaController implements Serializable{
 
     FacesMessage message = new FacesMessage();
     private final PubUsuarioDAO usuDAO = new PubUsuarioDAO();
@@ -56,7 +56,7 @@ public class UserCadastroController implements Serializable{
     /**
      * Creates a new instance of UserCadastroController
      */
-    public UserCadastroController() {
+    public AcsUserContaController() {
     }
     
     
@@ -76,7 +76,7 @@ public class UserCadastroController implements Serializable{
                 }
                 
             } catch (SQLException ex) {
-                Logger.getLogger(UserCadastroController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AcsUserContaController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         else if (usu == null) {

@@ -27,11 +27,11 @@
                 <h:outputText value="MODULO CONTROLE DE ACESSO - configuração"/>
                 <div align="center">
                 <p:panelGrid columns="2" layout="grid">
-                    <p:outputLabel id="labEmp" value="Selecione a empresa" for="emp" rendered="#{configController.renderEmpresa}"/>
-                    <p:selectOneMenu id="emp" label="labEmp" value="#{configController.empresa}" rendered="#{configController.renderEmpresa}">
-                        <p:ajax update="@form" process="@form" listener="#{configController.changeEmpresa}"/>
+                    <p:outputLabel id="labEmp" value="Selecione a empresa" for="emp" rendered="#{acsConfigController.renderEmpresa}"/>
+                    <p:selectOneMenu id="emp" label="labEmp" value="#{acsConfigController.empresa}" rendered="#{acsConfigController.renderEmpresa}">
+                        <p:ajax update="@form" process="@form" listener="#{acsConfigController.changeEmpresa}"/>
                         <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
-                        <f:selectItems value="#{configController.listEmpresa}" var="emp" itemLabel="#{emp.idEmpresa} - #{emp.fantasia}" itemValue="#{emp.idEmpresa}"/>
+                        <f:selectItems value="#{acsConfigController.listEmpresa}" var="emp" itemLabel="#{emp.idEmpresa} - #{emp.fantasia}" itemValue="#{emp.idEmpresa}"/>
                     </p:selectOneMenu>
                 </p:panelGrid>
                 </div>
@@ -40,47 +40,47 @@
             <p:panelGrid columns="2" layout="grid">
                 <p:outputLabel id="labEmp1" value="empresa"/>
                 <p:inputText id="emp1" label="labEmp1" rendered="true" disabled="true"
-                             value="#{configController.confEmpresa.pubEmpresa.fantasia}">
+                             value="#{acsConfigController.confEmpresa.pubEmpresa.fantasia}">
                 </p:inputText>
                 
                 <p:outputLabel id="labTEmp" value="tipo empresa"/>
                 <p:inputText id="tEmp" label="labTEmp" rendered="true" disabled="true"
-                             value="#{configController.confEmpresa.pubTipoEmpresa.tipoEmpresa}">
+                             value="#{acsConfigController.confEmpresa.pubTipoEmpresa.tipoEmpresa}">
                 </p:inputText>
 
                 <p:outputLabel id="labTNeg" value="tipo negocio"/>
                 <p:inputText id="tNeg" label="labTNeg" rendered="true" disabled="true"
-                             value="#{configController.confEmpresa.pubTipoNegocio.tipoNegocio}">
+                             value="#{acsConfigController.confEmpresa.pubTipoNegocio.tipoNegocio}">
                 </p:inputText>
 
                 <p:outputLabel id="labMail" value="email envio"/>
                 <p:inputText id="mail" label="labMail" rendered="true"  disabled="true"
-                             value="#{configController.confEmpresa.mailEnvio}">
+                             value="#{acsConfigController.confEmpresa.mailEnvio}">
                 </p:inputText>
 
                 <p:outputLabel id="labMailP" value="email porta"/>
                 <p:inputText id="mailP" label="labMailP" rendered="true"  disabled="true"
-                             value="#{configController.confEmpresa.mailEnvioPorta}">
+                             value="#{acsConfigController.confEmpresa.mailEnvioPorta}">
                 </p:inputText>
                 
                 <p:outputLabel id="labMailSm" value="email smtp"/>
                 <p:inputText id="mailSm" label="labMailSm" rendered="true"  disabled="true"
-                             value="#{configController.confEmpresa.mailEnvioSmtp}">
+                             value="#{acsConfigController.confEmpresa.mailEnvioSmtp}">
                 </p:inputText>
                 
                 <p:outputLabel id="labMailU" value="email usuario"/>
                 <p:inputText id="mailU" label="labMailU" rendered="true"  disabled="true"
-                             value="#{configController.confEmpresa.mailEnvioUsuario}">
+                             value="#{acsConfigController.confEmpresa.mailEnvioUsuario}">
                 </p:inputText>
                 
                 <p:outputLabel id="labMailS" value="emailS"/>
                 <p:password id="mailS" label="labMailS" rendered="true"  disabled="true"
-                             value="#{configController.confEmpresa.mailEnvioSenha}">
+                             value="#{acsConfigController.confEmpresa.mailEnvioSenha}">
                 </p:password>
                 
                 <f:facet  name="footer">
                     <center>
-                        <p:commandButton action="#{configController.alterarConfig}" value="alterar configuração" icon="icon-editar"/>
+                        <p:commandButton action="#{acsConfigController.alterarConfig}" value="alterar configuração" icon="icon-editar"/>
                     </center>
                 </f:facet>
             </p:panelGrid>

@@ -31,7 +31,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @ManagedBean
 @ViewScoped
-public class SituacaoController implements Serializable{
+public class AdminSituacaoController implements Serializable{
     
     private final WflSituacaoDAO sitDAO = new WflSituacaoDAO();
     private final PubEmpresaDAO empDAO = new PubEmpresaDAO();
@@ -57,7 +57,7 @@ public class SituacaoController implements Serializable{
             listEmpresas = empDAO.listAllEmpresas();
             listSistemas = sisDAO.listAllSistemas();
         } catch (SQLException ex) {
-            Logger.getLogger(SituacaoController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminSituacaoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     } 
 
@@ -95,7 +95,7 @@ public class SituacaoController implements Serializable{
         } catch (SQLException ex) {
             msg = "problemas ao acessar o banco de dados. Contate suporte técnico.";
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, msg, msg));
-            Logger.getLogger(SituacaoController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminSituacaoController.class.getName()).log(Level.SEVERE, null, ex);
             navegar = "/pages/admin/situacaoNew";
         }
         return navegar;

@@ -28,13 +28,13 @@
                 
                 <p:outputLabel id="labModulo" value="Tipo de Empresa"/>
                 <p:inputText id="modulo" label="labModulo" rendered="true" disabled="false"
-                             value="#{tipoEmpresaController.selectedTipoEmpresa.tipoEmpresa}">
+                             value="#{adminTipoEmpresaController.selectedTipoEmpresa.tipoEmpresa}">
                 </p:inputText>
                 
                 <f:facet  name="footer">
                     <center>
-                        <p:commandButton action="#{tipoEmpresaController.inserirTipoEmpresa}" value="gravar" icon="icon-salvar"/>
-                        <p:commandButton action="#{tipoEmpresaController.tipoEmpresa}" value="voltar" icon="icon-voltar"/>
+                        <p:commandButton action="#{adminTipoEmpresaController.inserirTipoEmpresa}" value="gravar" icon="icon-salvar"/>
+                        <p:commandButton action="#{adminTipoEmpresaController.tipoEmpresa}" value="voltar" icon="icon-voltar"/>
                     </center>
                 </f:facet>
             </p:panelGrid>

@@ -27,19 +27,19 @@
                 <h:outputText value="MODULO CADASTROS - usuarios"/>
                 <div align="center">
                 <p:panelGrid columns="3" layout="grid">
-                    <p:outputLabel id="labEmp" value="Selecione a empresa" for="emp" rendered="#{usuariosCadastroController.renderEmpresa}"/>
-                    <p:selectOneMenu id="emp" label="labEmp" value="#{usuariosCadastroController.empresa}" rendered="#{usuariosCadastroController.renderEmpresa}">
-                        <p:ajax update="@form" process="@form" listener="#{usuariosCadastroController.changeEmpresa}"/>
+                    <p:outputLabel id="labEmp" value="Selecione a empresa" for="emp" rendered="#{acsUsuariosController.renderEmpresa}"/>
+                    <p:selectOneMenu id="emp" label="labEmp" value="#{acsUsuariosController.empresa}" rendered="#{acsUsuariosController.renderEmpresa}">
+                        <p:ajax update="@form" process="@form" listener="#{acsUsuariosController.changeEmpresa}"/>
                         <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
-                        <f:selectItems value="#{usuariosCadastroController.listEmpresas}" var="emp" itemLabel="#{emp.idEmpresa} - #{emp.fantasia}" itemValue="#{emp.idEmpresa}"/>
+                        <f:selectItems value="#{acsUsuariosController.listEmpresas}" var="emp" itemLabel="#{emp.idEmpresa} - #{emp.fantasia}" itemValue="#{emp.idEmpresa}"/>
                     </p:selectOneMenu>
-                    <p:commandButton id="btnNew" icon="icon-novo-usuario" action="#{usuariosCadastroController.usuariosNew}">
+                    <p:commandButton id="btnNew" icon="icon-novo-usuario" action="#{acsUsuariosController.usuariosNew}">
                         <p:tooltip value="novo usuario" for="btnNew"/>
                     </p:commandButton>
                 </p:panelGrid>
                 </div>
             </f:facet>
-            <p:dataTable var="user" value="#{usuariosCadastroController.listUsuarios}"
+            <p:dataTable var="user" value="#{acsUsuariosController.listUsuarios}"
                          paginator="true" rows="10" 
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15">
@@ -58,17 +58,17 @@
                 
                 
                 <p:column headerText="detalhes">
-                    <p:commandButton id="btnView" icon="icon-visualizar" action="#{usuariosCadastroController.usuariosView}">
-                        <f:setPropertyActionListener value="#{user}" target="#{usuariosCadastroController.selectedUsuario}"/>
+                    <p:commandButton id="btnView" icon="icon-visualizar" action="#{acsUsuariosController.usuariosView}">
+                        <f:setPropertyActionListener value="#{user}" target="#{acsUsuariosController.selectedUsuario}"/>
                         <p:tooltip value="visualizar usuario" for="btnView"/>
                     </p:commandButton>
-                    <p:commandButton id="btnEdit" icon="icon-editar" action="#{usuariosCadastroController.usuariosEdit}">
-                        <f:setPropertyActionListener value="#{user}" target="#{usuariosCadastroController.selectedUsuario}"/>
+                    <p:commandButton id="btnEdit" icon="icon-editar" action="#{acsUsuariosController.usuariosEdit}">
+                        <f:setPropertyActionListener value="#{user}" target="#{acsUsuariosController.selectedUsuario}"/>
                         <p:tooltip value="editar usuario" for="btnEdit"/>
                     </p:commandButton>
-                    <p:commandButton id="btnAtivar" icon="icon-confirmar" actionListener="#{usuariosCadastroController.setTextAtivaUsuario}"
+                    <p:commandButton id="btnAtivar" icon="icon-confirmar" actionListener="#{acsUsuariosController.setTextAtivaUsuario}"
                                      rendered="#{user.master == false}" oncomplete="PF('dlgAtivarUsuario').show();">
-                        <f:setPropertyActionListener value="#{user}" target="#{usuariosCadastroController.selectedUsuario}"/>
+                        <f:setPropertyActionListener value="#{user}" target="#{acsUsuariosController.selectedUsuario}"/>
                         <p:tooltip value="ativar / inativar usuario" for="btnAtivar"/>
                     </p:commandButton>
                 </p:column>
@@ -79,9 +79,9 @@
         <div style="clear:both" />
         <p:dialog id="dlgAtivarUsuario" header="Confirmar Ativação / inativação usuarios" widgetVar="dlgAtivarUsuario" >
             <br/><br/>
-            <p:inputText value="#{usuariosCadastroController.textAtivaUsuario}" disabled="true"/>
-            <h:outputText value="#{usuariosCadastroController.usu.nomeUsuario} - usu"/>
-            <h:outputText value="#{usuariosCadastroController.selectedUsuario.nomeUsuario} - selectedUser"/>
+            <p:inputText value="#{acsUsuariosController.textAtivaUsuario}" disabled="true"/>
+            <h:outputText value="#{acsUsuariosController.usu.nomeUsuario} - usu"/>
+            <h:outputText value="#{acsUsuariosController.selectedUsuario.nomeUsuario} - selectedUser"/>
             confirma a ativação / inativação do usuário?
             <br/><br/>
         </p:dialog>

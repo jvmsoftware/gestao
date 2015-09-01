@@ -29,7 +29,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @ManagedBean
 @ViewScoped
-public class FuncionalidadesController implements Serializable{
+public class AdminFuncionalidadesController implements Serializable{
     
     private final PubSistemaDAO sisDAO = new PubSistemaDAO();
     private final PubFuncionalidadeDAO funDAO = new PubFuncionalidadeDAO();
@@ -50,7 +50,7 @@ public class FuncionalidadesController implements Serializable{
             listSistemas = sisDAO.listAllSistemas();
             changeModulo();
         } catch (SQLException ex) {
-            Logger.getLogger(FuncionalidadesController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminFuncionalidadesController.class.getName()).log(Level.SEVERE, null, ex);
         }
     } 
 
@@ -93,7 +93,7 @@ public class FuncionalidadesController implements Serializable{
         } catch (SQLException ex) {
             msg = "problemas ao acessar o banco de dados. Contate suporte técnico.";
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, msg, msg));
-            Logger.getLogger(FuncionalidadesController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminFuncionalidadesController.class.getName()).log(Level.SEVERE, null, ex);
             navegar = "/pages/admin/funcionalidadesNew";
         }
         return navegar;

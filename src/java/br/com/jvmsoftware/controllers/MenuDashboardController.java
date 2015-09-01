@@ -46,89 +46,96 @@ public class MenuDashboardController {
         return "/pages/dashboard";
     }
 
+    
     /**
-     * menu cadastros
+     * menu Usuário Logado
      * @return 
      */
-    public String index() {
-        return "/pages/cadastro/index";
-    }
-
+    // Minha conta
     public String conta() {
         return "/pages/cadastro/user";
     }
 
-    public String usuarios() {
-        return "/pages/cadastro/usuarios";
-    }
     
-    public String empresa() {
-        return "/pages/cadastro/empresa";
-    }
-    
-    public String sistemas() {
-        return "/pages/cadastro/sistemas";
-    }
-    
-    public String configuracao() {
-        return "/pages/cadastro/configuracao";
-    }
-
-    public String clientes() {
-        return "/pages/cadastro/clientes";
-    }
-
-    public String forncedores() {
-        return "/pages/cadastro/fornecedores";
-    }
-
-    public String funcionarios() {
-        return "/pages/cadastro/funcionarios";
-    }
-
-    public String produtos() {
-        return "/pages/cadastro/produtos";
-    }
-
-    public String servicos() {
-        return "/pages/cadastro/servicos";
-    }
-
-    public String severidade() {
+    /**
+     * menu Admin
+     * @return 
+     */
+    public String adminSeveridade() {
         return "/pages/admin/severidade";
     }
 
-    public String situacao() {
+    public String adminSituacao() {
         return "/pages/admin/situacao";
     }
 
-    public String modulos() {
+    public String adminModulos() {
         return "/pages/admin/modulos";
     }
 
-    public String funcionalidades() {
+    public String adminFuncionalidades() {
         return "/pages/admin/funcionalidades";
     }
 
-    public String tipoCadastro() {
+    public String adminTipoCadastro() {
         return "/pages/admin/tipoCadastro";
     }
 
-    public String tipoEmpresa() {
+    public String adminTipoEmpresa() {
         return "/pages/admin/tipoEmpresa";
     }
 
-    public String tipoNegocio() {
+    public String adminTipoNegocio() {
         return "/pages/admin/tipoNegocio";
     }
-
+    
     
     /**
-     * acesso aos modulos pelo dashboard
+     * menu cadastros
      * @return 
      */
+    
+    // acesso aos modulos pelo dashboard
     public String cadastros() {
         return "/pages/cadastro/index";
+    }
+    
+    // Controle de acesso
+    public String acsUsuarios() {
+        return "/pages/cadastro/usuarios";
+    }
+    
+    public String acsEmpresa() {
+        return "/pages/cadastro/empresa";
+    }
+    
+    public String acsSistemas() {
+        return "/pages/cadastro/sistemas";
+    }
+    
+    public String acsConfiguracao() {
+        return "/pages/cadastro/configuracao";
+    }
+    
+    // Cadastros
+    public String cadClientes() {
+        return "/pages/cadastro/clientes";
+    }
+
+    public String cadForncedores() {
+        return "/pages/cadastro/fornecedores";
+    }
+
+    public String cadFuncionarios() {
+        return "/pages/cadastro/funcionarios";
+    }
+
+    public String cadProdutos() {
+        return "/pages/cadastro/produtos";
+    }
+
+    public String cadServicos() {
+        return "/pages/cadastro/servicos";
     }
 
     

@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @ManagedBean
 @ViewScoped
-public class TipoCadastroController implements Serializable{
+public class AdminTipoCadastroController implements Serializable{
     
     private final PubTipoCadastroDAO tCadDAO = new PubTipoCadastroDAO();
     private PubUsuario usu = new PubUsuario();
@@ -45,7 +45,7 @@ public class TipoCadastroController implements Serializable{
         try {
             listTipoCadastros = tCadDAO.listAllTipoCadastros();
         } catch (SQLException ex) {
-            Logger.getLogger(TipoCadastroController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminTipoCadastroController.class.getName()).log(Level.SEVERE, null, ex);
         }
     } 
 
@@ -81,7 +81,7 @@ public class TipoCadastroController implements Serializable{
         } catch (SQLException ex) {
             msg = "problemas ao acessar o banco de dados. Contate suporte técnico.";
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, msg, msg));
-            Logger.getLogger(TipoCadastroController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminTipoCadastroController.class.getName()).log(Level.SEVERE, null, ex);
             navegar = "/pages/admin/tipoCadastroNew";
         }
         return navegar;

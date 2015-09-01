@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @ManagedBean
 @ViewScoped
-public class ModulosController implements Serializable{
+public class AdminModulosController implements Serializable{
     
     private final PubSistemaDAO sisDAO = new PubSistemaDAO();
     private PubUsuario usu = new PubUsuario();
@@ -44,7 +44,7 @@ public class ModulosController implements Serializable{
         try {
             listModulos = sisDAO.listAllSistemas();
         } catch (SQLException ex) {
-            Logger.getLogger(ModulosController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminModulosController.class.getName()).log(Level.SEVERE, null, ex);
         }
     } 
 
@@ -86,7 +86,7 @@ public class ModulosController implements Serializable{
         } catch (SQLException ex) {
             msg = "problemas ao acessar o banco de dados. Contate suporte técnico.";
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, msg, msg));
-            Logger.getLogger(ModulosController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminModulosController.class.getName()).log(Level.SEVERE, null, ex);
             navegar = "/pages/admin/modulosEdit";
         }
         return navegar;
@@ -101,7 +101,7 @@ public class ModulosController implements Serializable{
         } catch (SQLException ex) {
             msg = "problemas ao acessar o banco de dados. Contate suporte técnico.";
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, msg, msg));
-            Logger.getLogger(ModulosController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminModulosController.class.getName()).log(Level.SEVERE, null, ex);
             navegar = "/pages/admin/modulosNew";
         }
         return navegar;
@@ -122,7 +122,7 @@ public class ModulosController implements Serializable{
             sisDAO.atualizarSistema(selectedModulo);
             listModulos = sisDAO.listAllSistemas();
         } catch (SQLException ex) {
-            Logger.getLogger(ModulosController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminModulosController.class.getName()).log(Level.SEVERE, null, ex);
             msg = "problemas ao acessar o banco de dados. Contate suporte técnico.";
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));
         }

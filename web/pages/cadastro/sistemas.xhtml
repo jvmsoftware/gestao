@@ -22,8 +22,53 @@
         
     <h:form>
         <p:messages id="msgs"/>
-        <p:panel id="dash" header="MODULO CADASTROS - sistemas"  style="height: 590px; text-align: center; alignment-baseline: central">
-            <h:outputText value="#{indexCadastroController.usu.nomeUsuario}"/>
+        <p:panel id="dash" style="height: 590px; text-align: center; alignment-baseline: central">
+            <f:facet name="header">
+                <h:outputText value="MODULO CONTROLE DE ACESSO - modulos"/>
+                <div align="center">
+                <p:panelGrid columns="3" layout="grid">
+                    <p:outputLabel id="labEmp" value="Selecione a empresa" for="emp" rendered="#{acsModulosController.renderEmpresa}"/>
+                    <p:selectOneMenu id="emp" label="labEmp" value="#{acsModulosController.empresa}" rendered="#{acsModulosController.renderEmpresa}">
+                        <p:ajax update="@form" process="@form" listener="#{acsModulosController.changeEmpresa}"/>
+                        <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
+                        <f:selectItems value="#{acsModulosController.listEmpresa}" var="emp" itemLabel="#{emp.idEmpresa} - #{emp.fantasia}" itemValue="#{emp.idEmpresa}"/>
+                    </p:selectOneMenu>
+                    <p:commandButton id="btnNew" icon="icon-sistemas" action="#">
+                        <p:tooltip value="definir plano" for="btnNew"/>
+                    </p:commandButton>
+                    <p:outputLabel id="labVlrPlano" value="Valor do Plano" for="vlrPlano"/>
+                    <p:inputText id="vlrPlano" value="#{acsModulosController.valorPlano}" disabled="true"/>
+                </p:panelGrid>
+                </div>
+            </f:facet>
+            <p:dataTable var="rel" value="#{acsModulosController.listEmpresaSistema}"
+                         paginator="true" rows="10" 
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+                <p:column headerText="Empresa">
+                    <h:outputText value="#{rel.pubEmpresa.fantasia}"/>
+                </p:column>
+                <p:column headerText="Modulo">
+                    <h:outputText value="#{rel.pubSistema.nomeSistema}"/>
+                </p:column>
+                <p:column headerText="Ativo">
+                    <p:selectBooleanCheckbox value="#{rel.ativo}" disabled="true"/>
+                </p:column>
+                
+                
+                <p:column headerText="detalhes">
+                    <p:commandButton id="btnView" icon="icon-visualizar" action="#">
+                        <f:setPropertyActionListener value="#{rel}" target="#"/>
+                        <p:tooltip value="visualizar usuario" for="btnView"/>
+                    </p:commandButton>
+                    <p:commandButton id="btnEdit" icon="icon-editar" action="#">
+                        <f:setPropertyActionListener value="#{rel}" target="#"/>
+                        <p:tooltip value="editar usuario" for="btnEdit"/>
+                    </p:commandButton>
+                </p:column>
+                
+            </p:dataTable>
+
         </p:panel>
         <div style="clear:both" />
     </h:form>

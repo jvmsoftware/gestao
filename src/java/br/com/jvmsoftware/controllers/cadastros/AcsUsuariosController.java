@@ -38,7 +38,7 @@ import org.apache.commons.mail.EmailException;
  */
 @ManagedBean
 @ViewScoped
-public class UsuariosCadastroController implements Serializable{
+public class AcsUsuariosController implements Serializable{
     
     private final PubEmpresaDAO empDAO = new PubEmpresaDAO();
     private final PubUsuarioDAO usuDAO = new PubUsuarioDAO();
@@ -60,7 +60,7 @@ public class UsuariosCadastroController implements Serializable{
     /**
      * Creates a new instance of UsuariosCadastroController
      */
-    public UsuariosCadastroController() {
+    public AcsUsuariosController() {
     }
     
     @PostConstruct 
@@ -85,7 +85,7 @@ public class UsuariosCadastroController implements Serializable{
                 listMunicipio = municDAO.listMunicipiosByEstado(estDAO.getById(estado));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(UsuariosCadastroController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AcsUsuariosController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -132,7 +132,7 @@ public class UsuariosCadastroController implements Serializable{
         } catch (SQLException ex) {
             msg = "problemas ao acessar o banco de dados. Contate suporte técnico.";
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, msg, msg));
-            Logger.getLogger(UsuariosCadastroController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AcsUsuariosController.class.getName()).log(Level.SEVERE, null, ex);
             navegar = "/pages/cadastro/usuariosEdit";
         }
         return navegar;
@@ -153,7 +153,7 @@ public class UsuariosCadastroController implements Serializable{
             }
             usuDAO.updateUsuario(selectedUsuario);
         } catch (SQLException ex) {
-            Logger.getLogger(UsuariosCadastroController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AcsUsuariosController.class.getName()).log(Level.SEVERE, null, ex);
             msg = "problemas ao acessar o banco de dados. Contate suporte técnico.";
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
         }
@@ -198,7 +198,7 @@ public class UsuariosCadastroController implements Serializable{
             } catch (SQLException ex) {
                 msg = "problemas ao acessar o banco de dados. Contate suporte técnico.";
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, msg, msg));
-                Logger.getLogger(UsuariosCadastroController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AcsUsuariosController.class.getName()).log(Level.SEVERE, null, ex);
                 navegar = "/pages/cadastro/usuariosNew";
             }
         }

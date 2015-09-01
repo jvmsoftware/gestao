@@ -30,14 +30,13 @@
     <mapping resource="br/com/jvmsoftware/entities/PubMenu.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/CadPessoa.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/AcsUsuarioSistema.hbm.xml"/>
-    <mapping resource="br/com/jvmsoftware/entities/CadPessoaFisica.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/PubTipoNegocio.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/CadEnderecos.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/PubMunicipio.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/SupSolicitacao.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/WflSituacao.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/AcsAcessoUsuarios.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/PubUsuario.hbm.xml"/>
-    <mapping resource="br/com/jvmsoftware/entities/CadPessoaJuridica.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/PubFuncionalidade.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/PubPosicao.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/AcsEmpresaSistema.hbm.xml"/>

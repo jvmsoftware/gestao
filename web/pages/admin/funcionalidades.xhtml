@@ -28,18 +28,18 @@
                 <div align="center">
                 <p:panelGrid columns="3" layout="grid">
                     <p:outputLabel id="labMod" value="Selecione a empresa" for="mod"/>
-                    <p:selectOneMenu id="mod" label="labMod" value="#{funcionalidadesController.sistema}">
-                        <p:ajax update="@form" process="@form" listener="#{funcionalidadesController.changeModulo}"/>
+                    <p:selectOneMenu id="mod" label="labMod" value="#{adminFuncionalidadesController.sistema}">
+                        <p:ajax update="@form" process="@form" listener="#{adminFuncionalidadesController.changeModulo}"/>
                         <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
-                        <f:selectItems value="#{funcionalidadesController.listSistemas}" var="modu" itemLabel="#{modu.nomeSistema}" itemValue="#{modu.idSistema}"/>
+                        <f:selectItems value="#{adminFuncionalidadesController.listSistemas}" var="modu" itemLabel="#{modu.nomeSistema}" itemValue="#{modu.idSistema}"/>
                     </p:selectOneMenu>
-                    <p:commandButton id="btnNew" icon="icon-funcionalidade" action="#{funcionalidadesController.funcionalidadesNew}" update="@form">
+                    <p:commandButton id="btnNew" icon="icon-funcionalidade" action="#{adminFuncionalidadesController.funcionalidadesNew}" update="@form">
                         <p:tooltip value="nova funcionalidade" for="btnNew"/>
                     </p:commandButton>
                 </p:panelGrid>
                 </div>
             </f:facet>
-            <p:dataTable var="func" value="#{funcionalidadesController.listFuncionalidades}"
+            <p:dataTable var="func" value="#{adminFuncionalidadesController.listFuncionalidades}"
                          paginator="true" rows="10" 
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15">

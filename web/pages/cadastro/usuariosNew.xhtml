@@ -22,19 +22,19 @@
         
     <h:form>
         <p:messages id="msgs"/>
-        <p:panel id="dash" header="MODULO CADASTROS - usuario - incluir"  style="height: 590px; text-align: center; alignment-baseline: central">
+        <p:panel id="dash" header="MODULO CONTROLE DE ACESSO - usuario - incluir"  style="height: 590px; text-align: center; alignment-baseline: central">
             <br/>
             <p:panelGrid columns="2" layout="grid">
                 <p:outputLabel id="labNome" value="nome"/>
                 <p:inputText id="nome" label="labNome" rendered="true" required="true"
-                             value="#{usuariosCadastroController.selectedUsuario.nomeUsuario}"
+                             value="#{acsUsuariosController.selectedUsuario.nomeUsuario}"
                              requiredMessage="Informe o nome completo do usuario.">
                     <p:ajax event="blur" update="msgs"/>
                 </p:inputText>
 
                 <p:outputLabel id="labDtNasc" value="nascimento"/>
                 <p:inputMask mask="99/99/9999" id="dtNasc1" label="labDtNasc" required="true"
-                             value="#{usuariosCadastroController.selectedUsuario.dataNascimento}"
+                             value="#{acsUsuariosController.selectedUsuario.dataNascimento}"
                              requiredMessage="Informe a data de nascimento do usuario.">
                     <f:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy"/>
                     <p:ajax event="blur" update="msgs"/>
@@ -42,7 +42,7 @@
 
                 <p:outputLabel id="labMail" value="email"/>
                 <p:inputText id="mail" label="labMail" rendered="true" required="true"
-                             value="#{usuariosCadastroController.selectedUsuario.email}"
+                             value="#{acsUsuariosController.selectedUsuario.email}"
                              requiredMessage="Informe seu endereço de email!"
                              validatorMessage="Formato de email inválido!">
                     <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
@@ -51,62 +51,62 @@
 
                 <p:outputLabel id="labEmpresa" value="empresa"/>
                 <p:inputText id="empresa" label="labEmpresa" rendered="true" disabled="true"
-                             value="#{usuariosCadastroController.selectedUsuario.pubEmpresa.fantasia}">
+                             value="#{acsUsuariosController.selectedUsuario.pubEmpresa.fantasia}">
                 </p:inputText>
                 
                 <p:outputLabel id="labCpf" value="cpf"/>
                 <p:inputMask mask="999.999.999-99" id="cpf" label="labCpf" 
-                             value="#{usuariosCadastroController.selectedUsuario.cpfUsuario}">
+                             value="#{acsUsuariosController.selectedUsuario.cpfUsuario}">
                 </p:inputMask>
                             
                 <p:outputLabel id="labEst" value="Selecione o estado" for="est"/>
-                <h:selectOneMenu id="est" label="labEst" value="#{usuariosCadastroController.estado}">
-                    <p:ajax update="@form" process="@form" listener="#{usuariosCadastroController.changeEstado}"/>
+                <h:selectOneMenu id="est" label="labEst" value="#{acsUsuariosController.estado}">
+                    <p:ajax update="@form" process="@form" listener="#{acsUsuariosController.changeEstado}"/>
                     <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
-                    <f:selectItems value="#{usuariosCadastroController.listEstado}" var="est" itemLabel="#{est.uf} - #{est.estado}" itemValue="#{est.idEstado}"/>
+                    <f:selectItems value="#{acsUsuariosController.listEstado}" var="est" itemLabel="#{est.uf} - #{est.estado}" itemValue="#{est.idEstado}"/>
                 </h:selectOneMenu>
 
                 <p:outputLabel id="labMun" value="Selecione o municipio" for="mun"/>
-                <h:selectOneMenu id="mun" label="labMun" value="#{usuariosCadastroController.municipio}">
+                <h:selectOneMenu id="mun" label="labMun" value="#{acsUsuariosController.municipio}">
                     <p:ajax update="@form" process="@form"/>
                     <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
-                    <f:selectItems value="#{usuariosCadastroController.listMunicipio}" var="mun" itemLabel="#{mun.municipio}" itemValue="#{mun.idMunicipio}"/>
+                    <f:selectItems value="#{acsUsuariosController.listMunicipio}" var="mun" itemLabel="#{mun.municipio}" itemValue="#{mun.idMunicipio}"/>
                 </h:selectOneMenu>
 
                 <p:outputLabel id="labEndereco" value="endereco"/>
                 <p:inputText id="endereco" label="labEndereco" rendered="true"
-                             value="#{usuariosCadastroController.selectedUsuario.endereco}">
+                             value="#{acsUsuariosController.selectedUsuario.endereco}">
                 </p:inputText>
 
                 <p:outputLabel id="labNumero" value="numero"/>
                 <p:inputText type="float" id="numero" label="labNumero" rendered="true"
-                             value="#{usuariosCadastroController.selectedUsuario.numero}">
+                             value="#{acsUsuariosController.selectedUsuario.numero}">
                 </p:inputText>
                 
                 <p:outputLabel id="labBairro" value="bairro"/>
                 <p:inputText id="bairro" label="labBairro" rendered="true"
-                             value="#{usuariosCadastroController.selectedUsuario.bairro}">
+                             value="#{acsUsuariosController.selectedUsuario.bairro}">
                 </p:inputText>
 
                 <p:outputLabel id="labComplemento" value="complemento"/>
                 <p:inputText id="complemento" label="labComplemento" rendered="true"
-                             value="#{usuariosCadastroController.selectedUsuario.complemento}">
+                             value="#{acsUsuariosController.selectedUsuario.complemento}">
                 </p:inputText>
 
                 <p:outputLabel id="labCep" value="CEP"/>
                 <p:inputMask mask="99.999-999" id="cep" label="labCep"
-                             value="#{usuariosCadastroController.selectedUsuario.cep}">
+                             value="#{acsUsuariosController.selectedUsuario.cep}">
                 </p:inputMask>
                             
                 <p:outputLabel id="labTelefone" value="telefone"/>
                 <p:inputMask mask="(99)999999999" id="telefone" label="labTelefone"
-                             value="#{usuariosCadastroController.selectedUsuario.telefone}">
+                             value="#{acsUsuariosController.selectedUsuario.telefone}">
                 </p:inputMask>
                 
                 <f:facet  name="footer">
                     <center>
-                        <p:commandButton action="#{usuariosCadastroController.inserirUsuario}" value="incluir" icon="icon-incluir"/>
-                        <p:commandButton action="#{usuariosCadastroController.usuarios}" value="voltar" icon="icon-voltar"/>
+                        <p:commandButton action="#{acsUsuariosController.inserirUsuario}" value="incluir" icon="icon-incluir"/>
+                        <p:commandButton action="#{acsUsuariosController.usuarios}" value="voltar" icon="icon-voltar"/>
                     </center>
                 </f:facet>
             </p:panelGrid>

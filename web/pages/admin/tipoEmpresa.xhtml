@@ -26,12 +26,12 @@
             <f:facet name="header">
                 <h:outputText value="MODULO ADMIN - tipo cadastro"/>
                 <div align="center">
-                    <p:commandButton id="btnNew" icon="icon-empresa" action="#{tipoEmpresaController.tipoEmpresasNew}" update="@form">
+                    <p:commandButton id="btnNew" icon="icon-empresa" action="#{adminTipoEmpresaController.tipoEmpresasNew}" update="@form">
                         <p:tooltip value="nova funcionalidade" for="btnNew"/>
                     </p:commandButton>
                 </div>
             </f:facet>
-            <p:dataTable var="tEmp" value="#{tipoEmpresaController.listTipoEmpresas}"
+            <p:dataTable var="tEmp" value="#{adminTipoEmpresaController.listTipoEmpresas}"
                          paginator="true" rows="10" 
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15">

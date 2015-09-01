@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @ManagedBean
 @ViewScoped
-public class ConfigController implements Serializable{
+public class AcsConfigController implements Serializable{
     
     private final PubEmpresaDAO empDAO = new PubEmpresaDAO();
     private final PubConfigEmpresaDAO confDAO = new PubConfigEmpresaDAO();
@@ -52,7 +52,7 @@ public class ConfigController implements Serializable{
             listEmpresa = empDAO.listAllEmpresas();
             ConfEmpresa = confDAO.getByIdEmpresa(empresa);
         } catch (SQLException ex) {
-            Logger.getLogger(ConfigController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AcsConfigController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -76,7 +76,7 @@ public class ConfigController implements Serializable{
         } catch (SQLException ex) {
             msg = "Dados da config não foram atualizados.";
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));
-            Logger.getLogger(ConfigController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AcsConfigController.class.getName()).log(Level.SEVERE, null, ex);
             msg = ex.getMessage();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));
         }

@@ -26,12 +26,12 @@
             <f:facet name="header">
                 <h:outputText value="MODULO ADMIN - modulos"/>
                 <div align="center">
-                    <p:commandButton id="btnNew" icon="icon-sistemas" action="#{modulosController.modulosNew}">
+                    <p:commandButton id="btnNew" icon="icon-sistemas" action="#{adminModulosController.modulosNew}">
                     <p:tooltip value="novo modulo" for="btnNew"/>
                 </p:commandButton>
                 </div>
             </f:facet>
-            <p:dataTable var="modul" value="#{modulosController.listModulos}"
+            <p:dataTable var="modul" value="#{adminModulosController.listModulos}"
                          paginator="true" rows="10" 
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15">
@@ -46,12 +46,12 @@
                 </p:column>
                 
                 <p:column headerText="detalhes">
-                    <p:commandButton id="btnEdit" icon="icon-editar" action="#{modulosController.modulosEdit}">
-                        <f:setPropertyActionListener value="#{modul}" target="#{modulosController.selectedModulo}"/>
+                    <p:commandButton id="btnEdit" icon="icon-editar" action="#{adminModulosController.modulosEdit}">
+                        <f:setPropertyActionListener value="#{modul}" target="#{adminModulosController.selectedModulo}"/>
                         <p:tooltip value="editar modulo" for="btnEdit"/>
                     </p:commandButton>
-                    <p:commandButton id="btnAtivar" icon="icon-confirmar" action="#{modulosController.inativaModulo}" update="@form">
-                        <f:setPropertyActionListener value="#{modul}" target="#{modulosController.selectedModulo}"/>
+                    <p:commandButton id="btnAtivar" icon="icon-confirmar" action="#{adminModulosController.inativaModulo}" update="@form">
+                        <f:setPropertyActionListener value="#{modul}" target="#{adminModulosController.selectedModulo}"/>
                         <p:tooltip value="ativar / inativar modulo" for="btnAtivar"/>
                     </p:commandButton>
                 </p:column>

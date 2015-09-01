@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @ManagedBean
 @ViewScoped
-public class TipoNegocioController implements Serializable{
+public class AdminTipoNegocioController implements Serializable{
     
     private final PubTipoNegocioDAO tNegDAO = new PubTipoNegocioDAO();
     private final PubTipoEmpresaDAO tEmpDAO = new PubTipoEmpresaDAO();
@@ -52,7 +52,7 @@ public class TipoNegocioController implements Serializable{
             listTipoNegocios = tNegDAO.listAllTipoNegocios();
             listTipoEmpresas = tEmpDAO.listAllTipoEmpresas();
         } catch (SQLException ex) {
-            Logger.getLogger(TipoNegocioController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminTipoNegocioController.class.getName()).log(Level.SEVERE, null, ex);
         }
     } 
 
@@ -89,7 +89,7 @@ public class TipoNegocioController implements Serializable{
         } catch (SQLException ex) {
             msg = "problemas ao acessar o banco de dados. Contate suporte técnico.";
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, msg, msg));
-            Logger.getLogger(TipoNegocioController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminTipoNegocioController.class.getName()).log(Level.SEVERE, null, ex);
             navegar = "/pages/admin/tipoNegocioNew";
         }
         return navegar;

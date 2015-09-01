@@ -30,7 +30,7 @@
                 <h:outputText value=""/><h:outputText value=""/><h:outputText value=""/>
                 <p:outputLabel id="labMail" value="email"/>
                 <p:inputText id="mail" label="labMail" rendered="true" disabled="true"
-                             value="#{userCadastroController.usu.email}" required="true" 
+                             value="#{acsUserContaController.usu.email}" required="true" 
                              requiredMessage="Informe seu endereço de email!"
                              validatorMessage="Formato de email inválido!">
                     <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
@@ -39,7 +39,7 @@
                 <p:message id="mailMsg" for="mail"/>
                 
                 <p:outputLabel id="labSenha" value="senha atual"/>
-                <p:password id="senha" label="labSenha" value="#{userCadastroController.senhaG}"
+                <p:password id="senha" label="labSenha" value="#{acsUserContaController.senhaG}"
                             required="true" requiredMessage="Informe sua senha atual"
                             validatorMessage="senha deve ter ao menos 6 caracteres">
                     <f:validateLength minimum="6"/>
@@ -48,16 +48,16 @@
                 <p:message id="senhaMsg" for="senha"/>
                 
                 <p:outputLabel id="labNovaSenha" value="nova senha"/>
-                <p:password id="novaSenha" label="labNovaSenha" value="#{userCadastroController.senhaN}"
+                <p:password id="novaSenha" label="labNovaSenha" value="#{acsUserContaController.senhaN}"
                             required="true" requiredMessage="Informe sua nova senha">
                     <p:ajax event="blur" update="confSenhaMsg"/>
                 </p:password>
                 <p:message id="novaSenhaMsg" for="novaSenha"/>
                 
                 <p:outputLabel id="labConfSenha" value="repetir nova senha"/>
-                <p:password id="confSenha" label="labConfSenha" value="#{userCadastroController.confSenha}"
+                <p:password id="confSenha" label="labConfSenha" value="#{acsUserContaController.confSenha}"
                             required="true" requiredMessage="Redigite sua senha"
-                            validator="#{userCadastroController.validateSenhaAltera}">
+                            validator="#{acsUserContaController.validateSenhaAltera}">
                     <p:ajax event="blur" update="confSenhaMsg"/>
                 </p:password>
                 <p:message id="confSenhaMsg" for="confSenha"/>
@@ -65,8 +65,8 @@
                 <br/>
                 <f:facet  name="footer">
                     <center>
-                        <p:commandButton action="#{userCadastroController.updateSenha}" value="alterar" icon="icon-salvar"/>
-                        <p:commandButton action="#{userCadastroController.voltaUser}" value="cancelar" immediate="true" icon="icon-sair"/>
+                        <p:commandButton action="#{acsUserContaController.updateSenha}" value="alterar" icon="icon-salvar"/>
+                        <p:commandButton action="#{acsUserContaController.voltaUser}" value="cancelar" immediate="true" icon="icon-sair"/>
                     </center>
                 </f:facet>
             </p:panelGrid>

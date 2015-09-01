@@ -26,12 +26,12 @@
             <f:facet name="header">
                 <h:outputText value="MODULO ADMIN - severidade"/>
                 <div align="center">
-                    <p:commandButton id="btnNew" icon="icon-severidade" action="#{severidadeController.severidadeNew}" update="@form">
+                    <p:commandButton id="btnNew" icon="icon-severidade" action="#{adminSeveridadeController.severidadeNew}" update="@form">
                         <p:tooltip value="nova severidade" for="btnNew"/>
                     </p:commandButton>
                 </div>
             </f:facet>
-            <p:dataTable var="sev" value="#{severidadeController.listSeveridades}"
+            <p:dataTable var="sev" value="#{adminSeveridadeController.listSeveridades}"
                          paginator="true" rows="10" 
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15">

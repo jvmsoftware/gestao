@@ -26,34 +26,34 @@ and open the template in the editor.
                         <p:submenu label="admin" icon="icon-admin" rendered="#{menuDashboardController.renderedAdmin}">
                             <p:submenu label="cadastros" icon="icon-cadastros">
                                 <p:submenu label="geral" icon="icon-cadastros">
-                                    <p:menuitem value="modulos" action="#{menuDashboardController.modulos}" icon="icon-sistemas"/>
-                                    <p:menuitem value="funcionalidades" action="#{menuDashboardController.funcionalidades}" icon="icon-funcionalidade"/>
+                                    <p:menuitem value="modulos" action="#{menuDashboardController.adminModulos}" icon="icon-sistemas"/>
+                                    <p:menuitem value="funcionalidades" action="#{menuDashboardController.adminFuncionalidades}" icon="icon-funcionalidade"/>
                                     <p:separator/>
-                                    <p:menuitem value="tipo cadastro" action="#{menuDashboardController.tipoCadastro}" icon="icon-cadastros"/>
-                                    <p:menuitem value="tipo empresa" action="#{menuDashboardController.tipoEmpresa}" icon="icon-empresa"/>
-                                    <p:menuitem value="tipo negocio" action="#{menuDashboardController.tipoNegocio}" icon="icon-negocio"/>
+                                    <p:menuitem value="tipo cadastro" action="#{menuDashboardController.adminTipoCadastro}" icon="icon-cadastros"/>
+                                    <p:menuitem value="tipo empresa" action="#{menuDashboardController.adminTipoEmpresa}" icon="icon-empresa"/>
+                                    <p:menuitem value="tipo negocio" action="#{menuDashboardController.adminTipoNegocio}" icon="icon-negocio"/>
                                 </p:submenu>
                                 <p:submenu label="workflow" icon="icon-workflow">
-                                    <p:menuitem value="severidade" action="#{menuDashboardController.severidade}" icon="icon-severidade"/>
-                                    <p:menuitem value="situacao" action="#{menuDashboardController.situacao}" icon="icon-situacao"/>
+                                    <p:menuitem value="severidade" action="#{menuDashboardController.adminSeveridade}" icon="icon-severidade"/>
+                                    <p:menuitem value="situacao" action="#{menuDashboardController.adminSituacao}" icon="icon-situacao"/>
                                 </p:submenu>
                             </p:submenu>
                         </p:submenu>
                         
                         <p:submenu label="cadastro" icon="icon-cadastros">
                             <p:submenu label="controle de acesso" icon="icon-controle-acesso" rendered="#{menuDashboardController.usu.master}">
-                                <p:menuitem value="usuarios" action="#{menuDashboardController.usuarios}" icon="icon-usuarios"/>
-                                <p:menuitem value="empresa" action="#{menuDashboardController.empresa}" icon="icon-empresa"/>
-                                <p:menuitem value="modulos" action="#{menuDashboardController.sistemas}" icon="icon-sistemas"/>
-                                <p:menuitem value="configuração" action="#{menuDashboardController.configuracao}" icon="icon-servicos"/>
+                                <p:menuitem value="usuarios" action="#{menuDashboardController.acsUsuarios}" icon="icon-usuarios"/>
+                                <p:menuitem value="empresa" action="#{menuDashboardController.acsEmpresa}" icon="icon-empresa"/>
+                                <p:menuitem value="modulos" action="#{menuDashboardController.acsSistemas}" icon="icon-sistemas"/>
+                                <p:menuitem value="configuração" action="#{menuDashboardController.acsConfiguracao}" icon="icon-servicos"/>
                             </p:submenu>
                             <p:submenu label="cadastros" icon="icon-cadastros">
-                                <p:menuitem value="clientes" action="#{menuDashboardController.clientes}" icon="icon-clientes"/>
-                                <p:menuitem value="fornecedores" action="#{menuDashboardController.forncedores}"  icon="icon-fornecedores"/>
-                                <p:menuitem value="funcionarios" action="#{menuDashboardController.funcionarios}" icon="icon-funcionarios"/>
+                                <p:menuitem value="clientes" action="#{menuDashboardController.cadClientes}" icon="icon-clientes"/>
+                                <p:menuitem value="fornecedores" action="#{menuDashboardController.cadForncedores}"  icon="icon-fornecedores"/>
+                                <p:menuitem value="funcionarios" action="#{menuDashboardController.cadFuncionarios}" icon="icon-funcionarios"/>
                                 <p:separator/>
-                                <p:menuitem value="produtos" action="#{menuDashboardController.produtos}" icon="icon-produtos"/>
-                                <p:menuitem value="serviços" action="#{menuDashboardController.servicos}" icon="icon-servicos"/>
+                                <p:menuitem value="produtos" action="#{menuDashboardController.cadProdutos}" icon="icon-produtos"/>
+                                <p:menuitem value="serviços" action="#{menuDashboardController.cadServicos}" icon="icon-servicos"/>
                             </p:submenu>
                         </p:submenu>
                         

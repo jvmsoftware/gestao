@@ -28,21 +28,21 @@
                 
                 <p:outputLabel id="labCod" value="Codigo Severidade"/>
                 <p:inputText id="cod" label="labCod" rendered="true" disabled="false"
-                             value="#{severidadeController.selectedSeveridade.codSeveridade}">
+                             value="#{adminSeveridadeController.selectedSeveridade.codSeveridade}">
                 </p:inputText>
                 <p:outputLabel id="labSev" value="Descricao Severidade"/>
                 <p:inputText id="sev" label="labSev" rendered="true" disabled="false"
-                             value="#{severidadeController.selectedSeveridade.descricaoSeveridade}">
+                             value="#{adminSeveridadeController.selectedSeveridade.descricaoSeveridade}">
                 </p:inputText>
                 <p:outputLabel id="labPri" value="Prioridade"/>
                 <p:inputText id="pri" label="labPri" rendered="true" disabled="false"
-                             value="#{severidadeController.selectedSeveridade.prioridade}">
+                             value="#{adminSeveridadeController.selectedSeveridade.prioridade}">
                 </p:inputText>
                 
                 <f:facet  name="footer">
                     <center>
-                        <p:commandButton action="#{severidadeController.inserirSeveridade}" value="gravar" icon="icon-salvar"/>
-                        <p:commandButton action="#{severidadeController.severidade}" value="voltar" icon="icon-voltar"/>
+                        <p:commandButton action="#{adminSeveridadeController.inserirSeveridade}" value="gravar" icon="icon-salvar"/>
+                        <p:commandButton action="#{adminSeveridadeController.severidade}" value="voltar" icon="icon-voltar"/>
                     </center>
                 </f:facet>
             </p:panelGrid>

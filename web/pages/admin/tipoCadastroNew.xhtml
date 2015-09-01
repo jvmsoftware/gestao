@@ -28,18 +28,18 @@
                 
                 <p:outputLabel id="labTCad" value="Codigo"/>
                 <p:inputText id="tCad" label="labTCad" rendered="true" disabled="false"
-                             value="#{tipoCadastroController.selectedTipoCadastro.codigoTipoCadastro}">
+                             value="#{adminTipoCadastroController.selectedTipoCadastro.codigoTipoCadastro}">
                 </p:inputText>
                 
                 <p:outputLabel id="labDesc" value="Descricao"/>
                 <p:inputText id="desc" label="labDesc" rendered="true" disabled="false"
-                             value="#{tipoCadastroController.selectedTipoCadastro.descricaoTipoCadastro}">
+                             value="#{adminTipoCadastroController.selectedTipoCadastro.descricaoTipoCadastro}">
                 </p:inputText>
                 
                 <f:facet  name="footer">
                     <center>
-                        <p:commandButton action="#{tipoCadastroController.inserirTipoCadastro}" value="gravar" icon="icon-salvar"/>
-                        <p:commandButton action="#{tipoCadastroController.tipoCadastro}" value="voltar" icon="icon-voltar"/>
+                        <p:commandButton action="#{adminTipoCadastroController.inserirTipoCadastro}" value="gravar" icon="icon-salvar"/>
+                        <p:commandButton action="#{adminTipoCadastroController.tipoCadastro}" value="voltar" icon="icon-voltar"/>
                     </center>
                 </f:facet>
             </p:panelGrid>

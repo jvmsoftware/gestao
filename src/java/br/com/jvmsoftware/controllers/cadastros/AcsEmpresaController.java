@@ -33,7 +33,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @ManagedBean
 @ViewScoped
-public class EmpresaController implements Serializable{
+public class AcsEmpresaController implements Serializable{
     
     private final PubEmpresaDAO empDAO = new PubEmpresaDAO();
     private final PubEstadoDAO estDAO = new PubEstadoDAO();
@@ -69,7 +69,7 @@ public class EmpresaController implements Serializable{
                 listMunicipio = municDAO.listMunicipiosByEstado(estDAO.getById(estado));
             }
         } catch (SQLException ex) {
-                    Logger.getLogger(EmpresaController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(AcsEmpresaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -92,7 +92,7 @@ public class EmpresaController implements Serializable{
         } catch (SQLException ex) {
             msg = "Dados da empresa não foram atualizados.";
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));
-            Logger.getLogger(EmpresaController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AcsEmpresaController.class.getName()).log(Level.SEVERE, null, ex);
             msg = ex.getMessage();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));
         }
