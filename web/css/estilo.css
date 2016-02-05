@@ -129,6 +129,9 @@ and open the template in the editor.
     background-image: url("../images/icons/add40.png") !important;  
 }
 
+.icon-transporte {  
+    background-image: url("../images/icons/logistics3.png") !important;  
+}
 
 .icon-confirmar {  
     background-image: url("../images/icons/checked.png") !important;  

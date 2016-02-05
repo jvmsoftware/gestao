@@ -53,7 +53,7 @@ public class NewMain {
         
         //main.random();
         //main.mail();l
-        //main.senha();
+        main.senha();
         //main.enviarMailRecuperaSenha();
         main.municipios();
         

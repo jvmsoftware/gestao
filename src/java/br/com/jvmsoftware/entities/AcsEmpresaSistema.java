@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 31/Ago/2015 23:49:11 by Hibernate Tools 4.3.1
+// Generated 1/Set/2015 18:32:02 by Hibernate Tools 4.3.1
 
 
 

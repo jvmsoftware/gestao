@@ -24,14 +24,6 @@ public class CadPessoaDAO extends DefaultDAO {
         return pessoa;
     }
     
-    public CadPessoa getPessoasByMail(String mail) throws SQLException {
-        getSession();
-        begin();
-        CadPessoa pessoa;
-        pessoa = (CadPessoa) session.createQuery("from CadPessoa u where u.email = :mail").setParameter("mail", mail).uniqueResult();
-        return pessoa;
-    }
-    
     public List<CadPessoa> listAllPessoas() throws SQLException {
         getSession();
         begin();
@@ -40,11 +32,27 @@ public class CadPessoaDAO extends DefaultDAO {
         return pessoas;
     }
     
-    public List<CadPessoa> listPessoasByEmpresa(PubEmpresa empresa) throws SQLException {
+    public List<CadPessoa> listClientesByEmpresa(PubEmpresa empresa) throws SQLException {
         getSession();
         begin();
         List<CadPessoa> pessoas;
-        pessoas = session.createQuery("from CadPessoa u where u.pubEmpresa.idEmpresa = :emp").setParameter("emp", empresa.getIdEmpresa()).list();
+        pessoas = session.createQuery("from CadPessoa u where u.pubEmpresa.idEmpresa = :emp and u.cliente = true").setParameter("emp", empresa.getIdEmpresa()).list();
+        return pessoas;
+    }
+    
+    public List<CadPessoa> listFornecedoresByEmpresa(PubEmpresa empresa) throws SQLException {
+        getSession();
+        begin();
+        List<CadPessoa> pessoas;
+        pessoas = session.createQuery("from CadPessoa u where u.pubEmpresa.idEmpresa = :emp and u.fornecedor = true").setParameter("emp", empresa.getIdEmpresa()).list();
+        return pessoas;
+    }
+    
+    public List<CadPessoa> listFuncionariosByEmpresa(PubEmpresa empresa) throws SQLException {
+        getSession();
+        begin();
+        List<CadPessoa> pessoas;
+        pessoas = session.createQuery("from CadPessoa u where u.pubEmpresa.idEmpresa = :emp and u.funcionario = true").setParameter("emp", empresa.getIdEmpresa()).list();
         return pessoas;
     }
     

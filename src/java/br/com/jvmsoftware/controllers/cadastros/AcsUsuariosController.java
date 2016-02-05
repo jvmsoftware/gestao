@@ -142,7 +142,7 @@ public class AcsUsuariosController implements Serializable{
     public String inativaUsuario() {
         String navegar = "/pages/cadastro/usuarios";
         try {
-            if (selectedUsuario.getAtivo() == true) {
+            if (selectedUsuario.isAtivo() == true) {
                 selectedUsuario.setAtivo(false);
                 msg = "usuario inativado com sucesso.";
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
@@ -161,7 +161,7 @@ public class AcsUsuariosController implements Serializable{
     }
 
     public void setTextAtivaUsuario() {
-        if (selectedUsuario.getAtivo() == true) {
+        if (selectedUsuario.isAtivo() == true) {
             textAtivaUsuario = "Você tem certeza que deseja inativar o usario " + selectedUsuario + "?";
         } else {
             textAtivaUsuario = "Você tem certeza que deseja ativar o usario " + selectedUsuario + "?";

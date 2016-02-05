@@ -1,13 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 31/Ago/2015 23:49:12 by Hibernate Tools 4.3.1 -->
+<!-- Generated 1/Set/2015 18:32:03 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.jvmsoftware.entities.CadPessoa" table="cad_pessoa" catalog="jvmdsoftware" optimistic-lock="version">
         <id name="idPessoa" type="java.lang.Integer">
             <column name="id_pessoa" />
             <generator class="identity" />
         </id>
+        <many-to-one name="cadEnderecos" class="br.com.jvmsoftware.entities.CadEnderecos" fetch="select">
+            <column name="endereco_padrao" not-null="true" />
+        </many-to-one>
         <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="select">
             <column name="empresa" not-null="true" />
         </many-to-one>
@@ -20,20 +23,29 @@
         <property name="cpfCnpj" type="java.lang.Float">
             <column name="cpf_cnpj" precision="12" scale="0" />
         </property>
-        <property name="telefone" type="java.lang.Float">
-            <column name="telefone" precision="12" scale="0" />
+        <property name="nomeRazaoSocial" type="string">
+            <column name="nome_razao_social" length="150" not-null="true" />
         </property>
         <property name="emailResponsavel" type="string">
             <column name="email_responsavel" length="50" />
         </property>
-        <property name="cliente" type="java.lang.Boolean">
-            <column name="cliente" />
+        <property name="telefone" type="java.lang.Float">
+            <column name="telefone" precision="12" scale="0" />
         </property>
-        <property name="fornecedor" type="java.lang.Byte">
-            <column name="fornecedor" />
+        <property name="cliente" type="boolean">
+            <column name="cliente" not-null="true" />
         </property>
-        <property name="funcionario" type="java.lang.Boolean">
-            <column name="funcionario" />
+        <property name="fornecedor" type="boolean">
+            <column name="fornecedor" not-null="true" />
         </property>
+        <property name="funcionario" type="boolean">
+            <column name="funcionario" not-null="true" />
+        </property>
+        <set name="cadEnderecoses" table="cad_enderecos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pessoa" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.CadEnderecos" />
+        </set>
     </class>
 </hibernate-mapping>

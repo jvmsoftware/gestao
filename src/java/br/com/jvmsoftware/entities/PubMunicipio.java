@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 31/Ago/2015 23:49:11 by Hibernate Tools 4.3.1
+// Generated 1/Set/2015 18:32:02 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -15,6 +15,7 @@ public class PubMunicipio  implements java.io.Serializable {
      private PubEstado pubEstado;
      private String municipio;
      private Set<PubEmpresa> pubEmpresas = new HashSet<PubEmpresa>(0);
+     private Set<CadEnderecos> cadEnderecoses = new HashSet<CadEnderecos>(0);
      private Set<PubUsuario> pubUsuarios = new HashSet<PubUsuario>(0);
 
     public PubMunicipio() {
@@ -26,11 +27,12 @@ public class PubMunicipio  implements java.io.Serializable {
         this.pubEstado = pubEstado;
         this.municipio = municipio;
     }
-    public PubMunicipio(int idMunicipio, PubEstado pubEstado, String municipio, Set<PubEmpresa> pubEmpresas, Set<PubUsuario> pubUsuarios) {
+    public PubMunicipio(int idMunicipio, PubEstado pubEstado, String municipio, Set<PubEmpresa> pubEmpresas, Set<CadEnderecos> cadEnderecoses, Set<PubUsuario> pubUsuarios) {
        this.idMunicipio = idMunicipio;
        this.pubEstado = pubEstado;
        this.municipio = municipio;
        this.pubEmpresas = pubEmpresas;
+       this.cadEnderecoses = cadEnderecoses;
        this.pubUsuarios = pubUsuarios;
     }
    
@@ -61,6 +63,13 @@ public class PubMunicipio  implements java.io.Serializable {
     
     public void setPubEmpresas(Set<PubEmpresa> pubEmpresas) {
         this.pubEmpresas = pubEmpresas;
+    }
+    public Set<CadEnderecos> getCadEnderecoses() {
+        return this.cadEnderecoses;
+    }
+    
+    public void setCadEnderecoses(Set<CadEnderecos> cadEnderecoses) {
+        this.cadEnderecoses = cadEnderecoses;
     }
     public Set<PubUsuario> getPubUsuarios() {
         return this.pubUsuarios;

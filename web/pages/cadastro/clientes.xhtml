@@ -23,7 +23,45 @@
     <h:form>
         <p:messages id="msgs"/>
         <p:panel id="dash" header="MODULO CADASTROS - clientes"  style="height: 590px; text-align: center; alignment-baseline: central">
-            <h:outputText value="#{indexCadastroController.usu.nomeUsuario}"/>
+            <f:facet name="header">
+                <h:outputText value="MODULO CADASTROS - clientes"/>
+                <div align="center">
+                    <p:commandButton id="btnNew" icon="icon-clientes" action="#{cadClientesController.clienteNew}">
+                        <p:tooltip value="novo cliente" for="btnNew"/>
+                    </p:commandButton>
+                </div>
+            </f:facet>
+            <p:dataTable var="cli" value="#{cadClientesController.listClientes}"
+                         paginator="true" rows="10" 
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+                <p:column headerText="Empresa">
+                    <h:outputText value="#{cli.pubEmpresa.fantasia}"/>
+                </p:column>
+                <p:column headerText="cliente">
+                    <h:outputText value="#{cli.nomeRazaoSocial}"/>
+                </p:column>
+                <p:column headerText="UF">
+                    <h:outputText value="#{cli.cadEnderecos.pubEstado.uf}"/>
+                </p:column>
+                <p:column headerText="Municipio">
+                    <h:outputText value="#{cli.cadEnderecos.pubMunicipio.municipio}"/>
+                </p:column>
+                
+                
+                <p:column headerText="detalhes">
+                    <p:commandButton id="btnView" icon="icon-visualizar" action="#">
+                        <f:setPropertyActionListener value="#{cli}" target="#"/>
+                        <p:tooltip value="visualizar usuario" for="btnView"/>
+                    </p:commandButton>
+                    <p:commandButton id="btnEdit" icon="icon-editar" action="#">
+                        <f:setPropertyActionListener value="#{cli}" target="#"/>
+                        <p:tooltip value="editar usuario" for="btnEdit"/>
+                    </p:commandButton>
+                </p:column>
+                
+            </p:dataTable>
+
         </p:panel>
         <div style="clear:both" />
     </h:form>

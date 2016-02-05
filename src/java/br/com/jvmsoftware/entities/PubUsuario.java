@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 31/Ago/2015 23:49:11 by Hibernate Tools 4.3.1
+// Generated 1/Set/2015 18:32:02 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -33,7 +33,7 @@ public class PubUsuario  implements java.io.Serializable {
      private String complemento;
      private Float cep;
      private Float telefone;
-     private Boolean master;
+     private boolean master;
      private Set<AcsAcessoUsuarios> acsAcessoUsuarioses = new HashSet<AcsAcessoUsuarios>(0);
      private Set<CtrLog> ctrLogs = new HashSet<CtrLog>(0);
      private Set<WflWorkflowEvento> wflWorkflowEventos = new HashSet<WflWorkflowEvento>(0);
@@ -46,13 +46,14 @@ public class PubUsuario  implements java.io.Serializable {
     }
 
 	
-    public PubUsuario(String nomeUsuario, String email, String senha, boolean ativo) {
+    public PubUsuario(String nomeUsuario, String email, String senha, boolean ativo, boolean master) {
         this.nomeUsuario = nomeUsuario;
         this.email = email;
         this.senha = senha;
         this.ativo = ativo;
+        this.master = master;
     }
-    public PubUsuario(PubEmpresa pubEmpresa, PubEstado pubEstado, PubMunicipio pubMunicipio, Float cpfUsuario, String nomeUsuario, String email, String senha, Date dataNascimento, Date dataCadastro, Date dataVerificacao, String codigoVerificacao, boolean ativo, Date dataRessetSenha, Date dataValidacaoResset, String endereco, Float numero, String bairro, String complemento, Float cep, Float telefone, Boolean master, Set<AcsAcessoUsuarios> acsAcessoUsuarioses, Set<CtrLog> ctrLogs, Set<WflWorkflowEvento> wflWorkflowEventos, Set<WflWorkflow> wflWorkflows, Set<SupProjeto> supProjetos, Set<SupSolicitacao> supSolicitacaos, Set<AcsUsuarioSistema> acsUsuarioSistemas) {
+    public PubUsuario(PubEmpresa pubEmpresa, PubEstado pubEstado, PubMunicipio pubMunicipio, Float cpfUsuario, String nomeUsuario, String email, String senha, Date dataNascimento, Date dataCadastro, Date dataVerificacao, String codigoVerificacao, boolean ativo, Date dataRessetSenha, Date dataValidacaoResset, String endereco, Float numero, String bairro, String complemento, Float cep, Float telefone, boolean master, Set<AcsAcessoUsuarios> acsAcessoUsuarioses, Set<CtrLog> ctrLogs, Set<WflWorkflowEvento> wflWorkflowEventos, Set<WflWorkflow> wflWorkflows, Set<SupProjeto> supProjetos, Set<SupSolicitacao> supSolicitacaos, Set<AcsUsuarioSistema> acsUsuarioSistemas) {
        this.pubEmpresa = pubEmpresa;
        this.pubEstado = pubEstado;
        this.pubMunicipio = pubMunicipio;
@@ -167,7 +168,7 @@ public class PubUsuario  implements java.io.Serializable {
     public void setCodigoVerificacao(String codigoVerificacao) {
         this.codigoVerificacao = codigoVerificacao;
     }
-    public boolean getAtivo() {
+    public boolean isAtivo() {
         return this.ativo;
     }
     
@@ -230,11 +231,11 @@ public class PubUsuario  implements java.io.Serializable {
     public void setTelefone(Float telefone) {
         this.telefone = telefone;
     }
-    public Boolean getMaster() {
+    public boolean isMaster() {
         return this.master;
     }
     
-    public void setMaster(Boolean master) {
+    public void setMaster(boolean master) {
         this.master = master;
     }
     public Set<AcsAcessoUsuarios> getAcsAcessoUsuarioses() {

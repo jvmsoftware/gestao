@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 31/Ago/2015 23:49:12 by Hibernate Tools 4.3.1 -->
+<!-- Generated 1/Set/2015 18:32:03 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.jvmsoftware.entities.PubUsuario" table="pub_usuario" catalog="jvmdsoftware" optimistic-lock="version">
         <id name="idUsuario" type="java.lang.Integer">
@@ -72,8 +72,8 @@
         <property name="telefone" type="java.lang.Float">
             <column name="telefone" precision="12" scale="0" />
         </property>
-        <property name="master" type="java.lang.Boolean">
-            <column name="master" />
+        <property name="master" type="boolean">
+            <column name="master" not-null="true" />
         </property>
         <set name="acsAcessoUsuarioses" table="acs_acesso_usuarios" inverse="true" lazy="true" fetch="select">
             <key>

@@ -70,7 +70,7 @@ public class UserController implements Serializable {
             return viewId;
         } 
         // verifica usuario ativo
-        else if (!usu.getAtivo()) {
+        else if (!usu.isAtivo()) {
             msg = "usuario inativo";
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, msg, msg));
             // limpa usuario
