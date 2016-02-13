@@ -20,24 +20,38 @@
             <p:graphicImage value="images/loading.gif"/>
         </p:dialog>
         
-    <h:form>
+    <h:form id="formCliente">
         <p:messages id="msgs"/>
         <p:panel id="dash" style="height: 590px; text-align: center; alignment-baseline: central">
             <f:facet name="header">
-                <h:outputText value="MODULO CADASTRO - clientes - alteração"/>
+                <h:outputText value="MODULO CADASTRO - clientes - inclusão"/>
             </f:facet>
             
             <br/>
+            
             <p:panelGrid columns="2" layout="grid">
-                <p:outputLabel id="labEmp" value="Empresa"/>
-                <p:inputText id="emp" label="labEmp" rendered="true" disabled="true"
-                             value="#{cadClientesController.selectedCliente.pubEmpresa.fantasia}">
-                </p:inputText>
+                <p:panelGrid columns="2" layout="grid">
+                    <p:outputLabel id="labEmp" value="Empresa"/>
+                    <p:inputText id="emp" label="labEmp" rendered="true" disabled="true"
+                                 value="#{cadClientesController.selectedCliente.pubEmpresa.fantasia}">
+                    </p:inputText>
+                </p:panelGrid>
+
+                <p:selectOneRadio id="tipoCadastro" value="#{cadClientesController.tipoCadastro}" label="labTipoCad">
+                    <f:selectItems value="#{cadClientesController.listTipoCadastro}" var="tCad" itemLabel="#{tCad.descricaoTipoCadastro}" itemValue="#{tCad.idTipoCadastro}"/>
+                    <p:ajax listener="#{cadClientesController.tipoCadastroChange()}" update=":formCliente"/>
+                </p:selectOneRadio>
+            </p:panelGrid>
+            
+            <p:panelGrid columns="2" layout="grid">
                 
-                <p:outputLabel id="labCli" value="Cliente"/>
-                <p:inputText id="cli" label="labCli" rendered="true"  disabled="false"
+                <p:outputLabel id="labCli" value="Cliente" rendered="#{cadClientesController.ok}"/>
+                <p:inputText id="cli" label="labCli"    rendered="#{cadClientesController.ok}" disabled="false"
                              value="#{cadClientesController.selectedCliente.nomeRazaoSocial}">
                 </p:inputText>
+                
+                <p:outputLabel id="labCpfCnpj" value="CPF / CNPJ" rendered="#{cadClientesController.ok}"/>
+                <p:inputMask mask="#{cadClientesController.mask}" value="#{cadClientesController.selectedCliente.cpfCnpj}" rendered="#{cadClientesController.ok}"/>
                 
                 <f:facet  name="footer">
                     <center>

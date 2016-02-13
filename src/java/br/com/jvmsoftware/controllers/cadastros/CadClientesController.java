@@ -42,8 +42,10 @@ public class CadClientesController implements Serializable{
     private List<PubTipoCadastro> listTipoCadastro;
     private PubUsuario usu;
     private int pessoa = 0;
-    private int tCadastro = 1;
+    private int tipoCadastro = 0;
+    private String mask = "";
     private String msg;
+    private Boolean ok = false;
 
     
     @PostConstruct
@@ -51,6 +53,12 @@ public class CadClientesController implements Serializable{
         HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();  
         usu = (PubUsuario) request.getSession().getAttribute("usuario");
         selectedCliente = (CadPessoa) request.getSession().getAttribute("selectedCliente");
+        if (selectedCliente == null) {
+        } else {
+            if (selectedCliente.getPubTipoCadastro() != null) {
+                tipoCadastro = selectedCliente.getPubTipoCadastro().getIdTipoCadastro();
+            }
+        }
         try {
             listTipoCadastro = tCadDAO.listAllTipoCadastros();
             listClientes = pesDAO.listClientesByEmpresa(usu.getPubEmpresa());
@@ -79,7 +87,7 @@ public class CadClientesController implements Serializable{
     
     public String insereCliente() throws SQLException {
         String navegar = "/pages/cadastro/clientes";
-        selectedCliente.setPubTipoCadastro(tCadDAO.getById(tCadastro));
+        selectedCliente.setPubTipoCadastro(tCadDAO.getById(tipoCadastro));
         selectedCliente.setDataCadastro(new Date());
         pesDAO.inserirPessoa(selectedCliente);
         return navegar;
@@ -99,6 +107,18 @@ public class CadClientesController implements Serializable{
         return navegar;
     }
 
+    
+    public void tipoCadastroChange() {
+        if (tipoCadastro == 1) {
+            ok = true;
+            mask = "999.999.999-99";
+        }
+        else if (tipoCadastro == 2) {
+            ok = true;
+            mask = "99.999.999/9999-99";
+        }
+    }
+    
     /* getters & setters
     */
     public List<CadPessoa> getListClientes() {
@@ -124,5 +144,37 @@ public class CadClientesController implements Serializable{
     public void setSelectedCliente(CadPessoa selectedCliente) {
         this.selectedCliente = selectedCliente;
     }
-    
+
+    public List<PubTipoCadastro> getListTipoCadastro() {
+        return listTipoCadastro;
+    }
+
+    public void setListTipoCadastro(List<PubTipoCadastro> listTipoCadastro) {
+        this.listTipoCadastro = listTipoCadastro;
+    }
+
+    public int getTipoCadastro() {
+        return tipoCadastro;
+    }
+
+    public void setTipoCadastro(int tipoCadastro) {
+        this.tipoCadastro = tipoCadastro;
+    }
+
+    public String getMask() {
+        return mask;
+    }
+
+    public void setMask(String mask) {
+        this.mask = mask;
+    }
+
+    public Boolean getOk() {
+        return ok;
+    }
+
+    public void setOk(Boolean ok) {
+        this.ok = ok;
+    }
+
 }
