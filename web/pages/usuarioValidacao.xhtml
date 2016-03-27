@@ -21,7 +21,6 @@
         </p:dialog>
         
         <h:form id="formCad">
-            <p:messages id="msgs"/>
             <p:panel header="CADASTRO - validação" style="text-align: left; alignment-baseline: central">
                 <br/><center>
                 <h:outputText value="#{cadastroController.usu.nomeUsuario}, seja bem vindo a jvmdsoftware."/>
@@ -36,17 +35,17 @@
                     <p:inputText id="cod" label="labCod" rendered="true"
                                  value="#{cadastroController.codVerif}"
                                  required="true" requiredMessage="Informe o codigo de verificação enviado por email!">
-                        <p:ajax event="blur" update="msgs"/>
+                        <p:ajax event="blur" update="@all"/>
                     </p:inputText>
                     <f:facet  name="footer">
                         <center>
-                            <p:commandButton action="#{cadastroController.validarCadastro}" value="validar cadastro" update="msgs" process="@form" icon="icon-entrar"/>
+                            <p:commandButton action="#{cadastroController.validarCadastro}" value="validar cadastro" update="@all" process="@form" icon="icon-entrar"/>
                         </center>
                     </f:facet>
                 </p:panelGrid>
                 <p:watermark for="cod" value="codigo de verificação"/>
                 <br/>
-                <p:commandButton actionListener="#{cadastroController.reenviarCodigo}" value="reenviar codigo"  update="msgs"/>
+                <p:commandButton actionListener="#{cadastroController.reenviarCodigo}" value="reenviar codigo"  update="@all"/>
             </p:panel>
         </h:form>
     </ui:define>

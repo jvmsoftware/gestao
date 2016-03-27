@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 1/Set/2015 18:32:03 by Hibernate Tools 4.3.1 -->
+<!-- Generated 27/Mar/2016 8:26:52 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.jvmsoftware.entities.PubEmpresa" table="pub_empresa" catalog="jvmdsoftware" optimistic-lock="version">
         <id name="idEmpresa" type="java.lang.Integer">
@@ -17,8 +17,8 @@
         <many-to-one name="pubTipoCadastro" class="br.com.jvmsoftware.entities.PubTipoCadastro" fetch="select">
             <column name="tipo_cadastro" not-null="true" />
         </many-to-one>
-        <property name="cnpjEmpresa" type="java.lang.Float">
-            <column name="cnpj_empresa" precision="12" scale="0">
+        <property name="cnpjEmpresa" type="string">
+            <column name="cnpj_empresa" length="15">
                 <comment>caso o cliente n&#195;&#163;o tenha empresa, este campo pode ser o CPF da pessoa f&#195;&#173;sica</comment>
             </column>
         </property>
@@ -28,14 +28,14 @@
         <property name="fantasia" type="string">
             <column name="fantasia" length="100" not-null="true" />
         </property>
-        <property name="cep" type="java.lang.Float">
-            <column name="cep" precision="12" scale="0" />
+        <property name="cep" type="java.lang.Double">
+            <column name="cep" precision="22" scale="0" />
         </property>
         <property name="endereco" type="string">
             <column name="endereco" length="150" />
         </property>
-        <property name="numero" type="java.lang.Float">
-            <column name="numero" precision="12" scale="0" />
+        <property name="numero" type="java.lang.Double">
+            <column name="numero" precision="22" scale="0" />
         </property>
         <property name="bairro" type="string">
             <column name="bairro" length="50" />
@@ -49,8 +49,8 @@
         <property name="ativo" type="boolean">
             <column name="ativo" not-null="true" />
         </property>
-        <property name="telefone" type="java.lang.Float">
-            <column name="telefone" precision="12" scale="0" />
+        <property name="telefone" type="java.lang.Double">
+            <column name="telefone" precision="22" scale="0" />
         </property>
         <property name="emailResponsavel" type="string">
             <column name="email_responsavel" length="50" />

@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 1/Set/2015 18:32:02 by Hibernate Tools 4.3.1
+// Generated 27/Mar/2016 8:26:38 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -16,7 +16,7 @@ public class PubUsuario  implements java.io.Serializable {
      private PubEmpresa pubEmpresa;
      private PubEstado pubEstado;
      private PubMunicipio pubMunicipio;
-     private Float cpfUsuario;
+     private String cpfUsuario;
      private String nomeUsuario;
      private String email;
      private String senha;
@@ -28,11 +28,11 @@ public class PubUsuario  implements java.io.Serializable {
      private Date dataRessetSenha;
      private Date dataValidacaoResset;
      private String endereco;
-     private Float numero;
+     private Double numero;
      private String bairro;
      private String complemento;
-     private Float cep;
-     private Float telefone;
+     private Double cep;
+     private Double telefone;
      private boolean master;
      private Set<AcsAcessoUsuarios> acsAcessoUsuarioses = new HashSet<AcsAcessoUsuarios>(0);
      private Set<CtrLog> ctrLogs = new HashSet<CtrLog>(0);
@@ -53,7 +53,7 @@ public class PubUsuario  implements java.io.Serializable {
         this.ativo = ativo;
         this.master = master;
     }
-    public PubUsuario(PubEmpresa pubEmpresa, PubEstado pubEstado, PubMunicipio pubMunicipio, Float cpfUsuario, String nomeUsuario, String email, String senha, Date dataNascimento, Date dataCadastro, Date dataVerificacao, String codigoVerificacao, boolean ativo, Date dataRessetSenha, Date dataValidacaoResset, String endereco, Float numero, String bairro, String complemento, Float cep, Float telefone, boolean master, Set<AcsAcessoUsuarios> acsAcessoUsuarioses, Set<CtrLog> ctrLogs, Set<WflWorkflowEvento> wflWorkflowEventos, Set<WflWorkflow> wflWorkflows, Set<SupProjeto> supProjetos, Set<SupSolicitacao> supSolicitacaos, Set<AcsUsuarioSistema> acsUsuarioSistemas) {
+    public PubUsuario(PubEmpresa pubEmpresa, PubEstado pubEstado, PubMunicipio pubMunicipio, String cpfUsuario, String nomeUsuario, String email, String senha, Date dataNascimento, Date dataCadastro, Date dataVerificacao, String codigoVerificacao, boolean ativo, Date dataRessetSenha, Date dataValidacaoResset, String endereco, Double numero, String bairro, String complemento, Double cep, Double telefone, boolean master, Set<AcsAcessoUsuarios> acsAcessoUsuarioses, Set<CtrLog> ctrLogs, Set<WflWorkflowEvento> wflWorkflowEventos, Set<WflWorkflow> wflWorkflows, Set<SupProjeto> supProjetos, Set<SupSolicitacao> supSolicitacaos, Set<AcsUsuarioSistema> acsUsuarioSistemas) {
        this.pubEmpresa = pubEmpresa;
        this.pubEstado = pubEstado;
        this.pubMunicipio = pubMunicipio;
@@ -112,11 +112,11 @@ public class PubUsuario  implements java.io.Serializable {
     public void setPubMunicipio(PubMunicipio pubMunicipio) {
         this.pubMunicipio = pubMunicipio;
     }
-    public Float getCpfUsuario() {
+    public String getCpfUsuario() {
         return this.cpfUsuario;
     }
     
-    public void setCpfUsuario(Float cpfUsuario) {
+    public void setCpfUsuario(String cpfUsuario) {
         this.cpfUsuario = cpfUsuario;
     }
     public String getNomeUsuario() {
@@ -196,11 +196,11 @@ public class PubUsuario  implements java.io.Serializable {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-    public Float getNumero() {
+    public Double getNumero() {
         return this.numero;
     }
     
-    public void setNumero(Float numero) {
+    public void setNumero(Double numero) {
         this.numero = numero;
     }
     public String getBairro() {
@@ -217,18 +217,18 @@ public class PubUsuario  implements java.io.Serializable {
     public void setComplemento(String complemento) {
         this.complemento = complemento;
     }
-    public Float getCep() {
+    public Double getCep() {
         return this.cep;
     }
     
-    public void setCep(Float cep) {
+    public void setCep(Double cep) {
         this.cep = cep;
     }
-    public Float getTelefone() {
+    public Double getTelefone() {
         return this.telefone;
     }
     
-    public void setTelefone(Float telefone) {
+    public void setTelefone(Double telefone) {
         this.telefone = telefone;
     }
     public boolean isMaster() {

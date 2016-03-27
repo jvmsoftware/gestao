@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 1/Set/2015 18:32:02 by Hibernate Tools 4.3.1
+// Generated 27/Mar/2016 8:26:38 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -16,17 +16,17 @@ public class PubEmpresa  implements java.io.Serializable {
      private PubEstado pubEstado;
      private PubMunicipio pubMunicipio;
      private PubTipoCadastro pubTipoCadastro;
-     private Float cnpjEmpresa;
+     private String cnpjEmpresa;
      private String razaoSocial;
      private String fantasia;
-     private Float cep;
+     private Double cep;
      private String endereco;
-     private Float numero;
+     private Double numero;
      private String bairro;
      private String complemento;
      private Date dataCadastro;
      private boolean ativo;
-     private Float telefone;
+     private Double telefone;
      private String emailResponsavel;
      private Set<WflSituacao> wflSituacaos = new HashSet<WflSituacao>(0);
      private Set<PubConfigEmpresa> pubConfigEmpresas = new HashSet<PubConfigEmpresa>(0);
@@ -52,7 +52,7 @@ public class PubEmpresa  implements java.io.Serializable {
         this.fantasia = fantasia;
         this.ativo = ativo;
     }
-    public PubEmpresa(PubEstado pubEstado, PubMunicipio pubMunicipio, PubTipoCadastro pubTipoCadastro, Float cnpjEmpresa, String razaoSocial, String fantasia, Float cep, String endereco, Float numero, String bairro, String complemento, Date dataCadastro, boolean ativo, Float telefone, String emailResponsavel, Set<WflSituacao> wflSituacaos, Set<PubConfigEmpresa> pubConfigEmpresas, Set<SupSolicitacao> supSolicitacaos, Set<AcsUsuarioSistema> acsUsuarioSistemas, Set<WflWorkflow> wflWorkflowsForEmpresaDestino, Set<CadPessoa> cadPessoas, Set<WflWorkflowEvento> wflWorkflowEventos, Set<AcsEmpresaSistema> acsEmpresaSistemas, Set<SupProjeto> supProjetos, Set<PubUsuario> pubUsuarios, Set<WflWorkflow> wflWorkflowsForEmpresaCriacao) {
+    public PubEmpresa(PubEstado pubEstado, PubMunicipio pubMunicipio, PubTipoCadastro pubTipoCadastro, String cnpjEmpresa, String razaoSocial, String fantasia, Double cep, String endereco, Double numero, String bairro, String complemento, Date dataCadastro, boolean ativo, Double telefone, String emailResponsavel, Set<WflSituacao> wflSituacaos, Set<PubConfigEmpresa> pubConfigEmpresas, Set<SupSolicitacao> supSolicitacaos, Set<AcsUsuarioSistema> acsUsuarioSistemas, Set<WflWorkflow> wflWorkflowsForEmpresaDestino, Set<CadPessoa> cadPessoas, Set<WflWorkflowEvento> wflWorkflowEventos, Set<AcsEmpresaSistema> acsEmpresaSistemas, Set<SupProjeto> supProjetos, Set<PubUsuario> pubUsuarios, Set<WflWorkflow> wflWorkflowsForEmpresaCriacao) {
        this.pubEstado = pubEstado;
        this.pubMunicipio = pubMunicipio;
        this.pubTipoCadastro = pubTipoCadastro;
@@ -109,11 +109,11 @@ public class PubEmpresa  implements java.io.Serializable {
     public void setPubTipoCadastro(PubTipoCadastro pubTipoCadastro) {
         this.pubTipoCadastro = pubTipoCadastro;
     }
-    public Float getCnpjEmpresa() {
+    public String getCnpjEmpresa() {
         return this.cnpjEmpresa;
     }
     
-    public void setCnpjEmpresa(Float cnpjEmpresa) {
+    public void setCnpjEmpresa(String cnpjEmpresa) {
         this.cnpjEmpresa = cnpjEmpresa;
     }
     public String getRazaoSocial() {
@@ -130,11 +130,11 @@ public class PubEmpresa  implements java.io.Serializable {
     public void setFantasia(String fantasia) {
         this.fantasia = fantasia;
     }
-    public Float getCep() {
+    public Double getCep() {
         return this.cep;
     }
     
-    public void setCep(Float cep) {
+    public void setCep(Double cep) {
         this.cep = cep;
     }
     public String getEndereco() {
@@ -144,11 +144,11 @@ public class PubEmpresa  implements java.io.Serializable {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-    public Float getNumero() {
+    public Double getNumero() {
         return this.numero;
     }
     
-    public void setNumero(Float numero) {
+    public void setNumero(Double numero) {
         this.numero = numero;
     }
     public String getBairro() {
@@ -179,11 +179,11 @@ public class PubEmpresa  implements java.io.Serializable {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
-    public Float getTelefone() {
+    public Double getTelefone() {
         return this.telefone;
     }
     
-    public void setTelefone(Float telefone) {
+    public void setTelefone(Double telefone) {
         this.telefone = telefone;
     }
     public String getEmailResponsavel() {

@@ -21,7 +21,6 @@
         </p:dialog>
         
         <h:form id="formLogin">
-            <p:messages id="msgs"/>
         <p:panel  header="RECUPERAÇÃO DE SENHA - confirmação"  style="height: 590px; text-align: center; alignment-baseline: central">
             <br/>
             <center>
@@ -54,7 +53,7 @@
                 <br/>
                 <f:facet  name="footer">
                     <center>
-                        <p:commandButton action="#{cadastroController.validaSenhaRecuperada}" value="acessar" update="msgs" icon="icon-confirmar"/>
+                        <p:commandButton action="#{cadastroController.validaSenhaRecuperada}" value="acessar" update="@all" icon="icon-confirmar"/>
                     </center>
                 </f:facet>
             </p:panelGrid>

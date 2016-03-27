@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 1/Set/2015 18:32:03 by Hibernate Tools 4.3.1 -->
+<!-- Generated 27/Mar/2016 8:26:52 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.jvmsoftware.entities.CadPessoa" table="cad_pessoa" catalog="jvmdsoftware" optimistic-lock="version">
         <id name="idPessoa" type="java.lang.Integer">
@@ -9,7 +9,7 @@
             <generator class="identity" />
         </id>
         <many-to-one name="cadEnderecos" class="br.com.jvmsoftware.entities.CadEnderecos" fetch="select">
-            <column name="endereco_padrao" not-null="true" />
+            <column name="endereco_padrao" />
         </many-to-one>
         <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="select">
             <column name="empresa" not-null="true" />
@@ -20,17 +20,23 @@
         <property name="dataCadastro" type="date">
             <column name="data_cadastro" length="10" />
         </property>
-        <property name="cpfCnpj" type="java.lang.Float">
-            <column name="cpf_cnpj" precision="12" scale="0" />
+        <property name="cpfCnpj" type="string">
+            <column name="cpf_cnpj" length="15" />
         </property>
         <property name="nomeRazaoSocial" type="string">
             <column name="nome_razao_social" length="150" not-null="true" />
         </property>
+        <property name="apelidoFantasia" type="string">
+            <column name="apelido_fantasia" length="60" not-null="true" />
+        </property>
         <property name="emailResponsavel" type="string">
             <column name="email_responsavel" length="50" />
         </property>
-        <property name="telefone" type="java.lang.Float">
-            <column name="telefone" precision="12" scale="0" />
+        <property name="telefone" type="string">
+            <column name="telefone" length="11" />
+        </property>
+        <property name="telefone1" type="string">
+            <column name="telefone1" length="11" />
         </property>
         <property name="cliente" type="boolean">
             <column name="cliente" not-null="true" />
@@ -40,6 +46,9 @@
         </property>
         <property name="funcionario" type="boolean">
             <column name="funcionario" not-null="true" />
+        </property>
+        <property name="transportador" type="boolean">
+            <column name="transportador" not-null="true" />
         </property>
         <set name="cadEnderecoses" table="cad_enderecos" inverse="true" lazy="true" fetch="select">
             <key>

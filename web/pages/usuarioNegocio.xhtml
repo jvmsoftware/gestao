@@ -21,7 +21,6 @@
         </p:dialog>
         
         <h:form id="formCad">
-            <p:messages id="msgs"/>
             <p:panel header="CADASTRO - negocio" style="text-align: left; alignment-baseline: central">
                 <br/><center>
                 <h:outputText value="#{cadastroController.usu.nomeUsuario}, seja bem vindo a jvmdsoftware."/>
@@ -30,7 +29,7 @@
                     implementar a configuração do sistema por perguntas ao usuário.
                     <f:facet  name="footer">
                         <center>
-                            <p:commandButton action="#" value="validar cadastro" update="msgs" process="@form" icon="icon-entrar"/>
+                            <p:commandButton action="#" value="validar cadastro" update="@all" process="@form" icon="icon-entrar"/>
                         </center>
                     </f:facet>
                 </p:panelGrid>

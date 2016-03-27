@@ -20,8 +20,7 @@
             <p:graphicImage value="images/loading.gif"/>
         </p:dialog>
         
-    <h:form id="formCliente">
-        <p:messages id="msgs"/>
+    <h:form id="form">
         <p:panel id="dash" style="height: 590px; text-align: center; alignment-baseline: central">
             <f:facet name="header">
                 <h:outputText value="MODULO CADASTRO - clientes - inclusão"/>
@@ -39,29 +38,60 @@
 
                 <p:selectOneRadio id="tipoCadastro" value="#{cadClientesController.tipoCadastro}" label="labTipoCad">
                     <f:selectItems value="#{cadClientesController.listTipoCadastro}" var="tCad" itemLabel="#{tCad.descricaoTipoCadastro}" itemValue="#{tCad.idTipoCadastro}"/>
-                    <p:ajax listener="#{cadClientesController.tipoCadastroChange()}" update=":formCliente"/>
+                    <p:ajax listener="#{cadClientesController.tipoCadastroChange()}" update="form"/>
                 </p:selectOneRadio>
             </p:panelGrid>
             
-            <p:panelGrid columns="2" layout="grid">
+            <p:panelGrid columns="4" layout="grid">
                 
-                <p:outputLabel id="labCli" value="Cliente" rendered="#{cadClientesController.ok}"/>
-                <p:inputText id="cli" label="labCli"    rendered="#{cadClientesController.ok}" disabled="false"
+                <p:outputLabel id="labCli" value="Nome" rendered="#{cadClientesController.pf}"/>
+                <p:outputLabel id="labCli1" value="Razão Social" rendered="#{cadClientesController.pj}"/>
+                <p:inputText id="cli" rendered="#{cadClientesController.ok}" disabled="false" maxlength="150"
                              value="#{cadClientesController.selectedCliente.nomeRazaoSocial}">
                 </p:inputText>
                 
-                <p:outputLabel id="labCpfCnpj" value="CPF / CNPJ" rendered="#{cadClientesController.ok}"/>
-                <p:inputMask mask="#{cadClientesController.mask}" value="#{cadClientesController.selectedCliente.cpfCnpj}" rendered="#{cadClientesController.ok}"/>
+                <p:outputLabel id="labCpfCnpj" value="CPF" rendered="#{cadClientesController.pf}"/>
+                <p:outputLabel id="labCpfCnpj1" value="CNPJ" rendered="#{cadClientesController.pj}"/>
+                <p:inputMask mask="#{cadClientesController.mask}" value="#{cadClientesController.selectedCliente.cpfCnpj}" rendered="#{cadClientesController.ok}" converter="convertDocumento" dir="RTL"/>
                 
-                <f:facet  name="footer">
-                    <center>
-                        <p:commandButton action="#{cadClientesController.insereCliente()}" value="gravar" icon="icon-salvar"/>
-                        <p:commandButton action="#{cadClientesController.clientes()}" value="voltar" icon="icon-voltar"/>
-                    </center>
-                </f:facet>
+                <p:outputLabel id="labApel" value="Apelido" rendered="#{cadClientesController.pf}"/>
+                <p:outputLabel id="labApel1" value="Fantasia" rendered="#{cadClientesController.pj}"/>
+                <p:inputText id="apel" rendered="#{cadClientesController.ok}" disabled="false" maxlength="60"
+                             value="#{cadClientesController.selectedCliente.apelidoFantasia}">
+                </p:inputText>
+                
+                <p:outputLabel id="labmail" value="Email" rendered="#{cadClientesController.ok}"/>
+                <p:inputText id="mail" rendered="#{cadClientesController.ok}" disabled="false" maxlength="60"
+                             value="#{cadClientesController.selectedCliente.emailResponsavel}">
+                </p:inputText>
+                
+                <p:outputLabel id="labFone" value="Telefone" rendered="#{cadClientesController.ok}"/>
+                <p:inputMask mask="(99)9999-9999?9" value="#{cadClientesController.selectedCliente.telefone}" rendered="#{cadClientesController.ok}" converter="convertPhone"/>
+                
+                <p:outputLabel id="labFone1" value="Telefone1" rendered="#{cadClientesController.ok}"/>
+                <p:inputMask mask="(99)9999-9999?9" value="#{cadClientesController.selectedCliente.telefone1}" rendered="#{cadClientesController.ok}" converter="convertPhone"/>
+                
+                <p:outputLabel id="labClie" value="cliente" rendered="#{cadClientesController.ok}"/>
+                <p:outputLabel id="labForn" value="fornecedor" rendered="#{cadClientesController.ok}"/>
+                <p:outputLabel id="labFunc" value="funcionario" rendered="#{cadClientesController.ok}"/>
+                <p:outputLabel id="labTrans" value="transportador" rendered="#{cadClientesController.ok}"/>
+                
+                <p:selectBooleanCheckbox id="clie" disabled="true" value="#{cadClientesController.selectedCliente.cliente}" rendered="#{cadClientesController.ok}"/>
+                <p:selectBooleanCheckbox id="forn" value="#{cadClientesController.selectedCliente.fornecedor}" rendered="#{cadClientesController.ok}"/>
+                <p:selectBooleanCheckbox id="func" value="#{cadClientesController.selectedCliente.funcionario}" rendered="#{cadClientesController.ok}"/>
+                <p:selectBooleanCheckbox id="trans" value="#{cadClientesController.selectedCliente.transportador}" rendered="#{cadClientesController.ok}"/>
+
             </p:panelGrid>
+
+            <f:facet  name="footer">
+                <center>
+                    <p:commandButton action="#{cadClientesController.insereCliente()}" value="gravar" icon="icon-salvar" update="@all" process="@form"/>
+                    <p:commandButton action="#{cadClientesController.clientes()}" value="voltar" icon="icon-voltar"/>
+                </center>
+            </f:facet>
         </p:panel>
         <div style="clear:both" />
+
     </h:form>
     </ui:define>  
 </ui:composition>  

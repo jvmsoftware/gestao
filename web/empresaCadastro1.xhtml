@@ -21,7 +21,6 @@
         </p:dialog>
         
         <h:form id="formCad">
-            <p:messages id="msgs"/>
         <p:panel header="CADASTRO - registro" style="height: 590px; text-align: center; alignment-baseline: central">
             <br/>
             <center>
@@ -84,7 +83,7 @@
                 <br/>
                 <f:facet  name="footer">
                     <center>
-                        <p:commandButton action="#{cadastroController.cadastrar}" value="cadastrar" update="msgs" icon="icon-salvar"/>
+                        <p:commandButton action="#{cadastroController.cadastrar}" value="cadastrar" update="@all" icon="icon-salvar"/>
                     </center>
                 </f:facet>
             </p:panelGrid>

@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 1/Set/2015 18:32:02 by Hibernate Tools 4.3.1
+// Generated 27/Mar/2016 8:26:38 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -17,40 +17,47 @@ public class CadPessoa  implements java.io.Serializable {
      private PubEmpresa pubEmpresa;
      private PubTipoCadastro pubTipoCadastro;
      private Date dataCadastro;
-     private Float cpfCnpj;
+     private String cpfCnpj;
      private String nomeRazaoSocial;
+     private String apelidoFantasia;
      private String emailResponsavel;
-     private Float telefone;
+     private String telefone;
+     private String telefone1;
      private boolean cliente;
      private boolean fornecedor;
      private boolean funcionario;
+     private boolean transportador;
      private Set<CadEnderecos> cadEnderecoses = new HashSet<CadEnderecos>(0);
 
     public CadPessoa() {
     }
 
 	
-    public CadPessoa(CadEnderecos cadEnderecos, PubEmpresa pubEmpresa, PubTipoCadastro pubTipoCadastro, String nomeRazaoSocial, boolean cliente, boolean fornecedor, boolean funcionario) {
-        this.cadEnderecos = cadEnderecos;
+    public CadPessoa(PubEmpresa pubEmpresa, PubTipoCadastro pubTipoCadastro, String nomeRazaoSocial, String apelidoFantasia, boolean cliente, boolean fornecedor, boolean funcionario, boolean transportador) {
         this.pubEmpresa = pubEmpresa;
         this.pubTipoCadastro = pubTipoCadastro;
         this.nomeRazaoSocial = nomeRazaoSocial;
+        this.apelidoFantasia = apelidoFantasia;
         this.cliente = cliente;
         this.fornecedor = fornecedor;
         this.funcionario = funcionario;
+        this.transportador = transportador;
     }
-    public CadPessoa(CadEnderecos cadEnderecos, PubEmpresa pubEmpresa, PubTipoCadastro pubTipoCadastro, Date dataCadastro, Float cpfCnpj, String nomeRazaoSocial, String emailResponsavel, Float telefone, boolean cliente, boolean fornecedor, boolean funcionario, Set<CadEnderecos> cadEnderecoses) {
+    public CadPessoa(CadEnderecos cadEnderecos, PubEmpresa pubEmpresa, PubTipoCadastro pubTipoCadastro, Date dataCadastro, String cpfCnpj, String nomeRazaoSocial, String apelidoFantasia, String emailResponsavel, String telefone, String telefone1, boolean cliente, boolean fornecedor, boolean funcionario, boolean transportador, Set<CadEnderecos> cadEnderecoses) {
        this.cadEnderecos = cadEnderecos;
        this.pubEmpresa = pubEmpresa;
        this.pubTipoCadastro = pubTipoCadastro;
        this.dataCadastro = dataCadastro;
        this.cpfCnpj = cpfCnpj;
        this.nomeRazaoSocial = nomeRazaoSocial;
+       this.apelidoFantasia = apelidoFantasia;
        this.emailResponsavel = emailResponsavel;
        this.telefone = telefone;
+       this.telefone1 = telefone1;
        this.cliente = cliente;
        this.fornecedor = fornecedor;
        this.funcionario = funcionario;
+       this.transportador = transportador;
        this.cadEnderecoses = cadEnderecoses;
     }
    
@@ -89,11 +96,11 @@ public class CadPessoa  implements java.io.Serializable {
     public void setDataCadastro(Date dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
-    public Float getCpfCnpj() {
+    public String getCpfCnpj() {
         return this.cpfCnpj;
     }
     
-    public void setCpfCnpj(Float cpfCnpj) {
+    public void setCpfCnpj(String cpfCnpj) {
         this.cpfCnpj = cpfCnpj;
     }
     public String getNomeRazaoSocial() {
@@ -103,6 +110,13 @@ public class CadPessoa  implements java.io.Serializable {
     public void setNomeRazaoSocial(String nomeRazaoSocial) {
         this.nomeRazaoSocial = nomeRazaoSocial;
     }
+    public String getApelidoFantasia() {
+        return this.apelidoFantasia;
+    }
+    
+    public void setApelidoFantasia(String apelidoFantasia) {
+        this.apelidoFantasia = apelidoFantasia;
+    }
     public String getEmailResponsavel() {
         return this.emailResponsavel;
     }
@@ -110,14 +124,21 @@ public class CadPessoa  implements java.io.Serializable {
     public void setEmailResponsavel(String emailResponsavel) {
         this.emailResponsavel = emailResponsavel;
     }
-    public Float getTelefone() {
+    public String getTelefone() {
         return this.telefone;
     }
     
-    public void setTelefone(Float telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-    public boolean isCliente() {
+    public String getTelefone1() {
+        return this.telefone1;
+    }
+    
+    public void setTelefone1(String telefone1) {
+        this.telefone1 = telefone1;
+    }
+    public boolean getCliente() {
         return this.cliente;
     }
     
@@ -137,6 +158,13 @@ public class CadPessoa  implements java.io.Serializable {
     
     public void setFuncionario(boolean funcionario) {
         this.funcionario = funcionario;
+    }
+    public boolean getTransportador() {
+        return this.transportador;
+    }
+    
+    public void setTransportador(boolean transportador) {
+        this.transportador = transportador;
     }
     public Set<CadEnderecos> getCadEnderecoses() {
         return this.cadEnderecoses;

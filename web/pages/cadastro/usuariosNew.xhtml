@@ -21,7 +21,6 @@
         </p:dialog>
         
     <h:form>
-        <p:messages id="msgs"/>
         <p:panel id="dash" header="MODULO CONTROLE DE ACESSO - usuario - incluir"  style="height: 590px; text-align: center; alignment-baseline: central">
             <br/>
             <p:panelGrid columns="2" layout="grid">
@@ -29,7 +28,7 @@
                 <p:inputText id="nome" label="labNome" rendered="true" required="true"
                              value="#{acsUsuariosController.selectedUsuario.nomeUsuario}"
                              requiredMessage="Informe o nome completo do usuario.">
-                    <p:ajax event="blur" update="msgs"/>
+                    <p:ajax event="blur" update="@all"/>
                 </p:inputText>
 
                 <p:outputLabel id="labDtNasc" value="nascimento"/>
@@ -37,7 +36,7 @@
                              value="#{acsUsuariosController.selectedUsuario.dataNascimento}"
                              requiredMessage="Informe a data de nascimento do usuario.">
                     <f:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy"/>
-                    <p:ajax event="blur" update="msgs"/>
+                    <p:ajax event="blur" update="@all"/>
                 </p:inputMask>
 
                 <p:outputLabel id="labMail" value="email"/>
@@ -46,7 +45,7 @@
                              requiredMessage="Informe seu endereço de email!"
                              validatorMessage="Formato de email inválido!">
                     <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-                    <p:ajax event="blur" update="msgs"/>
+                    <p:ajax event="blur" update="@all"/>
                 </p:inputText>
 
                 <p:outputLabel id="labEmpresa" value="empresa"/>

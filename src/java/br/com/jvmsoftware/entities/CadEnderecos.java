@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 1/Set/2015 18:32:02 by Hibernate Tools 4.3.1
+// Generated 27/Mar/2016 8:26:38 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -15,10 +15,11 @@ public class CadEnderecos  implements java.io.Serializable {
      private CadPessoa cadPessoa;
      private PubEstado pubEstado;
      private PubMunicipio pubMunicipio;
+     private PubTipoEndereco pubTipoEndereco;
      private String endereco;
-     private Float numero;
+     private Integer numero;
      private String bairro;
-     private Float cep;
+     private String cep;
      private String complemento;
      private Set<CadPessoa> cadPessoas = new HashSet<CadPessoa>(0);
 
@@ -26,13 +27,15 @@ public class CadEnderecos  implements java.io.Serializable {
     }
 
 	
-    public CadEnderecos(CadPessoa cadPessoa) {
+    public CadEnderecos(CadPessoa cadPessoa, PubTipoEndereco pubTipoEndereco) {
         this.cadPessoa = cadPessoa;
+        this.pubTipoEndereco = pubTipoEndereco;
     }
-    public CadEnderecos(CadPessoa cadPessoa, PubEstado pubEstado, PubMunicipio pubMunicipio, String endereco, Float numero, String bairro, Float cep, String complemento, Set<CadPessoa> cadPessoas) {
+    public CadEnderecos(CadPessoa cadPessoa, PubEstado pubEstado, PubMunicipio pubMunicipio, PubTipoEndereco pubTipoEndereco, String endereco, Integer numero, String bairro, String cep, String complemento, Set<CadPessoa> cadPessoas) {
        this.cadPessoa = cadPessoa;
        this.pubEstado = pubEstado;
        this.pubMunicipio = pubMunicipio;
+       this.pubTipoEndereco = pubTipoEndereco;
        this.endereco = endereco;
        this.numero = numero;
        this.bairro = bairro;
@@ -69,6 +72,13 @@ public class CadEnderecos  implements java.io.Serializable {
     public void setPubMunicipio(PubMunicipio pubMunicipio) {
         this.pubMunicipio = pubMunicipio;
     }
+    public PubTipoEndereco getPubTipoEndereco() {
+        return this.pubTipoEndereco;
+    }
+    
+    public void setPubTipoEndereco(PubTipoEndereco pubTipoEndereco) {
+        this.pubTipoEndereco = pubTipoEndereco;
+    }
     public String getEndereco() {
         return this.endereco;
     }
@@ -76,11 +86,11 @@ public class CadEnderecos  implements java.io.Serializable {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-    public Float getNumero() {
+    public Integer getNumero() {
         return this.numero;
     }
     
-    public void setNumero(Float numero) {
+    public void setNumero(Integer numero) {
         this.numero = numero;
     }
     public String getBairro() {
@@ -90,11 +100,11 @@ public class CadEnderecos  implements java.io.Serializable {
     public void setBairro(String bairro) {
         this.bairro = bairro;
     }
-    public Float getCep() {
+    public String getCep() {
         return this.cep;
     }
     
-    public void setCep(Float cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
     public String getComplemento() {

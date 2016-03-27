@@ -21,7 +21,6 @@
         </p:dialog>
         
         <h:form id="formLogin">
-            <p:messages id="msgs"/>
         <p:panel  header="RECUPERAÇÃO DE SENHA"  style="height: 590px; text-align: center; alignment-baseline: central">
             <br/>
                 <center>
@@ -42,7 +41,7 @@
                         <center>
                             <h:outputText value="sua senha será reiniciada e uma nova senha será enviada ao seu email"/>
                             <br/><br/>
-                            <p:commandButton action="#{cadastroController.recuperarSenha}" value="recuperar senha" update="msgs" icon="icon-mail"/>
+                            <p:commandButton action="#{cadastroController.recuperarSenha}" value="recuperar senha" update="@all" icon="icon-mail"/>
                         </center>
                     </f:facet>
                 </p:panelGrid>

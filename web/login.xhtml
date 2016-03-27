@@ -23,7 +23,6 @@
         <h:form id="formLogin">
         <p:panel  header="ENTRAR"  style="height: 590px; text-align: center; alignment-baseline: central">
             <center>
-                <p:messages id="msgs"/>
                 <br/><br/>
                 <p:panelGrid columns="3" layout="grid">
                 <h:outputText value=""/><h:outputText value=""/><h:outputText value=""/>
@@ -48,7 +47,7 @@
                 <br/>
                 <f:facet  name="footer">
                     <center>
-                        <p:commandButton action="#{userController.login}" value="acessar" update="msgs" process="@form" icon="icon-entrar"/>
+                        <p:commandButton action="#{userController.login}" value="acessar" update="@all" process="@form" icon="icon-entrar"/>
                     </center>
                 </f:facet>
             </p:panelGrid>

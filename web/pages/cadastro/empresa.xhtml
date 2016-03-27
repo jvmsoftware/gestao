@@ -21,7 +21,6 @@
         </p:dialog>
         
     <h:form>
-        <p:messages id="msgs"/>
         <p:panel id="dash" header="MODULO CONTROLE DE ACESSO - empresa"  style="height: 590px; text-align: center; alignment-baseline: central">
             <br/>
             <p:panelGrid columns="2" layout="grid">
@@ -53,7 +52,7 @@
                              value="#{acsEmpresaController.empresa.emailResponsavel}"
                              validatorMessage="Formato de email inválido!">
                     <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-                    <p:ajax event="blur" update="msgs"/>
+                    <p:ajax event="blur" update="@all"/>
                 </p:inputText>
 
                 <p:outputLabel id="labEst" value="Selecione o estado" for="est"/>

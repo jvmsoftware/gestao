@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 1/Set/2015 18:32:03 by Hibernate Tools 4.3.1 -->
+<!-- Generated 27/Mar/2016 8:26:52 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.jvmsoftware.entities.CadEnderecos" table="cad_enderecos" catalog="jvmdsoftware" optimistic-lock="version">
         <id name="idEndereco" type="java.lang.Integer">
@@ -17,24 +17,27 @@
         <many-to-one name="pubMunicipio" class="br.com.jvmsoftware.entities.PubMunicipio" fetch="select">
             <column name="municipio" />
         </many-to-one>
+        <many-to-one name="pubTipoEndereco" class="br.com.jvmsoftware.entities.PubTipoEndereco" fetch="select">
+            <column name="tipo_endereco" not-null="true" />
+        </many-to-one>
         <property name="endereco" type="string">
             <column name="endereco" length="100" />
         </property>
-        <property name="numero" type="java.lang.Float">
-            <column name="numero" precision="12" scale="0" />
+        <property name="numero" type="java.lang.Integer">
+            <column name="numero" />
         </property>
         <property name="bairro" type="string">
             <column name="bairro" length="50" />
         </property>
-        <property name="cep" type="java.lang.Float">
-            <column name="cep" precision="12" scale="0" />
+        <property name="cep" type="string">
+            <column name="cep" length="8" />
         </property>
         <property name="complemento" type="string">
             <column name="complemento" length="100" />
         </property>
         <set name="cadPessoas" table="cad_pessoa" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="endereco_padrao" not-null="true" />
+                <column name="endereco_padrao" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.CadPessoa" />
         </set>

@@ -21,7 +21,6 @@
         </p:dialog>
         
     <h:form>
-        <p:messages id="msgs"/>
         <p:panel id="dash" header="MODULO CADASTROS - minha conta"  style="height: 590px; text-align: center; alignment-baseline: central">
             <br/>
             <p:panelGrid columns="2" layout="grid">
@@ -101,7 +100,7 @@
                 
                 <f:facet  name="footer">
                     <center>
-                        <p:commandButton actionListener="#{acsUserContaController.gravarUsuario}" value="salvar alterações" update="msgs" icon="icon-salvar"/>
+                        <p:commandButton actionListener="#{acsUserContaController.gravarUsuario}" value="salvar alterações" update="@all" icon="icon-salvar"/>
                         <p:commandButton action="#{acsUserContaController.alterarSenha}" value="alterar senha" icon="icon-editar"/>
                     </center>
                 </f:facet>

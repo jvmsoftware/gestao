@@ -20,8 +20,7 @@
             <p:graphicImage value="images/loading.gif"/>
         </p:dialog>
         
-    <h:form>
-        <p:messages id="msgs"/>
+    <h:form id="form">
         <p:panel id="dash" header="MODULO CADASTROS - clientes"  style="height: 590px; text-align: center; alignment-baseline: central">
             <f:facet name="header">
                 <h:outputText value="MODULO CADASTROS - clientes"/>
@@ -29,9 +28,13 @@
                     <p:commandButton id="btnNew" icon="icon-clientes" action="#{cadClientesController.clienteNew}">
                         <p:tooltip value="novo cliente" for="btnNew"/>
                     </p:commandButton>
+                    <p:inputText id="filtro" value="#{cadClientesController.filtro}" placeholder="parte do nome ou razão social">
+                        <p:tooltip value="filtro cliente" for="filtro"/>
+                        <p:ajax event="keyup" process="@all" update="tabCli" listener="#{cadClientesController.changeFiltro()}"/>
+                    </p:inputText>
                 </div>
             </f:facet>
-            <p:dataTable var="cli" value="#{cadClientesController.listClientes}"
+            <p:dataTable id="tabCli" var="cli" value="#{cadClientesController.listClientes}"
                          paginator="true" rows="10" 
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15">
@@ -50,12 +53,12 @@
                 
                 
                 <p:column headerText="detalhes">
-                    <p:commandButton id="btnView" icon="icon-visualizar" action="#">
-                        <f:setPropertyActionListener value="#{cli}" target="#"/>
+                    <p:commandButton id="btnView" icon="icon-visualizar" action="#{cadClientesController.clienteView()}" process="@form">
+                        <f:setPropertyActionListener value="#{cli}" target="#{cadClientesController.selectedCliente}"/>
                         <p:tooltip value="visualizar usuario" for="btnView"/>
                     </p:commandButton>
-                    <p:commandButton id="btnEdit" icon="icon-editar" action="#">
-                        <f:setPropertyActionListener value="#{cli}" target="#"/>
+                    <p:commandButton id="btnEdit" icon="icon-editar" action="#{cadClientesController.clienteEdit()}" process="@form">
+                        <f:setPropertyActionListener value="#{cli}" target="#{cadClientesController.selectedCliente}"/>
                         <p:tooltip value="editar usuario" for="btnEdit"/>
                     </p:commandButton>
                 </p:column>

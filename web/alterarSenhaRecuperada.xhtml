@@ -21,7 +21,6 @@
         </p:dialog>
         
         <h:form id="formLogin">
-            <p:messages id="msgs"/>
         <p:panel  header="ENTRAR"  style="height: 590px; text-align: center; alignment-baseline: central">
             <center>
                 <br/><br/>
@@ -56,7 +55,7 @@
                 <br/>
                 <f:facet  name="footer">
                     <center>
-                        <p:commandButton action="#{cadastroController.alteraSenhaRecuperada}" value="acessar" update="msgs" icon="icon-salvar"/>
+                        <p:commandButton action="#{cadastroController.alteraSenhaRecuperada}" value="acessar" update="@all" icon="icon-salvar"/>
                     </center>
                 </f:facet>
             </p:panelGrid>

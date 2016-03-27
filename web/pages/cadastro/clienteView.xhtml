@@ -23,7 +23,7 @@
     <h:form id="form">
         <p:panel id="dash" style="height: 590px; text-align: center; alignment-baseline: central">
             <f:facet name="header">
-                <h:outputText value="MODULO CADASTRO - clientes - alteração"/>
+                <h:outputText value="MODULO CADASTRO - clientes - visualização"/>
             </f:facet>
             
             <br/>
@@ -46,31 +46,30 @@
                                 
                 <p:outputLabel id="labCli" value="Nome" rendered="#{cadClientesController.pf}"/>
                 <p:outputLabel id="labCli1" value="Razão Social" rendered="#{cadClientesController.pj}"/>
-                <p:inputText id="cli" rendered="#{cadClientesController.ok}" disabled="false" maxlength="150"
+                <p:inputText id="cli" rendered="#{cadClientesController.ok}" disabled="true" maxlength="150"
                              value="#{cadClientesController.selectedCliente.nomeRazaoSocial}">
                 </p:inputText>
                 
                 <p:outputLabel id="labCpfCnpj" value="CPF" rendered="#{cadClientesController.pf}"/>
                 <p:outputLabel id="labCpfCnpj1" value="CNPJ" rendered="#{cadClientesController.pj}"/>
-                <p:inputMask mask="#{cadClientesController.mask}" value="#{cadClientesController.selectedCliente.cpfCnpj}" rendered="#{cadClientesController.ok}" converter="convertDocumento" dir="RTL"/>
+                <p:inputMask mask="#{cadClientesController.mask}" value="#{cadClientesController.selectedCliente.cpfCnpj}" rendered="#{cadClientesController.ok}" converter="convertDocumento" dir="RTL" disabled="true"/>
                 
                 <p:outputLabel id="labApel" value="Apelido" rendered="#{cadClientesController.pf}"/>
                 <p:outputLabel id="labApel1" value="Fantasia" rendered="#{cadClientesController.pj}"/>
-                <p:inputText id="apel" rendered="#{cadClientesController.ok}" disabled="false" maxlength="60"
+                <p:inputText id="apel" rendered="#{cadClientesController.ok}" disabled="true" maxlength="60"
                              value="#{cadClientesController.selectedCliente.apelidoFantasia}">
                 </p:inputText>
 
                 <p:outputLabel id="labmail" value="Email"/>
-                <p:inputText id="mail" disabled="false" maxlength="60"
+                <p:inputText id="mail" disabled="true" maxlength="60"
                              value="#{cadClientesController.selectedCliente.emailResponsavel}">
                 </p:inputText>
                 
                 <p:outputLabel id="labFone" value="Telefone"/>
-                <p:inputMask mask="(99)9999-9999?9" value="#{cadClientesController.selectedCliente.telefone}" converter="convertPhone">
-                </p:inputMask>
+                <p:inputMask mask="(99)9999-9999?9" value="#{cadClientesController.selectedCliente.telefone}" converter="convertPhone" disabled="true"/>
                 
                 <p:outputLabel id="labFone1" value="Telefone1"/>
-                <p:inputMask mask="(99)9999-9999?9" autocomplete="false" value="#{cadClientesController.selectedCliente.telefone1}" converter="convertPhone"/>
+                <p:inputMask mask="(99)9999-9999?9" autocomplete="false" value="#{cadClientesController.selectedCliente.telefone1}" converter="convertPhone" disabled="true"/>
                 
                 <p:outputLabel id="labClie" value="cliente"/>
                 <p:outputLabel id="labForn" value="fornecedor"/>
@@ -78,16 +77,16 @@
                 <p:outputLabel id="labTrans" value="transportador"/>
                 
                 <p:selectBooleanCheckbox id="clie" disabled="true" value="#{cadClientesController.selectedCliente.cliente}"/>
-                <p:selectBooleanCheckbox id="forn" value="#{cadClientesController.selectedCliente.fornecedor}"/>
-                <p:selectBooleanCheckbox id="func" value="#{cadClientesController.selectedCliente.funcionario}"/>
-                <p:selectBooleanCheckbox id="trans" value="#{cadClientesController.selectedCliente.transportador}"/>
+                <p:selectBooleanCheckbox id="forn" disabled="true" value="#{cadClientesController.selectedCliente.fornecedor}"/>
+                <p:selectBooleanCheckbox id="func" disabled="true" value="#{cadClientesController.selectedCliente.funcionario}"/>
+                <p:selectBooleanCheckbox id="trans" disabled="true" value="#{cadClientesController.selectedCliente.transportador}"/>
 
             </p:panelGrid>
 
             <center>
             <p:dataList value="#{cadClientesController.listEnderecos}" var="end" type="unordered" itemType="none" paginator="true" rows="5" styleClass="paginated">
                 <f:facet name="header">
-                    <p:commandButton value="novo endereço" icon="icon-cadastros">
+                    <p:commandButton value="novo endereço" icon="icon-cadastros" rendered="false">
                         <p:ajax listener="#{cadClientesController.enderecoNew()}" update=":form:endDetail" oncomplete="PF('endDialog').show()"/>
                     </p:commandButton>
                 </f:facet>
@@ -99,62 +98,62 @@
 
             <f:facet  name="footer">
                 <center>
-                    <p:commandButton action="#{cadClientesController.alteraCliente()}" value="gravar" icon="icon-salvar" update="@all" process="@all"/>
+                    <p:commandButton action="#{cadClientesController.alteraCliente()}" value="gravar" icon="icon-salvar" update="@all" process="@all" rendered="false"/>
                     <p:commandButton action="#{cadClientesController.clientes()}" value="voltar" icon="icon-voltar"/>
                 </center>
             </f:facet>
         </p:panel>
         <div style="clear:both" />
         
-        <p:dialog header="Atualização de endereço" widgetVar="endDialog" showEffect="blind" hideEffect="explode" resizable="false" closable="false">
+        <p:dialog header="Visualização de endereço" widgetVar="endDialog" showEffect="blind" hideEffect="explode" resizable="false" closable="false">
             <p:outputPanel id="endDetail" style="text-align:center;">
                 <p:panelGrid  columns="2" columnClasses="label,value">
                     
                     <p:outputLabel id="labEst" value="Estado" for="est"/>
-                    <h:selectOneMenu id="est" label="labEst" value="#{cadClientesController.estado}">
+                    <h:selectOneMenu id="est" label="labEst" value="#{cadClientesController.estado}" disabled="true">
                         <p:ajax update="mun" process="@form" listener="#{cadClientesController.changeEstado()}"/>
                         <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
                         <f:selectItems value="#{cadClientesController.listEstados}" var="est" itemLabel="#{est.uf} - #{est.estado}" itemValue="#{est.idEstado}"/>
                     </h:selectOneMenu>
 
                     <p:outputLabel id="labMun" value="Selecione o municipio" for="mun"/>
-                    <h:selectOneMenu id="mun" label="labMun" value="#{cadClientesController.municipio}">
+                    <h:selectOneMenu id="mun" label="labMun" value="#{cadClientesController.municipio}" disabled="true">
                         <p:ajax process="@form"/>
                         <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
                         <f:selectItems value="#{cadClientesController.listMunicipios}" var="mun" itemLabel="#{mun.municipio}" itemValue="#{mun.idMunicipio}"/>
                     </h:selectOneMenu>
                     
                     <p:outputLabel id="labTend" value="Tipo de endereço" for="tend"/>
-                    <h:selectOneMenu id="tend" label="labTend" value="#{cadClientesController.tipoEndereco}">
+                    <h:selectOneMenu id="tend" label="labTend" value="#{cadClientesController.tipoEndereco}" disabled="true">
                         <p:ajax process="@form"/>
                         <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
                         <f:selectItems value="#{cadClientesController.listTipoEndereco}" var="tend" itemLabel="#{tend.codTipoEndereco} - #{tend.tipoEndereco}" itemValue="#{tend.id}"/>
                     </h:selectOneMenu>
                     
                     <p:outputLabel id="labEnd" value="Endereço"/>
-                    <p:inputText id="end" disabled="false" maxlength="100"
+                    <p:inputText id="end" maxlength="100" disabled="true"
                                  value="#{cadClientesController.selectedEndereco.endereco}">
                     </p:inputText>
 
                     <p:outputLabel id="labNumero" value="Numero"/>
-                    <p:inputMask id="numero" mask="?999999" value="#{cadClientesController.selectedEndereco.numero}"/>
+                    <p:inputMask id="numero" mask="?999999" value="#{cadClientesController.selectedEndereco.numero}" disabled="true"/>
                     
                     <p:outputLabel id="labCompl" value="Complemento"/>
-                    <p:inputText id="compl" disabled="false" maxlength="100"
+                    <p:inputText id="compl" maxlength="100" disabled="true"
                                  value="#{cadClientesController.selectedEndereco.complemento}">
                     </p:inputText>
                     
                     <p:outputLabel id="labBairro" value="Bairro"/>
-                    <p:inputText id="bairro" disabled="false" maxlength="50"
+                    <p:inputText id="bairro" maxlength="50" disabled="true"
                                  value="#{cadClientesController.selectedEndereco.bairro}">
                     </p:inputText>
                     
                     <p:outputLabel id="labCep" value="CEP"/>
-                    <p:inputMask id="cep" mask="99.999-999" value="#{cadClientesController.selectedEndereco.cep}" converter="convertCep"/>
+                    <p:inputMask id="cep" mask="99.999-999" value="#{cadClientesController.selectedEndereco.cep}" converter="convertCep" disabled="true"/>
                 
                     <f:facet  name="footer">
                     <center>
-                        <p:commandButton actionListener="#{cadClientesController.incluiEndereco()}" value="gravar" icon="icon-salvar" update="@all" process="@all" oncomplete="PF('endDialog').hide()"/>
+                        <p:commandButton actionListener="#{cadClientesController.incluiEndereco()}" value="gravar" icon="icon-salvar" update="@all" process="@all" oncomplete="PF('endDialog').hide()" rendered="false"/>
                         <p:commandButton value="voltar" icon="icon-voltar" oncomplete="PF('endDialog').hide()"/>
                     </center>
                     </f:facet>

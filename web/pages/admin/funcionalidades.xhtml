@@ -21,13 +21,12 @@
         </p:dialog>
         
     <h:form>
-        <p:messages id="msgs"/>
         <p:panel id="dash" header="MODULO ADMIN - funcionalidades"  style="height: 590px; text-align: center; alignment-baseline: central">
             <f:facet name="header">
                 <h:outputText value="MODULO ADMIN - funcionalidades"/>
                 <div align="center">
                 <p:panelGrid columns="3" layout="grid">
-                    <p:outputLabel id="labMod" value="Selecione a empresa" for="mod"/>
+                    <p:outputLabel id="labMod" value="Selecione o modulo" for="mod"/>
                     <p:selectOneMenu id="mod" label="labMod" value="#{adminFuncionalidadesController.sistema}">
                         <p:ajax update="@form" process="@form" listener="#{adminFuncionalidadesController.changeModulo}"/>
                         <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>

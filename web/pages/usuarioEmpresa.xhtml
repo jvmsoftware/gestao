@@ -21,7 +21,6 @@
         </p:dialog>
         
         <h:form id="formCad">
-            <p:messages id="msgs"/>
             <p:panel header="CADASTRO - empresa" style="text-align: center; alignment-baseline: central">
                 <br/><center>
                 <h:outputText value="#{cadastroController.usu.nomeUsuario}, seja bem vindo a jvmdsoftware."/>
@@ -73,7 +72,7 @@
                     <p:inputText rendered="#{cadastroController.segueCidade}" id="cep" value="#{cadastroController.emp.cep}"/>
                     <f:facet  name="footer">
                         <center>
-                            <p:commandButton action="#{cadastroController.cadastrarEmpresa}" value="gravar dados" update="msgs" process="@form" icon="icon-gravar"/>
+                            <p:commandButton action="#{cadastroController.cadastrarEmpresa}" value="gravar dados" update="@all" process="@form" icon="icon-gravar"/>
                         </center>
                     </f:facet>
                 </p:panelGrid>

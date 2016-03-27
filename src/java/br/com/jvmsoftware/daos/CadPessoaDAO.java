@@ -32,30 +32,54 @@ public class CadPessoaDAO extends DefaultDAO {
         return pessoas;
     }
     
-    public List<CadPessoa> listClientesByEmpresa(PubEmpresa empresa) throws SQLException {
+    public List<CadPessoa> listClientesByEmpresa(PubEmpresa empresa, String filtro) throws SQLException {
         getSession();
         begin();
         List<CadPessoa> pessoas;
-        pessoas = session.createQuery("from CadPessoa u where u.pubEmpresa.idEmpresa = :emp and u.cliente = true").setParameter("emp", empresa.getIdEmpresa()).list();
+        if ("".equals(filtro)) {
+            pessoas = session.createQuery("from CadPessoa u where u.pubEmpresa.idEmpresa = :emp and u.cliente = true").setParameter("emp", empresa.getIdEmpresa()).list();
+        } else {
+            pessoas = session.createQuery("from CadPessoa u where u.pubEmpresa.idEmpresa = :emp and upper(u.nomeRazaoSocial) like upper(:filtro) and u.cliente = true").setParameter("emp", empresa.getIdEmpresa()).setParameter("filtro", "%"+filtro+"%").list();
+        }
         return pessoas;
     }
     
-    public List<CadPessoa> listFornecedoresByEmpresa(PubEmpresa empresa) throws SQLException {
+    public List<CadPessoa> listFornecedoresByEmpresa(PubEmpresa empresa, String filtro) throws SQLException {
         getSession();
         begin();
         List<CadPessoa> pessoas;
-        pessoas = session.createQuery("from CadPessoa u where u.pubEmpresa.idEmpresa = :emp and u.fornecedor = true").setParameter("emp", empresa.getIdEmpresa()).list();
+        if ("".equals(filtro)) {
+            pessoas = session.createQuery("from CadPessoa u where u.pubEmpresa.idEmpresa = :emp and u.fornecedor = true").setParameter("emp", empresa.getIdEmpresa()).list();
+        } else {
+            pessoas = session.createQuery("from CadPessoa u where u.pubEmpresa.idEmpresa = :emp and upper(u.nomeRazaoSocial) like upper(:filtro) and u.fornecedor = true").setParameter("emp", empresa.getIdEmpresa()).setParameter("filtro", "%"+filtro+"%").list();
+        }
         return pessoas;
     }
     
-    public List<CadPessoa> listFuncionariosByEmpresa(PubEmpresa empresa) throws SQLException {
+    public List<CadPessoa> listFuncionariosByEmpresa(PubEmpresa empresa, String filtro) throws SQLException {
         getSession();
         begin();
         List<CadPessoa> pessoas;
-        pessoas = session.createQuery("from CadPessoa u where u.pubEmpresa.idEmpresa = :emp and u.funcionario = true").setParameter("emp", empresa.getIdEmpresa()).list();
+        if ("".equals(filtro)) {
+            pessoas = session.createQuery("from CadPessoa u where u.pubEmpresa.idEmpresa = :emp and u.funcionario = true").setParameter("emp", empresa.getIdEmpresa()).list();
+        } else {
+            pessoas = session.createQuery("from CadPessoa u where u.pubEmpresa.idEmpresa = :emp and upper(u.nomeRazaoSocial) like upper(:filtro) and u.funcionario = true").setParameter("emp", empresa.getIdEmpresa()).setParameter("filtro", "%"+filtro+"%").list();
+        }
         return pessoas;
     }
-    
+
+    public List<CadPessoa> listTransportadoresByEmpresa(PubEmpresa empresa, String filtro) throws SQLException {
+        getSession();
+        begin();
+        List<CadPessoa> pessoas;
+        if ("".equals(filtro)) {
+            pessoas = session.createQuery("from CadPessoa u where u.pubEmpresa.idEmpresa = :emp and u.transportador = true").setParameter("emp", empresa.getIdEmpresa()).list();
+        } else {
+            pessoas = session.createQuery("from CadPessoa u where u.pubEmpresa.idEmpresa = :emp and upper(u.nomeRazaoSocial) like upper(:filtro) and u.transportador = true").setParameter("emp", empresa.getIdEmpresa()).setParameter("filtro", "%"+filtro+"%").list();
+        }
+        return pessoas;
+    }
+        
     public void inserirPessoa (CadPessoa pessoa) throws SQLException {
         getSession();
         begin();

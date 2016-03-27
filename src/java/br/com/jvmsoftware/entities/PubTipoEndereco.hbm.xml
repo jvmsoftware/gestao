@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 27/Mar/2016 8:26:52 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.jvmsoftware.entities.PubTipoEndereco" table="pub_tipo_endereco" catalog="jvmdsoftware" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="codTipoEndereco" type="string">
+            <column name="cod_tipo_endereco" length="3" />
+        </property>
+        <property name="tipoEndereco" type="string">
+            <column name="tipo_endereco" length="50" />
+        </property>
+        <set name="cadEnderecoses" table="cad_enderecos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tipo_endereco" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.CadEnderecos" />
+        </set>
+    </class>
+</hibernate-mapping>

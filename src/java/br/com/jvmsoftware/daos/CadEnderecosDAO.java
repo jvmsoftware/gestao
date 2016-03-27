@@ -5,8 +5,8 @@
  */
 package br.com.jvmsoftware.daos;
 
-import br.com.jvmsoftware.entities.PubEmpresa;
 import br.com.jvmsoftware.entities.CadEnderecos;
+import br.com.jvmsoftware.entities.CadPessoa;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -19,47 +19,31 @@ public class CadEnderecosDAO extends DefaultDAO {
     public CadEnderecos getById(int Id) throws SQLException {
         getSession();
         begin();
-        CadEnderecos pessoaFisica;
-        pessoaFisica = (CadEnderecos) session.get(CadEnderecos.class, Id);
-        return pessoaFisica;
+        CadEnderecos endereco;
+        endereco = (CadEnderecos) session.get(CadEnderecos.class, Id);
+        return endereco;
     }
     
-    public CadEnderecos getPessoasByMail(String mail) throws SQLException {
+    public List<CadEnderecos> listEnderecosByPessoa(CadPessoa pessoa) throws SQLException {
         getSession();
         begin();
-        CadEnderecos pessoaFisica;
-        pessoaFisica = (CadEnderecos) session.createQuery("from CadEnderecos u where u.email = :mail").setParameter("mail", mail).uniqueResult();
-        return pessoaFisica;
+        List<CadEnderecos> enderecos;
+        enderecos = session.createQuery("from CadEnderecos u where u.cadPessoa.idPessoa = :pes").setParameter("pes", pessoa.getIdPessoa()).list();
+        return enderecos;
     }
     
-    public List<CadEnderecos> listAllPessoas() throws SQLException {
+    public void inserirEndereco (CadEnderecos endereco) throws SQLException {
         getSession();
         begin();
-        List<CadEnderecos> pessoasFisica;
-        pessoasFisica = session.createQuery("from CadEnderecos").list();
-        return pessoasFisica;
-    }
-    
-    public List<CadEnderecos> listPessoasByEmpresa(PubEmpresa empresa) throws SQLException {
-        getSession();
-        begin();
-        List<CadEnderecos> pessoasFisica;
-        pessoasFisica = session.createQuery("from CadEnderecos u where u.pubEmpresa.idEmpresa = :emp").setParameter("emp", empresa.getIdEmpresa()).list();
-        return pessoasFisica;
-    }
-    
-    public void inserirPessoa (CadEnderecos pessoaFisica) throws SQLException {
-        getSession();
-        begin();
-        session.save(pessoaFisica);
+        session.save(endereco);
         commit();
         closeSession();
     }
     
-    public void updatePessoa (CadEnderecos pessoaFisica) throws SQLException {
+    public void updateEndereco (CadEnderecos endereco) throws SQLException {
         getSession();
         begin();
-        session.merge(pessoaFisica);
+        session.merge(endereco);
         commit();
         closeSession();
     }

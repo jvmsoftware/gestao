@@ -40,6 +40,7 @@
     <mapping resource="br/com/jvmsoftware/entities/PubFuncionalidade.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/PubPosicao.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/AcsEmpresaSistema.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/PubTipoEndereco.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/WflWorkflow.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/WflSeveridade.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/WflWorkflowEvento.hbm.xml"/>
