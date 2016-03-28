@@ -21,44 +21,44 @@
         </p:dialog>
         
     <h:form id="form">
-        <p:panel id="dash" header="MODULO CADASTROS - Funcionarios"  style="height: 590px; text-align: center; alignment-baseline: central">
+        <p:panel id="dash" header="MODULO CADASTROS - transportadores"  style="height: 590px; text-align: center; alignment-baseline: central">
             <f:facet name="header">
-                <h:outputText value="MODULO CADASTROS - funcionarios"/>
+                <h:outputText value="MODULO CADASTROS - transportadores"/>
                 <div align="center">
-                    <p:commandButton id="btnNew" icon="icon-funcionarios" action="#{cadFuncionariosController.funcionarioNew()}">
-                        <p:tooltip value="novo funcionario" for="btnNew"/>
+                    <p:commandButton id="btnNew" icon="icon-transporte" action="#{cadTransportadoresController.transportadorNew()}">
+                        <p:tooltip value="novo transportador" for="btnNew"/>
                     </p:commandButton>
-                    <p:inputText id="filtro" value="#{cadFuncionariosController.filtro}" placeholder="parte do nome ou razão social">
-                        <p:tooltip value="filtro funcionario" for="filtro"/>
-                        <p:ajax event="keyup" process="@all" update="tabFun" listener="#{cadFuncionariosController.changeFiltro()}"/>
+                    <p:inputText id="filtro" value="#{cadTransportadoresController.filtro}" placeholder="parte do nome ou razão social">
+                        <p:tooltip value="filtro transportador" for="filtro"/>
+                        <p:ajax event="keyup" process="@all" update="tabForn" listener="#{cadTransportadoresController.changeFiltro()}"/>
                     </p:inputText>
                 </div>
             </f:facet>
-            <p:dataTable id="tabFun" var="fun" value="#{cadFuncionariosController.listFuncionarios}"
+            <p:dataTable id="tabForn" var="forn" value="#{cadTransportadoresController.listTransportadores}"
                          paginator="true" rows="10" 
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15">
                 <p:column headerText="Empresa">
-                    <h:outputText value="#{fun.pubEmpresa.fantasia}"/>
+                    <h:outputText value="#{forn.pubEmpresa.fantasia}"/>
                 </p:column>
-                <p:column headerText="funcionario">
-                    <h:outputText value="#{fun.nomeRazaoSocial}"/>
+                <p:column headerText="transportador">
+                    <h:outputText value="#{forn.nomeRazaoSocial}"/>
                 </p:column>
                 <p:column headerText="UF">
-                    <h:outputText value="#{fun.cadEnderecos.pubEstado.uf}"/>
+                    <h:outputText value="#{forn.cadEnderecos.pubEstado.uf}"/>
                 </p:column>
                 <p:column headerText="Municipio">
-                    <h:outputText value="#{fun.cadEnderecos.pubMunicipio.municipio}"/>
+                    <h:outputText value="#{forn.cadEnderecos.pubMunicipio.municipio}"/>
                 </p:column>
                 
                 
                 <p:column headerText="detalhes">
-                    <p:commandButton id="btnView" icon="icon-visualizar" action="#{cadFuncionariosController.funcionarioView()}" process="@form">
-                        <f:setPropertyActionListener value="#{fun}" target="#{cadFuncionariosController.selectedFuncionario}"/>
+                    <p:commandButton id="btnView" icon="icon-visualizar" action="#{cadTransportadoresController.transportadorView()}" process="@form">
+                        <f:setPropertyActionListener value="#{forn}" target="#{cadTransportadoresController.selectedTransportador}"/>
                         <p:tooltip value="visualizar usuario" for="btnView"/>
                     </p:commandButton>
-                    <p:commandButton id="btnEdit" icon="icon-editar" action="#{cadFuncionariosController.funcionarioEdit()}" process="@form">
-                        <f:setPropertyActionListener value="#{fun}" target="#{cadFuncionariosController.selectedFuncionario}"/>
+                    <p:commandButton id="btnEdit" icon="icon-editar" action="#{cadTransportadoresController.transportadorEdit()}" process="@form">
+                        <f:setPropertyActionListener value="#{forn}" target="#{cadTransportadoresController.selectedTransportador}"/>
                         <p:tooltip value="editar usuario" for="btnEdit"/>
                     </p:commandButton>
                 </p:column>

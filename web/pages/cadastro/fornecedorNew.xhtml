@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+<ui:composition template="/template.xhtml">  
+    <ui:define name="menu">
+        <p:panel style=" width:100%; height:55px">
+            <ui:include src="/pages/menuDash.xhtml"/>
+        </p:panel>
+    </ui:define>
+    
+    <ui:define name="conteudo">    
+        
+        <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+        <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+            <p:graphicImage value="images/loading.gif"/>
+        </p:dialog>
+        
+    <h:form id="form">
+        <p:panel id="dash" style="height: 590px; text-align: center; alignment-baseline: central">
+            <f:facet name="header">
+                <h:outputText value="MODULO CADASTRO - fornecedores - inclusão"/>
+            </f:facet>
+            
+            <br/>
+            
+            <p:panelGrid columns="2" layout="grid">
+                <p:panelGrid columns="2" layout="grid">
+                    <p:outputLabel id="labEmp" value="Empresa"/>
+                    <p:inputText id="emp" label="labEmp" rendered="true" disabled="true"
+                                 value="#{cadFornecedoresController.selectedFornecedor.pubEmpresa.fantasia}">
+                    </p:inputText>
+                </p:panelGrid>
+
+                <p:selectOneRadio id="tipoCadastro" value="#{cadFornecedoresController.tipoCadastro}" label="labTipoCad">
+                    <f:selectItems value="#{cadFornecedoresController.listTipoCadastro}" var="tCad" itemLabel="#{tCad.descricaoTipoCadastro}" itemValue="#{tCad.idTipoCadastro}"/>
+                    <p:ajax listener="#{cadFornecedoresController.tipoCadastroChange()}" update="form"/>
+                </p:selectOneRadio>
+            </p:panelGrid>
+            
+            <p:panelGrid columns="4" layout="grid">
+                
+                <p:outputLabel id="labFor" value="Nome" rendered="#{cadFornecedoresController.pf}"/>
+                <p:outputLabel id="labFor1" value="Razão Social" rendered="#{cadFornecedoresController.pj}"/>
+                <p:inputText id="for" rendered="#{cadFornecedoresController.ok}" disabled="false" maxlength="150"
+                             value="#{cadFornecedoresController.selectedFornecedor.nomeRazaoSocial}">
+                </p:inputText>
+                
+                <p:outputLabel id="labCpfCnpj" value="CPF" rendered="#{cadFornecedoresController.pf}"/>
+                <p:outputLabel id="labCpfCnpj1" value="CNPJ" rendered="#{cadFornecedoresController.pj}"/>
+                <p:inputMask mask="#{cadFornecedoresController.mask}" value="#{cadFornecedoresController.selectedFornecedor.cpfCnpj}" rendered="#{cadFornecedoresController.ok}" converter="convertDocumento" dir="RTL"/>
+                
+                <p:outputLabel id="labApel" value="Apelido" rendered="#{cadFornecedoresController.pf}"/>
+                <p:outputLabel id="labApel1" value="Fantasia" rendered="#{cadFornecedoresController.pj}"/>
+                <p:inputText id="apel" rendered="#{cadFornecedoresController.ok}" disabled="false" maxlength="60"
+                             value="#{cadFornecedoresController.selectedFornecedor.apelidoFantasia}">
+                </p:inputText>
+                
+                <p:outputLabel id="labmail" value="Email" rendered="#{cadFornecedoresController.ok}"/>
+                <p:inputText id="mail" rendered="#{cadFornecedoresController.ok}" disabled="false" maxlength="60"
+                             value="#{cadFornecedoresController.selectedFornecedor.emailResponsavel}">
+                </p:inputText>
+                
+                <p:outputLabel id="labFone" value="Telefone" rendered="#{cadFornecedoresController.ok}"/>
+                <p:inputMask mask="(99)9999-9999?9" value="#{cadFornecedoresController.selectedFornecedor.telefone}" rendered="#{cadFornecedoresController.ok}" converter="convertPhone"/>
+                
+                <p:outputLabel id="labFone1" value="Telefone1" rendered="#{cadFornecedoresController.ok}"/>
+                <p:inputMask mask="(99)9999-9999?9" value="#{cadFornecedoresController.selectedFornecedor.telefone1}" rendered="#{cadFornecedoresController.ok}" converter="convertPhone"/>
+                
+                <p:outputLabel id="labClie" value="cliente" rendered="#{cadFornecedoresController.ok}"/>
+                <p:outputLabel id="labForn" value="fornecedor" rendered="#{cadFornecedoresController.ok}"/>
+                <p:outputLabel id="labFunc" value="funcionario" rendered="#{cadFornecedoresController.ok}"/>
+                <p:outputLabel id="labTrans" value="transportador" rendered="#{cadFornecedoresController.ok}"/>
+                
+                <p:selectBooleanCheckbox id="clie" value="#{cadFornecedoresController.selectedFornecedor.cliente}" rendered="#{cadFornecedoresController.ok}"/>
+                <p:selectBooleanCheckbox id="forn" disabled="true" value="#{cadFornecedoresController.selectedFornecedor.fornecedor}" rendered="#{cadFornecedoresController.ok}"/>
+                <p:selectBooleanCheckbox id="func" value="#{cadFornecedoresController.selectedFornecedor.funcionario}" rendered="#{cadFornecedoresController.ok}"/>
+                <p:selectBooleanCheckbox id="trans" value="#{cadFornecedoresController.selectedFornecedor.transportador}" rendered="#{cadFornecedoresController.ok}"/>
+
+            </p:panelGrid>
+
+            <f:facet  name="footer">
+                <center>
+                    <p:commandButton action="#{cadFornecedoresController.insereFornecedor()}" value="gravar" icon="icon-salvar" update="@all" process="@form"/>
+                    <p:commandButton action="#{cadFornecedoresController.fornecedores()}" value="voltar" icon="icon-voltar"/>
+                </center>
+            </f:facet>
+        </p:panel>
+        <div style="clear:both" />
+
+    </h:form>
+    </ui:define>  
+</ui:composition>  
+</html>

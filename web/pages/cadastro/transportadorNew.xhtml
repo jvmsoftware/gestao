@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+<ui:composition template="/template.xhtml">  
+    <ui:define name="menu">
+        <p:panel style=" width:100%; height:55px">
+            <ui:include src="/pages/menuDash.xhtml"/>
+        </p:panel>
+    </ui:define>
+    
+    <ui:define name="conteudo">    
+        
+        <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+        <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+            <p:graphicImage value="images/loading.gif"/>
+        </p:dialog>
+        
+    <h:form id="form">
+        <p:panel id="dash" style="height: 590px; text-align: center; alignment-baseline: central">
+            <f:facet name="header">
+                <h:outputText value="MODULO CADASTRO - transportadores - inclusão"/>
+            </f:facet>
+            
+            <br/>
+            
+            <p:panelGrid columns="2" layout="grid">
+                <p:panelGrid columns="2" layout="grid">
+                    <p:outputLabel id="labEmp" value="Empresa"/>
+                    <p:inputText id="emp" label="labEmp" rendered="true" disabled="true"
+                                 value="#{cadTransportadoresController.selectedTransportador.pubEmpresa.fantasia}">
+                    </p:inputText>
+                </p:panelGrid>
+
+                <p:selectOneRadio id="tipoCadastro" value="#{cadTransportadoresController.tipoCadastro}" label="labTipoCad">
+                    <f:selectItems value="#{cadTransportadoresController.listTipoCadastro}" var="tCad" itemLabel="#{tCad.descricaoTipoCadastro}" itemValue="#{tCad.idTipoCadastro}"/>
+                    <p:ajax listener="#{cadTransportadoresController.tipoCadastroChange()}" update="form"/>
+                </p:selectOneRadio>
+            </p:panelGrid>
+            
+            <p:panelGrid columns="4" layout="grid">
+                
+                <p:outputLabel id="labTra" value="Nome" rendered="#{cadTransportadoresController.pf}"/>
+                <p:outputLabel id="labTra1" value="Razão Social" rendered="#{cadTransportadoresController.pj}"/>
+                <p:inputText id="tra" rendered="#{cadTransportadoresController.ok}" disabled="false" maxlength="150"
+                             value="#{cadTransportadoresController.selectedTransportador.nomeRazaoSocial}">
+                </p:inputText>
+                
+                <p:outputLabel id="labCpfCnpj" value="CPF" rendered="#{cadTransportadoresController.pf}"/>
+                <p:outputLabel id="labCpfCnpj1" value="CNPJ" rendered="#{cadTransportadoresController.pj}"/>
+                <p:inputMask mask="#{cadTransportadoresController.mask}" value="#{cadTransportadoresController.selectedTransportador.cpfCnpj}" rendered="#{cadTransportadoresController.ok}" converter="convertDocumento" dir="RTL"/>
+                
+                <p:outputLabel id="labApel" value="Apelido" rendered="#{cadTransportadoresController.pf}"/>
+                <p:outputLabel id="labApel1" value="Fantasia" rendered="#{cadTransportadoresController.pj}"/>
+                <p:inputText id="apel" rendered="#{cadTransportadoresController.ok}" disabled="false" maxlength="60"
+                             value="#{cadTransportadoresController.selectedTransportador.apelidoFantasia}">
+                </p:inputText>
+                
+                <p:outputLabel id="labmail" value="Email" rendered="#{cadTransportadoresController.ok}"/>
+                <p:inputText id="mail" rendered="#{cadTransportadoresController.ok}" disabled="false" maxlength="60"
+                             value="#{cadTransportadoresController.selectedTransportador.emailResponsavel}">
+                </p:inputText>
+                
+                <p:outputLabel id="labFone" value="Telefone" rendered="#{cadTransportadoresController.ok}"/>
+                <p:inputMask mask="(99)9999-9999?9" value="#{cadTransportadoresController.selectedTransportador.telefone}" rendered="#{cadTransportadoresController.ok}" converter="convertPhone"/>
+                
+                <p:outputLabel id="labFone1" value="Telefone1" rendered="#{cadTransportadoresController.ok}"/>
+                <p:inputMask mask="(99)9999-9999?9" value="#{cadTransportadoresController.selectedTransportador.telefone1}" rendered="#{cadTransportadoresController.ok}" converter="convertPhone"/>
+                
+                <p:outputLabel id="labClie" value="cliente" rendered="#{cadTransportadoresController.ok}"/>
+                <p:outputLabel id="labForn" value="transportador" rendered="#{cadTransportadoresController.ok}"/>
+                <p:outputLabel id="labFunc" value="funcionario" rendered="#{cadTransportadoresController.ok}"/>
+                <p:outputLabel id="labTrans" value="transportador" rendered="#{cadTransportadoresController.ok}"/>
+                
+                <p:selectBooleanCheckbox id="clie" value="#{cadTransportadoresController.selectedTransportador.cliente}" rendered="#{cadTransportadoresController.ok}"/>
+                <p:selectBooleanCheckbox id="forn" disabled="true" value="#{cadTransportadoresController.selectedTransportador.transportador}" rendered="#{cadTransportadoresController.ok}"/>
+                <p:selectBooleanCheckbox id="func" value="#{cadTransportadoresController.selectedTransportador.funcionario}" rendered="#{cadTransportadoresController.ok}"/>
+                <p:selectBooleanCheckbox id="trans" value="#{cadTransportadoresController.selectedTransportador.transportador}" rendered="#{cadTransportadoresController.ok}"/>
+
+            </p:panelGrid>
+
+            <f:facet  name="footer">
+                <center>
+                    <p:commandButton action="#{cadTransportadoresController.insereTransportador()}" value="gravar" icon="icon-salvar" update="@all" process="@form"/>
+                    <p:commandButton action="#{cadTransportadoresController.transportadores()}" value="voltar" icon="icon-voltar"/>
+                </center>
+            </f:facet>
+        </p:panel>
+        <div style="clear:both" />
+
+    </h:form>
+    </ui:define>  
+</ui:composition>  
+</html>

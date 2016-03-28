@@ -130,6 +130,10 @@ public class MenuDashboardController {
         return "/pages/cadastro/funcionarios";
     }
 
+    public String cadTransportadores() {
+        return "/pages/cadastro/transportadores";
+    }
+
     public String cadProdutos() {
         return "/pages/cadastro/produtos";
     }

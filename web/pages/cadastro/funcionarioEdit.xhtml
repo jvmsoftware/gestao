@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+<ui:composition template="/template.xhtml">  
+    <ui:define name="menu">
+        <p:panel style=" width:100%; height:55px">
+            <ui:include src="/pages/menuDash.xhtml"/>
+        </p:panel>
+    </ui:define>
+    
+    <ui:define name="conteudo">    
+        
+        <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+        <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+            <p:graphicImage value="images/loading.gif"/>
+        </p:dialog>
+        
+    <h:form id="form">
+        <p:panel id="dash" style="height: 590px; text-align: center; alignment-baseline: central">
+            <f:facet name="header">
+                <h:outputText value="MODULO CADASTRO - funcionarios - alteração"/>
+            </f:facet>
+            
+            <br/>
+            
+            <p:panelGrid columns="2" layout="grid">
+                <p:panelGrid columns="2" layout="grid">
+                    <p:outputLabel id="labEmp" value="Empresa"/>
+                    <p:inputText id="emp" label="labEmp" rendered="true" disabled="true"
+                                 value="#{cadFuncionariosController.selectedFuncionario.pubEmpresa.fantasia}">
+                    </p:inputText>
+                </p:panelGrid>
+
+                <p:selectOneRadio id="tipoCadastro" value="#{cadFuncionariosController.tipoCadastro}" label="labTipoCad" disabled="true">
+                    <f:selectItems value="#{cadFuncionariosController.listTipoCadastro}" var="tCad" itemLabel="#{tCad.descricaoTipoCadastro}" itemValue="#{tCad.idTipoCadastro}"/>
+                    <p:ajax listener="#{cadFuncionariosController.tipoCadastroChange()}" update="form"/>
+                </p:selectOneRadio>
+            </p:panelGrid>
+            
+            <p:panelGrid columns="4" layout="grid">
+                                
+                <p:outputLabel id="labFun" value="Nome" rendered="#{cadFuncionariosController.pf}"/>
+                <p:outputLabel id="labFun1" value="Razão Social" rendered="#{cadFuncionariosController.pj}"/>
+                <p:inputText id="fun" rendered="#{cadFuncionariosController.ok}" disabled="false" maxlength="150"
+                             value="#{cadFuncionariosController.selectedFuncionario.nomeRazaoSocial}">
+                </p:inputText>
+                
+                <p:outputLabel id="labCpfCnpj" value="CPF" rendered="#{cadFuncionariosController.pf}"/>
+                <p:outputLabel id="labCpfCnpj1" value="CNPJ" rendered="#{cadFuncionariosController.pj}"/>
+                <p:inputMask mask="#{cadFuncionariosController.mask}" value="#{cadFuncionariosController.selectedFuncionario.cpfCnpj}" rendered="#{cadFuncionariosController.ok}" converter="convertDocumento" dir="RTL"/>
+                
+                <p:outputLabel id="labApel" value="Apelido" rendered="#{cadFuncionariosController.pf}"/>
+                <p:outputLabel id="labApel1" value="Fantasia" rendered="#{cadFuncionariosController.pj}"/>
+                <p:inputText id="apel" rendered="#{cadFuncionariosController.ok}" disabled="false" maxlength="60"
+                             value="#{cadFuncionariosController.selectedFuncionario.apelidoFantasia}">
+                </p:inputText>
+
+                <p:outputLabel id="labmail" value="Email"/>
+                <p:inputText id="mail" disabled="false" maxlength="60"
+                             value="#{cadFuncionariosController.selectedFuncionario.emailResponsavel}">
+                </p:inputText>
+                
+                <p:outputLabel id="labFone" value="Telefone"/>
+                <p:inputMask mask="(99)9999-9999?9" value="#{cadFuncionariosController.selectedFuncionario.telefone}" converter="convertPhone">
+                </p:inputMask>
+                
+                <p:outputLabel id="labFone1" value="Telefone1"/>
+                <p:inputMask mask="(99)9999-9999?9" autocomplete="false" value="#{cadFuncionariosController.selectedFuncionario.telefone1}" converter="convertPhone"/>
+                
+                <p:outputLabel id="labClie" value="cliente"/>
+                <p:outputLabel id="labForn" value="fornecedor"/>
+                <p:outputLabel id="labFunc" value="funcionario"/>
+                <p:outputLabel id="labTrans" value="transportador"/>
+                
+                <p:selectBooleanCheckbox id="clie" value="#{cadFuncionariosController.selectedFuncionario.cliente}"/>
+                <p:selectBooleanCheckbox id="forn" value="#{cadFuncionariosController.selectedFuncionario.fornecedor}"/>
+                <p:selectBooleanCheckbox id="func" disabled="true" value="#{cadFuncionariosController.selectedFuncionario.funcionario}"/>
+                <p:selectBooleanCheckbox id="trans" value="#{cadFuncionariosController.selectedFuncionario.transportador}"/>
+
+            </p:panelGrid>
+
+            <center>
+            <p:dataList value="#{cadFuncionariosController.listEnderecos}" var="end" type="unordered" itemType="none" paginator="true" rows="5" styleClass="paginated">
+                <f:facet name="header">
+                    <p:commandButton value="novo endereço" icon="icon-cadastros">
+                        <p:ajax listener="#{cadFuncionariosController.enderecoNew()}" update=":form:endDetail" oncomplete="PF('endDialog').show()"/>
+                    </p:commandButton>
+                </f:facet>
+                <p:commandLink actionListener="#{cadFuncionariosController.setParametrosEndereco(end)}" update=":form:endDetail" oncomplete="PF('endDialog').show()" title="View Detail" styleClass="ui-icon ui-icon-search" style="float:left;margin-right:10px">
+                </p:commandLink>
+                <h:outputText value="#{end.endereco}, #{end.numero} - #{end.bairro}, #{end.pubMunicipio.municipio} - #{end.pubEstado.uf}" style="display:inline-block"/>
+            </p:dataList>
+            </center>
+
+            <f:facet  name="footer">
+                <center>
+                    <p:commandButton action="#{cadFuncionariosController.alteraFuncionario()}" value="gravar" icon="icon-salvar" update="@all" process="@all"/>
+                    <p:commandButton action="#{cadFuncionariosController.funcionarios()}" value="voltar" icon="icon-voltar"/>
+                </center>
+            </f:facet>
+        </p:panel>
+        <div style="clear:both" />
+        
+        <p:dialog header="Atualização de endereço" widgetVar="endDialog" showEffect="blind" hideEffect="explode" resizable="false" closable="false">
+            <p:outputPanel id="endDetail" style="text-align:center;">
+                <p:panelGrid  columns="2" columnClasses="label,value">
+                    
+                    <p:outputLabel id="labEst" value="Estado" for="est"/>
+                    <h:selectOneMenu id="est" label="labEst" value="#{cadFuncionariosController.estado}">
+                        <p:ajax update="mun" process="@form" listener="#{cadFuncionariosController.changeEstado()}"/>
+                        <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
+                        <f:selectItems value="#{cadFuncionariosController.listEstados}" var="est" itemLabel="#{est.uf} - #{est.estado}" itemValue="#{est.idEstado}"/>
+                    </h:selectOneMenu>
+
+                    <p:outputLabel id="labMun" value="Selecione o municipio" for="mun"/>
+                    <h:selectOneMenu id="mun" label="labMun" value="#{cadFuncionariosController.municipio}">
+                        <p:ajax process="@form"/>
+                        <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
+                        <f:selectItems value="#{cadFuncionariosController.listMunicipios}" var="mun" itemLabel="#{mun.municipio}" itemValue="#{mun.idMunicipio}"/>
+                    </h:selectOneMenu>
+                    
+                    <p:outputLabel id="labTend" value="Tipo de endereço" for="tend"/>
+                    <h:selectOneMenu id="tend" label="labTend" value="#{cadFuncionariosController.tipoEndereco}">
+                        <p:ajax process="@form"/>
+                        <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
+                        <f:selectItems value="#{cadFuncionariosController.listTipoEndereco}" var="tend" itemLabel="#{tend.codTipoEndereco} - #{tend.tipoEndereco}" itemValue="#{tend.id}"/>
+                    </h:selectOneMenu>
+                    
+                    <p:outputLabel id="labEnd" value="Endereço"/>
+                    <p:inputText id="end" disabled="false" maxlength="100"
+                                 value="#{cadFuncionariosController.selectedEndereco.endereco}">
+                    </p:inputText>
+
+                    <p:outputLabel id="labNumero" value="Numero"/>
+                    <p:inputMask id="numero" mask="?999999" value="#{cadFuncionariosController.selectedEndereco.numero}"/>
+                    
+                    <p:outputLabel id="labCompl" value="Complemento"/>
+                    <p:inputText id="compl" disabled="false" maxlength="100"
+                                 value="#{cadFuncionariosController.selectedEndereco.complemento}">
+                    </p:inputText>
+                    
+                    <p:outputLabel id="labBairro" value="Bairro"/>
+                    <p:inputText id="bairro" disabled="false" maxlength="50"
+                                 value="#{cadFuncionariosController.selectedEndereco.bairro}">
+                    </p:inputText>
+                    
+                    <p:outputLabel id="labCep" value="CEP"/>
+                    <p:inputMask id="cep" mask="99.999-999" value="#{cadFuncionariosController.selectedEndereco.cep}" converter="convertCep"/>
+                
+                    <f:facet  name="footer">
+                    <center>
+                        <p:commandButton actionListener="#{cadFuncionariosController.incluiEndereco()}" value="gravar" icon="icon-salvar" update="@all" process="@all" oncomplete="PF('endDialog').hide()"/>
+                        <p:commandButton value="voltar" icon="icon-voltar" oncomplete="PF('endDialog').hide()"/>
+                    </center>
+                    </f:facet>
+                    
+                </p:panelGrid>
+                
+            </p:outputPanel>
+        </p:dialog>
+    </h:form>
+    </ui:define>  
+</ui:composition>  
+</html>

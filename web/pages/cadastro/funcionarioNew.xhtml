@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+<ui:composition template="/template.xhtml">  
+    <ui:define name="menu">
+        <p:panel style=" width:100%; height:55px">
+            <ui:include src="/pages/menuDash.xhtml"/>
+        </p:panel>
+    </ui:define>
+    
+    <ui:define name="conteudo">    
+        
+        <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+        <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+            <p:graphicImage value="images/loading.gif"/>
+        </p:dialog>
+        
+    <h:form id="form">
+        <p:panel id="dash" style="height: 590px; text-align: center; alignment-baseline: central">
+            <f:facet name="header">
+                <h:outputText value="MODULO CADASTRO - funcionarios - inclusão"/>
+            </f:facet>
+            
+            <br/>
+            
+            <p:panelGrid columns="2" layout="grid">
+                <p:panelGrid columns="2" layout="grid">
+                    <p:outputLabel id="labEmp" value="Empresa"/>
+                    <p:inputText id="emp" label="labEmp" rendered="true" disabled="true"
+                                 value="#{cadFuncionariosController.selectedFuncionario.pubEmpresa.fantasia}">
+                    </p:inputText>
+                </p:panelGrid>
+
+                <p:selectOneRadio id="tipoCadastro" value="#{cadFuncionariosController.tipoCadastro}" label="labTipoCad">
+                    <f:selectItems value="#{cadFuncionariosController.listTipoCadastro}" var="tCad" itemLabel="#{tCad.descricaoTipoCadastro}" itemValue="#{tCad.idTipoCadastro}"/>
+                    <p:ajax listener="#{cadFuncionariosController.tipoCadastroChange()}" update="form"/>
+                </p:selectOneRadio>
+            </p:panelGrid>
+            
+            <p:panelGrid columns="4" layout="grid">
+                
+                <p:outputLabel id="labFun" value="Nome" rendered="#{cadFuncionariosController.pf}"/>
+                <p:outputLabel id="labFun1" value="Razão Social" rendered="#{cadFuncionariosController.pj}"/>
+                <p:inputText id="fun" rendered="#{cadFuncionariosController.ok}" disabled="false" maxlength="150"
+                             value="#{cadFuncionariosController.selectedFuncionario.nomeRazaoSocial}">
+                </p:inputText>
+                
+                <p:outputLabel id="labCpfCnpj" value="CPF" rendered="#{cadFuncionariosController.pf}"/>
+                <p:outputLabel id="labCpfCnpj1" value="CNPJ" rendered="#{cadFuncionariosController.pj}"/>
+                <p:inputMask mask="#{cadFuncionariosController.mask}" value="#{cadFuncionariosController.selectedFuncionario.cpfCnpj}" rendered="#{cadFuncionariosController.ok}" converter="convertDocumento" dir="RTL"/>
+                
+                <p:outputLabel id="labApel" value="Apelido" rendered="#{cadFuncionariosController.pf}"/>
+                <p:outputLabel id="labApel1" value="Fantasia" rendered="#{cadFuncionariosController.pj}"/>
+                <p:inputText id="apel" rendered="#{cadFuncionariosController.ok}" disabled="false" maxlength="60"
+                             value="#{cadFuncionariosController.selectedFuncionario.apelidoFantasia}">
+                </p:inputText>
+                
+                <p:outputLabel id="labmail" value="Email" rendered="#{cadFuncionariosController.ok}"/>
+                <p:inputText id="mail" rendered="#{cadFuncionariosController.ok}" disabled="false" maxlength="60"
+                             value="#{cadFuncionariosController.selectedFuncionario.emailResponsavel}">
+                </p:inputText>
+                
+                <p:outputLabel id="labFone" value="Telefone" rendered="#{cadFuncionariosController.ok}"/>
+                <p:inputMask mask="(99)9999-9999?9" value="#{cadFuncionariosController.selectedFuncionario.telefone}" rendered="#{cadFuncionariosController.ok}" converter="convertPhone"/>
+                
+                <p:outputLabel id="labFone1" value="Telefone1" rendered="#{cadFuncionariosController.ok}"/>
+                <p:inputMask mask="(99)9999-9999?9" value="#{cadFuncionariosController.selectedFuncionario.telefone1}" rendered="#{cadFuncionariosController.ok}" converter="convertPhone"/>
+                
+                <p:outputLabel id="labClie" value="cliente" rendered="#{cadFuncionariosController.ok}"/>
+                <p:outputLabel id="labForn" value="fornecedor" rendered="#{cadFuncionariosController.ok}"/>
+                <p:outputLabel id="labFunc" value="funcionario" rendered="#{cadFuncionariosController.ok}"/>
+                <p:outputLabel id="labTrans" value="transportador" rendered="#{cadFuncionariosController.ok}"/>
+                
+                <p:selectBooleanCheckbox id="clie" value="#{cadFuncionariosController.selectedFuncionario.cliente}" rendered="#{cadFuncionariosController.ok}"/>
+                <p:selectBooleanCheckbox id="forn" value="#{cadFuncionariosController.selectedFuncionario.fornecedor}" rendered="#{cadFuncionariosController.ok}"/>
+                <p:selectBooleanCheckbox id="func" disabled="true" value="#{cadFuncionariosController.selectedFuncionario.funcionario}" rendered="#{cadFuncionariosController.ok}"/>
+                <p:selectBooleanCheckbox id="trans" value="#{cadFuncionariosController.selectedFuncionario.transportador}" rendered="#{cadFuncionariosController.ok}"/>
+
+            </p:panelGrid>
+
+            <f:facet  name="footer">
+                <center>
+                    <p:commandButton action="#{cadFuncionariosController.insereFuncionario()}" value="gravar" icon="icon-salvar" update="@all" process="@form"/>
+                    <p:commandButton action="#{cadFuncionariosController.funcionarios()}" value="voltar" icon="icon-voltar"/>
+                </center>
+            </f:facet>
+        </p:panel>
+        <div style="clear:both" />
+
+    </h:form>
+    </ui:define>  
+</ui:composition>  
+</html>
