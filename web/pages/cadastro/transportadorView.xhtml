@@ -84,16 +84,31 @@
             </p:panelGrid>
 
             <center>
-            <p:dataList value="#{cadTransportadoresController.listEnderecos}" var="end" type="unordered" itemType="none" paginator="true" rows="5" styleClass="paginated">
+            <p:dataTable value="#{cadTransportadoresController.listEnderecos}" var="end" paginator="true" rows="5" styleClass="paginated">
                 <f:facet name="header">
-                    <p:commandButton value="novo endereço" icon="icon-cadastros" rendered="false">
+                    <p:commandButton rendered="false" value="novo endereço" icon="icon-cadastros">
                         <p:ajax listener="#{cadTransportadoresController.enderecoNew()}" update=":form:endDetail" oncomplete="PF('endDialog').show()"/>
                     </p:commandButton>
                 </f:facet>
-                <p:commandLink actionListener="#{cadTransportadoresController.setParametrosEndereco(end)}" update=":form:endDetail" oncomplete="PF('endDialog').show()" title="View Detail" styleClass="ui-icon ui-icon-search" style="float:left;margin-right:10px">
-                </p:commandLink>
-                <h:outputText value="#{end.endereco}, #{end.numero} - #{end.bairro}, #{end.pubMunicipio.municipio} - #{end.pubEstado.uf}" style="display:inline-block"/>
-            </p:dataList>
+                
+                <p:column headerText="Tipo de Endereço">
+                    <h:outputText value="#{end.pubTipoEndereco.codTipoEndereco} - #{end.pubTipoEndereco.tipoEndereco}"/>
+                </p:column>
+                
+                <p:column headerText="Endereço">
+                    <h:outputText value="#{end.endereco}, #{end.numero} - #{end.bairro} - #{end.pubMunicipio.municipio} - #{end.pubEstado.uf}"/>
+                </p:column>
+                
+                <p:column headerText="Endereço">
+                    <center>
+                    <p:commandButton id="btnEdit" icon="icon-visualizar" process="@form">
+                        <p:ajax listener="#{cadTransportadoresController.setParametrosEndereco(end)}" update=":form:endDetail" oncomplete="PF('endDialog').show()"/>
+                        <p:tooltip value="visalizar endereço" for="btnEdit"/>
+                    </p:commandButton>
+                    </center>
+                </p:column>
+                
+            </p:dataTable>
             </center>
 
             <f:facet  name="footer">

@@ -20,9 +20,47 @@
             <p:graphicImage value="images/loading.gif"/>
         </p:dialog>
         
-    <h:form>
+    <h:form id="form">
         <p:panel id="dash" header="MODULO CADASTROS - produtos"  style="height: 590px; text-align: center; alignment-baseline: central">
-            <h:outputText value="#{indexCadastroController.usu.nomeUsuario}"/>
+            <f:facet name="header">
+                <h:outputText value="MODULO CADASTROS - produtos"/>
+                <div align="center">
+                    <p:commandButton id="btnNew" icon="icon-produtos" action="#{cadProdutoController.produtoNew()}">
+                        <p:tooltip value="novo produto" for="btnNew"/>
+                    </p:commandButton>
+                    <p:inputText id="filtro" value="#{cadProdutoController.filtro}" placeholder="parte do nome ou razão social">
+                        <p:tooltip value="filtro produto" for="filtro"/>
+                        <p:ajax event="keyup" process="@all" update="tabPro" listener="#{cadProdutoController.changeFiltro()}"/>
+                    </p:inputText>
+                </div>
+            </f:facet>
+            <p:dataTable id="tabPro" var="pro" value="#{cadProdutoController.listProdutos}"
+                         paginator="true" rows="10" 
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+                <p:column headerText="Empresa">
+                    <h:outputText value="#{pro.pubEmpresa.fantasia}"/>
+                </p:column>
+                <p:column headerText="produto">
+                    <h:outputText value="#{pro.produto}"/>
+                </p:column>
+                <p:column headerText="preço - R$">
+                    <h:outputText value="#{pro.preco}"/>
+                </p:column>
+                
+                <p:column headerText="detalhes">
+                    <p:commandButton id="btnView" icon="icon-visualizar" action="#{cadProdutoController.produtoView()}" process="@form">
+                        <f:setPropertyActionListener value="#{pro}" target="#{cadProdutoController.selectedProduto}"/>
+                        <p:tooltip value="visualizar produto" for="btnView"/>
+                    </p:commandButton>
+                    <p:commandButton id="btnEdit" icon="icon-editar" action="#{cadProdutoController.produtoEdit()}" process="@form">
+                        <f:setPropertyActionListener value="#{pro}" target="#{cadProdutoController.selectedProduto}"/>
+                        <p:tooltip value="editar produto" for="btnEdit"/>
+                    </p:commandButton>
+                </p:column>
+                
+            </p:dataTable>
+
         </p:panel>
         <div style="clear:both" />
     </h:form>

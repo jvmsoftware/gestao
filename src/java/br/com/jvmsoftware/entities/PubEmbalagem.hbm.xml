@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 31/Mar/2016 22:28:20 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.jvmsoftware.entities.PubEmbalagem" table="pub_embalagem" catalog="jvmdsoftware" optimistic-lock="version">
+        <id name="idEmbalagem" type="java.lang.Integer">
+            <column name="id_embalagem" />
+            <generator class="identity" />
+        </id>
+        <property name="embalagem" type="string">
+            <column name="embalagem" length="20" not-null="true" />
+        </property>
+        <set name="cadProdutos" table="cad_produto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="embalagem" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.CadProduto" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 31/Mar/2016 22:28:20 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.jvmsoftware.entities.CadRelServFornec" table="cad_rel_serv_fornec" catalog="jvmdsoftware" optimistic-lock="version">
+        <id name="idRel" type="java.lang.Integer">
+            <column name="id_rel" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cadPessoa" class="br.com.jvmsoftware.entities.CadPessoa" fetch="select">
+            <column name="fornecedor" not-null="true" />
+        </many-to-one>
+        <many-to-one name="cadServicos" class="br.com.jvmsoftware.entities.CadServicos" fetch="select">
+            <column name="servico" not-null="true" />
+        </many-to-one>
+        <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="select">
+            <column name="empresa" not-null="true" />
+        </many-to-one>
+        <property name="precoServico" type="java.lang.Double">
+            <column name="preco_servico" precision="10" />
+        </property>
+    </class>
+</hibernate-mapping>

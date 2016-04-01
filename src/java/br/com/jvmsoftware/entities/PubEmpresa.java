@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 27/Mar/2016 8:26:38 by Hibernate Tools 4.3.1
+// Generated 31/Mar/2016 22:28:08 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -28,15 +28,19 @@ public class PubEmpresa  implements java.io.Serializable {
      private boolean ativo;
      private Double telefone;
      private String emailResponsavel;
-     private Set<WflSituacao> wflSituacaos = new HashSet<WflSituacao>(0);
      private Set<PubConfigEmpresa> pubConfigEmpresas = new HashSet<PubConfigEmpresa>(0);
-     private Set<SupSolicitacao> supSolicitacaos = new HashSet<SupSolicitacao>(0);
+     private Set<CadServicos> cadServicoses = new HashSet<CadServicos>(0);
+     private Set<AcsEmpresaSistema> acsEmpresaSistemas = new HashSet<AcsEmpresaSistema>(0);
+     private Set<CadRelServFornec> cadRelServFornecs = new HashSet<CadRelServFornec>(0);
+     private Set<SupProjeto> supProjetos = new HashSet<SupProjeto>(0);
+     private Set<WflSituacao> wflSituacaos = new HashSet<WflSituacao>(0);
      private Set<AcsUsuarioSistema> acsUsuarioSistemas = new HashSet<AcsUsuarioSistema>(0);
+     private Set<SupSolicitacao> supSolicitacaos = new HashSet<SupSolicitacao>(0);
      private Set<WflWorkflow> wflWorkflowsForEmpresaDestino = new HashSet<WflWorkflow>(0);
      private Set<CadPessoa> cadPessoas = new HashSet<CadPessoa>(0);
      private Set<WflWorkflowEvento> wflWorkflowEventos = new HashSet<WflWorkflowEvento>(0);
-     private Set<AcsEmpresaSistema> acsEmpresaSistemas = new HashSet<AcsEmpresaSistema>(0);
-     private Set<SupProjeto> supProjetos = new HashSet<SupProjeto>(0);
+     private Set<CadProduto> cadProdutos = new HashSet<CadProduto>(0);
+     private Set<CadRelProdFornec> cadRelProdFornecs = new HashSet<CadRelProdFornec>(0);
      private Set<PubUsuario> pubUsuarios = new HashSet<PubUsuario>(0);
      private Set<WflWorkflow> wflWorkflowsForEmpresaCriacao = new HashSet<WflWorkflow>(0);
 
@@ -52,7 +56,7 @@ public class PubEmpresa  implements java.io.Serializable {
         this.fantasia = fantasia;
         this.ativo = ativo;
     }
-    public PubEmpresa(PubEstado pubEstado, PubMunicipio pubMunicipio, PubTipoCadastro pubTipoCadastro, String cnpjEmpresa, String razaoSocial, String fantasia, Double cep, String endereco, Double numero, String bairro, String complemento, Date dataCadastro, boolean ativo, Double telefone, String emailResponsavel, Set<WflSituacao> wflSituacaos, Set<PubConfigEmpresa> pubConfigEmpresas, Set<SupSolicitacao> supSolicitacaos, Set<AcsUsuarioSistema> acsUsuarioSistemas, Set<WflWorkflow> wflWorkflowsForEmpresaDestino, Set<CadPessoa> cadPessoas, Set<WflWorkflowEvento> wflWorkflowEventos, Set<AcsEmpresaSistema> acsEmpresaSistemas, Set<SupProjeto> supProjetos, Set<PubUsuario> pubUsuarios, Set<WflWorkflow> wflWorkflowsForEmpresaCriacao) {
+    public PubEmpresa(PubEstado pubEstado, PubMunicipio pubMunicipio, PubTipoCadastro pubTipoCadastro, String cnpjEmpresa, String razaoSocial, String fantasia, Double cep, String endereco, Double numero, String bairro, String complemento, Date dataCadastro, boolean ativo, Double telefone, String emailResponsavel, Set<PubConfigEmpresa> pubConfigEmpresas, Set<CadServicos> cadServicoses, Set<AcsEmpresaSistema> acsEmpresaSistemas, Set<CadRelServFornec> cadRelServFornecs, Set<SupProjeto> supProjetos, Set<WflSituacao> wflSituacaos, Set<AcsUsuarioSistema> acsUsuarioSistemas, Set<SupSolicitacao> supSolicitacaos, Set<WflWorkflow> wflWorkflowsForEmpresaDestino, Set<CadPessoa> cadPessoas, Set<WflWorkflowEvento> wflWorkflowEventos, Set<CadProduto> cadProdutos, Set<CadRelProdFornec> cadRelProdFornecs, Set<PubUsuario> pubUsuarios, Set<WflWorkflow> wflWorkflowsForEmpresaCriacao) {
        this.pubEstado = pubEstado;
        this.pubMunicipio = pubMunicipio;
        this.pubTipoCadastro = pubTipoCadastro;
@@ -68,15 +72,19 @@ public class PubEmpresa  implements java.io.Serializable {
        this.ativo = ativo;
        this.telefone = telefone;
        this.emailResponsavel = emailResponsavel;
-       this.wflSituacaos = wflSituacaos;
        this.pubConfigEmpresas = pubConfigEmpresas;
-       this.supSolicitacaos = supSolicitacaos;
+       this.cadServicoses = cadServicoses;
+       this.acsEmpresaSistemas = acsEmpresaSistemas;
+       this.cadRelServFornecs = cadRelServFornecs;
+       this.supProjetos = supProjetos;
+       this.wflSituacaos = wflSituacaos;
        this.acsUsuarioSistemas = acsUsuarioSistemas;
+       this.supSolicitacaos = supSolicitacaos;
        this.wflWorkflowsForEmpresaDestino = wflWorkflowsForEmpresaDestino;
        this.cadPessoas = cadPessoas;
        this.wflWorkflowEventos = wflWorkflowEventos;
-       this.acsEmpresaSistemas = acsEmpresaSistemas;
-       this.supProjetos = supProjetos;
+       this.cadProdutos = cadProdutos;
+       this.cadRelProdFornecs = cadRelProdFornecs;
        this.pubUsuarios = pubUsuarios;
        this.wflWorkflowsForEmpresaCriacao = wflWorkflowsForEmpresaCriacao;
     }
@@ -193,13 +201,6 @@ public class PubEmpresa  implements java.io.Serializable {
     public void setEmailResponsavel(String emailResponsavel) {
         this.emailResponsavel = emailResponsavel;
     }
-    public Set<WflSituacao> getWflSituacaos() {
-        return this.wflSituacaos;
-    }
-    
-    public void setWflSituacaos(Set<WflSituacao> wflSituacaos) {
-        this.wflSituacaos = wflSituacaos;
-    }
     public Set<PubConfigEmpresa> getPubConfigEmpresas() {
         return this.pubConfigEmpresas;
     }
@@ -207,12 +208,40 @@ public class PubEmpresa  implements java.io.Serializable {
     public void setPubConfigEmpresas(Set<PubConfigEmpresa> pubConfigEmpresas) {
         this.pubConfigEmpresas = pubConfigEmpresas;
     }
-    public Set<SupSolicitacao> getSupSolicitacaos() {
-        return this.supSolicitacaos;
+    public Set<CadServicos> getCadServicoses() {
+        return this.cadServicoses;
     }
     
-    public void setSupSolicitacaos(Set<SupSolicitacao> supSolicitacaos) {
-        this.supSolicitacaos = supSolicitacaos;
+    public void setCadServicoses(Set<CadServicos> cadServicoses) {
+        this.cadServicoses = cadServicoses;
+    }
+    public Set<AcsEmpresaSistema> getAcsEmpresaSistemas() {
+        return this.acsEmpresaSistemas;
+    }
+    
+    public void setAcsEmpresaSistemas(Set<AcsEmpresaSistema> acsEmpresaSistemas) {
+        this.acsEmpresaSistemas = acsEmpresaSistemas;
+    }
+    public Set<CadRelServFornec> getCadRelServFornecs() {
+        return this.cadRelServFornecs;
+    }
+    
+    public void setCadRelServFornecs(Set<CadRelServFornec> cadRelServFornecs) {
+        this.cadRelServFornecs = cadRelServFornecs;
+    }
+    public Set<SupProjeto> getSupProjetos() {
+        return this.supProjetos;
+    }
+    
+    public void setSupProjetos(Set<SupProjeto> supProjetos) {
+        this.supProjetos = supProjetos;
+    }
+    public Set<WflSituacao> getWflSituacaos() {
+        return this.wflSituacaos;
+    }
+    
+    public void setWflSituacaos(Set<WflSituacao> wflSituacaos) {
+        this.wflSituacaos = wflSituacaos;
     }
     public Set<AcsUsuarioSistema> getAcsUsuarioSistemas() {
         return this.acsUsuarioSistemas;
@@ -220,6 +249,13 @@ public class PubEmpresa  implements java.io.Serializable {
     
     public void setAcsUsuarioSistemas(Set<AcsUsuarioSistema> acsUsuarioSistemas) {
         this.acsUsuarioSistemas = acsUsuarioSistemas;
+    }
+    public Set<SupSolicitacao> getSupSolicitacaos() {
+        return this.supSolicitacaos;
+    }
+    
+    public void setSupSolicitacaos(Set<SupSolicitacao> supSolicitacaos) {
+        this.supSolicitacaos = supSolicitacaos;
     }
     public Set<WflWorkflow> getWflWorkflowsForEmpresaDestino() {
         return this.wflWorkflowsForEmpresaDestino;
@@ -242,19 +278,19 @@ public class PubEmpresa  implements java.io.Serializable {
     public void setWflWorkflowEventos(Set<WflWorkflowEvento> wflWorkflowEventos) {
         this.wflWorkflowEventos = wflWorkflowEventos;
     }
-    public Set<AcsEmpresaSistema> getAcsEmpresaSistemas() {
-        return this.acsEmpresaSistemas;
+    public Set<CadProduto> getCadProdutos() {
+        return this.cadProdutos;
     }
     
-    public void setAcsEmpresaSistemas(Set<AcsEmpresaSistema> acsEmpresaSistemas) {
-        this.acsEmpresaSistemas = acsEmpresaSistemas;
+    public void setCadProdutos(Set<CadProduto> cadProdutos) {
+        this.cadProdutos = cadProdutos;
     }
-    public Set<SupProjeto> getSupProjetos() {
-        return this.supProjetos;
+    public Set<CadRelProdFornec> getCadRelProdFornecs() {
+        return this.cadRelProdFornecs;
     }
     
-    public void setSupProjetos(Set<SupProjeto> supProjetos) {
-        this.supProjetos = supProjetos;
+    public void setCadRelProdFornecs(Set<CadRelProdFornec> cadRelProdFornecs) {
+        this.cadRelProdFornecs = cadRelProdFornecs;
     }
     public Set<PubUsuario> getPubUsuarios() {
         return this.pubUsuarios;

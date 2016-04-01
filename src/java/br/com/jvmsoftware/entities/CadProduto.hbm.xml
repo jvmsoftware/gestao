@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 31/Mar/2016 22:28:20 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.jvmsoftware.entities.CadProduto" table="cad_produto" catalog="jvmdsoftware" optimistic-lock="version">
+        <id name="idProduto" type="java.lang.Integer">
+            <column name="id_produto" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="pubEmbalagem" class="br.com.jvmsoftware.entities.PubEmbalagem" fetch="select">
+            <column name="embalagem" />
+        </many-to-one>
+        <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="select">
+            <column name="empresa" not-null="true" />
+        </many-to-one>
+        <property name="produto" type="string">
+            <column name="produto" length="50" not-null="true" />
+        </property>
+        <property name="descricao" type="string">
+            <column name="descricao" />
+        </property>
+        <property name="preco" type="big_decimal">
+            <column name="preco" precision="10" />
+        </property>
+        <property name="qtdeEmbalagem" type="java.lang.Integer">
+            <column name="qtde_embalagem" />
+        </property>
+        <property name="ativo" type="boolean">
+            <column name="ativo" not-null="true" />
+        </property>
+        <set name="cadRelProdFornecs" table="cad_rel_prod_fornec" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="produto" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.CadRelProdFornec" />
+        </set>
+    </class>
+</hibernate-mapping>

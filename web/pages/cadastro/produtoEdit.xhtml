@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+<ui:composition template="/template.xhtml">  
+    <ui:define name="menu">
+        <p:panel style=" width:100%; height:55px">
+            <ui:include src="/pages/menuDash.xhtml"/>
+        </p:panel>
+    </ui:define>
+    
+    <ui:define name="conteudo">    
+        
+        <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+        <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+            <p:graphicImage value="images/loading.gif"/>
+        </p:dialog>
+        
+    <h:form id="form">
+        <p:panel id="dash" style="height: 590px; text-align: center; alignment-baseline: central">
+            <f:facet name="header">
+                <h:outputText value="MODULO CADASTRO - produto - alteração"/>
+            </f:facet>
+            
+            <br/>
+            
+            <p:panelGrid columns="2" layout="grid">
+                <p:outputLabel id="labPro" value="Produto" for="pro"/>
+                <p:inputText id="pro" value="#{cadProdutoController.selectedProduto.produto}" maxlength="50"/>
+                
+                <p:outputLabel id="labEmb" value="Embalagem" for="emb"/>
+                <h:selectOneMenu id="emb" label="labEmb" value="#{cadProdutoController.embalagem}">
+                    <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
+                    <f:selectItems value="#{cadProdutoController.listEmbalagem}" var="emb" itemLabel="#{emb.embalagem}" itemValue="#{emb.idEmbalagem}"/>
+                </h:selectOneMenu>
+                    
+                <p:outputLabel id="labQtd" value="Quantidade por Embalagem" for="qtd"/>
+                <p:inputMask mask="9?999" id="qtd" value="#{cadProdutoController.selectedProduto.qtdeEmbalagem}" label="labQtd"/>
+                
+                <p:outputLabel id="labDes" value="Descrição do produto" for="des"/>
+                <p:inputTextarea id="des" value="#{cadProdutoController.selectedProduto.descricao}" maxlength="255"/>
+                
+                <p:outputLabel id="labPre" value="Preço de venda" for="pre"/>
+                <pe:inputNumber id="pre" value="#{cadProdutoController.selectedProduto.preco}" decimalPlaces="2" decimalSeparator="," />
+            
+            </p:panelGrid>
+
+            <center>
+            <p:dataTable value="#{cadProdutoController.listRelProdFornec}" var="forne" paginator="true" rows="5" styleClass="paginated">
+                <f:facet name="header">
+                    <p:commandButton value="novo fornecedor" icon="icon-fornecedores">
+                        <p:ajax listener="#{cadProdutoController.fornecedorNew()}" update=":form:endDetail" oncomplete="PF('endDialog').show()"/>
+                    </p:commandButton>
+                </f:facet>
+                
+                <p:column headerText="Fornecedor">
+                    <h:outputText value="#{forne.cadPessoa.apelidoFantasia}"/>
+                </p:column>
+                
+                <p:column headerText="Preço de Compra">
+                    <center>
+                    <h:outputText value="#{forne.precoCompra}"/>
+                    </center>
+                </p:column>
+                
+                <p:column headerText="detalhes">
+                    <center>
+                    <p:commandButton id="btnEdit" icon="icon-editar" process="@form">
+                        <p:ajax listener="#{cadProdutoController.setParametrosFornecedor(forne)}" update=":form:endDetail" oncomplete="PF('endDialog').show()"/>
+                        <p:tooltip value="editar fornecedor do produto" for="btnEdit"/>
+                    </p:commandButton>
+                    </center>
+                </p:column>
+                
+            </p:dataTable>
+            </center>
+
+            <f:facet  name="footer">
+                <center>
+                    <p:commandButton action="#{cadProdutoController.alteraProduto()}" value="gravar" icon="icon-salvar" update="@all" process="@form"/>
+                    <p:commandButton action="#{cadProdutoController.produtos()}" value="voltar" icon="icon-voltar"/>
+                </center>
+            </f:facet>
+        </p:panel>
+        <div style="clear:both" />
+        
+        <p:dialog header="Relacionamento de Fornecedores ao produto" widgetVar="endDialog" showEffect="blind" hideEffect="explode" resizable="false" closable="false">
+            <p:outputPanel id="endDetail" style="text-align:center;">
+                <p:panelGrid  columns="2" columnClasses="label,value">
+                    
+                    <p:outputLabel id="labFor" value="Fornecedor" for="forn"/>
+                    <h:selectOneMenu id="forn" label="labFor" value="#{cadProdutoController.fornecedor}">
+                        <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
+                        <f:selectItems value="#{cadProdutoController.listFornecedores}" var="est" itemLabel="#{est.apelidoFantasia}" itemValue="#{est.idPessoa}"/>
+                    </h:selectOneMenu>
+                
+                    <p:outputLabel id="labPrec" value="Preço de venda" for="prec"/>
+                    <pe:inputNumber id="prec" value="#{cadProdutoController.selectedRelacionamento.precoCompra}" decimalPlaces="2" decimalSeparator="," />
+                    
+                    <f:facet  name="footer">
+                    <center>
+                        <p:commandButton actionListener="#{cadProdutoController.incluiFornecedor()}" value="gravar" icon="icon-salvar" update="@all" process="@all" oncomplete="PF('endDialog').hide()"/>
+                        <p:commandButton value="voltar" icon="icon-voltar" oncomplete="PF('endDialog').hide()"/>
+                    </center>
+                    </f:facet>
+                    
+                </p:panelGrid>
+                
+            </p:outputPanel>
+        </p:dialog>
+    </h:form>
+    </ui:define>  
+</ui:composition>  
+</html>

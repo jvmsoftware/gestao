@@ -32,7 +32,7 @@ public class DefaultDAO implements Serializable {
     }
     
     public void commit() {
-        //session.flush();
+        session.flush();
         session.beginTransaction().commit();
     }
     

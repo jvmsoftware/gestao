@@ -20,9 +20,47 @@
             <p:graphicImage value="images/loading.gif"/>
         </p:dialog>
         
-    <h:form>
-        <p:panel id="dash" header="MODULO CADASTROS - servicos"  style="height: 590px; text-align: center; alignment-baseline: central">
-            <h:outputText value="#{indexCadastroController.usu.nomeUsuario}"/>
+    <h:form id="form">
+        <p:panel id="dash" header="MODULO CADASTROS - serviços"  style="height: 590px; text-align: center; alignment-baseline: central">
+            <f:facet name="header">
+                <h:outputText value="MODULO CADASTROS - serviços"/>
+                <div align="center">
+                    <p:commandButton id="btnNew" icon="icon-servicos" action="#{cadServicoController.servicoNew()}">
+                        <p:tooltip value="novo servico" for="btnNew"/>
+                    </p:commandButton>
+                    <p:inputText id="filtro" value="#{cadServicoController.filtro}" placeholder="parte do nome ou razão social">
+                        <p:tooltip value="filtro servico" for="filtro"/>
+                        <p:ajax event="keyup" process="@all" update="tabPro" listener="#{cadServicoController.changeFiltro()}"/>
+                    </p:inputText>
+                </div>
+            </f:facet>
+            <p:dataTable id="tabPro" var="ser" value="#{cadServicoController.listServicos}"
+                         paginator="true" rows="10" 
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+                <p:column headerText="Empresa">
+                    <h:outputText value="#{ser.pubEmpresa.fantasia}"/>
+                </p:column>
+                <p:column headerText="servico">
+                    <h:outputText value="#{ser.servico}"/>
+                </p:column>
+                <p:column headerText="preço - R$">
+                    <h:outputText value="#{ser.preco}"/>
+                </p:column>
+                
+                <p:column headerText="detalhes">
+                    <p:commandButton id="btnView" icon="icon-visualizar" action="#{cadServicoController.servicoView()}" process="@form">
+                        <f:setPropertyActionListener value="#{ser}" target="#{cadServicoController.selectedServico}"/>
+                        <p:tooltip value="visualizar servico" for="btnView"/>
+                    </p:commandButton>
+                    <p:commandButton id="btnEdit" icon="icon-editar" action="#{cadServicoController.servicoEdit()}" process="@form">
+                        <f:setPropertyActionListener value="#{ser}" target="#{cadServicoController.selectedServico}"/>
+                        <p:tooltip value="editar servico" for="btnEdit"/>
+                    </p:commandButton>
+                </p:column>
+                
+            </p:dataTable>
+
         </p:panel>
         <div style="clear:both" />
     </h:form>

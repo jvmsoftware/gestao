@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 27/Mar/2016 8:26:52 by Hibernate Tools 4.3.1 -->
+<!-- Generated 31/Mar/2016 22:28:20 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.jvmsoftware.entities.PubTipoEndereco" table="pub_tipo_endereco" catalog="jvmdsoftware" optimistic-lock="version">
         <id name="id" type="java.lang.Integer">

@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 27/Mar/2016 8:26:38 by Hibernate Tools 4.3.1
+// Generated 31/Mar/2016 22:28:08 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -28,6 +28,8 @@ public class CadPessoa  implements java.io.Serializable {
      private boolean funcionario;
      private boolean transportador;
      private Set<CadEnderecos> cadEnderecoses = new HashSet<CadEnderecos>(0);
+     private Set<CadRelServFornec> cadRelServFornecs = new HashSet<CadRelServFornec>(0);
+     private Set<CadRelProdFornec> cadRelProdFornecs = new HashSet<CadRelProdFornec>(0);
 
     public CadPessoa() {
     }
@@ -43,7 +45,7 @@ public class CadPessoa  implements java.io.Serializable {
         this.funcionario = funcionario;
         this.transportador = transportador;
     }
-    public CadPessoa(CadEnderecos cadEnderecos, PubEmpresa pubEmpresa, PubTipoCadastro pubTipoCadastro, Date dataCadastro, String cpfCnpj, String nomeRazaoSocial, String apelidoFantasia, String emailResponsavel, String telefone, String telefone1, boolean cliente, boolean fornecedor, boolean funcionario, boolean transportador, Set<CadEnderecos> cadEnderecoses) {
+    public CadPessoa(CadEnderecos cadEnderecos, PubEmpresa pubEmpresa, PubTipoCadastro pubTipoCadastro, Date dataCadastro, String cpfCnpj, String nomeRazaoSocial, String apelidoFantasia, String emailResponsavel, String telefone, String telefone1, boolean cliente, boolean fornecedor, boolean funcionario, boolean transportador, Set<CadEnderecos> cadEnderecoses, Set<CadRelServFornec> cadRelServFornecs, Set<CadRelProdFornec> cadRelProdFornecs) {
        this.cadEnderecos = cadEnderecos;
        this.pubEmpresa = pubEmpresa;
        this.pubTipoCadastro = pubTipoCadastro;
@@ -59,6 +61,8 @@ public class CadPessoa  implements java.io.Serializable {
        this.funcionario = funcionario;
        this.transportador = transportador;
        this.cadEnderecoses = cadEnderecoses;
+       this.cadRelServFornecs = cadRelServFornecs;
+       this.cadRelProdFornecs = cadRelProdFornecs;
     }
    
     public Integer getIdPessoa() {
@@ -172,6 +176,20 @@ public class CadPessoa  implements java.io.Serializable {
     
     public void setCadEnderecoses(Set<CadEnderecos> cadEnderecoses) {
         this.cadEnderecoses = cadEnderecoses;
+    }
+    public Set<CadRelServFornec> getCadRelServFornecs() {
+        return this.cadRelServFornecs;
+    }
+    
+    public void setCadRelServFornecs(Set<CadRelServFornec> cadRelServFornecs) {
+        this.cadRelServFornecs = cadRelServFornecs;
+    }
+    public Set<CadRelProdFornec> getCadRelProdFornecs() {
+        return this.cadRelProdFornecs;
+    }
+    
+    public void setCadRelProdFornecs(Set<CadRelProdFornec> cadRelProdFornecs) {
+        this.cadRelProdFornecs = cadRelProdFornecs;
     }
 
 

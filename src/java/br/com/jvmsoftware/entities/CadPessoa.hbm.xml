@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 27/Mar/2016 8:26:52 by Hibernate Tools 4.3.1 -->
+<!-- Generated 31/Mar/2016 22:28:20 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.jvmsoftware.entities.CadPessoa" table="cad_pessoa" catalog="jvmdsoftware" optimistic-lock="version">
         <id name="idPessoa" type="java.lang.Integer">
@@ -55,6 +55,18 @@
                 <column name="pessoa" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.CadEnderecos" />
+        </set>
+        <set name="cadRelServFornecs" table="cad_rel_serv_fornec" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fornecedor" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.CadRelServFornec" />
+        </set>
+        <set name="cadRelProdFornecs" table="cad_rel_prod_fornec" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fornecedor" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.CadRelProdFornec" />
         </set>
     </class>
 </hibernate-mapping>
