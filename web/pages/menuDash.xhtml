@@ -60,11 +60,13 @@ and open the template in the editor.
                         
                         <p:submenu label="comercial" icon="icon-comercial">
                             <p:submenu label="compras" icon="icon-compras">
-                                <p:menuitem value="clientes" icon="icon-clientes"/>
+                                <p:menuitem value="ordens de compra" icon="icon-ordem-servico" action="#{menuDashboardController.comOrdemCompra()}"/>
+                                <p:menuitem value="processos de compra" icon="icon-compras" action="#{menuDashboardController.comProcessoCompra()}"/>
                             </p:submenu>
                             <p:separator/>
                             <p:submenu label="vendas" icon="icon-vendas">
-                                <p:menuitem value="clientes" icon="icon-clientes"/>
+                                <p:menuitem value="pedidos de venda" icon="icon-pedido-venda" action="#{menuDashboardController.comPedidoVenda()}"/>
+                                <p:menuitem value="vendas" icon="icon-vendas" action="#{menuDashboardController.comVenda()}"/>
                             </p:submenu>
                         </p:submenu>
                         

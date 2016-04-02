@@ -141,7 +141,22 @@ public class MenuDashboardController {
     public String cadServicos() {
         return "/pages/cadastro/servicos";
     }
+    
+    public String comOrdemCompra() {
+        return "/pages/comercial/ordensCompra";
+    }
+    
+    public String comProcessoCompra() {
+        return "/pages/comercial/processosCompra";
+    }
 
+    public String comPedidoVenda() {
+        return "/pages/comercial/pedidosVenda";
+    }
+    
+    public String comVenda() {
+        return "/pages/comercial/Venda";
+    }
     
     private void setNome() {
         StringTokenizer nome = new StringTokenizer(usu.getNomeUsuario()," ");

@@ -8,7 +8,11 @@ and open the template in the editor.
     Author     : jose
 */
 
-/* icones modulos */
+/* icones modulos 
+ *
+ * by:
+ * http://www.flaticon.com
+*/
 .icon-cadastros {  
     background-image: url("../images/icons/draft.png") !important;  
 }
@@ -159,6 +163,14 @@ and open the template in the editor.
 
 .icon-voltar {  
     background-image: url("../images/icons/return13.png") !important;  
+}
+
+.icon-ordem-servico {  
+    background-image: url("../images/icons/icon.png") !important;  
+}
+
+.icon-pedido-venda {  
+    background-image: url("../images/icons/money.png") !important;  
 }
 
 .icon-incluir {  
