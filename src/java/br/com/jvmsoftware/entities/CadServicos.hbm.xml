@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 31/Mar/2016 22:28:20 by Hibernate Tools 4.3.1 -->
+<!-- Generated 3/Abr/2016 2:22:38 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.jvmsoftware.entities.CadServicos" table="cad_servicos" catalog="jvmdsoftware" optimistic-lock="version">
         <id name="idServico" type="int">
@@ -10,6 +10,9 @@
         </id>
         <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="select">
             <column name="empresa" not-null="true" />
+        </many-to-one>
+        <many-to-one name="pubFrequenciaServico" class="br.com.jvmsoftware.entities.PubFrequenciaServico" fetch="select">
+            <column name="frequecia_servico" />
         </many-to-one>
         <property name="servico" type="string">
             <column name="servico" length="50" not-null="true" />
@@ -23,6 +26,12 @@
         <property name="ativo" type="boolean">
             <column name="ativo" not-null="true" />
         </property>
+        <set name="comRelCompraOrdemServicos" table="com_rel_compra_ordem_servico" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="servico" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.ComRelCompraOrdemServico" />
+        </set>
         <set name="cadRelServFornecs" table="cad_rel_serv_fornec" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="servico" not-null="true" />

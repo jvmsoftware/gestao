@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 31/Mar/2016 22:28:08 by Hibernate Tools 4.3.1
+// Generated 3/Abr/2016 2:22:35 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -20,6 +20,8 @@ public class CadProduto  implements java.io.Serializable {
      private BigDecimal preco;
      private Integer qtdeEmbalagem;
      private boolean ativo;
+     private Set<ComRelVendaProduto> comRelVendaProdutos = new HashSet<ComRelVendaProduto>(0);
+     private Set<ComRelCompraOrdemProduto> comRelCompraOrdemProdutos = new HashSet<ComRelCompraOrdemProduto>(0);
      private Set<CadRelProdFornec> cadRelProdFornecs = new HashSet<CadRelProdFornec>(0);
 
     public CadProduto() {
@@ -31,7 +33,7 @@ public class CadProduto  implements java.io.Serializable {
         this.produto = produto;
         this.ativo = ativo;
     }
-    public CadProduto(PubEmbalagem pubEmbalagem, PubEmpresa pubEmpresa, String produto, String descricao, BigDecimal preco, Integer qtdeEmbalagem, boolean ativo, Set<CadRelProdFornec> cadRelProdFornecs) {
+    public CadProduto(PubEmbalagem pubEmbalagem, PubEmpresa pubEmpresa, String produto, String descricao, BigDecimal preco, Integer qtdeEmbalagem, boolean ativo, Set<ComRelVendaProduto> comRelVendaProdutos, Set<ComRelCompraOrdemProduto> comRelCompraOrdemProdutos, Set<CadRelProdFornec> cadRelProdFornecs) {
        this.pubEmbalagem = pubEmbalagem;
        this.pubEmpresa = pubEmpresa;
        this.produto = produto;
@@ -39,6 +41,8 @@ public class CadProduto  implements java.io.Serializable {
        this.preco = preco;
        this.qtdeEmbalagem = qtdeEmbalagem;
        this.ativo = ativo;
+       this.comRelVendaProdutos = comRelVendaProdutos;
+       this.comRelCompraOrdemProdutos = comRelCompraOrdemProdutos;
        this.cadRelProdFornecs = cadRelProdFornecs;
     }
    
@@ -97,6 +101,20 @@ public class CadProduto  implements java.io.Serializable {
     
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
+    }
+    public Set<ComRelVendaProduto> getComRelVendaProdutos() {
+        return this.comRelVendaProdutos;
+    }
+    
+    public void setComRelVendaProdutos(Set<ComRelVendaProduto> comRelVendaProdutos) {
+        this.comRelVendaProdutos = comRelVendaProdutos;
+    }
+    public Set<ComRelCompraOrdemProduto> getComRelCompraOrdemProdutos() {
+        return this.comRelCompraOrdemProdutos;
+    }
+    
+    public void setComRelCompraOrdemProdutos(Set<ComRelCompraOrdemProduto> comRelCompraOrdemProdutos) {
+        this.comRelCompraOrdemProdutos = comRelCompraOrdemProdutos;
     }
     public Set<CadRelProdFornec> getCadRelProdFornecs() {
         return this.cadRelProdFornecs;

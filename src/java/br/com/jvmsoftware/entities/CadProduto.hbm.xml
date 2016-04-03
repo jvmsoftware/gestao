@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 31/Mar/2016 22:28:20 by Hibernate Tools 4.3.1 -->
+<!-- Generated 3/Abr/2016 2:22:38 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.jvmsoftware.entities.CadProduto" table="cad_produto" catalog="jvmdsoftware" optimistic-lock="version">
         <id name="idProduto" type="java.lang.Integer">
@@ -29,6 +29,18 @@
         <property name="ativo" type="boolean">
             <column name="ativo" not-null="true" />
         </property>
+        <set name="comRelVendaProdutos" table="com_rel_venda_produto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="produto" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.ComRelVendaProduto" />
+        </set>
+        <set name="comRelCompraOrdemProdutos" table="com_rel_compra_ordem_produto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="produto" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.ComRelCompraOrdemProduto" />
+        </set>
         <set name="cadRelProdFornecs" table="cad_rel_prod_fornec" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="produto" not-null="true" />

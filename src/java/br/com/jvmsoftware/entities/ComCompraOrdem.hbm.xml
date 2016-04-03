@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 3/Abr/2016 2:22:38 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.jvmsoftware.entities.ComCompraOrdem" table="com_compra_ordem" catalog="jvmdsoftware" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="select">
+            <column name="empresa" not-null="true" />
+        </many-to-one>
+        <many-to-one name="pubUsuario" class="br.com.jvmsoftware.entities.PubUsuario" fetch="select">
+            <column name="usuario_inclusao" not-null="true" />
+        </many-to-one>
+        <many-to-one name="wflWorkflow" class="br.com.jvmsoftware.entities.WflWorkflow" fetch="select">
+            <column name="workflow" not-null="true" />
+        </many-to-one>
+        <property name="dataHoraInclusao" type="timestamp">
+            <column name="data_hora_inclusao" length="19" not-null="true" />
+        </property>
+        <set name="comRelCompraOrdemProdutos" table="com_rel_compra_ordem_produto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ordem_compra" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.ComRelCompraOrdemProduto" />
+        </set>
+        <set name="comRelCompraOrdemServicos" table="com_rel_compra_ordem_servico" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ordem_compra" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.ComRelCompraOrdemServico" />
+        </set>
+    </class>
+</hibernate-mapping>

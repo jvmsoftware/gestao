@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 31/Mar/2016 22:28:20 by Hibernate Tools 4.3.1 -->
+<!-- Generated 3/Abr/2016 2:22:38 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.jvmsoftware.entities.PubEmpresa" table="pub_empresa" catalog="jvmdsoftware" optimistic-lock="version">
         <id name="idEmpresa" type="java.lang.Integer">
@@ -55,6 +55,18 @@
         <property name="emailResponsavel" type="string">
             <column name="email_responsavel" length="50" />
         </property>
+        <set name="cadImoveises" table="cad_imoveis" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="empresa" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.CadImoveis" />
+        </set>
+        <set name="comCompraOrdems" table="com_compra_ordem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="empresa" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.ComCompraOrdem" />
+        </set>
         <set name="pubConfigEmpresas" table="pub_config_empresa" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="empresa" not-null="true" />
@@ -91,17 +103,17 @@
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.WflSituacao" />
         </set>
-        <set name="acsUsuarioSistemas" table="acs_usuario_sistema" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="empresa" not-null="true" />
-            </key>
-            <one-to-many class="br.com.jvmsoftware.entities.AcsUsuarioSistema" />
-        </set>
         <set name="supSolicitacaos" table="sup_solicitacao" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="empresa_solicitacao" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.SupSolicitacao" />
+        </set>
+        <set name="acsUsuarioSistemas" table="acs_usuario_sistema" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="empresa" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.AcsUsuarioSistema" />
         </set>
         <set name="wflWorkflowsForEmpresaDestino" table="wfl_workflow" inverse="true" lazy="true" fetch="select">
             <key>
@@ -116,6 +128,12 @@
                 <column name="empresa" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.CadPessoa" />
+        </set>
+        <set name="cadVeiculoses" table="cad_veiculos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="empresa" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.CadVeiculos" />
         </set>
         <set name="wflWorkflowEventos" table="wfl_workflow_evento" inverse="true" lazy="true" fetch="select">
             <key>
@@ -140,6 +158,12 @@
                 <column name="empresa" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.PubUsuario" />
+        </set>
+        <set name="cadEquipamentoses" table="cad_equipamentos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="empresa" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.CadEquipamentos" />
         </set>
         <set name="wflWorkflowsForEmpresaCriacao" table="wfl_workflow" inverse="true" lazy="true" fetch="select">
             <key>

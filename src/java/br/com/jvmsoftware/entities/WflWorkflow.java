@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 31/Mar/2016 22:28:08 by Hibernate Tools 4.3.1
+// Generated 3/Abr/2016 2:22:35 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -22,6 +22,7 @@ public class WflWorkflow  implements java.io.Serializable {
      private WflSituacao wflSituacao;
      private Date dataHoraCriacao;
      private int idProcessoSistema;
+     private Set<ComCompraOrdem> comCompraOrdems = new HashSet<ComCompraOrdem>(0);
      private Set<WflWorkflowEvento> wflWorkflowEventos = new HashSet<WflWorkflowEvento>(0);
 
     public WflWorkflow() {
@@ -39,7 +40,7 @@ public class WflWorkflow  implements java.io.Serializable {
         this.dataHoraCriacao = dataHoraCriacao;
         this.idProcessoSistema = idProcessoSistema;
     }
-    public WflWorkflow(PubEmpresa pubEmpresaByEmpresaDestino, PubEmpresa pubEmpresaByEmpresaCriacao, PubFuncionalidade pubFuncionalidade, PubSistema pubSistema, PubUsuario pubUsuario, WflSeveridade wflSeveridade, WflSituacao wflSituacao, Date dataHoraCriacao, int idProcessoSistema, Set<WflWorkflowEvento> wflWorkflowEventos) {
+    public WflWorkflow(PubEmpresa pubEmpresaByEmpresaDestino, PubEmpresa pubEmpresaByEmpresaCriacao, PubFuncionalidade pubFuncionalidade, PubSistema pubSistema, PubUsuario pubUsuario, WflSeveridade wflSeveridade, WflSituacao wflSituacao, Date dataHoraCriacao, int idProcessoSistema, Set<ComCompraOrdem> comCompraOrdems, Set<WflWorkflowEvento> wflWorkflowEventos) {
        this.pubEmpresaByEmpresaDestino = pubEmpresaByEmpresaDestino;
        this.pubEmpresaByEmpresaCriacao = pubEmpresaByEmpresaCriacao;
        this.pubFuncionalidade = pubFuncionalidade;
@@ -49,6 +50,7 @@ public class WflWorkflow  implements java.io.Serializable {
        this.wflSituacao = wflSituacao;
        this.dataHoraCriacao = dataHoraCriacao;
        this.idProcessoSistema = idProcessoSistema;
+       this.comCompraOrdems = comCompraOrdems;
        this.wflWorkflowEventos = wflWorkflowEventos;
     }
    
@@ -121,6 +123,13 @@ public class WflWorkflow  implements java.io.Serializable {
     
     public void setIdProcessoSistema(int idProcessoSistema) {
         this.idProcessoSistema = idProcessoSistema;
+    }
+    public Set<ComCompraOrdem> getComCompraOrdems() {
+        return this.comCompraOrdems;
+    }
+    
+    public void setComCompraOrdems(Set<ComCompraOrdem> comCompraOrdems) {
+        this.comCompraOrdems = comCompraOrdems;
     }
     public Set<WflWorkflowEvento> getWflWorkflowEventos() {
         return this.wflWorkflowEventos;

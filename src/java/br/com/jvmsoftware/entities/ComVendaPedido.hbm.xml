@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 3/Abr/2016 2:22:38 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.jvmsoftware.entities.ComVendaPedido" table="com_venda_pedido" catalog="jvmdsoftware" optimistic-lock="version">
+        <id name="idPedido" type="int">
+            <column name="id_pedido" />
+            <generator class="assigned" />
+        </id>
+        <property name="empresa" type="int">
+            <column name="empresa" not-null="true" />
+        </property>
+        <property name="usuario" type="int">
+            <column name="usuario" not-null="true" />
+        </property>
+        <property name="dataHora" type="timestamp">
+            <column name="data_hora" length="19" not-null="true" />
+        </property>
+        <property name="workflow" type="int">
+            <column name="workflow" not-null="true" />
+        </property>
+        <set name="comRelVendaProdutos" table="com_rel_venda_produto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="venda_pedido" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.ComRelVendaProduto" />
+        </set>
+    </class>
+</hibernate-mapping>

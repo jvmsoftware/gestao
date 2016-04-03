@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 31/Mar/2016 22:28:20 by Hibernate Tools 4.3.1 -->
+<!-- Generated 3/Abr/2016 2:22:38 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.jvmsoftware.entities.CadPessoa" table="cad_pessoa" catalog="jvmdsoftware" optimistic-lock="version">
         <id name="idPessoa" type="java.lang.Integer">
@@ -50,6 +50,24 @@
         <property name="transportador" type="boolean">
             <column name="transportador" not-null="true" />
         </property>
+        <set name="cadEquipamentoses" table="cad_equipamentos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pessoa" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.CadEquipamentos" />
+        </set>
+        <set name="cadImoveises" table="cad_imoveis" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pessoa" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.CadImoveis" />
+        </set>
+        <set name="cadVeiculoses" table="cad_veiculos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pessoa" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.CadVeiculos" />
+        </set>
         <set name="cadEnderecoses" table="cad_enderecos" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="pessoa" not-null="true" />

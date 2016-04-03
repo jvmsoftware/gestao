@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 3/Abr/2016 2:22:38 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.jvmsoftware.entities.PubTipoImovel" table="pub_tipo_imovel" catalog="jvmdsoftware" optimistic-lock="version">
+        <id name="idTipoImovel" type="java.lang.Integer">
+            <column name="id_tipo_imovel" />
+            <generator class="identity" />
+        </id>
+        <property name="tipoImovel" type="string">
+            <column name="tipo_imovel" length="50" not-null="true" />
+        </property>
+        <set name="cadImoveises" table="cad_imoveis" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tipo_imovel" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.CadImoveis" />
+        </set>
+    </class>
+</hibernate-mapping>

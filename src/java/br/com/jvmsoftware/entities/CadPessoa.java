@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 31/Mar/2016 22:28:08 by Hibernate Tools 4.3.1
+// Generated 3/Abr/2016 2:22:35 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -27,6 +27,9 @@ public class CadPessoa  implements java.io.Serializable {
      private boolean fornecedor;
      private boolean funcionario;
      private boolean transportador;
+     private Set<CadEquipamentos> cadEquipamentoses = new HashSet<CadEquipamentos>(0);
+     private Set<CadImoveis> cadImoveises = new HashSet<CadImoveis>(0);
+     private Set<CadVeiculos> cadVeiculoses = new HashSet<CadVeiculos>(0);
      private Set<CadEnderecos> cadEnderecoses = new HashSet<CadEnderecos>(0);
      private Set<CadRelServFornec> cadRelServFornecs = new HashSet<CadRelServFornec>(0);
      private Set<CadRelProdFornec> cadRelProdFornecs = new HashSet<CadRelProdFornec>(0);
@@ -45,7 +48,7 @@ public class CadPessoa  implements java.io.Serializable {
         this.funcionario = funcionario;
         this.transportador = transportador;
     }
-    public CadPessoa(CadEnderecos cadEnderecos, PubEmpresa pubEmpresa, PubTipoCadastro pubTipoCadastro, Date dataCadastro, String cpfCnpj, String nomeRazaoSocial, String apelidoFantasia, String emailResponsavel, String telefone, String telefone1, boolean cliente, boolean fornecedor, boolean funcionario, boolean transportador, Set<CadEnderecos> cadEnderecoses, Set<CadRelServFornec> cadRelServFornecs, Set<CadRelProdFornec> cadRelProdFornecs) {
+    public CadPessoa(CadEnderecos cadEnderecos, PubEmpresa pubEmpresa, PubTipoCadastro pubTipoCadastro, Date dataCadastro, String cpfCnpj, String nomeRazaoSocial, String apelidoFantasia, String emailResponsavel, String telefone, String telefone1, boolean cliente, boolean fornecedor, boolean funcionario, boolean transportador, Set<CadEquipamentos> cadEquipamentoses, Set<CadImoveis> cadImoveises, Set<CadVeiculos> cadVeiculoses, Set<CadEnderecos> cadEnderecoses, Set<CadRelServFornec> cadRelServFornecs, Set<CadRelProdFornec> cadRelProdFornecs) {
        this.cadEnderecos = cadEnderecos;
        this.pubEmpresa = pubEmpresa;
        this.pubTipoCadastro = pubTipoCadastro;
@@ -60,6 +63,9 @@ public class CadPessoa  implements java.io.Serializable {
        this.fornecedor = fornecedor;
        this.funcionario = funcionario;
        this.transportador = transportador;
+       this.cadEquipamentoses = cadEquipamentoses;
+       this.cadImoveises = cadImoveises;
+       this.cadVeiculoses = cadVeiculoses;
        this.cadEnderecoses = cadEnderecoses;
        this.cadRelServFornecs = cadRelServFornecs;
        this.cadRelProdFornecs = cadRelProdFornecs;
@@ -169,6 +175,27 @@ public class CadPessoa  implements java.io.Serializable {
     
     public void setTransportador(boolean transportador) {
         this.transportador = transportador;
+    }
+    public Set<CadEquipamentos> getCadEquipamentoses() {
+        return this.cadEquipamentoses;
+    }
+    
+    public void setCadEquipamentoses(Set<CadEquipamentos> cadEquipamentoses) {
+        this.cadEquipamentoses = cadEquipamentoses;
+    }
+    public Set<CadImoveis> getCadImoveises() {
+        return this.cadImoveises;
+    }
+    
+    public void setCadImoveises(Set<CadImoveis> cadImoveises) {
+        this.cadImoveises = cadImoveises;
+    }
+    public Set<CadVeiculos> getCadVeiculoses() {
+        return this.cadVeiculoses;
+    }
+    
+    public void setCadVeiculoses(Set<CadVeiculos> cadVeiculoses) {
+        this.cadVeiculoses = cadVeiculoses;
     }
     public Set<CadEnderecos> getCadEnderecoses() {
         return this.cadEnderecoses;

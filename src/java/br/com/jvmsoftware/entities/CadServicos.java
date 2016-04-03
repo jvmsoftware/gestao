@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 31/Mar/2016 22:28:08 by Hibernate Tools 4.3.1
+// Generated 3/Abr/2016 2:22:35 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -14,10 +14,12 @@ public class CadServicos  implements java.io.Serializable {
 
      private int idServico;
      private PubEmpresa pubEmpresa;
+     private PubFrequenciaServico pubFrequenciaServico;
      private String servico;
      private String descricao;
      private BigDecimal preco;
      private boolean ativo;
+     private Set<ComRelCompraOrdemServico> comRelCompraOrdemServicos = new HashSet<ComRelCompraOrdemServico>(0);
      private Set<CadRelServFornec> cadRelServFornecs = new HashSet<CadRelServFornec>(0);
 
     public CadServicos() {
@@ -30,13 +32,15 @@ public class CadServicos  implements java.io.Serializable {
         this.servico = servico;
         this.ativo = ativo;
     }
-    public CadServicos(int idServico, PubEmpresa pubEmpresa, String servico, String descricao, BigDecimal preco, boolean ativo, Set<CadRelServFornec> cadRelServFornecs) {
+    public CadServicos(int idServico, PubEmpresa pubEmpresa, PubFrequenciaServico pubFrequenciaServico, String servico, String descricao, BigDecimal preco, boolean ativo, Set<ComRelCompraOrdemServico> comRelCompraOrdemServicos, Set<CadRelServFornec> cadRelServFornecs) {
        this.idServico = idServico;
        this.pubEmpresa = pubEmpresa;
+       this.pubFrequenciaServico = pubFrequenciaServico;
        this.servico = servico;
        this.descricao = descricao;
        this.preco = preco;
        this.ativo = ativo;
+       this.comRelCompraOrdemServicos = comRelCompraOrdemServicos;
        this.cadRelServFornecs = cadRelServFornecs;
     }
    
@@ -53,6 +57,13 @@ public class CadServicos  implements java.io.Serializable {
     
     public void setPubEmpresa(PubEmpresa pubEmpresa) {
         this.pubEmpresa = pubEmpresa;
+    }
+    public PubFrequenciaServico getPubFrequenciaServico() {
+        return this.pubFrequenciaServico;
+    }
+    
+    public void setPubFrequenciaServico(PubFrequenciaServico pubFrequenciaServico) {
+        this.pubFrequenciaServico = pubFrequenciaServico;
     }
     public String getServico() {
         return this.servico;
@@ -81,6 +92,13 @@ public class CadServicos  implements java.io.Serializable {
     
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
+    }
+    public Set<ComRelCompraOrdemServico> getComRelCompraOrdemServicos() {
+        return this.comRelCompraOrdemServicos;
+    }
+    
+    public void setComRelCompraOrdemServicos(Set<ComRelCompraOrdemServico> comRelCompraOrdemServicos) {
+        this.comRelCompraOrdemServicos = comRelCompraOrdemServicos;
     }
     public Set<CadRelServFornec> getCadRelServFornecs() {
         return this.cadRelServFornecs;

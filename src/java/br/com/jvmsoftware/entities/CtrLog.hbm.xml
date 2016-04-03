@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 31/Mar/2016 22:28:20 by Hibernate Tools 4.3.1 -->
+<!-- Generated 3/Abr/2016 2:22:38 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.jvmsoftware.entities.CtrLog" table="ctr_log" catalog="jvmdsoftware" optimistic-lock="version">
         <id name="idLog" type="java.lang.Integer">

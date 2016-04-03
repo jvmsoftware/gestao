@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 3/Abr/2016 2:22:38 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.jvmsoftware.entities.CadVeiculos" table="cad_veiculos" catalog="jvmdsoftware" optimistic-lock="version">
+        <id name="idVeiculo" type="java.lang.Integer">
+            <column name="id_veiculo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cadPessoa" class="br.com.jvmsoftware.entities.CadPessoa" fetch="select">
+            <column name="pessoa" not-null="true" />
+        </many-to-one>
+        <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="select">
+            <column name="empresa" not-null="true" />
+        </many-to-one>
+        <many-to-one name="pubMarcaVeiculo" class="br.com.jvmsoftware.entities.PubMarcaVeiculo" fetch="select">
+            <column name="marca" />
+        </many-to-one>
+        <many-to-one name="pubModeloVeiculo" class="br.com.jvmsoftware.entities.PubModeloVeiculo" fetch="select">
+            <column name="modelo" />
+        </many-to-one>
+        <many-to-one name="pubTipoVeiculo" class="br.com.jvmsoftware.entities.PubTipoVeiculo" fetch="select">
+            <column name="tipo_veiculo" not-null="true" />
+        </many-to-one>
+        <property name="placa" type="string">
+            <column name="placa" length="8" />
+        </property>
+        <property name="chassis" type="string">
+            <column name="chassis" length="30" />
+        </property>
+        <property name="observacao" type="string">
+            <column name="observacao" />
+        </property>
+    </class>
+</hibernate-mapping>
