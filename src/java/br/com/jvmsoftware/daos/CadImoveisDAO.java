@@ -32,7 +32,7 @@ public class CadImoveisDAO extends DefaultDAO {
         return imoveis;
     }
     
-    public void inserirEndereco (CadImoveis imovel) throws SQLException {
+    public void inserirImovel (CadImoveis imovel) throws SQLException {
         getSession();
         begin();
         session.save(imovel);
@@ -40,7 +40,7 @@ public class CadImoveisDAO extends DefaultDAO {
         closeSession();
     }
     
-    public void updateEndereco (CadImoveis imovel) throws SQLException {
+    public void updateImovel (CadImoveis imovel) throws SQLException {
         getSession();
         begin();
         session.merge(imovel);

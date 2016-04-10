@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 3/Abr/2016 2:22:35 by Hibernate Tools 4.3.1
+// Generated 9/Abr/2016 18:34:16 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -35,6 +35,7 @@ public class PubUsuario  implements java.io.Serializable {
      private Double telefone;
      private boolean master;
      private Set<AcsAcessoUsuarios> acsAcessoUsuarioses = new HashSet<AcsAcessoUsuarios>(0);
+     private Set<AcsUsuarioFuncionalidade> acsUsuarioFuncionalidades = new HashSet<AcsUsuarioFuncionalidade>(0);
      private Set<CtrLog> ctrLogs = new HashSet<CtrLog>(0);
      private Set<WflWorkflowEvento> wflWorkflowEventos = new HashSet<WflWorkflowEvento>(0);
      private Set<WflWorkflow> wflWorkflows = new HashSet<WflWorkflow>(0);
@@ -54,7 +55,7 @@ public class PubUsuario  implements java.io.Serializable {
         this.ativo = ativo;
         this.master = master;
     }
-    public PubUsuario(PubEmpresa pubEmpresa, PubEstado pubEstado, PubMunicipio pubMunicipio, String cpfUsuario, String nomeUsuario, String email, String senha, Date dataNascimento, Date dataCadastro, Date dataVerificacao, String codigoVerificacao, boolean ativo, Date dataRessetSenha, Date dataValidacaoResset, String endereco, Double numero, String bairro, String complemento, Double cep, Double telefone, boolean master, Set<AcsAcessoUsuarios> acsAcessoUsuarioses, Set<CtrLog> ctrLogs, Set<WflWorkflowEvento> wflWorkflowEventos, Set<WflWorkflow> wflWorkflows, Set<SupProjeto> supProjetos, Set<SupSolicitacao> supSolicitacaos, Set<ComCompraOrdem> comCompraOrdems, Set<AcsUsuarioSistema> acsUsuarioSistemas) {
+    public PubUsuario(PubEmpresa pubEmpresa, PubEstado pubEstado, PubMunicipio pubMunicipio, String cpfUsuario, String nomeUsuario, String email, String senha, Date dataNascimento, Date dataCadastro, Date dataVerificacao, String codigoVerificacao, boolean ativo, Date dataRessetSenha, Date dataValidacaoResset, String endereco, Double numero, String bairro, String complemento, Double cep, Double telefone, boolean master, Set<AcsAcessoUsuarios> acsAcessoUsuarioses, Set<AcsUsuarioFuncionalidade> acsUsuarioFuncionalidades, Set<CtrLog> ctrLogs, Set<WflWorkflowEvento> wflWorkflowEventos, Set<WflWorkflow> wflWorkflows, Set<SupProjeto> supProjetos, Set<SupSolicitacao> supSolicitacaos, Set<ComCompraOrdem> comCompraOrdems, Set<AcsUsuarioSistema> acsUsuarioSistemas) {
        this.pubEmpresa = pubEmpresa;
        this.pubEstado = pubEstado;
        this.pubMunicipio = pubMunicipio;
@@ -77,6 +78,7 @@ public class PubUsuario  implements java.io.Serializable {
        this.telefone = telefone;
        this.master = master;
        this.acsAcessoUsuarioses = acsAcessoUsuarioses;
+       this.acsUsuarioFuncionalidades = acsUsuarioFuncionalidades;
        this.ctrLogs = ctrLogs;
        this.wflWorkflowEventos = wflWorkflowEventos;
        this.wflWorkflows = wflWorkflows;
@@ -246,6 +248,13 @@ public class PubUsuario  implements java.io.Serializable {
     
     public void setAcsAcessoUsuarioses(Set<AcsAcessoUsuarios> acsAcessoUsuarioses) {
         this.acsAcessoUsuarioses = acsAcessoUsuarioses;
+    }
+    public Set<AcsUsuarioFuncionalidade> getAcsUsuarioFuncionalidades() {
+        return this.acsUsuarioFuncionalidades;
+    }
+    
+    public void setAcsUsuarioFuncionalidades(Set<AcsUsuarioFuncionalidade> acsUsuarioFuncionalidades) {
+        this.acsUsuarioFuncionalidades = acsUsuarioFuncionalidades;
     }
     public Set<CtrLog> getCtrLogs() {
         return this.ctrLogs;

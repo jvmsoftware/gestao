@@ -5,9 +5,13 @@
  */
 package br.com.jvmsoftware.daos;
 
+import br.com.jvmsoftware.entities.AcsEmpresaFuncionalidade;
 import br.com.jvmsoftware.entities.AcsEmpresaSistema;
+import br.com.jvmsoftware.entities.AcsUsuarioSistema;
 import br.com.jvmsoftware.entities.PubEmpresa;
+import br.com.jvmsoftware.entities.PubFuncionalidade;
 import br.com.jvmsoftware.entities.PubSistema;
+import br.com.jvmsoftware.entities.PubUsuario;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -38,12 +42,12 @@ public class PubEmpresaDAO extends DefaultDAO {
         begin();
         session.save(empresa);
         commit();
-        triggerInsert(empresa);
+        triggerSistema(empresa);
+        triggerFuncionalidade(empresa);
         closeSession();
     }
     
     public void atualizarEmpresa (PubEmpresa empresa) throws SQLException {
-        triggerInsert(empresa);
         getSession();
         begin();
         session.merge(empresa);
@@ -52,21 +56,32 @@ public class PubEmpresaDAO extends DefaultDAO {
         
     }
     
-    private void triggerInsert(PubEmpresa empresa) throws SQLException {
-        AcsEmpresaSistemaDAO empSisDAO = new AcsEmpresaSistemaDAO();
-        List<PubSistema> sistemas;
-        getSession();
-        begin();
-        sistemas = session.createQuery("from PubSistema s "
-                                     + "where not exists (from AcsEmpresaSistema r "
-                                                       + "where r.pubEmpresa.idEmpresa = :emp)").setParameter("emp", empresa.getIdEmpresa()).list();
-        for (PubSistema sistema : sistemas) {
-            AcsEmpresaSistema empSis = new AcsEmpresaSistema();
-            empSis.setPubEmpresa(empresa);
-            empSis.setPubSistema(sistema);
-            empSis.setAtivo(false);
-            empSisDAO.inserirEmpresaSistema(empSis);
-            //empresa.getAcsEmpresaSistemas().add(empSis);
+    private void triggerSistema(PubEmpresa e) throws SQLException {
+        AcsEmpresaSistemaDAO relEmpDAO = new AcsEmpresaSistemaDAO();
+        PubSistemaDAO sisDAO = new PubSistemaDAO();
+        List<PubSistema> listSistema;
+        listSistema = sisDAO.listAllSistemas();
+        for (PubSistema listSistema1 : listSistema) {
+            AcsEmpresaSistema rel = new AcsEmpresaSistema();
+            rel.setPubEmpresa(e);
+            rel.setPubSistema(listSistema1);
+            rel.setAtivo(false);
+            relEmpDAO.inserirEmpresaSistema(rel);
         }
     }
+    
+    private void triggerFuncionalidade(PubEmpresa s) throws SQLException {
+        AcsEmpresaFuncionalidadeDAO relUsuDAO = new AcsEmpresaFuncionalidadeDAO();
+        PubFuncionalidadeDAO funDAO = new PubFuncionalidadeDAO();
+        List<PubFuncionalidade> listFuncionalidades;
+        listFuncionalidades = funDAO.listAllFuncionalidades();
+        for (PubFuncionalidade listFuncionalidades1 : listFuncionalidades) {
+            AcsEmpresaFuncionalidade rel = new AcsEmpresaFuncionalidade();
+            rel.setPubEmpresa(s);
+            rel.setPubFuncionalidade(listFuncionalidades1);
+            rel.setDesabilitado(true);
+            relUsuDAO.inserirEmpresaFuncionalidade(rel);
+        }
+    }
+    
 }

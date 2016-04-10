@@ -32,7 +32,7 @@
                         <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
                         <f:selectItems value="#{adminFuncionalidadesController.listSistemas}" var="modu" itemLabel="#{modu.nomeSistema}" itemValue="#{modu.idSistema}"/>
                     </p:selectOneMenu>
-                    <p:commandButton id="btnNew" icon="icon-funcionalidade" action="#{adminFuncionalidadesController.funcionalidadesNew}" update="@form">
+                    <p:commandButton id="btnNew" icon="icon-funcionalidade" action="#{adminFuncionalidadesController.funcionalidadesNew()}" update="@all">
                         <p:tooltip value="nova funcionalidade" for="btnNew"/>
                     </p:commandButton>
                 </p:panelGrid>
@@ -44,6 +44,9 @@
                          rowsPerPageTemplate="5,10,15">
                 <p:column headerText="Modulo">
                     <h:outputText value="#{func.pubSistema.nomeSistema}"/>
+                </p:column>
+                <p:column headerText="Codigo Funcion">
+                    <h:outputText value="#{func.codFuncionalidade}"/>
                 </p:column>
                 <p:column headerText="Funcionalidade">
                     <h:outputText value="#{func.descricaoFuncionalidade}"/>

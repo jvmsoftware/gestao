@@ -32,7 +32,7 @@ public class CadEquipamentosDAO extends DefaultDAO {
         return equipamentos;
     }
     
-    public void inserirEndereco (CadEquipamentos equipamento) throws SQLException {
+    public void inserirEquipamento (CadEquipamentos equipamento) throws SQLException {
         getSession();
         begin();
         session.save(equipamento);
@@ -40,7 +40,7 @@ public class CadEquipamentosDAO extends DefaultDAO {
         closeSession();
     }
     
-    public void updateEndereco (CadEquipamentos equipamento) throws SQLException {
+    public void updateEquipamento (CadEquipamentos equipamento) throws SQLException {
         getSession();
         begin();
         session.merge(equipamento);

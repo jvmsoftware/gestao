@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 3/Abr/2016 2:22:35 by Hibernate Tools 4.3.1
+// Generated 9/Abr/2016 18:34:16 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,6 +12,7 @@ public class PubMarcaVeiculo  implements java.io.Serializable {
 
 
      private Integer idMarcaVeiculo;
+     private PubTipoVeiculo pubTipoVeiculo;
      private String marcaVeiculo;
      private Set<CadVeiculos> cadVeiculoses = new HashSet<CadVeiculos>(0);
      private Set<PubModeloVeiculo> pubModeloVeiculos = new HashSet<PubModeloVeiculo>(0);
@@ -20,10 +21,12 @@ public class PubMarcaVeiculo  implements java.io.Serializable {
     }
 
 	
-    public PubMarcaVeiculo(String marcaVeiculo) {
+    public PubMarcaVeiculo(PubTipoVeiculo pubTipoVeiculo, String marcaVeiculo) {
+        this.pubTipoVeiculo = pubTipoVeiculo;
         this.marcaVeiculo = marcaVeiculo;
     }
-    public PubMarcaVeiculo(String marcaVeiculo, Set<CadVeiculos> cadVeiculoses, Set<PubModeloVeiculo> pubModeloVeiculos) {
+    public PubMarcaVeiculo(PubTipoVeiculo pubTipoVeiculo, String marcaVeiculo, Set<CadVeiculos> cadVeiculoses, Set<PubModeloVeiculo> pubModeloVeiculos) {
+       this.pubTipoVeiculo = pubTipoVeiculo;
        this.marcaVeiculo = marcaVeiculo;
        this.cadVeiculoses = cadVeiculoses;
        this.pubModeloVeiculos = pubModeloVeiculos;
@@ -35,6 +38,13 @@ public class PubMarcaVeiculo  implements java.io.Serializable {
     
     public void setIdMarcaVeiculo(Integer idMarcaVeiculo) {
         this.idMarcaVeiculo = idMarcaVeiculo;
+    }
+    public PubTipoVeiculo getPubTipoVeiculo() {
+        return this.pubTipoVeiculo;
+    }
+    
+    public void setPubTipoVeiculo(PubTipoVeiculo pubTipoVeiculo) {
+        this.pubTipoVeiculo = pubTipoVeiculo;
     }
     public String getMarcaVeiculo() {
         return this.marcaVeiculo;

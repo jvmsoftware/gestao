@@ -82,42 +82,140 @@
                 <p:selectBooleanCheckbox id="func" value="#{cadClientesController.selectedCliente.funcionario}"/>
                 <p:selectBooleanCheckbox id="trans" value="#{cadClientesController.selectedCliente.transportador}"/>
 
-            </p:panelGrid>
-
-            <center>
-            <p:dataTable value="#{cadClientesController.listEnderecos}" var="end" paginator="true" rows="5" styleClass="paginated">
-                <f:facet name="header">
-                    <p:commandButton value="novo endereço" icon="icon-cadastros">
-                        <p:ajax listener="#{cadClientesController.enderecoNew()}" update=":form:endDetail" oncomplete="PF('endDialog').show()"/>
-                    </p:commandButton>
+                <f:facet  name="footer">
+                    <center>
+                        <p:commandButton action="#{cadClientesController.alteraCliente()}" value="gravar" icon="icon-salvar" update="@all" process="@all"/>
+                        <p:commandButton action="#{cadClientesController.clientes()}" value="voltar" icon="icon-voltar"/>
+                    </center>
                 </f:facet>
                 
-                <p:column headerText="Tipo de Endereço">
-                    <h:outputText value="#{end.pubTipoEndereco.codTipoEndereco} - #{end.pubTipoEndereco.tipoEndereco}"/>
-                </p:column>
+            </p:panelGrid>
+            
+            <center>
+            <p:accordionPanel>
+                <p:tab title="Endereços">
+                    <p:dataTable value="#{cadClientesController.listEnderecos}" var="end" paginator="true" rows="5" paginatorPosition="top">
+                        <f:facet name="header">
+                            <p:commandButton value="novo endereço" icon="icon-cadastros">
+                                <p:ajax listener="#{cadClientesController.enderecoNew()}" update=":form:endDetail" oncomplete="PF('endDialog').show()"/>
+                            </p:commandButton>
+                        </f:facet>
+
+                        <p:column headerText="Tipo de Endereço">
+                            <h:outputText value="#{end.pubTipoEndereco.codTipoEndereco} - #{end.pubTipoEndereco.tipoEndereco}"/>
+                        </p:column>
+
+                        <p:column headerText="Endereço">
+                            <h:outputText value="#{end.endereco}, #{end.numero} - #{end.bairro} - #{end.pubMunicipio.municipio} - #{end.pubEstado.uf}"/>
+                        </p:column>
+
+                        <p:column headerText="Detalhes">
+                            <center>
+                            <p:commandButton id="btnEdit" icon="icon-editar" process="@form">
+                                <p:ajax listener="#{cadClientesController.setParametrosEndereco(end)}" update=":form:endDetail" oncomplete="PF('endDialog').show()"/>
+                                <p:tooltip value="editar endereço" for="btnEdit"/>
+                            </p:commandButton>
+                            </center>
+                        </p:column>    
+                    </p:dataTable>
+                </p:tab>
                 
-                <p:column headerText="Endereço">
-                    <h:outputText value="#{end.endereco}, #{end.numero} - #{end.bairro} - #{end.pubMunicipio.municipio} - #{end.pubEstado.uf}"/>
-                </p:column>
+                <p:tab title="Veiculos">
+                    <p:dataTable value="#{cadClientesController.listVeiculos}" var="vei" paginator="true" rows="5" styleClass="paginated" paginatorPosition="top">
+                        <f:facet name="header">
+                            <p:commandButton value="novo veiculo" icon="icon-veiculo">
+                                <p:ajax listener="#{cadClientesController.veiculoNew()}" update=":form:veiDetail" oncomplete="PF('veiDialog').show()"/>
+                            </p:commandButton>
+                        </f:facet>
+
+                        <p:column headerText="Tipo">
+                            <h:outputText value="#{vei.pubTipoVeiculo.tipoVeiculo}"/>
+                        </p:column>
+
+                        <p:column headerText="Marca">
+                            <h:outputText value="#{vei.pubMarcaVeiculo.marcaVeiculo}"/>
+                        </p:column>
+
+                        <p:column headerText="Modelo">
+                            <h:outputText value="#{vei.pubModeloVeiculo.modeloVeiculo}"/>
+                        </p:column>
+
+                        <p:column headerText="Placa">
+                            <h:outputText value="#{vei.placa}"/>
+                        </p:column>
+
+                        <p:column>
+                            <center>
+                            <p:commandButton id="btnEdit" icon="icon-editar" process="@form">
+                                <p:ajax listener="#{cadClientesController.setParametrosVeiculo(vei)}" update=":form:veiDetail" oncomplete="PF('veiDialog').show()"/>
+                                <p:tooltip value="editar veiculo" for="btnEdit"/>
+                            </p:commandButton>
+                            </center>
+                        </p:column>
+
+                    </p:dataTable> 
+                </p:tab>
                 
-                <p:column headerText="Endereço">
-                    <center>
-                    <p:commandButton id="btnEdit" icon="icon-editar" process="@form">
-                        <p:ajax listener="#{cadClientesController.setParametrosEndereco(end)}" update=":form:endDetail" oncomplete="PF('endDialog').show()"/>
-                        <p:tooltip value="editar endereço" for="btnEdit"/>
-                    </p:commandButton>
-                    </center>
-                </p:column>
+                <p:tab title="Equipamentos">
+                    <p:dataTable value="#{cadClientesController.listEquipamentos}" var="equi" paginator="true" rows="5" styleClass="paginated" paginatorPosition="top">
+                        <f:facet name="header">
+                            <p:commandButton value="novo equipamento" icon="icon-equipamento">
+                                <p:ajax listener="#{cadClientesController.equipamentoNew()}" update=":form:equipDetail" oncomplete="PF('equipDialog').show()"/>
+                            </p:commandButton>
+                        </f:facet>
+
+                        <p:column headerText="Tipo">
+                            <h:outputText value="#{equi.pubTipoEquipamento.tipoEquipamento}"/>
+                        </p:column>
+
+                        <p:column headerText="Equipamento">
+                            <h:outputText value="#{equi.equipamento}"/>
+                        </p:column>
+
+                        <p:column>
+                            <center>
+                            <p:commandButton id="btnEdit" icon="icon-editar" process="@form">
+                                <p:ajax listener="#{cadClientesController.setParametrosEquipamento(equi)}" update=":form:equipDetail" oncomplete="PF('equipDialog').show()"/>
+                                <p:tooltip value="editar equipamento" for="btnEdit"/>
+                            </p:commandButton>
+                            </center>
+                        </p:column>
+
+                    </p:dataTable> 
+                </p:tab>
                 
-            </p:dataTable>
+                <p:tab title="Imoveis">
+                    <p:dataTable value="#{cadClientesController.listImoveis}" var="imo" paginator="true" rows="5" styleClass="paginated" paginatorPosition="top">
+                        <f:facet name="header">
+                            <p:commandButton value="novo imovel" icon="icon-imovel">
+                                <p:ajax listener="#{cadClientesController.imovelNew()}" update=":form:imovDetail" oncomplete="PF('imovDialog').show()"/>
+                            </p:commandButton>
+                        </f:facet>
+
+                        <p:column headerText="Tipo">
+                            <h:outputText value="#{imo.pubTipoImovel.tipoImovel}"/>
+                        </p:column>
+
+                        <p:column headerText="Imovel">
+                            <h:outputText value="#{imo.imovel}"/>
+                        </p:column>
+
+                        <p:column>
+                            <center>
+                            <p:commandButton id="btnEdit" icon="icon-editar" process="@form">
+                                <p:ajax listener="#{cadClientesController.setParametrosImovel(imo)}" update=":form:imovDetail" oncomplete="PF('imovDialog').show()"/>
+                                <p:tooltip value="editar equipamento" for="btnEdit"/>
+                            </p:commandButton>
+                            </center>
+                        </p:column>
+
+                    </p:dataTable> 
+                </p:tab>
+                        
+            </p:accordionPanel>
             </center>
 
-            <f:facet  name="footer">
-                <center>
-                    <p:commandButton action="#{cadClientesController.alteraCliente()}" value="gravar" icon="icon-salvar" update="@all" process="@all"/>
-                    <p:commandButton action="#{cadClientesController.clientes()}" value="voltar" icon="icon-voltar"/>
-                </center>
-            </f:facet>
+            
         </p:panel>
         <div style="clear:both" />
         
@@ -178,6 +276,117 @@
                 
             </p:outputPanel>
         </p:dialog>
+        
+        <p:dialog header="Atualização de veiculos" widgetVar="veiDialog" showEffect="blind" hideEffect="explode" resizable="false" closable="false">
+            <p:outputPanel id="veiDetail" style="text-align:center;">
+                <p:panelGrid  columns="2" columnClasses="label,value">
+                    
+                    <p:outputLabel id="labTip" value="Selecione o tipo" for="tip"/>
+                    <h:selectOneMenu id="tip" label="labTip" value="#{cadClientesController.tipoVeiculo}">
+                        <p:ajax update="mar" process="@form" listener="#{cadClientesController.changeTipoVeiculo()}"/>
+                        <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
+                        <f:selectItems value="#{cadClientesController.listTipoVeiculo}" var="tipoV" itemLabel="#{tipoV.tipoVeiculo}" itemValue="#{tipoV.idTipoVeiculo}"/>
+                    </h:selectOneMenu>
+
+                    <p:outputLabel id="labMar" value="Selecione a marca" for="mar"/>
+                    <h:selectOneMenu id="mar" label="labMar" value="#{cadClientesController.marcaVeiculo}">
+                        <p:ajax update="mod" process="@form" listener="#{cadClientesController.changeMarca()}"/>
+                        <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
+                        <f:selectItems value="#{cadClientesController.listMarcaVeiculo}" var="marca" itemLabel="#{marca.marcaVeiculo}" itemValue="#{marca.idMarcaVeiculo}"/>
+                    </h:selectOneMenu>
+                    
+                    <p:outputLabel id="labMod" value="Selecione o modelo" for="mod"/>
+                    <h:selectOneMenu id="mod" label="labMod" value="#{cadClientesController.modeloVeiculo}">
+                        <p:ajax process="@form"/>
+                        <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
+                        <f:selectItems value="#{cadClientesController.listModeloVeiculo}" var="modelo" itemLabel="#{modelo.modeloVeiculo}" itemValue="#{modelo.idModeloVeiculo}"/>
+                    </h:selectOneMenu>
+                    
+                    <p:outputLabel id="labPlac" value="Placa"/>
+                    <p:inputMask id="plac" disabled="false" mask="aaa-9999"
+                                 value="#{cadClientesController.selectedVeiculo.placa}">
+                    </p:inputMask>
+
+                    <p:outputLabel id="labChas" value="Chassis"/>
+                    <p:inputText id="chas" value="#{cadClientesController.selectedVeiculo.chassis}"/>
+                    
+                    <p:outputLabel id="labObsVei" value="Observação"/>
+                    <p:inputTextarea id="obsVei" disabled="false" maxlength="255"
+                                     value="#{cadClientesController.selectedVeiculo.observacao}">
+                    </p:inputTextarea>
+                    
+                    <f:facet  name="footer">
+                    <center>
+                        <p:commandButton actionListener="#{cadClientesController.incluiVeiculo()}" value="gravar" icon="icon-salvar" update="@all" process="@all" oncomplete="PF('veiDialog').hide()"/>
+                        <p:commandButton value="voltar" icon="icon-voltar" oncomplete="PF('veiDialog').hide()"/>
+                    </center>
+                    </f:facet>
+                    
+                </p:panelGrid>
+                
+            </p:outputPanel>
+        </p:dialog>
+        
+        <p:dialog header="Atualização de equipamentos" widgetVar="equipDialog" showEffect="blind" hideEffect="explode" resizable="false" closable="false">
+            <p:outputPanel id="equipDetail" style="text-align:center;">
+                <p:panelGrid  columns="2" columnClasses="label,value">
+                    
+                    <p:outputLabel id="labTequip" value="selecione o tipo de equipamento" for="tequip"/>
+                    <h:selectOneMenu id="tequip" label="labTequip" value="#{cadClientesController.tipoEquipamento}">
+                        <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
+                        <f:selectItems value="#{cadClientesController.listTipoEquipamento}" var="tipoE" itemLabel="#{tipoE.tipoEquipamento}" itemValue="#{tipoE.idTipoEquipamento}"/>
+                    </h:selectOneMenu>
+
+                    <p:outputLabel id="labEq" value="Equipamento"/>
+                    <p:inputText id="eq" value="#{cadClientesController.selectedEquipamento.equipamento}"/>
+                    
+                    <p:outputLabel id="labObsEq" value="Observação"/>
+                    <p:inputTextarea id="obsEq" disabled="false" maxlength="255"
+                                     value="#{cadClientesController.selectedEquipamento.observacao}">
+                    </p:inputTextarea>
+                    
+                    <f:facet  name="footer">
+                    <center>
+                        <p:commandButton actionListener="#{cadClientesController.incluiEquipamento()}" value="gravar" icon="icon-salvar" update="@all" process="@all" oncomplete="PF('equipDialog').hide()"/>
+                        <p:commandButton value="voltar" icon="icon-voltar" oncomplete="PF('equipDialog').hide()"/>
+                    </center>
+                    </f:facet>
+                    
+                </p:panelGrid>
+                
+            </p:outputPanel>
+        </p:dialog>
+        
+        <p:dialog header="Atualização de imoveis" widgetVar="imovDialog" showEffect="blind" hideEffect="explode" resizable="false" closable="false">
+            <p:outputPanel id="imovDetail" style="text-align:center;">
+                <p:panelGrid  columns="2" columnClasses="label,value">
+                    
+                    <p:outputLabel id="labTimov" value="selecione o tipo de imovel" for="timov"/>
+                    <h:selectOneMenu id="timov" label="labTimov" value="#{cadClientesController.tipoImovel}">
+                        <f:selectItem itemLabel="-- SELECIONE --" itemValue="0" noSelectionOption="true"/>
+                        <f:selectItems value="#{cadClientesController.listTipoImovel}" var="tipoI" itemLabel="#{tipoI.tipoImovel}" itemValue="#{tipoI.idTipoImovel}"/>
+                    </h:selectOneMenu>
+
+                    <p:outputLabel id="labIm" value="Imovel"/>
+                    <p:inputText id="im" value="#{cadClientesController.selectedImovel.imovel}"/>
+                    
+                    <p:outputLabel id="labObsIm" value="Observação"/>
+                    <p:inputTextarea id="obsIm" disabled="false" maxlength="255"
+                                     value="#{cadClientesController.selectedImovel.observacao}">
+                    </p:inputTextarea>
+                    
+                    <f:facet  name="footer">
+                    <center>
+                        <p:commandButton actionListener="#{cadClientesController.incluiImovel()}" value="gravar" icon="icon-salvar" update="@all" process="@all" oncomplete="PF('imovDialog').hide()"/>
+                        <p:commandButton value="voltar" icon="icon-voltar" oncomplete="PF('imovDialog').hide()"/>
+                    </center>
+                    </f:facet>
+                    
+                </p:panelGrid>
+                
+            </p:outputPanel>
+        </p:dialog>
+        
     </h:form>
     </ui:define>  
 </ui:composition>  

@@ -137,6 +137,18 @@ and open the template in the editor.
     background-image: url("../images/icons/logistics3.png") !important;  
 }
 
+.icon-veiculo {  
+    background-image: url("../images/icons/transport.png") !important;  
+}
+
+.icon-equipamento {  
+    background-image: url("../images/icons/construction.png") !important;  
+}
+
+.icon-imovel {  
+    background-image: url("../images/icons/business.png") !important;  
+}
+
 .icon-confirmar {  
     background-image: url("../images/icons/checked.png") !important;  
 }

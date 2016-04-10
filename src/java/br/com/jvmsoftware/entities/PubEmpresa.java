@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 3/Abr/2016 2:22:35 by Hibernate Tools 4.3.1
+// Generated 9/Abr/2016 18:34:16 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -28,11 +28,13 @@ public class PubEmpresa  implements java.io.Serializable {
      private boolean ativo;
      private Double telefone;
      private String emailResponsavel;
-     private Set<CadImoveis> cadImoveises = new HashSet<CadImoveis>(0);
-     private Set<ComCompraOrdem> comCompraOrdems = new HashSet<ComCompraOrdem>(0);
      private Set<PubConfigEmpresa> pubConfigEmpresas = new HashSet<PubConfigEmpresa>(0);
+     private Set<ComCompraOrdem> comCompraOrdems = new HashSet<ComCompraOrdem>(0);
+     private Set<CadImoveis> cadImoveises = new HashSet<CadImoveis>(0);
      private Set<CadServicos> cadServicoses = new HashSet<CadServicos>(0);
+     private Set<AcsEmpresaFuncionalidade> acsEmpresaFuncionalidades = new HashSet<AcsEmpresaFuncionalidade>(0);
      private Set<AcsEmpresaSistema> acsEmpresaSistemas = new HashSet<AcsEmpresaSistema>(0);
+     private Set<AcsUsuarioFuncionalidade> acsUsuarioFuncionalidades = new HashSet<AcsUsuarioFuncionalidade>(0);
      private Set<CadRelServFornec> cadRelServFornecs = new HashSet<CadRelServFornec>(0);
      private Set<SupProjeto> supProjetos = new HashSet<SupProjeto>(0);
      private Set<WflSituacao> wflSituacaos = new HashSet<WflSituacao>(0);
@@ -60,7 +62,7 @@ public class PubEmpresa  implements java.io.Serializable {
         this.fantasia = fantasia;
         this.ativo = ativo;
     }
-    public PubEmpresa(PubEstado pubEstado, PubMunicipio pubMunicipio, PubTipoCadastro pubTipoCadastro, String cnpjEmpresa, String razaoSocial, String fantasia, Double cep, String endereco, Double numero, String bairro, String complemento, Date dataCadastro, boolean ativo, Double telefone, String emailResponsavel, Set<CadImoveis> cadImoveises, Set<ComCompraOrdem> comCompraOrdems, Set<PubConfigEmpresa> pubConfigEmpresas, Set<CadServicos> cadServicoses, Set<AcsEmpresaSistema> acsEmpresaSistemas, Set<CadRelServFornec> cadRelServFornecs, Set<SupProjeto> supProjetos, Set<WflSituacao> wflSituacaos, Set<SupSolicitacao> supSolicitacaos, Set<AcsUsuarioSistema> acsUsuarioSistemas, Set<WflWorkflow> wflWorkflowsForEmpresaDestino, Set<CadPessoa> cadPessoas, Set<CadVeiculos> cadVeiculoses, Set<WflWorkflowEvento> wflWorkflowEventos, Set<CadProduto> cadProdutos, Set<CadRelProdFornec> cadRelProdFornecs, Set<PubUsuario> pubUsuarios, Set<CadEquipamentos> cadEquipamentoses, Set<WflWorkflow> wflWorkflowsForEmpresaCriacao) {
+    public PubEmpresa(PubEstado pubEstado, PubMunicipio pubMunicipio, PubTipoCadastro pubTipoCadastro, String cnpjEmpresa, String razaoSocial, String fantasia, Double cep, String endereco, Double numero, String bairro, String complemento, Date dataCadastro, boolean ativo, Double telefone, String emailResponsavel, Set<PubConfigEmpresa> pubConfigEmpresas, Set<ComCompraOrdem> comCompraOrdems, Set<CadImoveis> cadImoveises, Set<CadServicos> cadServicoses, Set<AcsEmpresaFuncionalidade> acsEmpresaFuncionalidades, Set<AcsEmpresaSistema> acsEmpresaSistemas, Set<AcsUsuarioFuncionalidade> acsUsuarioFuncionalidades, Set<CadRelServFornec> cadRelServFornecs, Set<SupProjeto> supProjetos, Set<WflSituacao> wflSituacaos, Set<SupSolicitacao> supSolicitacaos, Set<AcsUsuarioSistema> acsUsuarioSistemas, Set<WflWorkflow> wflWorkflowsForEmpresaDestino, Set<CadPessoa> cadPessoas, Set<CadVeiculos> cadVeiculoses, Set<WflWorkflowEvento> wflWorkflowEventos, Set<CadProduto> cadProdutos, Set<CadRelProdFornec> cadRelProdFornecs, Set<PubUsuario> pubUsuarios, Set<CadEquipamentos> cadEquipamentoses, Set<WflWorkflow> wflWorkflowsForEmpresaCriacao) {
        this.pubEstado = pubEstado;
        this.pubMunicipio = pubMunicipio;
        this.pubTipoCadastro = pubTipoCadastro;
@@ -76,11 +78,13 @@ public class PubEmpresa  implements java.io.Serializable {
        this.ativo = ativo;
        this.telefone = telefone;
        this.emailResponsavel = emailResponsavel;
-       this.cadImoveises = cadImoveises;
-       this.comCompraOrdems = comCompraOrdems;
        this.pubConfigEmpresas = pubConfigEmpresas;
+       this.comCompraOrdems = comCompraOrdems;
+       this.cadImoveises = cadImoveises;
        this.cadServicoses = cadServicoses;
+       this.acsEmpresaFuncionalidades = acsEmpresaFuncionalidades;
        this.acsEmpresaSistemas = acsEmpresaSistemas;
+       this.acsUsuarioFuncionalidades = acsUsuarioFuncionalidades;
        this.cadRelServFornecs = cadRelServFornecs;
        this.supProjetos = supProjetos;
        this.wflSituacaos = wflSituacaos;
@@ -209,12 +213,12 @@ public class PubEmpresa  implements java.io.Serializable {
     public void setEmailResponsavel(String emailResponsavel) {
         this.emailResponsavel = emailResponsavel;
     }
-    public Set<CadImoveis> getCadImoveises() {
-        return this.cadImoveises;
+    public Set<PubConfigEmpresa> getPubConfigEmpresas() {
+        return this.pubConfigEmpresas;
     }
     
-    public void setCadImoveises(Set<CadImoveis> cadImoveises) {
-        this.cadImoveises = cadImoveises;
+    public void setPubConfigEmpresas(Set<PubConfigEmpresa> pubConfigEmpresas) {
+        this.pubConfigEmpresas = pubConfigEmpresas;
     }
     public Set<ComCompraOrdem> getComCompraOrdems() {
         return this.comCompraOrdems;
@@ -223,12 +227,12 @@ public class PubEmpresa  implements java.io.Serializable {
     public void setComCompraOrdems(Set<ComCompraOrdem> comCompraOrdems) {
         this.comCompraOrdems = comCompraOrdems;
     }
-    public Set<PubConfigEmpresa> getPubConfigEmpresas() {
-        return this.pubConfigEmpresas;
+    public Set<CadImoveis> getCadImoveises() {
+        return this.cadImoveises;
     }
     
-    public void setPubConfigEmpresas(Set<PubConfigEmpresa> pubConfigEmpresas) {
-        this.pubConfigEmpresas = pubConfigEmpresas;
+    public void setCadImoveises(Set<CadImoveis> cadImoveises) {
+        this.cadImoveises = cadImoveises;
     }
     public Set<CadServicos> getCadServicoses() {
         return this.cadServicoses;
@@ -237,12 +241,26 @@ public class PubEmpresa  implements java.io.Serializable {
     public void setCadServicoses(Set<CadServicos> cadServicoses) {
         this.cadServicoses = cadServicoses;
     }
+    public Set<AcsEmpresaFuncionalidade> getAcsEmpresaFuncionalidades() {
+        return this.acsEmpresaFuncionalidades;
+    }
+    
+    public void setAcsEmpresaFuncionalidades(Set<AcsEmpresaFuncionalidade> acsEmpresaFuncionalidades) {
+        this.acsEmpresaFuncionalidades = acsEmpresaFuncionalidades;
+    }
     public Set<AcsEmpresaSistema> getAcsEmpresaSistemas() {
         return this.acsEmpresaSistemas;
     }
     
     public void setAcsEmpresaSistemas(Set<AcsEmpresaSistema> acsEmpresaSistemas) {
         this.acsEmpresaSistemas = acsEmpresaSistemas;
+    }
+    public Set<AcsUsuarioFuncionalidade> getAcsUsuarioFuncionalidades() {
+        return this.acsUsuarioFuncionalidades;
+    }
+    
+    public void setAcsUsuarioFuncionalidades(Set<AcsUsuarioFuncionalidade> acsUsuarioFuncionalidades) {
+        this.acsUsuarioFuncionalidades = acsUsuarioFuncionalidades;
     }
     public Set<CadRelServFornec> getCadRelServFornecs() {
         return this.cadRelServFornecs;

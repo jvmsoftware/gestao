@@ -32,7 +32,7 @@ public class CadVeiculosDAO extends DefaultDAO {
         return veiculos;
     }
     
-    public void inserirEndereco (CadVeiculos veiculo) throws SQLException {
+    public void inserirVeiculo (CadVeiculos veiculo) throws SQLException {
         getSession();
         begin();
         session.save(veiculo);
@@ -40,7 +40,7 @@ public class CadVeiculosDAO extends DefaultDAO {
         closeSession();
     }
     
-    public void updateEndereco (CadVeiculos veiculo) throws SQLException {
+    public void updateVeiculo (CadVeiculos veiculo) throws SQLException {
         getSession();
         begin();
         session.merge(veiculo);

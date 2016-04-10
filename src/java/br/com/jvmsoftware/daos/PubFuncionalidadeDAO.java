@@ -5,8 +5,12 @@
  */
 package br.com.jvmsoftware.daos;
 
+import br.com.jvmsoftware.entities.AcsEmpresaFuncionalidade;
+import br.com.jvmsoftware.entities.AcsUsuarioFuncionalidade;
+import br.com.jvmsoftware.entities.PubEmpresa;
 import br.com.jvmsoftware.entities.PubFuncionalidade;
 import br.com.jvmsoftware.entities.PubSistema;
+import br.com.jvmsoftware.entities.PubUsuario;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -47,6 +51,8 @@ public class PubFuncionalidadeDAO extends DefaultDAO {
         session.save(funcionalidade);
         commit();
         closeSession();
+        triggerEmpresa(funcionalidade);
+        triggerUsuario(funcionalidade);
     }
     
     public void atualizarFuncionalidade (PubFuncionalidade funcionalidade) throws SQLException {
@@ -56,6 +62,34 @@ public class PubFuncionalidadeDAO extends DefaultDAO {
         commit();
         closeSession();
     }
+
+    private void triggerEmpresa(PubFuncionalidade f) throws SQLException {
+        AcsEmpresaFuncionalidadeDAO relEmpDAO = new AcsEmpresaFuncionalidadeDAO();
+        PubEmpresaDAO empDAO = new PubEmpresaDAO();
+        List<PubEmpresa> listEmpresa;
+        listEmpresa = empDAO.listAllEmpresas();
+        for (PubEmpresa listEmpresa1 : listEmpresa) {
+            AcsEmpresaFuncionalidade rel = new AcsEmpresaFuncionalidade();
+            rel.setPubEmpresa(listEmpresa1);
+            rel.setPubFuncionalidade(f);
+            rel.setDesabilitado(false);
+            relEmpDAO.inserirEmpresaFuncionalidade(rel);
+        }
+    }
     
+    private void triggerUsuario(PubFuncionalidade f) throws SQLException {
+        AcsUsuarioFuncionalidadeDAO relUsuDAO = new AcsUsuarioFuncionalidadeDAO();
+        PubUsuarioDAO usuDAO = new PubUsuarioDAO();
+        List<PubUsuario> listUsuario;
+        listUsuario = usuDAO.listAllUsuarios();
+        for (PubUsuario listUsuario1 : listUsuario) {
+            AcsUsuarioFuncionalidade rel = new AcsUsuarioFuncionalidade();
+            rel.setPubUsuario(listUsuario1);
+            rel.setPubEmpresa(listUsuario1.getPubEmpresa());
+            rel.setPubFuncionalidade(f);
+            rel.setDesabilitado(false);
+            relUsuDAO.inserirUsuarioFuncionalidade(rel);
+        }
+    }
     
 }

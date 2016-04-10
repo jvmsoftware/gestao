@@ -3,22 +3,22 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 9/Abr/2016 18:35:19 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="br.com.jvmsoftware.entities.AcsUsuarioSistema" table="acs_usuario_sistema" catalog="jvmdsoftware" optimistic-lock="version">
-        <id name="idUsuarioSistema" type="java.lang.Integer">
-            <column name="id_usuario_sistema" />
+    <class name="br.com.jvmsoftware.entities.AcsUsuarioFuncionalidade" table="acs_usuario_funcionalidade" catalog="jvmdsoftware" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
             <generator class="identity" />
         </id>
         <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="select">
             <column name="empresa" not-null="true" />
         </many-to-one>
-        <many-to-one name="pubSistema" class="br.com.jvmsoftware.entities.PubSistema" fetch="select">
-            <column name="sistema" not-null="true" />
+        <many-to-one name="pubFuncionalidade" class="br.com.jvmsoftware.entities.PubFuncionalidade" fetch="select">
+            <column name="funionalidade" not-null="true" />
         </many-to-one>
         <many-to-one name="pubUsuario" class="br.com.jvmsoftware.entities.PubUsuario" fetch="select">
             <column name="usuario" not-null="true" />
         </many-to-one>
-        <property name="ativo" type="boolean">
-            <column name="ativo" not-null="true" />
+        <property name="desabilitado" type="boolean">
+            <column name="desabilitado" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

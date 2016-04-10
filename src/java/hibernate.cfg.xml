@@ -21,8 +21,8 @@
     <property name="show_sql">true</property>
     <!-- Mapeamento -->
     <mapping resource="br/com/jvmsoftware/entities/PubTipoCadastro.hbm.xml"/>
-    <mapping resource="br/com/jvmsoftware/entities/PubTipoEmpresa.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/CadRelServFornec.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/PubTipoEmpresa.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/PubEmbalagem.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/ComRelCompraOrdemServico.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/PubFrequenciaServico.hbm.xml"/>
@@ -40,8 +40,8 @@
     <mapping resource="br/com/jvmsoftware/entities/CadServicos.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/PubMenu.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/CadEquipamentos.hbm.xml"/>
-    <mapping resource="br/com/jvmsoftware/entities/CadPessoa.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/AcsUsuarioSistema.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/CadPessoa.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/ComRelVendaProduto.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/PubTipoNegocio.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/ComVendaPedido.hbm.xml"/>
@@ -52,11 +52,13 @@
     <mapping resource="br/com/jvmsoftware/entities/CadImoveis.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/WflSituacao.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/AcsAcessoUsuarios.hbm.xml"/>
-    <mapping resource="br/com/jvmsoftware/entities/PubTipoEquipamento.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/PubUsuario.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/PubTipoEquipamento.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/PubFuncionalidade.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/PubPosicao.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/AcsEmpresaFuncionalidade.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/AcsEmpresaSistema.hbm.xml"/>
+    <mapping resource="br/com/jvmsoftware/entities/AcsUsuarioFuncionalidade.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/PubTipoEndereco.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/PubMarcaVeiculo.hbm.xml"/>
     <mapping resource="br/com/jvmsoftware/entities/WflWorkflow.hbm.xml"/>

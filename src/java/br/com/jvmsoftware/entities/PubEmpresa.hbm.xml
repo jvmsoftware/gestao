@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 3/Abr/2016 2:22:38 by Hibernate Tools 4.3.1 -->
+<!-- Generated 9/Abr/2016 18:35:19 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.jvmsoftware.entities.PubEmpresa" table="pub_empresa" catalog="jvmdsoftware" optimistic-lock="version">
         <id name="idEmpresa" type="java.lang.Integer">
@@ -55,11 +55,11 @@
         <property name="emailResponsavel" type="string">
             <column name="email_responsavel" length="50" />
         </property>
-        <set name="cadImoveises" table="cad_imoveis" inverse="true" lazy="true" fetch="select">
+        <set name="pubConfigEmpresas" table="pub_config_empresa" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="empresa" not-null="true" />
             </key>
-            <one-to-many class="br.com.jvmsoftware.entities.CadImoveis" />
+            <one-to-many class="br.com.jvmsoftware.entities.PubConfigEmpresa" />
         </set>
         <set name="comCompraOrdems" table="com_compra_ordem" inverse="true" lazy="true" fetch="select">
             <key>
@@ -67,11 +67,11 @@
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.ComCompraOrdem" />
         </set>
-        <set name="pubConfigEmpresas" table="pub_config_empresa" inverse="true" lazy="true" fetch="select">
+        <set name="cadImoveises" table="cad_imoveis" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="empresa" not-null="true" />
             </key>
-            <one-to-many class="br.com.jvmsoftware.entities.PubConfigEmpresa" />
+            <one-to-many class="br.com.jvmsoftware.entities.CadImoveis" />
         </set>
         <set name="cadServicoses" table="cad_servicos" inverse="true" lazy="true" fetch="select">
             <key>
@@ -79,11 +79,23 @@
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.CadServicos" />
         </set>
+        <set name="acsEmpresaFuncionalidades" table="acs_empresa_funcionalidade" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="empresa" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.AcsEmpresaFuncionalidade" />
+        </set>
         <set name="acsEmpresaSistemas" table="acs_empresa_sistema" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="empresa" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.AcsEmpresaSistema" />
+        </set>
+        <set name="acsUsuarioFuncionalidades" table="acs_usuario_funcionalidade" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="empresa" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.AcsUsuarioFuncionalidade" />
         </set>
         <set name="cadRelServFornecs" table="cad_rel_serv_fornec" inverse="true" lazy="true" fetch="select">
             <key>

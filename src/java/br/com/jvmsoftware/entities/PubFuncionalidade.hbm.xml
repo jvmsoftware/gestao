@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 3/Abr/2016 2:22:38 by Hibernate Tools 4.3.1 -->
+<!-- Generated 9/Abr/2016 18:35:19 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.jvmsoftware.entities.PubFuncionalidade" table="pub_funcionalidade" catalog="jvmdsoftware" optimistic-lock="version">
         <id name="idFuncionalidade" type="java.lang.Integer">
@@ -11,14 +11,29 @@
         <many-to-one name="pubSistema" class="br.com.jvmsoftware.entities.PubSistema" fetch="select">
             <column name="sistema" not-null="true" />
         </many-to-one>
+        <property name="codFuncionalidade" type="string">
+            <column name="cod_funcionalidade" length="5" not-null="true" />
+        </property>
         <property name="descricaoFuncionalidade" type="string">
             <column name="descricao_funcionalidade" length="100" not-null="true" />
         </property>
+        <set name="acsEmpresaFuncionalidades" table="acs_empresa_funcionalidade" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="funcionalidade" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.AcsEmpresaFuncionalidade" />
+        </set>
         <set name="supSolicitacaos" table="sup_solicitacao" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="funcionalidade" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.SupSolicitacao" />
+        </set>
+        <set name="acsUsuarioFuncionalidades" table="acs_usuario_funcionalidade" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="funionalidade" not-null="true" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.AcsUsuarioFuncionalidade" />
         </set>
         <set name="wflWorkflows" table="wfl_workflow" inverse="true" lazy="true" fetch="select">
             <key>

@@ -6,6 +6,7 @@
 package br.com.jvmsoftware.daos;
 
 import br.com.jvmsoftware.entities.PubMarcaVeiculo;
+import br.com.jvmsoftware.entities.PubTipoVeiculo;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -31,6 +32,14 @@ public class PubMarcaVeiculoDAO extends DefaultDAO {
         return marcaVeiculos;
     }
     
+    public List<PubMarcaVeiculo> listMarcaVeiculoByTipo(PubTipoVeiculo tipo) throws SQLException {
+        getSession();
+        begin();
+        List<PubMarcaVeiculo> marcaVeiculos;
+        marcaVeiculos = session.createQuery("from PubMarcaVeiculo u where u.pubTipoVeiculo.idTipoVeiculo = :tipo").setParameter("tipo", tipo.getIdTipoVeiculo()).list();
+        return marcaVeiculos;
+    }
+      
     public void inserirMarcaVeiculo (PubMarcaVeiculo marcaVeiculo) throws SQLException {
         getSession();
         begin();

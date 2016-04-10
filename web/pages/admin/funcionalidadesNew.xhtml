@@ -30,14 +30,19 @@
                              value="#{adminFuncionalidadesController.selectedFuncionalidade.pubSistema.nomeSistema}">
                 </p:inputText>
                 
+                <p:outputLabel id="labCod" value="Codigo Funcio"/>
+                <p:inputText id="cod" label="labCod" rendered="true" disabled="false" maxlength="5"
+                             value="#{adminFuncionalidadesController.selectedFuncionalidade.codFuncionalidade}">
+                </p:inputText>
+                
                 <p:outputLabel id="labDesc" value="Funcionalidade"/>
-                <p:inputText id="desc" label="labDesc" rendered="true" disabled="false"
+                <p:inputText id="desc" label="labDesc" rendered="true" disabled="false" maxlength="100"
                              value="#{adminFuncionalidadesController.selectedFuncionalidade.descricaoFuncionalidade}">
                 </p:inputText>
                 
                 <f:facet  name="footer">
                     <center>
-                        <p:commandButton action="#{adminFuncionalidadesController.inserirFuncionalidade}" value="gravar" icon="icon-salvar"/>
+                        <p:commandButton action="#{adminFuncionalidadesController.inserirFuncionalidade}" value="gravar" icon="icon-salvar" update="@all"/>
                         <p:commandButton action="#{adminFuncionalidadesController.funcionalidades}" value="voltar" icon="icon-voltar"/>
                     </center>
                 </f:facet>

@@ -41,7 +41,8 @@ public class PubSistemaDAO extends DefaultDAO {
         begin();
         session.save(sistema);
         commit();
-        triggerInsert(sistema);
+        triggerEmpresa(sistema);
+        triggerUsuario(sistema);
         closeSession();
     }
     
@@ -52,39 +53,34 @@ public class PubSistemaDAO extends DefaultDAO {
         commit();
         closeSession();
     }
-    
-    
-    private void triggerInsert(PubSistema sistema) throws SQLException {
-        getSession();
-        begin();
-        // relacionamento sistema x empresa
-        AcsEmpresaSistemaDAO empSisDAO = new AcsEmpresaSistemaDAO();
-        List<PubEmpresa> empresas;
-        empresas = session.createQuery("from PubEmpresa s "
-                + "where not exists (from AcsEmpresaSistema "
-                                  + "where pubSistema.idSistema = :sis)").setParameter("sis", sistema.getIdSistema()).list();
-        for (PubEmpresa empresa : empresas) {
-            AcsEmpresaSistema empSis = new AcsEmpresaSistema();
-            empSis.setPubEmpresa(empresa);
-            empSis.setPubSistema(sistema);
-            empSis.setAtivo(true);
-            empSisDAO.inserirEmpresaSistema(empSis);
+
+    private void triggerEmpresa(PubSistema s) throws SQLException {
+        AcsEmpresaSistemaDAO relEmpDAO = new AcsEmpresaSistemaDAO();
+        PubEmpresaDAO empDAO = new PubEmpresaDAO();
+        List<PubEmpresa> listEmpresa;
+        listEmpresa = empDAO.listAllEmpresas();
+        for (PubEmpresa listEmpresa1 : listEmpresa) {
+            AcsEmpresaSistema rel = new AcsEmpresaSistema();
+            rel.setPubEmpresa(listEmpresa1);
+            rel.setPubSistema(s);
+            rel.setAtivo(false);
+            relEmpDAO.inserirEmpresaSistema(rel);
         }
-        // relacionamento sistema x usuario
-        AcsUsuarioSistemaDAO usuSisDAO = new AcsUsuarioSistemaDAO();
-        List<PubUsuario> usuarios;
-        usuarios = session.createQuery("from PubUsuario s "
-                + "where not exists (from AcsUsuarioSistema "
-                                  + "where pubSistema.idSistema = :sis)").setParameter("sis", sistema.getIdSistema()).list();
-        for (PubUsuario usuario : usuarios) {
-            AcsUsuarioSistema usuSis = new AcsUsuarioSistema();
-            usuSis.setPubUsuario(usuario);
-            usuSis.setPubEmpresa(usuario.getPubEmpresa());
-            usuSis.setPubSistema(sistema);
-            usuSis.setAtivo(true);
-            usuSisDAO.inserirUsuarioSistema(usuSis);
-        }
-        closeSession();
     }
     
+    private void triggerUsuario(PubSistema s) throws SQLException {
+        AcsUsuarioSistemaDAO relUsuDAO = new AcsUsuarioSistemaDAO();
+        PubUsuarioDAO usuDAO = new PubUsuarioDAO();
+        List<PubUsuario> listUsuario;
+        listUsuario = usuDAO.listAllUsuarios();
+        for (PubUsuario listUsuario1 : listUsuario) {
+            AcsUsuarioSistema rel = new AcsUsuarioSistema();
+            rel.setPubUsuario(listUsuario1);
+            rel.setPubEmpresa(listUsuario1.getPubEmpresa());
+            rel.setPubSistema(s);
+            rel.setAtivo(true);
+            relUsuDAO.inserirUsuarioSistema(rel);
+        }
+    }
+        
 }

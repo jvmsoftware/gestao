@@ -5,8 +5,10 @@
  */
 package br.com.jvmsoftware.daos;
 
+import br.com.jvmsoftware.entities.AcsUsuarioFuncionalidade;
 import br.com.jvmsoftware.entities.AcsUsuarioSistema;
 import br.com.jvmsoftware.entities.PubEmpresa;
+import br.com.jvmsoftware.entities.PubFuncionalidade;
 import br.com.jvmsoftware.entities.PubSistema;
 import br.com.jvmsoftware.entities.PubUsuario;
 import java.sql.SQLException;
@@ -64,28 +66,40 @@ public class PubUsuarioDAO extends DefaultDAO {
         session.merge(usuario);
         commit();
         if (usuario.getPubEmpresa() != null) {
-            triggerUpdate(usuario);
+            triggerSistema(usuario);
+            triggerFuncionalidade(usuario);
         }
         closeSession();
     }
     
-    public void triggerUpdate(PubUsuario usuario) throws SQLException {
-        getSession();
-        begin();
-        AcsUsuarioSistemaDAO usrSisDAO = new AcsUsuarioSistemaDAO();
-        List<PubSistema> sistemas;
-        sistemas = session.createQuery("from PubSistema s "
-                                     + "where not exists (from AcsUsuarioSistema r "
-                                                       + "where r.pubUsuario.idUsuario = :usr)").setParameter("usr", usuario.getIdUsuario()).list();
-        for (PubSistema sistema : sistemas) {
-            AcsUsuarioSistema usrSis = new AcsUsuarioSistema();
-            usrSis.setPubEmpresa(usuario.getPubEmpresa());
-            usrSis.setPubUsuario(usuario);
-            usrSis.setPubSistema(sistema);
-            usrSis.setAtivo(false);
-            usrSisDAO.inserirUsuarioSistema(usrSis);
+    private void triggerSistema(PubUsuario u) throws SQLException {
+        AcsUsuarioSistemaDAO relEmpDAO = new AcsUsuarioSistemaDAO();
+        PubSistemaDAO sisDAO = new PubSistemaDAO();
+        List<PubSistema> listSistema;
+        listSistema = sisDAO.listAllSistemas();
+        for (PubSistema listSistema1 : listSistema) {
+            AcsUsuarioSistema rel = new AcsUsuarioSistema();
+            rel.setPubEmpresa(u.getPubEmpresa());
+            rel.setPubUsuario(u);
+            rel.setPubSistema(listSistema1);
+            rel.setAtivo(false);
+            relEmpDAO.inserirUsuarioSistema(rel);
         }
-        closeSession();
+    }
+    
+    private void triggerFuncionalidade(PubUsuario u) throws SQLException {
+        AcsUsuarioFuncionalidadeDAO relUsuDAO = new AcsUsuarioFuncionalidadeDAO();
+        PubFuncionalidadeDAO funDAO = new PubFuncionalidadeDAO();
+        List<PubFuncionalidade> listFuncionalidades;
+        listFuncionalidades = funDAO.listAllFuncionalidades();
+        for (PubFuncionalidade listFuncionalidades1 : listFuncionalidades) {
+            AcsUsuarioFuncionalidade rel = new AcsUsuarioFuncionalidade();
+            rel.setPubUsuario(u);
+            rel.setPubEmpresa(u.getPubEmpresa());
+            rel.setPubFuncionalidade(listFuncionalidades1);
+            rel.setDesabilitado(true);
+            relUsuDAO.inserirUsuarioFuncionalidade(rel);
+        }
     }
     
 }

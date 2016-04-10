@@ -1,13 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 3/Abr/2016 2:22:38 by Hibernate Tools 4.3.1 -->
+<!-- Generated 9/Abr/2016 18:35:19 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.jvmsoftware.entities.PubMarcaVeiculo" table="pub_marca_veiculo" catalog="jvmdsoftware" optimistic-lock="version">
         <id name="idMarcaVeiculo" type="java.lang.Integer">
             <column name="id_marca_veiculo" />
             <generator class="identity" />
         </id>
+        <many-to-one name="pubTipoVeiculo" class="br.com.jvmsoftware.entities.PubTipoVeiculo" fetch="select">
+            <column name="tipo_veiculo" not-null="true" />
+        </many-to-one>
         <property name="marcaVeiculo" type="string">
             <column name="marca_veiculo" length="50" not-null="true" />
         </property>
