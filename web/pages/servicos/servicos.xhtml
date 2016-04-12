@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+<ui:composition template="/template.xhtml">  
+    <ui:define name="menu">
+        <p:panel style=" width:100%; height:55px">
+            <ui:include src="/pages/menuDash.xhtml"/>
+        </p:panel>
+    </ui:define>
+    
+    <ui:define name="conteudo">    
+        
+        <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+        <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+            <p:graphicImage value="images/loading.gif"/>
+        </p:dialog>
+        
+    <h:form id="form">
+        <p:panel id="dash" header="MODULO SERVIÇOS - ordens de serviço"  style="height: 590px; text-align: center; alignment-baseline: central">
+            <f:facet name="header">
+                <h:outputText value="MODULO SERVIÇOS - ordens de serviço"/>
+                <div align="center">
+                    <p:commandButton id="btnNew" icon="icon-ordem-servico" action="#{cadProdutoController.produtoNew()}">
+                        <p:tooltip value="nova ordem de serviço" for="btnNew"/>
+                    </p:commandButton>
+                    <p:inputText id="filtro" value="#{cadProdutoController.filtro}" placeholder="parte do nome ou razão social">
+                        <p:tooltip value="filtro produto" for="filtro"/>
+                        <p:ajax event="keyup" process="@all" update="tabPro" listener="#{cadProdutoController.changeFiltro()}"/>
+                    </p:inputText>
+                </div>
+            </f:facet>
+            <p:dataTable id="tabPro" var="pro" value="#{cadProdutoController.listProdutos}"
+                         paginator="true" rows="10" 
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+                <p:column headerText="Empresa">
+                    <h:outputText value="#{pro.pubEmpresa.fantasia}"/>
+                </p:column>
+                <p:column headerText="produto">
+                    <h:outputText value="#{pro.produto}"/>
+                </p:column>
+                <p:column headerText="preço - R$">
+                    <h:outputText value="#{pro.preco}"/>
+                </p:column>
+                
+                <p:column headerText="detalhes">
+                    <p:commandButton id="btnView" icon="icon-visualizar" action="#{cadProdutoController.produtoView()}" process="@form">
+                        <f:setPropertyActionListener value="#{pro}" target="#{cadProdutoController.selectedProduto}"/>
+                        <p:tooltip value="visualizar produto" for="btnView"/>
+                    </p:commandButton>
+                    <p:commandButton id="btnEdit" icon="icon-editar" action="#{cadProdutoController.produtoEdit()}" process="@form">
+                        <f:setPropertyActionListener value="#{pro}" target="#{cadProdutoController.selectedProduto}"/>
+                        <p:tooltip value="editar produto" for="btnEdit"/>
+                    </p:commandButton>
+                </p:column>
+                
+            </p:dataTable>
+
+        </p:panel>
+        <div style="clear:both" />
+    </h:form>
+    </ui:define>  
+</ui:composition>  
+</html>

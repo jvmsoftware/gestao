@@ -72,7 +72,8 @@ and open the template in the editor.
                         
                         <p:submenu label="servicos" icon="icon-servicos">
                             <p:submenu label="servicos" icon="icon-servicos">
-                                <p:menuitem value="clientes" icon="icon-clientes"/>
+                                <p:menuitem value="serviços" icon="icon-servicos" action="#{menuDashboardController.servOrdemServico()}"/>
+                                <p:menuitem value="garantias" icon="icon-garantia" action="#{menuDashboardController.servOrdemServico()}"/>
                             </p:submenu>
                             <p:submenu label="suporte" icon="icon-suporte">
                                 <p:menuitem value="clientes" icon="icon-clientes"/>

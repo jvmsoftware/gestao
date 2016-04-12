@@ -181,6 +181,10 @@ and open the template in the editor.
     background-image: url("../images/icons/icon.png") !important;  
 }
 
+.icon-garantia {  
+    background-image: url("../images/icons/arrows.png") !important;  
+}
+
 .icon-pedido-venda {  
     background-image: url("../images/icons/money.png") !important;  
 }

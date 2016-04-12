@@ -50,14 +50,7 @@ public class MenuDashboardController {
     }
 
     
-    /**
-     * menu Usuário Logado
-     * @return 
-     */
-    // Minha conta
-    public String conta() {
-        return "/pages/cadastro/user";
-    }
+
 
     public boolean idDisable(String func, String crud) throws SQLException {
         Boolean disabled;
@@ -65,6 +58,14 @@ public class MenuDashboardController {
         return disabled;
     }
     
+        /**
+     * menu Usuário Logado
+     * @return 
+     */
+    // Minha conta
+    public String conta() {
+        return "/pages/cadastro/user";
+    }
     
     /**
      * menu Admin
@@ -166,6 +167,17 @@ public class MenuDashboardController {
     public String comVenda() {
         return "/pages/comercial/Venda";
     }
+    
+    public String servOrdemServico() {
+        return "/pages/servicos/servicos";
+    }
+    
+    public String servGarantia() {
+        return "/pages/servicos/garantias";
+    }
+    
+    
+    
     
     private void setNome() {
         StringTokenizer nome = new StringTokenizer(usu.getNomeUsuario()," ");
