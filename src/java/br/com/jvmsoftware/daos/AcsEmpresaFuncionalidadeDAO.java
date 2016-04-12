@@ -7,6 +7,7 @@ package br.com.jvmsoftware.daos;
 
 import br.com.jvmsoftware.entities.AcsEmpresaFuncionalidade;
 import br.com.jvmsoftware.entities.PubEmpresa;
+import br.com.jvmsoftware.entities.PubFuncionalidade;
 import br.com.jvmsoftware.entities.PubSistema;
 import java.io.Serializable;
 import java.sql.SQLException;
@@ -23,6 +24,14 @@ public class AcsEmpresaFuncionalidadeDAO extends DefaultDAO {
         begin();
         AcsEmpresaFuncionalidade empresaFuncionalidade;
         empresaFuncionalidade = (AcsEmpresaFuncionalidade) session.get(AcsEmpresaFuncionalidade.class, Id);
+        return empresaFuncionalidade;
+    }
+    
+    public AcsEmpresaFuncionalidade getByEmpresaFuncionalidade(PubEmpresa emp, PubFuncionalidade fun) throws SQLException {
+        getSession();
+        begin();
+        AcsEmpresaFuncionalidade empresaFuncionalidade;
+        empresaFuncionalidade = (AcsEmpresaFuncionalidade) session.createQuery("from AcsEmpresaFuncionalidade r where r.pubEmpresa.idEmpresa = :emp and r.pubFuncionalidade.idFuncionalidade = :fun ").setParameter("emp", emp.getIdEmpresa()).setParameter("fun", fun.getIdFuncionalidade()).uniqueResult();
         return empresaFuncionalidade;
     }
     

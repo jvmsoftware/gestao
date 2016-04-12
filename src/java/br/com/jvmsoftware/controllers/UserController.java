@@ -5,12 +5,21 @@
  */
 package br.com.jvmsoftware.controllers;
 
+import br.com.jvmsoftware.daos.AcsUsuarioFuncionalidadeDAO;
+import br.com.jvmsoftware.daos.AcsUsuarioSistemaDAO;
+import br.com.jvmsoftware.daos.PubSistemaDAO;
 import br.com.jvmsoftware.daos.PubUsuarioDAO;
+import br.com.jvmsoftware.entities.AcsEmpresaSistema;
+import br.com.jvmsoftware.entities.AcsUsuarioFuncionalidade;
+import br.com.jvmsoftware.entities.AcsUsuarioSistema;
+import br.com.jvmsoftware.entities.PubSistema;
 import br.com.jvmsoftware.entities.PubUsuario;
 import br.com.jvmsoftware.jsfsecurity.SecurityUtil;
 import br.com.jvmsoftware.util.Criptografia;
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -30,6 +39,7 @@ public class UserController implements Serializable {
     private static final Logger logger = Logger.getLogger(PubUsuario.class.getName());
 
     private PubUsuarioDAO usuDAO = new PubUsuarioDAO();
+    private PubSistemaDAO sisDAO = new PubSistemaDAO();
     private PubUsuario usu;
     private String email;
     private String password;
@@ -155,5 +165,5 @@ public class UserController implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
 }

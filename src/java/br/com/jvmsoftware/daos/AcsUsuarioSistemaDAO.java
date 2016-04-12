@@ -27,7 +27,7 @@ public class AcsUsuarioSistemaDAO extends DefaultDAO {
         return usuarioSistema;
     }
     
-    public List<AcsUsuarioSistema> listAllTipoNegocios() throws SQLException {
+    public List<AcsUsuarioSistema> listAllUsuarioSistemas() throws SQLException {
         getSession();
         begin();
         List<AcsUsuarioSistema> usuarioSistemas;
@@ -35,11 +35,27 @@ public class AcsUsuarioSistemaDAO extends DefaultDAO {
         return usuarioSistemas;
     }
     
+    public AcsUsuarioSistema getUsuarioSistemaByUsuarioSistema(PubUsuario usuario, PubSistema sistema) throws SQLException {
+        getSession();
+        begin();
+        AcsUsuarioSistema usuarioSistema;
+        usuarioSistema = (AcsUsuarioSistema) session.createQuery("from AcsUsuarioSistema u where u.pubUsuario.idUsuario = :usu and u.pubSistema.idSistema = :sis").setParameter("usu", usuario.getIdUsuario()).setParameter("sis", sistema.getIdSistema()).uniqueResult();
+        return usuarioSistema;
+    }
+    
+    public AcsUsuarioSistema getUsuarioSistemaByEmpresaSistema(PubEmpresa empresa, PubSistema sistema) throws SQLException {
+        getSession();
+        begin();
+        AcsUsuarioSistema usuarioSistema;
+        usuarioSistema = (AcsUsuarioSistema) session.createQuery("from AcsUsuarioSistema u where u.pubEmpresa.idEmpresa = :emp and u.pubSistema.idSistema = :sis").setParameter("emp", empresa.getIdEmpresa()).setParameter("sis", sistema.getIdSistema()).uniqueResult();
+        return usuarioSistema;
+    }
+    
     public List<AcsUsuarioSistema> listUsuarioSistemaByUsuario(PubUsuario usuario) throws SQLException {
         getSession();
         begin();
         List<AcsUsuarioSistema> usuarioSistemas;
-        usuarioSistemas = session.createQuery("from AcsUsuarioSistema u where u.usuario = :usu").setParameter("usu", usuario.getIdUsuario()).list();
+        usuarioSistemas = session.createQuery("from AcsUsuarioSistema u where u.pubUsuario.idUsuario = :usu").setParameter("usu", usuario.getIdUsuario()).list();
         return usuarioSistemas;
     }
     
@@ -47,7 +63,7 @@ public class AcsUsuarioSistemaDAO extends DefaultDAO {
         getSession();
         begin();
         List<AcsUsuarioSistema> usuarioSistemas;
-        usuarioSistemas = session.createQuery("from AcsUsuarioSistema u where u.empresa = :emp").setParameter("emp", empresa.getIdEmpresa()).list();
+        usuarioSistemas = session.createQuery("from AcsUsuarioSistema u where u.pubEmpresa.idEmpresa = :emp").setParameter("emp", empresa.getIdEmpresa()).list();
         return usuarioSistemas;
     }
     
@@ -55,7 +71,7 @@ public class AcsUsuarioSistemaDAO extends DefaultDAO {
         getSession();
         begin();
         List<AcsUsuarioSistema> usuarioSistemas;
-        usuarioSistemas = session.createQuery("from AcsUsuarioSistema u where u.sistema = :sis").setParameter("sis", sistema.getIdSistema()).list();
+        usuarioSistemas = session.createQuery("from AcsUsuarioSistema u where u.pubSistema.idSistema = :sis").setParameter("sis", sistema.getIdSistema()).list();
         return usuarioSistemas;
     }
     

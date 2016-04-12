@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 9/Abr/2016 18:34:16 by Hibernate Tools 4.3.1
+// Generated 11/Abr/2016 15:26:22 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -15,6 +15,10 @@ public class PubFuncionalidade  implements java.io.Serializable {
      private PubSistema pubSistema;
      private String codFuncionalidade;
      private String descricaoFuncionalidade;
+     private boolean crud;
+     private String crudDefault;
+     private boolean process;
+     private boolean processDefault;
      private Set<AcsEmpresaFuncionalidade> acsEmpresaFuncionalidades = new HashSet<AcsEmpresaFuncionalidade>(0);
      private Set<SupSolicitacao> supSolicitacaos = new HashSet<SupSolicitacao>(0);
      private Set<AcsUsuarioFuncionalidade> acsUsuarioFuncionalidades = new HashSet<AcsUsuarioFuncionalidade>(0);
@@ -24,15 +28,23 @@ public class PubFuncionalidade  implements java.io.Serializable {
     }
 
 	
-    public PubFuncionalidade(PubSistema pubSistema, String codFuncionalidade, String descricaoFuncionalidade) {
+    public PubFuncionalidade(PubSistema pubSistema, String codFuncionalidade, String descricaoFuncionalidade, boolean crud, String crudDefault, boolean process, boolean processDefault) {
         this.pubSistema = pubSistema;
         this.codFuncionalidade = codFuncionalidade;
         this.descricaoFuncionalidade = descricaoFuncionalidade;
+        this.crud = crud;
+        this.crudDefault = crudDefault;
+        this.process = process;
+        this.processDefault = processDefault;
     }
-    public PubFuncionalidade(PubSistema pubSistema, String codFuncionalidade, String descricaoFuncionalidade, Set<AcsEmpresaFuncionalidade> acsEmpresaFuncionalidades, Set<SupSolicitacao> supSolicitacaos, Set<AcsUsuarioFuncionalidade> acsUsuarioFuncionalidades, Set<WflWorkflow> wflWorkflows) {
+    public PubFuncionalidade(PubSistema pubSistema, String codFuncionalidade, String descricaoFuncionalidade, boolean crud, String crudDefault, boolean process, boolean processDefault, Set<AcsEmpresaFuncionalidade> acsEmpresaFuncionalidades, Set<SupSolicitacao> supSolicitacaos, Set<AcsUsuarioFuncionalidade> acsUsuarioFuncionalidades, Set<WflWorkflow> wflWorkflows) {
        this.pubSistema = pubSistema;
        this.codFuncionalidade = codFuncionalidade;
        this.descricaoFuncionalidade = descricaoFuncionalidade;
+       this.crud = crud;
+       this.crudDefault = crudDefault;
+       this.process = process;
+       this.processDefault = processDefault;
        this.acsEmpresaFuncionalidades = acsEmpresaFuncionalidades;
        this.supSolicitacaos = supSolicitacaos;
        this.acsUsuarioFuncionalidades = acsUsuarioFuncionalidades;
@@ -66,6 +78,34 @@ public class PubFuncionalidade  implements java.io.Serializable {
     
     public void setDescricaoFuncionalidade(String descricaoFuncionalidade) {
         this.descricaoFuncionalidade = descricaoFuncionalidade;
+    }
+    public boolean isCrud() {
+        return this.crud;
+    }
+    
+    public void setCrud(boolean crud) {
+        this.crud = crud;
+    }
+    public String getCrudDefault() {
+        return this.crudDefault;
+    }
+    
+    public void setCrudDefault(String crudDefault) {
+        this.crudDefault = crudDefault;
+    }
+    public boolean getProcess() {
+        return this.process;
+    }
+    
+    public void setProcess(boolean process) {
+        this.process = process;
+    }
+    public boolean isProcessDefault() {
+        return this.processDefault;
+    }
+    
+    public void setProcessDefault(boolean processDefault) {
+        this.processDefault = processDefault;
     }
     public Set<AcsEmpresaFuncionalidade> getAcsEmpresaFuncionalidades() {
         return this.acsEmpresaFuncionalidades;

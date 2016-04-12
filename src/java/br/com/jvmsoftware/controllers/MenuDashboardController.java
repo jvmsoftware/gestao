@@ -5,7 +5,9 @@
  */
 package br.com.jvmsoftware.controllers;
 
+import br.com.jvmsoftware.daos.AcsUsuarioFuncionalidadeDAO;
 import br.com.jvmsoftware.entities.PubUsuario;
+import java.sql.SQLException;
 import java.util.StringTokenizer;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -21,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 @SessionScoped
 public class MenuDashboardController {
 
+    private AcsUsuarioFuncionalidadeDAO usuFuncDAO = new AcsUsuarioFuncionalidadeDAO();
     private PubUsuario usu = new PubUsuario();
     private String primeiroNome;
     private boolean renderedAdmin = false;
@@ -56,6 +59,12 @@ public class MenuDashboardController {
         return "/pages/cadastro/user";
     }
 
+    public boolean idDisable(String func, String crud) throws SQLException {
+        Boolean disabled;
+        disabled = usuFuncDAO.isDisabled(usu, func, crud);
+        return disabled;
+    }
+    
     
     /**
      * menu Admin

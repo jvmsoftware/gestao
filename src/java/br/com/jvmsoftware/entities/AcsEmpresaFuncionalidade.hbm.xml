@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 9/Abr/2016 18:35:19 by Hibernate Tools 4.3.1 -->
+<!-- Generated 11/Abr/2016 15:26:43 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.jvmsoftware.entities.AcsEmpresaFuncionalidade" table="acs_empresa_funcionalidade" catalog="jvmdsoftware" optimistic-lock="version">
         <id name="id" type="java.lang.Integer">
@@ -14,8 +14,20 @@
         <many-to-one name="pubFuncionalidade" class="br.com.jvmsoftware.entities.PubFuncionalidade" fetch="select">
             <column name="funcionalidade" not-null="true" />
         </many-to-one>
-        <property name="desabilitado" type="boolean">
-            <column name="desabilitado" not-null="true" />
+        <property name="view" type="boolean">
+            <column name="view" not-null="true" />
+        </property>
+        <property name="add" type="boolean">
+            <column name="add" not-null="true" />
+        </property>
+        <property name="edit" type="boolean">
+            <column name="edit" not-null="true" />
+        </property>
+        <property name="delete" type="boolean">
+            <column name="delete" not-null="true" />
+        </property>
+        <property name="process" type="boolean">
+            <column name="process" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

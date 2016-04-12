@@ -45,11 +45,11 @@
                 </p:column>
                 
                 <p:column headerText="detalhes">
-                    <p:commandButton id="btnEdit" icon="icon-editar" action="#{adminModulosController.modulosEdit}">
+                    <p:commandButton id="btnEdit" icon="icon-editar" action="#{adminModulosController.modulosEdit()}" update="@all">
                         <f:setPropertyActionListener value="#{modul}" target="#{adminModulosController.selectedModulo}"/>
                         <p:tooltip value="editar modulo" for="btnEdit"/>
                     </p:commandButton>
-                    <p:commandButton id="btnAtivar" icon="icon-confirmar" action="#{adminModulosController.inativaModulo}" update="@form">
+                    <p:commandButton id="btnAtivar" icon="icon-confirmar" action="#{adminModulosController.inativaModulo()}" update="@all">
                         <f:setPropertyActionListener value="#{modul}" target="#{adminModulosController.selectedModulo}"/>
                         <p:tooltip value="ativar / inativar modulo" for="btnAtivar"/>
                     </p:commandButton>

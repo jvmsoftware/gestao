@@ -26,7 +26,15 @@ public class AcsEmpresaSistemaDAO extends DefaultDAO {
         return empresaSistema;
     }
     
-    public List<AcsEmpresaSistema> listAllTipoNegocios() throws SQLException {
+    public AcsEmpresaSistema getByEmpresaSistema(PubEmpresa empresa, PubSistema sistema) throws SQLException {
+        getSession();
+        begin();
+        AcsEmpresaSistema empresaSistemas;
+        empresaSistemas = (AcsEmpresaSistema) session.createQuery("from AcsEmpresaSistema r where r.pubSistema.idSistema = :sis and r.pubEmpresa.idEmpresa = :emp").setParameter("sis", sistema.getIdSistema()).setParameter("emp", empresa.getIdEmpresa()).uniqueResult();
+        return empresaSistemas;
+    }
+    
+    public List<AcsEmpresaSistema> listAllEmpresaSistema() throws SQLException {
         getSession();
         begin();
         List<AcsEmpresaSistema> empresaSistemas;

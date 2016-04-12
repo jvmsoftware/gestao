@@ -5,6 +5,7 @@
  */
 package br.com.jvmsoftware.daos;
 
+import br.com.jvmsoftware.entities.AcsEmpresaFuncionalidade;
 import br.com.jvmsoftware.entities.AcsUsuarioFuncionalidade;
 import br.com.jvmsoftware.entities.AcsUsuarioSistema;
 import br.com.jvmsoftware.entities.PubEmpresa;
@@ -89,15 +90,22 @@ public class PubUsuarioDAO extends DefaultDAO {
     
     private void triggerFuncionalidade(PubUsuario u) throws SQLException {
         AcsUsuarioFuncionalidadeDAO relUsuDAO = new AcsUsuarioFuncionalidadeDAO();
+        AcsEmpresaFuncionalidadeDAO relEmpDAO = new AcsEmpresaFuncionalidadeDAO();
         PubFuncionalidadeDAO funDAO = new PubFuncionalidadeDAO();
         List<PubFuncionalidade> listFuncionalidades;
         listFuncionalidades = funDAO.listAllFuncionalidades();
         for (PubFuncionalidade listFuncionalidades1 : listFuncionalidades) {
             AcsUsuarioFuncionalidade rel = new AcsUsuarioFuncionalidade();
+            AcsEmpresaFuncionalidade relEmp;
+            relEmp = relEmpDAO.getByEmpresaFuncionalidade(u.getPubEmpresa(), listFuncionalidades1);
             rel.setPubUsuario(u);
             rel.setPubEmpresa(u.getPubEmpresa());
             rel.setPubFuncionalidade(listFuncionalidades1);
-            rel.setDesabilitado(true);
+            rel.setView(relEmp.isView());
+            rel.setAdd(relEmp.isAdd());
+            rel.setEdit(relEmp.isEdit());
+            rel.setDelete(relEmp.isDelete());
+            rel.setProcess(relEmp.isProcess());
             relUsuDAO.inserirUsuarioFuncionalidade(rel);
         }
     }

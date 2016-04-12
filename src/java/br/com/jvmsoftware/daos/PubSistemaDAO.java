@@ -28,6 +28,14 @@ public class PubSistemaDAO extends DefaultDAO {
         return sistema;
     }
     
+    public PubSistema getByNome(String nome) throws SQLException {
+        getSession();
+        begin();
+        PubSistema sistema;
+        sistema = (PubSistema) session.createQuery("from PubSistema s where upper(s.nomeSistema) = upper(:nome)").setParameter("nome", nome).uniqueResult();
+        return sistema;
+    }
+    
     public List<PubSistema> listAllSistemas() throws SQLException {
         getSession();
         begin();
@@ -41,9 +49,9 @@ public class PubSistemaDAO extends DefaultDAO {
         begin();
         session.save(sistema);
         commit();
+        closeSession();
         triggerEmpresa(sistema);
         triggerUsuario(sistema);
-        closeSession();
     }
     
     public void atualizarSistema (PubSistema sistema) throws SQLException {

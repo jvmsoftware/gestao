@@ -76,10 +76,41 @@ public class PubEmpresaDAO extends DefaultDAO {
         List<PubFuncionalidade> listFuncionalidades;
         listFuncionalidades = funDAO.listAllFuncionalidades();
         for (PubFuncionalidade listFuncionalidades1 : listFuncionalidades) {
+            // permissoes
+            Boolean view = null;
+            Boolean add = null;
+            Boolean edit = null;
+            Boolean delete = null;
+            if (!"0".equals(listFuncionalidades1.getCrudDefault())) {
+                view = false;
+                add = false;
+                edit = false;
+                delete = false;
+            } else if (!"1".equals(listFuncionalidades1.getCrudDefault())) {
+                view = true;
+                add = false;
+                edit = false;
+                delete = false;
+            } else if (!"2".equals(listFuncionalidades1.getCrudDefault())) {
+                view = true;
+                add = true;
+                edit = true;
+                delete = false;
+            } else if (!"3".equals(listFuncionalidades1.getCrudDefault())) {
+                view = true;
+                add = true;
+                edit = true;
+                delete = true;
+            }
+            // relacionamento
             AcsEmpresaFuncionalidade rel = new AcsEmpresaFuncionalidade();
             rel.setPubEmpresa(s);
             rel.setPubFuncionalidade(listFuncionalidades1);
-            rel.setDesabilitado(true);
+            rel.setView(view);
+            rel.setAdd(add);
+            rel.setEdit(edit);
+            rel.setDelete(delete);
+            rel.setProcess(listFuncionalidades1.getProcess());
             relUsuDAO.inserirEmpresaFuncionalidade(rel);
         }
     }

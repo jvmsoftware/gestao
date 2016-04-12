@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 9/Abr/2016 18:35:19 by Hibernate Tools 4.3.1 -->
+<!-- Generated 11/Abr/2016 15:26:43 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.jvmsoftware.entities.PubFuncionalidade" table="pub_funcionalidade" catalog="jvmdsoftware" optimistic-lock="version">
         <id name="idFuncionalidade" type="java.lang.Integer">
@@ -17,6 +17,20 @@
         <property name="descricaoFuncionalidade" type="string">
             <column name="descricao_funcionalidade" length="100" not-null="true" />
         </property>
+        <property name="crud" type="boolean">
+            <column name="crud" not-null="true" />
+        </property>
+        <property name="crudDefault" type="string">
+            <column name="crud_default" length="1" not-null="true">
+                <comment>0 - sem permiss&#195;&#163;o 1 - view 2 - view / add / edit 3 - view / add / edit / delete</comment>
+            </column>
+        </property>
+        <property name="process" type="boolean">
+            <column name="process" not-null="true" />
+        </property>
+        <property name="processDefault" type="boolean">
+            <column name="process_default" not-null="true" />
+        </property>
         <set name="acsEmpresaFuncionalidades" table="acs_empresa_funcionalidade" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="funcionalidade" not-null="true" />
@@ -31,7 +45,7 @@
         </set>
         <set name="acsUsuarioFuncionalidades" table="acs_usuario_funcionalidade" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="funionalidade" not-null="true" />
+                <column name="funcionalidade" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.AcsUsuarioFuncionalidade" />
         </set>

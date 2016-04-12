@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 9/Abr/2016 18:34:16 by Hibernate Tools 4.3.1
+// Generated 11/Abr/2016 15:26:22 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -16,6 +16,7 @@ public class PubSistema  implements java.io.Serializable {
      private String descricaoSistema;
      private String imagemSistema;
      private boolean ativo;
+     private boolean defaultCadastro;
      private Set<PubMenu> pubMenus = new HashSet<PubMenu>(0);
      private Set<PubFuncionalidade> pubFuncionalidades = new HashSet<PubFuncionalidade>(0);
      private Set<SupSolicitacao> supSolicitacaos = new HashSet<SupSolicitacao>(0);
@@ -29,16 +30,18 @@ public class PubSistema  implements java.io.Serializable {
     }
 
 	
-    public PubSistema(String nomeSistema, String descricaoSistema, boolean ativo) {
+    public PubSistema(String nomeSistema, String descricaoSistema, boolean ativo, boolean defaultCadastro) {
         this.nomeSistema = nomeSistema;
         this.descricaoSistema = descricaoSistema;
         this.ativo = ativo;
+        this.defaultCadastro = defaultCadastro;
     }
-    public PubSistema(String nomeSistema, String descricaoSistema, String imagemSistema, boolean ativo, Set<PubMenu> pubMenus, Set<PubFuncionalidade> pubFuncionalidades, Set<SupSolicitacao> supSolicitacaos, Set<WflWorkflow> wflWorkflows, Set<WflSituacao> wflSituacaos, Set<CtrLog> ctrLogs, Set<AcsEmpresaSistema> acsEmpresaSistemas, Set<AcsUsuarioSistema> acsUsuarioSistemas) {
+    public PubSistema(String nomeSistema, String descricaoSistema, String imagemSistema, boolean ativo, boolean defaultCadastro, Set<PubMenu> pubMenus, Set<PubFuncionalidade> pubFuncionalidades, Set<SupSolicitacao> supSolicitacaos, Set<WflWorkflow> wflWorkflows, Set<WflSituacao> wflSituacaos, Set<CtrLog> ctrLogs, Set<AcsEmpresaSistema> acsEmpresaSistemas, Set<AcsUsuarioSistema> acsUsuarioSistemas) {
        this.nomeSistema = nomeSistema;
        this.descricaoSistema = descricaoSistema;
        this.imagemSistema = imagemSistema;
        this.ativo = ativo;
+       this.defaultCadastro = defaultCadastro;
        this.pubMenus = pubMenus;
        this.pubFuncionalidades = pubFuncionalidades;
        this.supSolicitacaos = supSolicitacaos;
@@ -83,6 +86,13 @@ public class PubSistema  implements java.io.Serializable {
     
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
+    }
+    public boolean getDefaultCadastro() {
+        return this.defaultCadastro;
+    }
+    
+    public void setDefaultCadastro(boolean defaultCadastro) {
+        this.defaultCadastro = defaultCadastro;
     }
     public Set<PubMenu> getPubMenus() {
         return this.pubMenus;

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 9/Abr/2016 18:35:19 by Hibernate Tools 4.3.1 -->
+<!-- Generated 11/Abr/2016 15:26:43 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.jvmsoftware.entities.PubSistema" table="pub_sistema" catalog="jvmdsoftware" optimistic-lock="version">
         <id name="idSistema" type="java.lang.Integer">
@@ -19,6 +19,9 @@
         </property>
         <property name="ativo" type="boolean">
             <column name="ativo" not-null="true" />
+        </property>
+        <property name="defaultCadastro" type="boolean">
+            <column name="defaultCadastro" not-null="true" />
         </property>
         <set name="pubMenus" table="pub_menu" inverse="true" lazy="true" fetch="select">
             <key>

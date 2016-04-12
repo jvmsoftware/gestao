@@ -1,5 +1,5 @@
 package br.com.jvmsoftware.entities;
-// Generated 9/Abr/2016 18:34:16 by Hibernate Tools 4.3.1
+// Generated 11/Abr/2016 15:26:22 by Hibernate Tools 4.3.1
 
 
 
@@ -13,16 +13,24 @@ public class AcsUsuarioFuncionalidade  implements java.io.Serializable {
      private PubEmpresa pubEmpresa;
      private PubFuncionalidade pubFuncionalidade;
      private PubUsuario pubUsuario;
-     private boolean desabilitado;
+     private boolean view;
+     private boolean add;
+     private boolean edit;
+     private boolean delete;
+     private boolean process;
 
     public AcsUsuarioFuncionalidade() {
     }
 
-    public AcsUsuarioFuncionalidade(PubEmpresa pubEmpresa, PubFuncionalidade pubFuncionalidade, PubUsuario pubUsuario, boolean desabilitado) {
+    public AcsUsuarioFuncionalidade(PubEmpresa pubEmpresa, PubFuncionalidade pubFuncionalidade, PubUsuario pubUsuario, boolean view, boolean add, boolean edit, boolean delete, boolean process) {
        this.pubEmpresa = pubEmpresa;
        this.pubFuncionalidade = pubFuncionalidade;
        this.pubUsuario = pubUsuario;
-       this.desabilitado = desabilitado;
+       this.view = view;
+       this.add = add;
+       this.edit = edit;
+       this.delete = delete;
+       this.process = process;
     }
    
     public Integer getId() {
@@ -53,12 +61,40 @@ public class AcsUsuarioFuncionalidade  implements java.io.Serializable {
     public void setPubUsuario(PubUsuario pubUsuario) {
         this.pubUsuario = pubUsuario;
     }
-    public boolean isDesabilitado() {
-        return this.desabilitado;
+    public boolean getView() {
+        return this.view;
     }
     
-    public void setDesabilitado(boolean desabilitado) {
-        this.desabilitado = desabilitado;
+    public void setView(boolean view) {
+        this.view = view;
+    }
+    public boolean isAdd() {
+        return this.add;
+    }
+    
+    public void setAdd(boolean add) {
+        this.add = add;
+    }
+    public boolean isEdit() {
+        return this.edit;
+    }
+    
+    public void setEdit(boolean edit) {
+        this.edit = edit;
+    }
+    public boolean isDelete() {
+        return this.delete;
+    }
+    
+    public void setDelete(boolean delete) {
+        this.delete = delete;
+    }
+    public boolean isProcess() {
+        return this.process;
+    }
+    
+    public void setProcess(boolean process) {
+        this.process = process;
     }
 
 

@@ -42,12 +42,12 @@ and open the template in the editor.
                         
                         <p:submenu label="cadastro" icon="icon-cadastros">
                             <p:submenu label="controle de acesso" icon="icon-controle-acesso" rendered="#{menuDashboardController.usu.master}">
-                                <p:menuitem value="usuarios" action="#{menuDashboardController.acsUsuarios}" icon="icon-usuarios"/>
+                                <p:menuitem value="usuarios" action="#{menuDashboardController.acsUsuarios}" icon="icon-usuarios" disabled="#{menuDashboardController.idDisable('USU', 'view')}"/>
                                 <p:menuitem value="empresa" action="#{menuDashboardController.acsEmpresa}" icon="icon-empresa"/>
                                 <p:menuitem value="modulos" action="#{menuDashboardController.acsSistemas}" icon="icon-sistemas"/>
                                 <p:menuitem value="configuração" action="#{menuDashboardController.acsConfiguracao}" icon="icon-servicos"/>
                             </p:submenu>
-                            <p:submenu label="cadastros" icon="icon-cadastros">
+                            <p:submenu label="cadastros" icon="icon-cadastros" > 
                                 <p:menuitem value="clientes" action="#{menuDashboardController.cadClientes}" icon="icon-clientes"/>
                                 <p:menuitem value="fornecedores" action="#{menuDashboardController.cadForncedores}"  icon="icon-fornecedores"/>
                                 <p:menuitem value="funcionarios" action="#{menuDashboardController.cadFuncionarios}" icon="icon-funcionarios"/>

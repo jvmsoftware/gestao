@@ -5,6 +5,7 @@
  */
 package br.com.jvmsoftware.util;
 
+import br.com.jvmsoftware.daos.AcsUsuarioSistemaDAO;
 import br.com.jvmsoftware.daos.PubConfigEmpresaDAO;
 import br.com.jvmsoftware.daos.PubConteudoDAO;
 import br.com.jvmsoftware.daos.PubEmpresaDAO;
@@ -14,6 +15,7 @@ import br.com.jvmsoftware.daos.PubMunicipioDAO;
 import br.com.jvmsoftware.daos.PubPosicaoDAO;
 import br.com.jvmsoftware.daos.PubSistemaDAO;
 import br.com.jvmsoftware.daos.PubUsuarioDAO;
+import br.com.jvmsoftware.entities.AcsUsuarioSistema;
 import br.com.jvmsoftware.entities.PubConfigEmpresa;
 import br.com.jvmsoftware.entities.PubConteudo;
 import br.com.jvmsoftware.entities.PubEmpresa;
@@ -25,6 +27,7 @@ import br.com.jvmsoftware.entities.PubUsuario;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.apache.commons.mail.EmailException;
@@ -53,9 +56,9 @@ public class NewMain {
         
         //main.random();
         //main.mail();l
-        main.senha();
+        //main.senha();
         //main.enviarMailRecuperaSenha();
-        main.municipios();
+        //main.municipios();
         
         //main.triggerEmp();
         //main.triggerUsu();
@@ -63,6 +66,8 @@ public class NewMain {
         //main.updateSis();
         //main.insPosi();
         //main.insUsu();
+        
+        main.permissoes();
         
     }
     
@@ -223,6 +228,20 @@ public class NewMain {
         conteudos = conteudoDAO.listAllConteudos();
         for (int i=0; i<conteudos.size(); i++) {
             System.out.println("conteudo: " + conteudos.get(i).getConteudo());
+        }
+    }
+    
+    public void permissoes() throws SQLException {
+        AcsUsuarioSistemaDAO usuSisDAO = new AcsUsuarioSistemaDAO();
+        PubUsuarioDAO usuDAO = new PubUsuarioDAO();
+        PubSistemaDAO sisDAO = new PubSistemaDAO();
+        AcsUsuarioSistema rel = new AcsUsuarioSistema();
+        List<AcsUsuarioSistema> list;
+        list = (List<AcsUsuarioSistema>) usuSisDAO.listUsuarioSistemaByUsuario(usuDAO.getById(1));
+        rel = usuSisDAO.getUsuarioSistemaByUsuarioSistema(usuDAO.getById(1), sisDAO.getById(1));
+        List<String> newList = new ArrayList<>();
+        for (AcsUsuarioSistema list1 : list) {
+            newList.add(list1.getPubSistema().getNomeSistema() + "," + list1.isAtivo());
         }
     }
     

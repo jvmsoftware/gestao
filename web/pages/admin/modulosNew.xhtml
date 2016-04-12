@@ -40,6 +40,11 @@
                              value="#{adminModulosController.selectedModulo.ativo}">
                 </p:selectBooleanCheckbox>
                 
+                <p:outputLabel id="labAtivo1" value="Ativo Padrão para cadastro de novas empresas"/>
+                <p:selectBooleanCheckbox id="ativo1" label="labAtivo1" rendered="true" disabled="false"
+                                         value="#{adminModulosController.selectedModulo.defaultCadastro}">
+                </p:selectBooleanCheckbox>
+                
                 <f:facet  name="footer">
                     <center>
                         <p:commandButton action="#{adminModulosController.inserirModulo}" value="gravar" icon="icon-salvar"/>
