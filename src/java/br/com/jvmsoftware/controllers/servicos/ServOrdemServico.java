@@ -16,6 +16,8 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class ServOrdemServico {
 
+    private String msg;
+    
     /**
      * Creates a new instance of ServOrdemServico
      */

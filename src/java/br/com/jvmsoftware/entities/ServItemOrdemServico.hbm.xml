@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12/Abr/2016 22:07:22 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.jvmsoftware.entities.ServItemOrdemServico" table="serv_item_ordem_servico" catalog="jvmdsoftware" optimistic-lock="version">
+        <id name="idItem" type="int">
+            <column name="id_item" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="cadPessoa" class="br.com.jvmsoftware.entities.CadPessoa" fetch="select">
+            <column name="fornecedor" />
+        </many-to-one>
+        <many-to-one name="cadServicos" class="br.com.jvmsoftware.entities.CadServicos" fetch="select">
+            <column name="servico" not-null="true" />
+        </many-to-one>
+        <property name="orcamento" type="big_decimal">
+            <column name="orcamento" precision="10" />
+        </property>
+        <property name="valorFinal" type="big_decimal">
+            <column name="valor_final" precision="10" />
+        </property>
+        <property name="terceirizado" type="boolean">
+            <column name="terceirizado" not-null="true" />
+        </property>
+        <property name="prazoEntrega" type="date">
+            <column name="prazo_entrega" length="10" />
+        </property>
+        <property name="observacao" type="string">
+            <column name="observacao" />
+        </property>
+        <property name="descricaoServicoSemCadastro" type="string">
+            <column name="descricao_servico_sem_cadastro" length="100" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 11/Abr/2016 15:26:43 by Hibernate Tools 4.3.1 -->
+<!-- Generated 12/Abr/2016 22:07:22 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.jvmsoftware.entities.CadImoveis" table="cad_imoveis" catalog="jvmdsoftware" optimistic-lock="version">
         <id name="idImovel" type="java.lang.Integer">
@@ -23,5 +23,11 @@
         <property name="observacao" type="string">
             <column name="observacao" />
         </property>
+        <set name="servOrdemServicos" table="serv_ordem_servico" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="imovel_cliente" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.ServOrdemServico" />
+        </set>
     </class>
 </hibernate-mapping>

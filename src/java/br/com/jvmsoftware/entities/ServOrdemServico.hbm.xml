@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12/Abr/2016 22:07:22 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.jvmsoftware.entities.ServOrdemServico" table="serv_ordem_servico" catalog="jvmdsoftware" optimistic-lock="version">
+        <id name="idOrdem" type="java.lang.Integer">
+            <column name="id_ordem" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cadEquipamentos" class="br.com.jvmsoftware.entities.CadEquipamentos" fetch="select">
+            <column name="equipamento_cliente" />
+        </many-to-one>
+        <many-to-one name="cadImoveis" class="br.com.jvmsoftware.entities.CadImoveis" fetch="select">
+            <column name="imovel_cliente" />
+        </many-to-one>
+        <many-to-one name="cadPessoa" class="br.com.jvmsoftware.entities.CadPessoa" fetch="select">
+            <column name="cliente" />
+        </many-to-one>
+        <many-to-one name="cadVeiculos" class="br.com.jvmsoftware.entities.CadVeiculos" fetch="select">
+            <column name="veiculo_cliente" />
+        </many-to-one>
+        <many-to-one name="pubUsuario" class="br.com.jvmsoftware.entities.PubUsuario" fetch="select">
+            <column name="usuario" not-null="true" />
+        </many-to-one>
+        <many-to-one name="wflWorkflow" class="br.com.jvmsoftware.entities.WflWorkflow" fetch="select">
+            <column name="workflow" not-null="true" />
+        </many-to-one>
+        <property name="empresa" type="int">
+            <column name="empresa" not-null="true" />
+        </property>
+        <property name="dataHora" type="timestamp">
+            <column name="data_hora" length="19" not-null="true" />
+        </property>
+        <property name="observacao" type="string">
+            <column name="observacao" />
+        </property>
+    </class>
+</hibernate-mapping>

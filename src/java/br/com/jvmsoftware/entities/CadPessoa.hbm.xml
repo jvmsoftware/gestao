@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 11/Abr/2016 15:26:43 by Hibernate Tools 4.3.1 -->
+<!-- Generated 12/Abr/2016 22:07:22 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="br.com.jvmsoftware.entities.CadPessoa" table="cad_pessoa" catalog="jvmdsoftware" optimistic-lock="version">
         <id name="idPessoa" type="java.lang.Integer">
@@ -62,6 +62,12 @@
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.CadImoveis" />
         </set>
+        <set name="servItemOrdemServicos" table="serv_item_ordem_servico" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fornecedor" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.ServItemOrdemServico" />
+        </set>
         <set name="cadVeiculoses" table="cad_veiculos" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="pessoa" not-null="true" />
@@ -79,6 +85,12 @@
                 <column name="fornecedor" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.CadRelServFornec" />
+        </set>
+        <set name="servOrdemServicos" table="serv_ordem_servico" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cliente" />
+            </key>
+            <one-to-many class="br.com.jvmsoftware.entities.ServOrdemServico" />
         </set>
         <set name="cadRelProdFornecs" table="cad_rel_prod_fornec" inverse="true" lazy="true" fetch="select">
             <key>
