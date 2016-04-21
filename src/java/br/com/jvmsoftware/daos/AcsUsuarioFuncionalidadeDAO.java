@@ -38,7 +38,9 @@ public class AcsUsuarioFuncionalidadeDAO extends DefaultDAO {
         PubFuncionalidadeDAO funDAO = new PubFuncionalidadeDAO();
         PubFuncionalidade func = funDAO.getByCodigo(codigo);
         AcsUsuarioFuncionalidade usuarioSistemas;
-        usuarioSistemas = (AcsUsuarioFuncionalidade) session.createQuery("from AcsUsuarioFuncionalidade u where u.pubUsuario.idUsuario = :usu and u.pubFuncionalidade.idFuncionalidade = :fun").setParameter("usu", usuario.getIdUsuario()).setParameter("fun", func.getIdFuncionalidade()).uniqueResult();
+        usuarioSistemas = (AcsUsuarioFuncionalidade) session.createQuery("from AcsUsuarioFuncionalidade u where u.pubUsuario.idUsuario = :usu and u.pubFuncionalidade.idFuncionalidade = :fun").setParameter("usu", usuario.getIdUsuario()).setParameter("fun", func.getIdFuncionalidade()).uniqueResult();        
+        closeSession();
+        funDAO.closeSession();
         return usuarioSistemas;
     }
     
@@ -69,29 +71,39 @@ public class AcsUsuarioFuncionalidadeDAO extends DefaultDAO {
                 // verifica usuarioFuncionalidade
                 if ("view".equals(crud)) {
                     if (empFun.isView() == true) {
-                        disabled = usuFun.getView();
+                        disabled = convertAtivoDisabled(usuFun.getView());
                     }
                 } else if ("add".equals(crud)) {
                     if (empFun.isAdd() == true) {
-                        disabled = usuFun.isAdd();
+                        disabled = convertAtivoDisabled(usuFun.isAdd());
                     }
                 } else if ("edit".equals(crud)) {
                     if (empFun.isEdit() == true) {
-                        disabled = usuFun.isEdit();
+                        disabled = convertAtivoDisabled(usuFun.isEdit());
                     }
                 } else if ("delete".equals(crud)) {
                     if (empFun.isDelete() == true) {
-                        disabled = usuFun.isDelete();
+                        disabled = convertAtivoDisabled(usuFun.isDelete());
                     }
                 } else if ("process".equals(crud)) {
                     if (empFun.isProcess() == true) {
-                        disabled = usuFun.isProcess();
+                        disabled = convertAtivoDisabled(usuFun.isProcess());
                     }
                 } 
             }
         }    
         return disabled;
         
+    }
+    
+    private Boolean convertAtivoDisabled(Boolean ativo) {
+        Boolean disabled = null;
+        if (ativo == true) {
+            disabled = false;
+        } else if (ativo == false) {
+            disabled = true;
+        }
+        return disabled;
     }
     
     public List<AcsUsuarioFuncionalidade> listUsuarioSistemaByUsuario(PubUsuario usuario) throws SQLException {

@@ -43,18 +43,18 @@ and open the template in the editor.
                         <p:submenu label="cadastro" icon="icon-cadastros">
                             <p:submenu label="controle de acesso" icon="icon-controle-acesso" rendered="#{menuDashboardController.usu.master}">
                                 <p:menuitem value="usuarios" action="#{menuDashboardController.acsUsuarios}" icon="icon-usuarios" disabled="#{menuDashboardController.idDisable('USU', 'view')}"/>
-                                <p:menuitem value="empresa" action="#{menuDashboardController.acsEmpresa}" icon="icon-empresa"/>
-                                <p:menuitem value="modulos" action="#{menuDashboardController.acsSistemas}" icon="icon-sistemas"/>
-                                <p:menuitem value="configuração" action="#{menuDashboardController.acsConfiguracao}" icon="icon-servicos"/>
+                                <p:menuitem value="empresa" action="#{menuDashboardController.acsEmpresa}" icon="icon-empresa" disabled="#{menuDashboardController.idDisable('EMP', 'view')}"/>
+                                <p:menuitem value="modulos" action="#{menuDashboardController.acsSistemas}" icon="icon-sistemas" disabled="#{menuDashboardController.idDisable('SIS', 'view')}"/>
+                                <p:menuitem value="configuração" action="#{menuDashboardController.acsConfiguracao}" icon="icon-servicos" disabled="#{menuDashboardController.idDisable('CFG', 'view')}"/>
                             </p:submenu>
                             <p:submenu label="cadastros" icon="icon-cadastros" > 
-                                <p:menuitem value="clientes" action="#{menuDashboardController.cadClientes}" icon="icon-clientes"/>
-                                <p:menuitem value="fornecedores" action="#{menuDashboardController.cadForncedores}"  icon="icon-fornecedores"/>
-                                <p:menuitem value="funcionarios" action="#{menuDashboardController.cadFuncionarios}" icon="icon-funcionarios"/>
-                                <p:menuitem value="transportadores" action="#{menuDashboardController.cadTransportadores()}" icon="icon-transporte"/>
+                                <p:menuitem value="clientes" action="#{menuDashboardController.cadClientes}" icon="icon-clientes" disabled="#{menuDashboardController.idDisable('CLI', 'view')}"/>
+                                <p:menuitem value="fornecedores" action="#{menuDashboardController.cadForncedores}"  icon="icon-fornecedores" disabled="#{menuDashboardController.idDisable('FOR', 'view')}"/>
+                                <p:menuitem value="funcionarios" action="#{menuDashboardController.cadFuncionarios}" icon="icon-funcionarios" disabled="#{menuDashboardController.idDisable('FUN', 'view')}"/>
+                                <p:menuitem value="transportadores" action="#{menuDashboardController.cadTransportadores()}" icon="icon-transporte" disabled="#{menuDashboardController.idDisable('TRS', 'view')}"/>
                                 <p:separator/>
-                                <p:menuitem value="produtos" action="#{menuDashboardController.cadProdutos}" icon="icon-produtos"/>
-                                <p:menuitem value="serviços" action="#{menuDashboardController.cadServicos}" icon="icon-servicos"/>
+                                <p:menuitem value="produtos" action="#{menuDashboardController.cadProdutos}" icon="icon-produtos" disabled="#{menuDashboardController.idDisable('USU', 'view')}"/>
+                                <p:menuitem value="serviços" action="#{menuDashboardController.cadServicos}" icon="icon-servicos" disabled="#{menuDashboardController.idDisable('USU', 'view')}"/>
                             </p:submenu>
                         </p:submenu>
                         

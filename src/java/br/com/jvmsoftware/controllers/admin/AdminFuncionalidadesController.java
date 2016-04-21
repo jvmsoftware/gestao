@@ -37,6 +37,8 @@ public class AdminFuncionalidadesController implements Serializable{
     private PubFuncionalidade selectedFuncionalidade;
     private List<PubFuncionalidade> listFuncionalidades;
     private List<PubSistema> listSistemas;
+    private Boolean disabledCrud = true;
+    private Boolean disabledProcess = true;
     private String msg;
     private int sistema = 0;
     
@@ -109,6 +111,23 @@ public class AdminFuncionalidadesController implements Serializable{
         }
     }
     
+    // change crud
+    public void changeCrud() throws SQLException {
+        if (selectedFuncionalidade.isCrud() == true) {
+            disabledCrud = false;
+        } else {
+            disabledCrud = true;
+        }
+    }
+    
+    // change crud
+    public void changeProcess() throws SQLException {
+        if (selectedFuncionalidade.getProcess() == true) {
+            disabledProcess = false;
+        } else {
+            disabledProcess = true;
+        }
+    }
     
     
     /**
@@ -146,6 +165,22 @@ public class AdminFuncionalidadesController implements Serializable{
 
     public void setSistema(int sistema) {
         this.sistema = sistema;
+    }
+
+    public Boolean getDisabledCrud() {
+        return disabledCrud;
+    }
+
+    public void setDisabledCrud(Boolean disabledCrud) {
+        this.disabledCrud = disabledCrud;
+    }
+
+    public Boolean getDisabledProcess() {
+        return disabledProcess;
+    }
+
+    public void setDisabledProcess(Boolean disabledProcess) {
+        this.disabledProcess = disabledProcess;
     }
     
     

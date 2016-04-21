@@ -40,6 +40,27 @@
                              value="#{adminFuncionalidadesController.selectedFuncionalidade.descricaoFuncionalidade}">
                 </p:inputText>
                 
+                <p:outputLabel id="labCrud" value="CRUD" for="crud"/>
+                <p:selectBooleanCheckbox id="crud" label="labCrud" value="#{adminFuncionalidadesController.selectedFuncionalidade.crud}">
+                    <p:ajax update="defCrud" process="@form" listener="#{adminFuncionalidadesController.changeCrud()}"/>
+                </p:selectBooleanCheckbox>
+                
+                <p:outputLabel id="labDefCrud" value="CRUD Default" for="defCrud"/>
+                <h:selectOneMenu id="defCrud" label="labDefCrud" value="#{adminFuncionalidadesController.selectedFuncionalidade.crudDefault}">
+                    <f:selectItem itemLabel="-- SEM PERMISSÃO --" itemValue="0" noSelectionOption="true"/>
+                    <f:selectItem itemLabel="visualização" itemValue="1" noSelectionOption="false"/>
+                    <f:selectItem itemLabel="visualização/incusão/edição" itemValue="2" noSelectionOption="false"/>
+                    <f:selectItem itemLabel="visualização/incusão/edição/exclusão" itemValue="3" noSelectionOption="false"/>
+                </h:selectOneMenu>
+                
+                <p:outputLabel id="labProc" value="Processo" for="proc"/>
+                <p:selectBooleanCheckbox id="proc" label="labProc" value="#{adminFuncionalidadesController.selectedFuncionalidade.process}">
+                    <p:ajax update="defCrud" process="@form" listener="#{adminFuncionalidadesController.changeProcess()}"/>
+                </p:selectBooleanCheckbox>
+                
+                <p:outputLabel id="labDefProc" value="Processo Default" for="defProc"/>
+                <p:selectBooleanCheckbox id="defProc" label="labDefProc" value="#{adminFuncionalidadesController.selectedFuncionalidade.processDefault}"/>
+                
                 <f:facet  name="footer">
                     <center>
                         <p:commandButton action="#{adminFuncionalidadesController.inserirFuncionalidade}" value="gravar" icon="icon-salvar" update="@all"/>
