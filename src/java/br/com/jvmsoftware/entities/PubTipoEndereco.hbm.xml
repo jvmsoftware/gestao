@@ -14,7 +14,7 @@
         <property name="tipoEndereco" type="string">
             <column name="tipo_endereco" length="50" />
         </property>
-        <set name="cadEnderecoses" table="cad_enderecos" inverse="true" lazy="true" fetch="select">
+        <set name="cadEnderecoses" table="cad_enderecos" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="tipo_endereco" not-null="true" />
             </key>

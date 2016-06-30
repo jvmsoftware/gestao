@@ -14,25 +14,25 @@
         <property name="uf" type="string">
             <column name="UF" length="2" not-null="true" />
         </property>
-        <set name="cadEnderecoses" table="cad_enderecos" inverse="true" lazy="true" fetch="select">
+        <set name="cadEnderecoses" table="cad_enderecos" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="estado" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.CadEnderecos" />
         </set>
-        <set name="pubUsuarios" table="pub_usuario" inverse="true" lazy="true" fetch="select">
+        <set name="pubUsuarios" table="pub_usuario" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="estado" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.PubUsuario" />
         </set>
-        <set name="pubEmpresas" table="pub_empresa" inverse="true" lazy="true" fetch="select">
+        <set name="pubEmpresas" table="pub_empresa" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="estado" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.PubEmpresa" />
         </set>
-        <set name="pubMunicipios" table="pub_municipio" inverse="true" lazy="true" fetch="select">
+        <set name="pubMunicipios" table="pub_municipio" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="id_estado" not-null="true" />
             </key>

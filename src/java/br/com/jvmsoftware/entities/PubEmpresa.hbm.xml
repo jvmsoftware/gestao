@@ -8,13 +8,13 @@
             <column name="id_empresa" />
             <generator class="identity" />
         </id>
-        <many-to-one name="pubEstado" class="br.com.jvmsoftware.entities.PubEstado" fetch="select">
+        <many-to-one name="pubEstado" class="br.com.jvmsoftware.entities.PubEstado" fetch="join">
             <column name="estado" not-null="true" />
         </many-to-one>
-        <many-to-one name="pubMunicipio" class="br.com.jvmsoftware.entities.PubMunicipio" fetch="select">
+        <many-to-one name="pubMunicipio" class="br.com.jvmsoftware.entities.PubMunicipio" fetch="join">
             <column name="municipio" not-null="true" />
         </many-to-one>
-        <many-to-one name="pubTipoCadastro" class="br.com.jvmsoftware.entities.PubTipoCadastro" fetch="select">
+        <many-to-one name="pubTipoCadastro" class="br.com.jvmsoftware.entities.PubTipoCadastro" fetch="join">
             <column name="tipo_cadastro" not-null="true" />
         </many-to-one>
         <property name="cnpjEmpresa" type="string">
@@ -55,85 +55,85 @@
         <property name="emailResponsavel" type="string">
             <column name="email_responsavel" length="50" />
         </property>
-        <set name="pubConfigEmpresas" table="pub_config_empresa" inverse="true" lazy="true" fetch="select">
+        <set name="pubConfigEmpresas" table="pub_config_empresa" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="empresa" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.PubConfigEmpresa" />
         </set>
-        <set name="comCompraOrdems" table="com_compra_ordem" inverse="true" lazy="true" fetch="select">
+        <set name="comCompraOrdems" table="com_compra_ordem" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="empresa" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.ComCompraOrdem" />
         </set>
-        <set name="cadImoveises" table="cad_imoveis" inverse="true" lazy="true" fetch="select">
+        <set name="cadImoveises" table="cad_imoveis" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="empresa" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.CadImoveis" />
         </set>
-        <set name="cadServicoses" table="cad_servicos" inverse="true" lazy="true" fetch="select">
+        <set name="cadServicoses" table="cad_servicos" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="empresa" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.CadServicos" />
         </set>
-        <set name="servOrdemServicos" table="serv_ordem_servico" inverse="true" lazy="true" fetch="select">
+        <set name="servOrdemServicos" table="serv_ordem_servico" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="empresa" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.ServOrdemServico" />
         </set>
-        <set name="acsEmpresaFuncionalidades" table="acs_empresa_funcionalidade" inverse="true" lazy="true" fetch="select">
+        <set name="acsEmpresaFuncionalidades" table="acs_empresa_funcionalidade" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="empresa" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.AcsEmpresaFuncionalidade" />
         </set>
-        <set name="acsEmpresaSistemas" table="acs_empresa_sistema" inverse="true" lazy="true" fetch="select">
+        <set name="acsEmpresaSistemas" table="acs_empresa_sistema" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="empresa" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.AcsEmpresaSistema" />
         </set>
-        <set name="acsUsuarioFuncionalidades" table="acs_usuario_funcionalidade" inverse="true" lazy="true" fetch="select">
+        <set name="acsUsuarioFuncionalidades" table="acs_usuario_funcionalidade" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="empresa" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.AcsUsuarioFuncionalidade" />
         </set>
-        <set name="cadRelServFornecs" table="cad_rel_serv_fornec" inverse="true" lazy="true" fetch="select">
+        <set name="cadRelServFornecs" table="cad_rel_serv_fornec" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="empresa" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.CadRelServFornec" />
         </set>
-        <set name="supProjetos" table="sup_projeto" inverse="true" lazy="true" fetch="select">
+        <set name="supProjetos" table="sup_projeto" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="empresa_projeto" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.SupProjeto" />
         </set>
-        <set name="wflSituacaos" table="wfl_situacao" inverse="true" lazy="true" fetch="select">
+        <set name="wflSituacaos" table="wfl_situacao" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="empresa" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.WflSituacao" />
         </set>
-        <set name="supSolicitacaos" table="sup_solicitacao" inverse="true" lazy="true" fetch="select">
+        <set name="supSolicitacaos" table="sup_solicitacao" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="empresa_solicitacao" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.SupSolicitacao" />
         </set>
-        <set name="acsUsuarioSistemas" table="acs_usuario_sistema" inverse="true" lazy="true" fetch="select">
+        <set name="acsUsuarioSistemas" table="acs_usuario_sistema" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="empresa" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.AcsUsuarioSistema" />
         </set>
-        <set name="wflWorkflowsForEmpresaDestino" table="wfl_workflow" inverse="true" lazy="true" fetch="select">
+        <set name="wflWorkflowsForEmpresaDestino" table="wfl_workflow" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="empresa_destino" not-null="true">
                     <comment>Empresa a qual dever&#195;&#161; dar andamento ao workflow</comment>
@@ -141,49 +141,49 @@
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.WflWorkflow" />
         </set>
-        <set name="cadPessoas" table="cad_pessoa" inverse="true" lazy="true" fetch="select">
+        <set name="cadPessoas" table="cad_pessoa" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="empresa" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.CadPessoa" />
         </set>
-        <set name="cadVeiculoses" table="cad_veiculos" inverse="true" lazy="true" fetch="select">
+        <set name="cadVeiculoses" table="cad_veiculos" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="empresa" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.CadVeiculos" />
         </set>
-        <set name="wflWorkflowEventos" table="wfl_workflow_evento" inverse="true" lazy="true" fetch="select">
+        <set name="wflWorkflowEventos" table="wfl_workflow_evento" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="empresa_evento" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.WflWorkflowEvento" />
         </set>
-        <set name="cadProdutos" table="cad_produto" inverse="true" lazy="true" fetch="select">
+        <set name="cadProdutos" table="cad_produto" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="empresa" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.CadProduto" />
         </set>
-        <set name="cadRelProdFornecs" table="cad_rel_prod_fornec" inverse="true" lazy="true" fetch="select">
+        <set name="cadRelProdFornecs" table="cad_rel_prod_fornec" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="empresa" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.CadRelProdFornec" />
         </set>
-        <set name="pubUsuarios" table="pub_usuario" inverse="true" lazy="true" fetch="select">
+        <set name="pubUsuarios" table="pub_usuario" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="empresa" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.PubUsuario" />
         </set>
-        <set name="cadEquipamentoses" table="cad_equipamentos" inverse="true" lazy="true" fetch="select">
+        <set name="cadEquipamentoses" table="cad_equipamentos" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="empresa" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.CadEquipamentos" />
         </set>
-        <set name="wflWorkflowsForEmpresaCriacao" table="wfl_workflow" inverse="true" lazy="true" fetch="select">
+        <set name="wflWorkflowsForEmpresaCriacao" table="wfl_workflow" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="empresa_criacao" not-null="true">
                     <comment>Empresa a qual o usuario que cadastrou o workflow pertence</comment>

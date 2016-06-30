@@ -9,6 +9,8 @@ import br.com.jvmsoftware.daos.AcsUsuarioFuncionalidadeDAO;
 import br.com.jvmsoftware.entities.PubUsuario;
 import java.sql.SQLException;
 import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -27,6 +29,45 @@ public class MenuDashboardController {
     private PubUsuario usu = new PubUsuario();
     private String primeiroNome;
     private boolean renderedAdmin = false;
+    
+    // itens de menu
+    private boolean disabledUsu;
+    private boolean disabledUsuAdd;
+    private boolean disabledUsuEdit;
+    private boolean disabledUsuDelete;
+    private boolean disabledEmp;
+    private boolean disabledEmpAdd;
+    private boolean disabledEmpEdit;
+    private boolean disabledEmpDelete;
+    private boolean disabledSis;
+    private boolean disabledSisAdd;
+    private boolean disabledSisEdit;
+    private boolean disabledSisDelete;
+    private boolean disabledCfg;
+    private boolean disabledCfgAdd;
+    private boolean disabledCfgEdit;
+    private boolean disabledCfgDelete;
+    private boolean disabledCli;
+    private boolean disabledCliAdd;
+    private boolean disabledCliEdit;
+    private boolean disabledCliDelete;
+    private boolean disabledFor;
+    private boolean disabledForAdd;
+    private boolean disabledForEdit;
+    private boolean disabledForDelete;
+    private boolean disabledFun;
+    private boolean disabledFunAdd;
+    private boolean disabledFunEdit;
+    private boolean disabledFunDelete;
+    private boolean disabledTrs;
+    private boolean disabledTrsAdd;
+    private boolean disabledTrsEdit;
+    private boolean disabledTrsDelete;
+    private boolean disabledPro;
+    private boolean disabledProAdd;
+    private boolean disabledProEdit;
+    private boolean disabledProDelete;
+    
 
     /**
      * Creates a new instance of MenuController
@@ -38,6 +79,11 @@ public class MenuDashboardController {
         setNome();
         if (usu.getPubEmpresa().getIdEmpresa() == 1) {
             renderedAdmin = true;
+        }
+        try {
+            disable();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuDashboardController.class.getName()).log(Level.SEVERE, null, ex);
         }
     } 
     
@@ -52,10 +98,41 @@ public class MenuDashboardController {
     
 
 
-    public boolean idDisable(String func, String crud) throws SQLException {
-        Boolean disabled;
-        disabled = usuFuncDAO.isDisabled(usu, func, crud);
-        return disabled;
+    public void disable() throws SQLException {
+        disabledUsu = usuFuncDAO.isDisabled(usu, "USU", "view");
+        disabledUsuAdd = usuFuncDAO.isDisabled(usu, "USU", "add");
+        disabledUsuEdit = usuFuncDAO.isDisabled(usu, "USU", "edit");
+        disabledUsuDelete = usuFuncDAO.isDisabled(usu, "USU", "delete");
+        disabledEmp = usuFuncDAO.isDisabled(usu, "EMP", "view");
+        disabledEmp = usuFuncDAO.isDisabled(usu, "EMP", "add");
+        disabledEmp = usuFuncDAO.isDisabled(usu, "EMP", "edit");
+        disabledEmp = usuFuncDAO.isDisabled(usu, "EMP", "delete");
+        disabledSis = usuFuncDAO.isDisabled(usu, "SIS", "view");
+        disabledSis = usuFuncDAO.isDisabled(usu, "SIS", "add");
+        disabledSis = usuFuncDAO.isDisabled(usu, "SIS", "edit");
+        disabledSis = usuFuncDAO.isDisabled(usu, "SIS", "delete");
+        disabledCfg = usuFuncDAO.isDisabled(usu, "CFG", "view");
+        disabledCfg = usuFuncDAO.isDisabled(usu, "CFG", "add");
+        disabledCfg = usuFuncDAO.isDisabled(usu, "CFG", "edit");
+        disabledCfg = usuFuncDAO.isDisabled(usu, "CFG", "delete");
+        disabledCli = usuFuncDAO.isDisabled(usu, "CLI", "view");
+        disabledCli = usuFuncDAO.isDisabled(usu, "CLI", "add");
+        disabledCli = usuFuncDAO.isDisabled(usu, "CLI", "edit");
+        disabledCli = usuFuncDAO.isDisabled(usu, "CLI", "delete");
+        disabledFor = usuFuncDAO.isDisabled(usu, "FOR", "view");
+        disabledFor = usuFuncDAO.isDisabled(usu, "FOR", "add");
+        disabledFor = usuFuncDAO.isDisabled(usu, "FOR", "edit");
+        disabledFor = usuFuncDAO.isDisabled(usu, "FOR", "delete");
+        disabledFun = usuFuncDAO.isDisabled(usu, "FUN", "view");
+        disabledFun = usuFuncDAO.isDisabled(usu, "FUN", "add");
+        disabledFun = usuFuncDAO.isDisabled(usu, "FUN", "edit");
+        disabledFun = usuFuncDAO.isDisabled(usu, "FUN", "delete");
+        disabledTrs = usuFuncDAO.isDisabled(usu, "TRS", "view");
+        disabledTrs = usuFuncDAO.isDisabled(usu, "TRS", "add");
+        disabledTrs = usuFuncDAO.isDisabled(usu, "TRS", "edit");
+        disabledTrs = usuFuncDAO.isDisabled(usu, "TRS", "delete");
+        disabledPro = usuFuncDAO.isDisabled(usu, "TRS", "view"); // TRS > PRO
+        disabledPro = usuFuncDAO.isDisabled(usu, "TRS", "view"); // TRS > PRO
     }
     
         /**
@@ -212,6 +289,294 @@ public class MenuDashboardController {
 
     public void setRenderedAdmin(boolean renderedAdmin) {
         this.renderedAdmin = renderedAdmin;
+    }
+
+    public boolean isDisabledUsu() {
+        return disabledUsu;
+    }
+
+    public void setDisabledUsu(boolean disabledUsu) {
+        this.disabledUsu = disabledUsu;
+    }
+
+    public boolean isDisabledEmp() {
+        return disabledEmp;
+    }
+
+    public void setDisabledEmp(boolean disabledEmp) {
+        this.disabledEmp = disabledEmp;
+    }
+
+    public boolean isDisabledSis() {
+        return disabledSis;
+    }
+
+    public void setDisabledSis(boolean disabledSis) {
+        this.disabledSis = disabledSis;
+    }
+
+    public boolean isDisabledCfg() {
+        return disabledCfg;
+    }
+
+    public void setDisabledCfg(boolean disabledCfg) {
+        this.disabledCfg = disabledCfg;
+    }
+
+    public boolean isDisabledCli() {
+        return disabledCli;
+    }
+
+    public void setDisabledCli(boolean disabledCli) {
+        this.disabledCli = disabledCli;
+    }
+
+    public boolean isDisabledFor() {
+        return disabledFor;
+    }
+
+    public void setDisabledFor(boolean disabledFor) {
+        this.disabledFor = disabledFor;
+    }
+
+    public boolean isDisabledFun() {
+        return disabledFun;
+    }
+
+    public void setDisabledFun(boolean disabledFun) {
+        this.disabledFun = disabledFun;
+    }
+
+    public boolean isDisabledTrs() {
+        return disabledTrs;
+    }
+
+    public void setDisabledTrs(boolean disabledTrs) {
+        this.disabledTrs = disabledTrs;
+    }
+
+    public boolean isDisabledPro() {
+        return disabledPro;
+    }
+
+    public void setDisabledPro(boolean disabledPro) {
+        this.disabledPro = disabledPro;
+    }
+
+    public boolean isDisabledUsuAdd() {
+        return disabledUsuAdd;
+    }
+
+    public void setDisabledUsuAdd(boolean disabledUsuAdd) {
+        this.disabledUsuAdd = disabledUsuAdd;
+    }
+
+    public boolean isDisabledUsuEdit() {
+        return disabledUsuEdit;
+    }
+
+    public void setDisabledUsuEdit(boolean disabledUsuEdit) {
+        this.disabledUsuEdit = disabledUsuEdit;
+    }
+
+    public boolean isDisabledUsuDelete() {
+        return disabledUsuDelete;
+    }
+
+    public void setDisabledUsuDelete(boolean disabledUsuDelete) {
+        this.disabledUsuDelete = disabledUsuDelete;
+    }
+
+    public boolean isDisabledEmpAdd() {
+        return disabledEmpAdd;
+    }
+
+    public void setDisabledEmpAdd(boolean disabledEmpAdd) {
+        this.disabledEmpAdd = disabledEmpAdd;
+    }
+
+    public boolean isDisabledEmpEdit() {
+        return disabledEmpEdit;
+    }
+
+    public void setDisabledEmpEdit(boolean disabledEmpEdit) {
+        this.disabledEmpEdit = disabledEmpEdit;
+    }
+
+    public boolean isDisabledEmpDelete() {
+        return disabledEmpDelete;
+    }
+
+    public void setDisabledEmpDelete(boolean disabledEmpDelete) {
+        this.disabledEmpDelete = disabledEmpDelete;
+    }
+
+    public boolean isDisabledSisAdd() {
+        return disabledSisAdd;
+    }
+
+    public void setDisabledSisAdd(boolean disabledSisAdd) {
+        this.disabledSisAdd = disabledSisAdd;
+    }
+
+    public boolean isDisabledSisEdit() {
+        return disabledSisEdit;
+    }
+
+    public void setDisabledSisEdit(boolean disabledSisEdit) {
+        this.disabledSisEdit = disabledSisEdit;
+    }
+
+    public boolean isDisabledSisDelete() {
+        return disabledSisDelete;
+    }
+
+    public void setDisabledSisDelete(boolean disabledSisDelete) {
+        this.disabledSisDelete = disabledSisDelete;
+    }
+
+    public boolean isDisabledCfgAdd() {
+        return disabledCfgAdd;
+    }
+
+    public void setDisabledCfgAdd(boolean disabledCfgAdd) {
+        this.disabledCfgAdd = disabledCfgAdd;
+    }
+
+    public boolean isDisabledCfgEdit() {
+        return disabledCfgEdit;
+    }
+
+    public void setDisabledCfgEdit(boolean disabledCfgEdit) {
+        this.disabledCfgEdit = disabledCfgEdit;
+    }
+
+    public boolean isDisabledCfgDelete() {
+        return disabledCfgDelete;
+    }
+
+    public void setDisabledCfgDelete(boolean disabledCfgDelete) {
+        this.disabledCfgDelete = disabledCfgDelete;
+    }
+
+    public boolean isDisabledCliAdd() {
+        return disabledCliAdd;
+    }
+
+    public void setDisabledCliAdd(boolean disabledCliAdd) {
+        this.disabledCliAdd = disabledCliAdd;
+    }
+
+    public boolean isDisabledCliEdit() {
+        return disabledCliEdit;
+    }
+
+    public void setDisabledCliEdit(boolean disabledCliEdit) {
+        this.disabledCliEdit = disabledCliEdit;
+    }
+
+    public boolean isDisabledCliDelete() {
+        return disabledCliDelete;
+    }
+
+    public void setDisabledCliDelete(boolean disabledCliDelete) {
+        this.disabledCliDelete = disabledCliDelete;
+    }
+
+    public boolean isDisabledForAdd() {
+        return disabledForAdd;
+    }
+
+    public void setDisabledForAdd(boolean disabledForAdd) {
+        this.disabledForAdd = disabledForAdd;
+    }
+
+    public boolean isDisabledForEdit() {
+        return disabledForEdit;
+    }
+
+    public void setDisabledForEdit(boolean disabledForEdit) {
+        this.disabledForEdit = disabledForEdit;
+    }
+
+    public boolean isDisabledForDelete() {
+        return disabledForDelete;
+    }
+
+    public void setDisabledForDelete(boolean disabledForDelete) {
+        this.disabledForDelete = disabledForDelete;
+    }
+
+    public boolean isDisabledFunAdd() {
+        return disabledFunAdd;
+    }
+
+    public void setDisabledFunAdd(boolean disabledFunAdd) {
+        this.disabledFunAdd = disabledFunAdd;
+    }
+
+    public boolean isDisabledFunEdit() {
+        return disabledFunEdit;
+    }
+
+    public void setDisabledFunEdit(boolean disabledFunEdit) {
+        this.disabledFunEdit = disabledFunEdit;
+    }
+
+    public boolean isDisabledFunDelete() {
+        return disabledFunDelete;
+    }
+
+    public void setDisabledFunDelete(boolean disabledFunDelete) {
+        this.disabledFunDelete = disabledFunDelete;
+    }
+
+    public boolean isDisabledTrsAdd() {
+        return disabledTrsAdd;
+    }
+
+    public void setDisabledTrsAdd(boolean disabledTrsAdd) {
+        this.disabledTrsAdd = disabledTrsAdd;
+    }
+
+    public boolean isDisabledTrsEdit() {
+        return disabledTrsEdit;
+    }
+
+    public void setDisabledTrsEdit(boolean disabledTrsEdit) {
+        this.disabledTrsEdit = disabledTrsEdit;
+    }
+
+    public boolean isDisabledTrsDelete() {
+        return disabledTrsDelete;
+    }
+
+    public void setDisabledTrsDelete(boolean disabledTrsDelete) {
+        this.disabledTrsDelete = disabledTrsDelete;
+    }
+
+    public boolean isDisabledProAdd() {
+        return disabledProAdd;
+    }
+
+    public void setDisabledProAdd(boolean disabledProAdd) {
+        this.disabledProAdd = disabledProAdd;
+    }
+
+    public boolean isDisabledProEdit() {
+        return disabledProEdit;
+    }
+
+    public void setDisabledProEdit(boolean disabledProEdit) {
+        this.disabledProEdit = disabledProEdit;
+    }
+
+    public boolean isDisabledProDelete() {
+        return disabledProDelete;
+    }
+
+    public void setDisabledProDelete(boolean disabledProDelete) {
+        this.disabledProDelete = disabledProDelete;
     }
     
     

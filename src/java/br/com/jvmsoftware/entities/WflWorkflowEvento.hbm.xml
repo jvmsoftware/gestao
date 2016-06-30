@@ -8,25 +8,25 @@
             <column name="id_workflow_evento" />
             <generator class="identity" />
         </id>
-        <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="select">
+        <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="join">
             <column name="empresa_evento" not-null="true" />
         </many-to-one>
-        <many-to-one name="pubUsuario" class="br.com.jvmsoftware.entities.PubUsuario" fetch="select">
+        <many-to-one name="pubUsuario" class="br.com.jvmsoftware.entities.PubUsuario" fetch="join">
             <column name="usuario_evento" not-null="true" />
         </many-to-one>
-        <many-to-one name="wflSeveridadeBySeveridadeAtual" class="br.com.jvmsoftware.entities.WflSeveridade" fetch="select">
+        <many-to-one name="wflSeveridadeBySeveridadeAtual" class="br.com.jvmsoftware.entities.WflSeveridade" fetch="join">
             <column name="severidade_atual" not-null="true" />
         </many-to-one>
-        <many-to-one name="wflSeveridadeBySeveridadeAnterior" class="br.com.jvmsoftware.entities.WflSeveridade" fetch="select">
+        <many-to-one name="wflSeveridadeBySeveridadeAnterior" class="br.com.jvmsoftware.entities.WflSeveridade" fetch="join">
             <column name="severidade_anterior" />
         </many-to-one>
-        <many-to-one name="wflSituacaoBySituacaoAnterior" class="br.com.jvmsoftware.entities.WflSituacao" fetch="select">
+        <many-to-one name="wflSituacaoBySituacaoAnterior" class="br.com.jvmsoftware.entities.WflSituacao" fetch="join">
             <column name="situacao_anterior" />
         </many-to-one>
-        <many-to-one name="wflSituacaoBySituacaoAtual" class="br.com.jvmsoftware.entities.WflSituacao" fetch="select">
+        <many-to-one name="wflSituacaoBySituacaoAtual" class="br.com.jvmsoftware.entities.WflSituacao" fetch="join">
             <column name="situacao_atual" not-null="true" />
         </many-to-one>
-        <many-to-one name="wflWorkflow" class="br.com.jvmsoftware.entities.WflWorkflow" fetch="select">
+        <many-to-one name="wflWorkflow" class="br.com.jvmsoftware.entities.WflWorkflow" fetch="join">
             <column name="workflow" not-null="true" />
         </many-to-one>
         <property name="dataHoraEvento" type="timestamp">

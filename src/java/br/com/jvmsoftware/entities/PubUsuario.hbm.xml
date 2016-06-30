@@ -8,13 +8,13 @@
             <column name="id_usuario" />
             <generator class="identity" />
         </id>
-        <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="select">
+        <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="join">
             <column name="empresa" />
         </many-to-one>
-        <many-to-one name="pubEstado" class="br.com.jvmsoftware.entities.PubEstado" fetch="select">
+        <many-to-one name="pubEstado" class="br.com.jvmsoftware.entities.PubEstado" fetch="join">
             <column name="estado" />
         </many-to-one>
-        <many-to-one name="pubMunicipio" class="br.com.jvmsoftware.entities.PubMunicipio" fetch="select">
+        <many-to-one name="pubMunicipio" class="br.com.jvmsoftware.entities.PubMunicipio" fetch="join">
             <column name="cidade" />
         </many-to-one>
         <property name="cpfUsuario" type="string">
@@ -75,61 +75,61 @@
         <property name="master" type="boolean">
             <column name="master" not-null="true" />
         </property>
-        <set name="acsAcessoUsuarioses" table="acs_acesso_usuarios" inverse="true" lazy="true" fetch="select">
+        <set name="acsAcessoUsuarioses" table="acs_acesso_usuarios" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="usuario" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.AcsAcessoUsuarios" />
         </set>
-        <set name="acsUsuarioFuncionalidades" table="acs_usuario_funcionalidade" inverse="true" lazy="true" fetch="select">
+        <set name="acsUsuarioFuncionalidades" table="acs_usuario_funcionalidade" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="usuario" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.AcsUsuarioFuncionalidade" />
         </set>
-        <set name="ctrLogs" table="ctr_log" inverse="true" lazy="true" fetch="select">
+        <set name="ctrLogs" table="ctr_log" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="usuario" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.CtrLog" />
         </set>
-        <set name="wflWorkflowEventos" table="wfl_workflow_evento" inverse="true" lazy="true" fetch="select">
+        <set name="wflWorkflowEventos" table="wfl_workflow_evento" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="usuario_evento" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.WflWorkflowEvento" />
         </set>
-        <set name="wflWorkflows" table="wfl_workflow" inverse="true" lazy="true" fetch="select">
+        <set name="wflWorkflows" table="wfl_workflow" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="usuario_criacao" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.WflWorkflow" />
         </set>
-        <set name="supProjetos" table="sup_projeto" inverse="true" lazy="true" fetch="select">
+        <set name="supProjetos" table="sup_projeto" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="usuario_criacao" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.SupProjeto" />
         </set>
-        <set name="supSolicitacaos" table="sup_solicitacao" inverse="true" lazy="true" fetch="select">
+        <set name="supSolicitacaos" table="sup_solicitacao" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="usuario_abertura" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.SupSolicitacao" />
         </set>
-        <set name="comCompraOrdems" table="com_compra_ordem" inverse="true" lazy="true" fetch="select">
+        <set name="comCompraOrdems" table="com_compra_ordem" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="usuario_inclusao" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.ComCompraOrdem" />
         </set>
-        <set name="servOrdemServicos" table="serv_ordem_servico" inverse="true" lazy="true" fetch="select">
+        <set name="servOrdemServicos" table="serv_ordem_servico" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="usuario" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.ServOrdemServico" />
         </set>
-        <set name="acsUsuarioSistemas" table="acs_usuario_sistema" inverse="true" lazy="true" fetch="select">
+        <set name="acsUsuarioSistemas" table="acs_usuario_sistema" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="usuario" not-null="true" />
             </key>

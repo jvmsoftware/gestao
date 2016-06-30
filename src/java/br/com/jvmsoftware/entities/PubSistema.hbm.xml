@@ -23,25 +23,25 @@
         <property name="defaultCadastro" type="boolean">
             <column name="defaultCadastro" not-null="true" />
         </property>
-        <set name="pubMenus" table="pub_menu" inverse="true" lazy="true" fetch="select">
+        <set name="pubMenus" table="pub_menu" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="sistema" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.PubMenu" />
         </set>
-        <set name="pubFuncionalidades" table="pub_funcionalidade" inverse="true" lazy="true" fetch="select">
+        <set name="pubFuncionalidades" table="pub_funcionalidade" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="sistema" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.PubFuncionalidade" />
         </set>
-        <set name="supSolicitacaos" table="sup_solicitacao" inverse="true" lazy="true" fetch="select">
+        <set name="supSolicitacaos" table="sup_solicitacao" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="sistema" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.SupSolicitacao" />
         </set>
-        <set name="wflWorkflows" table="wfl_workflow" inverse="true" lazy="true" fetch="select">
+        <set name="wflWorkflows" table="wfl_workflow" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="sistema" not-null="true">
                     <comment>Sistema (modulo) ao qual o workflow pertence</comment>
@@ -49,25 +49,25 @@
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.WflWorkflow" />
         </set>
-        <set name="wflSituacaos" table="wfl_situacao" inverse="true" lazy="true" fetch="select">
+        <set name="wflSituacaos" table="wfl_situacao" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="sistema" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.WflSituacao" />
         </set>
-        <set name="ctrLogs" table="ctr_log" inverse="true" lazy="true" fetch="select">
+        <set name="ctrLogs" table="ctr_log" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="sistema" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.CtrLog" />
         </set>
-        <set name="acsEmpresaSistemas" table="acs_empresa_sistema" inverse="true" lazy="true" fetch="select">
+        <set name="acsEmpresaSistemas" table="acs_empresa_sistema" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="sistema" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.AcsEmpresaSistema" />
         </set>
-        <set name="acsUsuarioSistemas" table="acs_usuario_sistema" inverse="true" lazy="true" fetch="select">
+        <set name="acsUsuarioSistemas" table="acs_usuario_sistema" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="sistema" not-null="true" />
             </key>

@@ -13,7 +13,6 @@ import br.com.jvmsoftware.entities.PubEmpresa;
 import br.com.jvmsoftware.entities.PubFuncionalidade;
 import br.com.jvmsoftware.entities.PubSistema;
 import br.com.jvmsoftware.entities.PubUsuario;
-import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -37,11 +36,15 @@ public class AcsUsuarioFuncionalidadeDAO extends DefaultDAO {
         begin();
         PubFuncionalidadeDAO funDAO = new PubFuncionalidadeDAO();
         PubFuncionalidade func = funDAO.getByCodigo(codigo);
-        AcsUsuarioFuncionalidade usuarioSistemas;
-        usuarioSistemas = (AcsUsuarioFuncionalidade) session.createQuery("from AcsUsuarioFuncionalidade u where u.pubUsuario.idUsuario = :usu and u.pubFuncionalidade.idFuncionalidade = :fun").setParameter("usu", usuario.getIdUsuario()).setParameter("fun", func.getIdFuncionalidade()).uniqueResult();        
+        AcsUsuarioFuncionalidade usuarioFuncionalidade;
+        if (func != null) {
+            usuarioFuncionalidade = (AcsUsuarioFuncionalidade) session.createQuery("from AcsUsuarioFuncionalidade u where u.pubUsuario.idUsuario = :usu and u.pubFuncionalidade.idFuncionalidade = :fun").setParameter("usu", usuario.getIdUsuario()).setParameter("fun", func.getIdFuncionalidade()).uniqueResult();        
+        } else {
+            usuarioFuncionalidade = null;
+        }
         closeSession();
         funDAO.closeSession();
-        return usuarioSistemas;
+        return usuarioFuncionalidade;
     }
     
     // usado para verificar se a funcionalidade deve estar habilitada
@@ -60,38 +63,52 @@ public class AcsUsuarioFuncionalidadeDAO extends DefaultDAO {
         
         // get usuarioFuncionalidade
         usuFun = getByUsuarioCodigoFuncionalidade(u, codFuncionalidade);
-        // verifica sistemaEmpresa
-        empSis = empSisDAO.getByEmpresaSistema(u.getPubEmpresa(), usuFun.getPubFuncionalidade().getPubSistema());
-        if (empSis.isAtivo() == true) {
-            // verifica usuarioSistema {
-            usuSis = usuSisDAO.getUsuarioSistemaByUsuarioSistema(u, usuFun.getPubFuncionalidade().getPubSistema());
-            if (usuSis.isAtivo() == true) {            
-                // verifica empresaFuncionalidade
-                empFun = empFunDAO.getByEmpresaFuncionalidade(u.getPubEmpresa(), usuFun.getPubFuncionalidade());
-                // verifica usuarioFuncionalidade
-                if ("view".equals(crud)) {
-                    if (empFun.isView() == true) {
-                        disabled = convertAtivoDisabled(usuFun.getView());
+        // se usuFun não for nulo, continua
+        if (usuFun != null) {
+            // verifica sistemaEmpresa
+            empSis = empSisDAO.getByEmpresaSistema(u.getPubEmpresa(), usuFun.getPubFuncionalidade().getPubSistema());
+            // se empSis não for nulo, continua
+            // se empSis estiver ativo, continua
+            if (empSis != null && empSis.isAtivo() == true) {
+                // verifica usuarioSistema {
+                usuSis = usuSisDAO.getUsuarioSistemaByUsuarioSistema(u, usuFun.getPubFuncionalidade().getPubSistema());
+                // se usuSis não for nulo, continua
+                // se usuSis estiver ativo, continua
+                if (usuSis != null && usuSis.isAtivo() == true) {            
+                    // verifica empresaFuncionalidade
+                    empFun = empFunDAO.getByEmpresaFuncionalidade(u.getPubEmpresa(), usuFun.getPubFuncionalidade());
+                    // se usuSis não for nulo, continua
+                    if (empFun != null) {
+                        // verifica usuarioFuncionalidade
+                        if ("view".equals(crud)) {
+                            if (empFun.isView() == true) {
+                                disabled = convertAtivoDisabled(usuFun.getView());
+                            }
+                        } else if ("add".equals(crud)) {
+                            if (empFun.isAdd() == true) {
+                                disabled = convertAtivoDisabled(usuFun.isAdd());
+                            }
+                        } else if ("edit".equals(crud)) {
+                            if (empFun.isEdit() == true) {
+                                disabled = convertAtivoDisabled(usuFun.isEdit());
+                            }
+                        } else if ("delete".equals(crud)) {
+                            if (empFun.isDelete() == true) {
+                                disabled = convertAtivoDisabled(usuFun.isDelete());
+                            }
+                        } else if ("process".equals(crud)) {
+                            if (empFun.isProcess() == true) {
+                                disabled = convertAtivoDisabled(usuFun.isProcess());
+                            }
+                        } 
                     }
-                } else if ("add".equals(crud)) {
-                    if (empFun.isAdd() == true) {
-                        disabled = convertAtivoDisabled(usuFun.isAdd());
-                    }
-                } else if ("edit".equals(crud)) {
-                    if (empFun.isEdit() == true) {
-                        disabled = convertAtivoDisabled(usuFun.isEdit());
-                    }
-                } else if ("delete".equals(crud)) {
-                    if (empFun.isDelete() == true) {
-                        disabled = convertAtivoDisabled(usuFun.isDelete());
-                    }
-                } else if ("process".equals(crud)) {
-                    if (empFun.isProcess() == true) {
-                        disabled = convertAtivoDisabled(usuFun.isProcess());
-                    }
-                } 
-            }
-        }    
+                }
+            }    
+        }
+        empSisDAO.closeSession();
+        usuSisDAO.closeSession();
+        empFunDAO.closeSession();
+        closeSession();
         return disabled;
         
     }

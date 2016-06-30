@@ -14,7 +14,7 @@
         <property name="descricaoFrequencia" type="string">
             <column name="descricao_frequencia" length="100" />
         </property>
-        <set name="cadServicoses" table="cad_servicos" inverse="true" lazy="true" fetch="select">
+        <set name="cadServicoses" table="cad_servicos" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="frequecia_servico" />
             </key>

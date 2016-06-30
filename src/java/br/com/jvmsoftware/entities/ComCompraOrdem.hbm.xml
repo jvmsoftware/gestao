@@ -8,25 +8,25 @@
             <column name="id" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="select">
+        <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="join">
             <column name="empresa" not-null="true" />
         </many-to-one>
-        <many-to-one name="pubUsuario" class="br.com.jvmsoftware.entities.PubUsuario" fetch="select">
+        <many-to-one name="pubUsuario" class="br.com.jvmsoftware.entities.PubUsuario" fetch="join">
             <column name="usuario_inclusao" not-null="true" />
         </many-to-one>
-        <many-to-one name="wflWorkflow" class="br.com.jvmsoftware.entities.WflWorkflow" fetch="select">
+        <many-to-one name="wflWorkflow" class="br.com.jvmsoftware.entities.WflWorkflow" fetch="join">
             <column name="workflow" not-null="true" />
         </many-to-one>
         <property name="dataHoraInclusao" type="timestamp">
             <column name="data_hora_inclusao" length="19" not-null="true" />
         </property>
-        <set name="comRelCompraOrdemProdutos" table="com_rel_compra_ordem_produto" inverse="true" lazy="true" fetch="select">
+        <set name="comRelCompraOrdemProdutos" table="com_rel_compra_ordem_produto" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="ordem_compra" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.ComRelCompraOrdemProduto" />
         </set>
-        <set name="comRelCompraOrdemServicos" table="com_rel_compra_ordem_servico" inverse="true" lazy="true" fetch="select">
+        <set name="comRelCompraOrdemServicos" table="com_rel_compra_ordem_servico" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="ordem_compra" not-null="true" />
             </key>

@@ -8,13 +8,13 @@
             <column name="id_config" />
             <generator class="identity" />
         </id>
-        <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="select">
+        <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="join">
             <column name="empresa" not-null="true" />
         </many-to-one>
-        <many-to-one name="pubTipoEmpresa" class="br.com.jvmsoftware.entities.PubTipoEmpresa" fetch="select">
+        <many-to-one name="pubTipoEmpresa" class="br.com.jvmsoftware.entities.PubTipoEmpresa" fetch="join">
             <column name="tipo_empresa" not-null="true" />
         </many-to-one>
-        <many-to-one name="pubTipoNegocio" class="br.com.jvmsoftware.entities.PubTipoNegocio" fetch="select">
+        <many-to-one name="pubTipoNegocio" class="br.com.jvmsoftware.entities.PubTipoNegocio" fetch="join">
             <column name="tipo_negocio" not-null="true" />
         </many-to-one>
         <property name="mailEnvio" type="string">

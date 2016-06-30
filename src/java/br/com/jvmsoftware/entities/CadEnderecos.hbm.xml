@@ -8,16 +8,16 @@
             <column name="id_endereco" />
             <generator class="identity" />
         </id>
-        <many-to-one name="cadPessoa" class="br.com.jvmsoftware.entities.CadPessoa" fetch="select">
+        <many-to-one name="cadPessoa" class="br.com.jvmsoftware.entities.CadPessoa" fetch="join">
             <column name="pessoa" not-null="true" />
         </many-to-one>
-        <many-to-one name="pubEstado" class="br.com.jvmsoftware.entities.PubEstado" fetch="select">
+        <many-to-one name="pubEstado" class="br.com.jvmsoftware.entities.PubEstado" fetch="join">
             <column name="estado" />
         </many-to-one>
-        <many-to-one name="pubMunicipio" class="br.com.jvmsoftware.entities.PubMunicipio" fetch="select">
+        <many-to-one name="pubMunicipio" class="br.com.jvmsoftware.entities.PubMunicipio" fetch="join">
             <column name="municipio" />
         </many-to-one>
-        <many-to-one name="pubTipoEndereco" class="br.com.jvmsoftware.entities.PubTipoEndereco" fetch="select">
+        <many-to-one name="pubTipoEndereco" class="br.com.jvmsoftware.entities.PubTipoEndereco" fetch="join">
             <column name="tipo_endereco" not-null="true" />
         </many-to-one>
         <property name="endereco" type="string">
@@ -35,7 +35,7 @@
         <property name="complemento" type="string">
             <column name="complemento" length="100" />
         </property>
-        <set name="cadPessoas" table="cad_pessoa" inverse="true" lazy="true" fetch="select">
+        <set name="cadPessoas" table="cad_pessoa" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="endereco_padrao" />
             </key>

@@ -8,13 +8,13 @@
             <column name="id_rel" />
             <generator class="identity" />
         </id>
-        <many-to-one name="cadPessoa" class="br.com.jvmsoftware.entities.CadPessoa" fetch="select">
+        <many-to-one name="cadPessoa" class="br.com.jvmsoftware.entities.CadPessoa" fetch="join">
             <column name="fornecedor" not-null="true" />
         </many-to-one>
-        <many-to-one name="cadServicos" class="br.com.jvmsoftware.entities.CadServicos" fetch="select">
+        <many-to-one name="cadServicos" class="br.com.jvmsoftware.entities.CadServicos" fetch="join">
             <column name="servico" not-null="true" />
         </many-to-one>
-        <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="select">
+        <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="join">
             <column name="empresa" not-null="true" />
         </many-to-one>
         <property name="precoServico" type="java.lang.Double">

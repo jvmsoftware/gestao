@@ -8,25 +8,25 @@
             <column name="id_solicitacao" />
             <generator class="identity" />
         </id>
-        <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="select">
+        <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="join">
             <column name="empresa_solicitacao" not-null="true" />
         </many-to-one>
-        <many-to-one name="pubFuncionalidade" class="br.com.jvmsoftware.entities.PubFuncionalidade" fetch="select">
+        <many-to-one name="pubFuncionalidade" class="br.com.jvmsoftware.entities.PubFuncionalidade" fetch="join">
             <column name="funcionalidade" not-null="true" />
         </many-to-one>
-        <many-to-one name="pubSistema" class="br.com.jvmsoftware.entities.PubSistema" fetch="select">
+        <many-to-one name="pubSistema" class="br.com.jvmsoftware.entities.PubSistema" fetch="join">
             <column name="sistema" not-null="true" />
         </many-to-one>
-        <many-to-one name="pubUsuario" class="br.com.jvmsoftware.entities.PubUsuario" fetch="select">
+        <many-to-one name="pubUsuario" class="br.com.jvmsoftware.entities.PubUsuario" fetch="join">
             <column name="usuario_abertura" not-null="true" />
         </many-to-one>
-        <many-to-one name="supProjeto" class="br.com.jvmsoftware.entities.SupProjeto" fetch="select">
+        <many-to-one name="supProjeto" class="br.com.jvmsoftware.entities.SupProjeto" fetch="join">
             <column name="projeto" not-null="true" />
         </many-to-one>
-        <many-to-one name="wflSeveridade" class="br.com.jvmsoftware.entities.WflSeveridade" fetch="select">
+        <many-to-one name="wflSeveridade" class="br.com.jvmsoftware.entities.WflSeveridade" fetch="join">
             <column name="severidade" not-null="true" />
         </many-to-one>
-        <many-to-one name="wflSituacao" class="br.com.jvmsoftware.entities.WflSituacao" fetch="select">
+        <many-to-one name="wflSituacao" class="br.com.jvmsoftware.entities.WflSituacao" fetch="join">
             <column name="situacao" not-null="true" />
         </many-to-one>
         <property name="dataHoraAbertura" type="timestamp">

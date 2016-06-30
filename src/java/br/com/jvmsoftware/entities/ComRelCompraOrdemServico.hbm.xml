@@ -8,10 +8,10 @@
             <column name="id_rel" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="cadServicos" class="br.com.jvmsoftware.entities.CadServicos" fetch="select">
+        <many-to-one name="cadServicos" class="br.com.jvmsoftware.entities.CadServicos" fetch="join">
             <column name="servico" not-null="true" />
         </many-to-one>
-        <many-to-one name="comCompraOrdem" class="br.com.jvmsoftware.entities.ComCompraOrdem" fetch="select">
+        <many-to-one name="comCompraOrdem" class="br.com.jvmsoftware.entities.ComCompraOrdem" fetch="join">
             <column name="ordem_compra" not-null="true" />
         </many-to-one>
     </class>

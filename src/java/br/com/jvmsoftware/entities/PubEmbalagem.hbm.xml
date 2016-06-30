@@ -11,7 +11,7 @@
         <property name="embalagem" type="string">
             <column name="embalagem" length="20" not-null="true" />
         </property>
-        <set name="cadProdutos" table="cad_produto" inverse="true" lazy="true" fetch="select">
+        <set name="cadProdutos" table="cad_produto" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="embalagem" />
             </key>

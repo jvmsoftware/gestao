@@ -8,7 +8,7 @@
             <column name="id_funcionalidade" />
             <generator class="identity" />
         </id>
-        <many-to-one name="pubSistema" class="br.com.jvmsoftware.entities.PubSistema" fetch="select">
+        <many-to-one name="pubSistema" class="br.com.jvmsoftware.entities.PubSistema" fetch="join">
             <column name="sistema" not-null="true" />
         </many-to-one>
         <property name="codFuncionalidade" type="string">
@@ -31,25 +31,25 @@
         <property name="processDefault" type="boolean">
             <column name="process_default" not-null="true" />
         </property>
-        <set name="acsEmpresaFuncionalidades" table="acs_empresa_funcionalidade" inverse="true" lazy="true" fetch="select">
+        <set name="acsEmpresaFuncionalidades" table="acs_empresa_funcionalidade" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="funcionalidade" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.AcsEmpresaFuncionalidade" />
         </set>
-        <set name="supSolicitacaos" table="sup_solicitacao" inverse="true" lazy="true" fetch="select">
+        <set name="supSolicitacaos" table="sup_solicitacao" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="funcionalidade" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.SupSolicitacao" />
         </set>
-        <set name="acsUsuarioFuncionalidades" table="acs_usuario_funcionalidade" inverse="true" lazy="true" fetch="select">
+        <set name="acsUsuarioFuncionalidades" table="acs_usuario_funcionalidade" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="funcionalidade" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.AcsUsuarioFuncionalidade" />
         </set>
-        <set name="wflWorkflows" table="wfl_workflow" inverse="true" lazy="true" fetch="select">
+        <set name="wflWorkflows" table="wfl_workflow" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="funcionalidade" not-null="true">
                     <comment>Funcionalidade a qual o workflow pertence (dever&#195;&#161; ser uma funcionalidade do mesmo sistema (modulo))</comment>

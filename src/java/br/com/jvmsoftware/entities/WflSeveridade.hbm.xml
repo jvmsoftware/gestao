@@ -17,25 +17,25 @@
         <property name="prioridade" type="int">
             <column name="prioridade" not-null="true" unique="true" />
         </property>
-        <set name="wflWorkflows" table="wfl_workflow" inverse="true" lazy="true" fetch="select">
+        <set name="wflWorkflows" table="wfl_workflow" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="severidade" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.WflWorkflow" />
         </set>
-        <set name="wflWorkflowEventosForSeveridadeAtual" table="wfl_workflow_evento" inverse="true" lazy="true" fetch="select">
+        <set name="wflWorkflowEventosForSeveridadeAtual" table="wfl_workflow_evento" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="severidade_atual" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.WflWorkflowEvento" />
         </set>
-        <set name="wflWorkflowEventosForSeveridadeAnterior" table="wfl_workflow_evento" inverse="true" lazy="true" fetch="select">
+        <set name="wflWorkflowEventosForSeveridadeAnterior" table="wfl_workflow_evento" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="severidade_anterior" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.WflWorkflowEvento" />
         </set>
-        <set name="supSolicitacaos" table="sup_solicitacao" inverse="true" lazy="true" fetch="select">
+        <set name="supSolicitacaos" table="sup_solicitacao" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="severidade" not-null="true" />
             </key>

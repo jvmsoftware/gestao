@@ -40,6 +40,7 @@ public class AcsUsuarioSistemaDAO extends DefaultDAO {
         begin();
         AcsUsuarioSistema usuarioSistema;
         usuarioSistema = (AcsUsuarioSistema) session.createQuery("from AcsUsuarioSistema u where u.pubUsuario.idUsuario = :usu and u.pubSistema.idSistema = :sis").setParameter("usu", usuario.getIdUsuario()).setParameter("sis", sistema.getIdSistema()).uniqueResult();
+        closeSession();
         return usuarioSistema;
     }
     

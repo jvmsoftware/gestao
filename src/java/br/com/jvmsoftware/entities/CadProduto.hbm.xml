@@ -8,10 +8,10 @@
             <column name="id_produto" />
             <generator class="identity" />
         </id>
-        <many-to-one name="pubEmbalagem" class="br.com.jvmsoftware.entities.PubEmbalagem" fetch="select">
+        <many-to-one name="pubEmbalagem" class="br.com.jvmsoftware.entities.PubEmbalagem" fetch="join">
             <column name="embalagem" />
         </many-to-one>
-        <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="select">
+        <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="join">
             <column name="empresa" not-null="true" />
         </many-to-one>
         <property name="produto" type="string">
@@ -29,19 +29,19 @@
         <property name="ativo" type="boolean">
             <column name="ativo" not-null="true" />
         </property>
-        <set name="comRelVendaProdutos" table="com_rel_venda_produto" inverse="true" lazy="true" fetch="select">
+        <set name="comRelVendaProdutos" table="com_rel_venda_produto" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="produto" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.ComRelVendaProduto" />
         </set>
-        <set name="comRelCompraOrdemProdutos" table="com_rel_compra_ordem_produto" inverse="true" lazy="true" fetch="select">
+        <set name="comRelCompraOrdemProdutos" table="com_rel_compra_ordem_produto" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="produto" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.ComRelCompraOrdemProduto" />
         </set>
-        <set name="cadRelProdFornecs" table="cad_rel_prod_fornec" inverse="true" lazy="true" fetch="select">
+        <set name="cadRelProdFornecs" table="cad_rel_prod_fornec" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="produto" not-null="true" />
             </key>

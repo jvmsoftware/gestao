@@ -8,10 +8,10 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="select">
+        <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="join">
             <column name="empresa" not-null="true" />
         </many-to-one>
-        <many-to-one name="pubFuncionalidade" class="br.com.jvmsoftware.entities.PubFuncionalidade" fetch="select">
+        <many-to-one name="pubFuncionalidade" class="br.com.jvmsoftware.entities.PubFuncionalidade" fetch="join">
             <column name="funcionalidade" not-null="true" />
         </many-to-one>
         <property name="view" type="boolean">

@@ -8,25 +8,25 @@
             <column name="id_municipio" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="pubEstado" class="br.com.jvmsoftware.entities.PubEstado" fetch="select">
+        <many-to-one name="pubEstado" class="br.com.jvmsoftware.entities.PubEstado" fetch="join">
             <column name="id_estado" not-null="true" />
         </many-to-one>
         <property name="municipio" type="string">
             <column name="municipio" length="150" not-null="true" />
         </property>
-        <set name="pubEmpresas" table="pub_empresa" inverse="true" lazy="true" fetch="select">
+        <set name="pubEmpresas" table="pub_empresa" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="municipio" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.PubEmpresa" />
         </set>
-        <set name="cadEnderecoses" table="cad_enderecos" inverse="true" lazy="true" fetch="select">
+        <set name="cadEnderecoses" table="cad_enderecos" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="municipio" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.CadEnderecos" />
         </set>
-        <set name="pubUsuarios" table="pub_usuario" inverse="true" lazy="true" fetch="select">
+        <set name="pubUsuarios" table="pub_usuario" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="cidade" />
             </key>

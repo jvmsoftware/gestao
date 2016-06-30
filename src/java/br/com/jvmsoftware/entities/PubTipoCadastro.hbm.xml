@@ -14,13 +14,13 @@
         <property name="descricaoTipoCadastro" type="string">
             <column name="descricao_tipo_cadastro" length="100" not-null="true" />
         </property>
-        <set name="cadPessoas" table="cad_pessoa" inverse="true" lazy="true" fetch="select">
+        <set name="cadPessoas" table="cad_pessoa" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="tipo_cadastro" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.CadPessoa" />
         </set>
-        <set name="pubEmpresas" table="pub_empresa" inverse="true" lazy="true" fetch="select">
+        <set name="pubEmpresas" table="pub_empresa" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="tipo_cadastro" not-null="true" />
             </key>

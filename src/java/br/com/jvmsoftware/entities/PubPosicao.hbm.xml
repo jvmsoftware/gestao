@@ -14,7 +14,7 @@
         <property name="descricao" type="string">
             <column name="descricao" length="200" not-null="true" />
         </property>
-        <set name="pubConteudos" table="pub_conteudo" inverse="true" lazy="true" fetch="select">
+        <set name="pubConteudos" table="pub_conteudo" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="posicao" not-null="true" />
             </key>

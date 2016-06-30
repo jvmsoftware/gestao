@@ -11,7 +11,7 @@
         <property name="tipoImovel" type="string">
             <column name="tipo_imovel" length="50" not-null="true" />
         </property>
-        <set name="cadImoveises" table="cad_imoveis" inverse="true" lazy="true" fetch="select">
+        <set name="cadImoveises" table="cad_imoveis" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="tipo_imovel" not-null="true" />
             </key>

@@ -8,13 +8,13 @@
             <column name="id_tipo_negocio" />
             <generator class="identity" />
         </id>
-        <many-to-one name="pubTipoEmpresa" class="br.com.jvmsoftware.entities.PubTipoEmpresa" fetch="select">
+        <many-to-one name="pubTipoEmpresa" class="br.com.jvmsoftware.entities.PubTipoEmpresa" fetch="join">
             <column name="id_tipo_empresa" not-null="true" />
         </many-to-one>
         <property name="tipoNegocio" type="string">
             <column name="tipo_negocio" length="100" not-null="true" />
         </property>
-        <set name="pubConfigEmpresas" table="pub_config_empresa" inverse="true" lazy="true" fetch="select">
+        <set name="pubConfigEmpresas" table="pub_config_empresa" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="tipo_negocio" not-null="true" />
             </key>

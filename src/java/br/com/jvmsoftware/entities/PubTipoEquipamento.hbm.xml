@@ -11,7 +11,7 @@
         <property name="tipoEquipamento" type="string">
             <column name="tipo_equipamento" length="50" not-null="true" />
         </property>
-        <set name="cadEquipamentoses" table="cad_equipamentos" inverse="true" lazy="true" fetch="select">
+        <set name="cadEquipamentoses" table="cad_equipamentos" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="tipo_equipamento" not-null="true" />
             </key>

@@ -8,10 +8,10 @@
             <column name="id_situacao" />
             <generator class="identity" />
         </id>
-        <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="select">
+        <many-to-one name="pubEmpresa" class="br.com.jvmsoftware.entities.PubEmpresa" fetch="join">
             <column name="empresa" />
         </many-to-one>
-        <many-to-one name="pubSistema" class="br.com.jvmsoftware.entities.PubSistema" fetch="select">
+        <many-to-one name="pubSistema" class="br.com.jvmsoftware.entities.PubSistema" fetch="join">
             <column name="sistema" not-null="true" />
         </many-to-one>
         <property name="codSituacao" type="string">
@@ -23,25 +23,25 @@
         <property name="prioridade" type="int">
             <column name="prioridade" not-null="true" />
         </property>
-        <set name="supSolicitacaos" table="sup_solicitacao" inverse="true" lazy="true" fetch="select">
+        <set name="supSolicitacaos" table="sup_solicitacao" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="situacao" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.SupSolicitacao" />
         </set>
-        <set name="wflWorkflowEventosForSituacaoAnterior" table="wfl_workflow_evento" inverse="true" lazy="true" fetch="select">
+        <set name="wflWorkflowEventosForSituacaoAnterior" table="wfl_workflow_evento" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="situacao_anterior" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.WflWorkflowEvento" />
         </set>
-        <set name="wflWorkflowEventosForSituacaoAtual" table="wfl_workflow_evento" inverse="true" lazy="true" fetch="select">
+        <set name="wflWorkflowEventosForSituacaoAtual" table="wfl_workflow_evento" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="situacao_atual" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.WflWorkflowEvento" />
         </set>
-        <set name="wflWorkflows" table="wfl_workflow" inverse="true" lazy="true" fetch="select">
+        <set name="wflWorkflows" table="wfl_workflow" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="situacao" not-null="true" />
             </key>

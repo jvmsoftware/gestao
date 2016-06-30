@@ -11,13 +11,13 @@
         <property name="tipoEmpresa" type="string">
             <column name="tipo_empresa" length="80" not-null="true" />
         </property>
-        <set name="pubTipoNegocios" table="pub_tipo_negocio" inverse="true" lazy="true" fetch="select">
+        <set name="pubTipoNegocios" table="pub_tipo_negocio" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="id_tipo_empresa" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.PubTipoNegocio" />
         </set>
-        <set name="pubConfigEmpresas" table="pub_config_empresa" inverse="true" lazy="true" fetch="select">
+        <set name="pubConfigEmpresas" table="pub_config_empresa" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="tipo_empresa" not-null="true" />
             </key>

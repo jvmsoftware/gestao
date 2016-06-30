@@ -8,10 +8,10 @@
             <column name="Id_conteudo" />
             <generator class="identity" />
         </id>
-        <many-to-one name="pubMenu" class="br.com.jvmsoftware.entities.PubMenu" fetch="select">
+        <many-to-one name="pubMenu" class="br.com.jvmsoftware.entities.PubMenu" fetch="join">
             <column name="menu" not-null="true" />
         </many-to-one>
-        <many-to-one name="pubPosicao" class="br.com.jvmsoftware.entities.PubPosicao" fetch="select">
+        <many-to-one name="pubPosicao" class="br.com.jvmsoftware.entities.PubPosicao" fetch="join">
             <column name="posicao" not-null="true" />
         </many-to-one>
         <property name="conteudo" type="string">

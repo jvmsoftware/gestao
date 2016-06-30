@@ -8,10 +8,10 @@
             <column name="id_log" />
             <generator class="identity" />
         </id>
-        <many-to-one name="pubSistema" class="br.com.jvmsoftware.entities.PubSistema" fetch="select">
+        <many-to-one name="pubSistema" class="br.com.jvmsoftware.entities.PubSistema" fetch="join">
             <column name="sistema" not-null="true" />
         </many-to-one>
-        <many-to-one name="pubUsuario" class="br.com.jvmsoftware.entities.PubUsuario" fetch="select">
+        <many-to-one name="pubUsuario" class="br.com.jvmsoftware.entities.PubUsuario" fetch="join">
             <column name="usuario" not-null="true" />
         </many-to-one>
         <property name="dataHora" type="timestamp">

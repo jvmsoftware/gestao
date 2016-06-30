@@ -20,7 +20,7 @@
         <property name="workflow" type="int">
             <column name="workflow" not-null="true" />
         </property>
-        <set name="comRelVendaProdutos" table="com_rel_venda_produto" inverse="true" lazy="true" fetch="select">
+        <set name="comRelVendaProdutos" table="com_rel_venda_produto" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="venda_pedido" not-null="true" />
             </key>

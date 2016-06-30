@@ -8,13 +8,13 @@
             <column name="id_modelo_veiculo" />
             <generator class="identity" />
         </id>
-        <many-to-one name="pubMarcaVeiculo" class="br.com.jvmsoftware.entities.PubMarcaVeiculo" fetch="select">
+        <many-to-one name="pubMarcaVeiculo" class="br.com.jvmsoftware.entities.PubMarcaVeiculo" fetch="join">
             <column name="marca_veiculo" not-null="true" />
         </many-to-one>
         <property name="modeloVeiculo" type="string">
             <column name="modelo_veiculo" length="50" not-null="true" />
         </property>
-        <set name="cadVeiculoses" table="cad_veiculos" inverse="true" lazy="true" fetch="select">
+        <set name="cadVeiculoses" table="cad_veiculos" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="modelo" />
             </key>

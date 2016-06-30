@@ -11,13 +11,13 @@
         <property name="tipoVeiculo" type="string">
             <column name="tipo_veiculo" length="50" not-null="true" />
         </property>
-        <set name="cadVeiculoses" table="cad_veiculos" inverse="true" lazy="true" fetch="select">
+        <set name="cadVeiculoses" table="cad_veiculos" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="tipo_veiculo" not-null="true" />
             </key>
             <one-to-many class="br.com.jvmsoftware.entities.CadVeiculos" />
         </set>
-        <set name="pubMarcaVeiculos" table="pub_marca_veiculo" inverse="true" lazy="true" fetch="select">
+        <set name="pubMarcaVeiculos" table="pub_marca_veiculo" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="tipo_veiculo" not-null="true" />
             </key>
